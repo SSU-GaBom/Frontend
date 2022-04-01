@@ -1,5 +1,5 @@
 <template>
-   <v-dialog
+    <v-dialog
       v-dialog v-model="dialog" persistent max-width="600"
     >
       <template v-slot:activator="{ on, attrs }">
@@ -22,6 +22,7 @@
         class="mx-auto px-5 ma-5"
         max-width="500"
         outlined>
+        
       <v-form
         ref="form"
         v-model="hasError"
@@ -49,25 +50,37 @@
             counter
             required
             class="mb-5"
-          />
+      />
         
         </v-form>
       </v-card>
-
       <v-sheet class="headline mb-2 text-center">
         <v-btn color="primary" outlined :disabled="!form1OK" class="mr-2" >로그인</v-btn>
         <v-btn color="grey darken-2" @click="dialog=false" outlined>창닫기</v-btn>
       </v-sheet>
+      <br>
+      <v-divider></v-divider>
+      <v-sheet>
+        <find-id></find-id>
+        <v-text style="color: #9E9E9E">|</v-text>
+        <find-pw></find-pw>
+      </v-sheet>
     </v-sheet>
-      
+
     </v-dialog>
 </template>
 
 <script>
 
+import FindId from './FindId.vue'
+import FindPw from './FindPw.vue'
 
 export default {
     name : 'loginComp',
+    components:{
+        FindId,
+        FindPw
+    },
     data : function (){
         return {
             form: {
