@@ -4,8 +4,15 @@
         <v-btn
           v-bind="attrs"
           v-on="menu"
+          x-small
+          class="mx-2"
+          fab
+          dark
+          color="green"
         >
-          <v-icon>mdi-menu</v-icon>
+          <v-icon dark>
+            mdi-format-list-bulleted-square
+          </v-icon>
         </v-btn>
       </template>
       
