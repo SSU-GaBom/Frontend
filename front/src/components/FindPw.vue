@@ -134,7 +134,7 @@
                 :rules="valid.password"
                 :type="options.passwordShow ? 'text' : 'password'"
                 name="input-10-1"
-                label="패스워드"
+                label="새 패스워드"
                 placeholder="최소 10글자, 대/소문자 구분"
                 counter
                 required
@@ -147,7 +147,7 @@
                 :rules="valid.password2"
                 :type="options.passwordShow ? 'text' : 'password'"
                 name="input-10-2"
-                label="패스워드 확인"
+                label="새 패스워드 확인"
                 placeholder=" "
                 counter
                 required
@@ -157,7 +157,7 @@
             </v-form>
           </v-card>
           <v-sheet class="text-center">
-            <v-btn color="grey darken-1" @click="dialog=false, stage = 1, clear()" outlined>확인</v-btn>
+            <v-btn color="primary" class="mr-2" @click="dialog=false, stage = 1, clear()" outlined>확인</v-btn>
             <v-btn color="grey darken-1" @click="dialog=false, stage = 1, clear()" outlined>취소</v-btn>
           </v-sheet>
         </v-stepper-content>
