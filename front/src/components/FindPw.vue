@@ -69,7 +69,7 @@
             </v-form>
           </v-card>
           <v-sheet class="text-center">
-            <v-btn color="primary" @click="stage = 2" outlined class="mr-2">확인</v-btn>
+            <v-btn color="primary" @click="submit" outlined :disabled="!formFirst" class="mr-2">확인</v-btn>
             <v-btn color="grey darken-1" @click="dialog=false, stage = 1" outlined>취소</v-btn>
           </v-sheet>
         </v-stepper-content>
@@ -105,7 +105,7 @@
             </v-form>
           </v-card>
           <v-sheet class="text-center">
-            <v-btn color="primary" @click="stage = 3" outlined class="mr-2">확인</v-btn>
+            <v-btn color="primary" @click="submit" outlined :disabled="!formSecond" class="mr-2">확인</v-btn>
             <v-btn color="grey darken-1" @click="dialog=false, stage = 1, clear()" outlined>취소</v-btn>
           </v-sheet>
         </v-stepper-content>
@@ -157,7 +157,7 @@
             </v-form>
           </v-card>
           <v-sheet class="text-center">
-            <v-btn color="primary" class="mr-2" @click="dialog=false, stage = 1, clear()" outlined>확인</v-btn>
+            <v-btn color="primary" @click="dialog=false, stage = 1, clear()" outlined>확인</v-btn>
             <v-btn color="grey darken-1" @click="dialog=false, stage = 1, clear()" outlined>취소</v-btn>
           </v-sheet>
         </v-stepper-content>
@@ -180,7 +180,8 @@ export default {
           loginId: null,
           password: null,
           email: null,
-          name: null
+          name: null,
+          auth: null
         },
         options: {
           passwordShow: false
@@ -203,21 +204,31 @@ export default {
           ],
           name: [
             v => !!v || '이름을 입력하세요.'
+          ],
+          auth: [
+            v => !!v || '인증번호를 입력하세요.'
           ]
         }
       }
     },
     computed: {
-      form1OK () {
+      formFirst () {
         let ok = false
-        if (this.form.loginId && this.form.password && this.form.email) {
+        if (this.form.loginId && this.form.name && this.form.email) {
           ok = true
         }
         return ok
       },
-      form2OK () {
+      formSecond () {
         let ok = false
-        if (this.form.name && this.form.nickName) {
+        if (this.form.auth) {
+          ok = true
+        }
+        return ok
+      },
+      formThird () {
+        let ok = false
+        if (this.form.password && this.form.password2) {
           ok = true
         }
         return ok
@@ -225,23 +236,17 @@ export default {
   },
   methods:{
     submit(){
-      if(this.stage === 2 &&  this.$refs.loginId.validate() &&
-        this.$refs.password.validate() &&
-        this.$refs.password2.validate() &&
+      if (this.stage === 1 &&  this.$refs.loginId.validate() &&
+        this.$refs.name.validate() &&
         this.$refs.email.validate()){
-        console.log("stage2 -> stage3")
-        this.stage = 3
-      }else if(this.stage === 3 &&  this.$refs.name.validate() && this.$refs.nickName.validate()){
+        console.log("stage1 -> stage2")
+        this.stage = 2
+      } else if (this.stage === 2 &&  this.$refs.auth.validate()){
         console.log(this.form)
-        joinUser(this.form).then( () => {
-          this.stage = 4
-          this.countDown()
-          this.clear()
-        }).catch( (error) => {
-          this.errorMessage = '유저 등록에 실패했습니다. ' + error.message
-          this.stage = 2
-        })
-
+        this.stage = 3
+      } else if (this.stage === 3 &&  this.$refs.auth.validate()){
+        console.log(this.form)
+        this.clear()
       }
     },
     countDown () {
