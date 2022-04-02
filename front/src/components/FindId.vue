@@ -20,6 +20,7 @@
         <v-stepper-step step="1" :complete="stage > 1">
           본인 이메일을 통해 인증번호 받기
         </v-stepper-step>
+
         <v-stepper-content step="1">
           <v-card
             class="mx-auto px-5 mb-5"
@@ -54,7 +55,7 @@
             </v-form>
           </v-card>
           <v-sheet class="text-center">
-            <v-btn color="primary" @click="stage = 2" outlined class="mr-2">확인</v-btn>
+            <v-btn color="primary" @click="submit" outlined :disabled="!form1OK" class="mr-2">확인</v-btn>
             <v-btn color="grey darken-1" @click="dialog=false, stage = 1" outlined>취소</v-btn>
           </v-sheet>
         </v-stepper-content>
@@ -86,7 +87,7 @@
             </v-form>
           </v-card>
           <v-sheet class="text-center">
-            <v-btn color="primary" @click="stage = 3" outlined class="mr-2">확인</v-btn>
+            <v-btn color="primary" @click="submit" outlined :disabled="!form2OK" class="mr-2">확인</v-btn>
             <v-btn color="grey darken-1" @click="dialog=false, stage = 1, clear()" outlined>취소</v-btn>
           </v-sheet>
         </v-stepper-content>
@@ -142,14 +143,14 @@ export default {
     computed: {
       form1OK () {
         let ok = false
-        if (this.form.loginId && this.form.password && this.form.email) {
+        if (this.form.name && this.form.email) {
           ok = true
         }
         return ok
       },
       form2OK () {
         let ok = false
-        if (this.form.name && this.form.nickName) {
+        if (this.form.auth) {
           ok = true
         }
         return ok
@@ -157,14 +158,13 @@ export default {
   },
   methods:{
     submit(){
-      if(this.stage === 2 &&  this.$refs.loginId.validate() &&
-        this.$refs.password.validate() &&
-        this.$refs.password2.validate() &&
+      if(this.stage === 1 &&  this.$refs.name.validate() &&
         this.$refs.email.validate()){
-        console.log("stage2 -> stage3")
-        this.stage = 3
-      }else if(this.stage === 3 &&  this.$refs.name.validate() && this.$refs.nickName.validate()){
+        console.log("stage1 -> stage2")
+        this.stage = 2
+      }else if(this.stage === 2 &&  this.$refs.auth.validate()){
         console.log(this.form)
+        /*
         joinUser(this.form).then( () => {
           this.stage = 4
           this.countDown()
@@ -173,7 +173,7 @@ export default {
           this.errorMessage = '유저 등록에 실패했습니다. ' + error.message
           this.stage = 2
         })
-
+        */
       }
     },
     countDown () {
