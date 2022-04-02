@@ -64,7 +64,6 @@
 
           <v-form
             ref="form"
-            
             lazy-validation
           >
 
