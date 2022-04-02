@@ -220,20 +220,15 @@ export default {
             polygon.setMap(null);});
             */
         polygon.setMap(null);
-    },zoomMap(){
-
-    }
-    
+    },zoomMap(){ }
   },
-  
-
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #map {
-  width: 1200px;
+  width: 100%;
   height: 800px;
 }
 
