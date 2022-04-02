@@ -2,7 +2,7 @@
    
     <v-dialog
       v-model="dialog"
-      width="800"
+      width="1000"
       persistent
     >
       <template v-slot:activator="{ on:rank , attrs}">
@@ -17,27 +17,35 @@
         </v-btn>
       </template>
 
-      <v-card>
-        <v-card-title class="text-h5 grey lighten-2">
-          Rank
-        </v-card-title>
-
-        <v-card-text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            text
-            @click="dialog = false"
+      <v-card height="70vh">
+        <v-tabs
+          v-model="tab"
+          fixed-tabs
+          background-color="indigo"
+          dark
+        >
+          <v-tab
+            v-for="item in items"
+            :key="item.tab"
           >
-            I accept
-          </v-btn>
-        </v-card-actions>
+            {{ item.tab }}
+          </v-tab>
+          <v-tab @click="dialog=false">
+            Close
+          </v-tab>
+        </v-tabs>
+      
+        <v-tabs-items v-model="tab">
+          <v-tab-item
+            v-for="item in items"
+            :key="item.tab"
+          >
+            <v-card flat>
+              <v-card-text>{{ item.content }}</v-card-text>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items>
+
       </v-card>
     </v-dialog>
   
@@ -50,7 +58,17 @@ export default {
     name : 'RankComp',
     data () {
         return {
+          tab: null,
            dialog: false,
+           TravelZZimRank : null,
+           FollwerRank : null,
+           RecommendRank : null,
+           items : [
+            { tab : "TravelZZimRank" , content : 'TravelZZimRank' },
+            { tab : "FollwerRank" , content : 'FollwerRank' },
+            { tab : "RecommendRank" , content : 'RecommendRank' }
+
+           ]
         }
     }
 }

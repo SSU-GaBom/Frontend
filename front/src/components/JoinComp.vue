@@ -13,7 +13,7 @@
       </template>
 
       <v-stepper v-model="stage" vertical id="stepper">
-        <div class="text-center"><img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid pa-3" alt="Logo" width="200" height="50"/></div>
+        <div class="text-center"><img src="../assets/GaBom.svg" class="img-fluid pa-3" alt="Logo" width="200" height="50"/></div>
         <v-sheet class="headline mb-2 text-center"> 회원 가입 </v-sheet>
 
         <v-stepper-step step="1" :complete="stage > 1">
@@ -283,6 +283,7 @@ export default {
       }else if(this.stage === 3 &&  this.$refs.name.validate() && this.$refs.nickName.validate()){
         console.log(this.form)
         joinUser(this.form).then( () => {
+
           this.stage = 4
           this.countDown()
           this.clear()

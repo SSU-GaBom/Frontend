@@ -1,5 +1,5 @@
 <template>
-   <v-menu offset-y  :close-on-content-click="false">
+   <v-menu offset-y :close-on-content-click="false">
       <template v-slot:activator="{ on: menu, attrs }">
         <v-btn
           v-bind="attrs"
@@ -22,10 +22,6 @@
           </v-list-item-content>
         
         </v-list>
-
-      
-
-      
     </v-menu>
 </template>
 
@@ -45,7 +41,7 @@ export default {
                 
             ]
         }
-    } ,
+    },
     component :{
       RankComp
     },
