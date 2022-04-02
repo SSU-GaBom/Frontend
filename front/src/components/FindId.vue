@@ -7,7 +7,6 @@
           class="ma-2"
           text
           small
-          btn-font-sizes="x-large"
           color="#9E9E9E"
         >
           아이디 찾기
@@ -31,6 +30,8 @@
             <v-form
               ref="form"
               lazy-validation
+              v-model="hasError"
+              class="pa-5 ma-5"
             >
             <v-text-field
               v-model="form.name"
@@ -69,6 +70,8 @@
             <v-form
               ref="form2"      
               lazy-validation
+              v-model="hasError"
+              class="pa-5 ma-5"
             >
               <v-text-field
                 v-model="form.auth"
@@ -100,7 +103,7 @@
           >
             <v-list-item three-line>
               <v-list-item-content>
-                <v-list-item-title class="display-2">아이디 출력</v-list-item-title>
+                <v-list-item-title class="display-2">이곳에 아이디 출력</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-card-text>       
