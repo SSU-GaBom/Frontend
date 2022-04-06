@@ -1,25 +1,26 @@
 <template>
   <v-app>
-    
-    <header-bar></header-bar>
-    
-  
+    <header-bar></header-bar> 
+
     <v-content>
+      <main-screen></main-screen>
       <travel-map></travel-map>
     </v-content>
-    
+
   </v-app>
 </template>
 
 <script>
 import HeaderBar from './components/HeaderBar.vue'
+import MainScreen from './components/MainScreen.vue'
 import TravelMap from './components/TravelMap.vue'
 
 export default {
   name: 'app',
   components:{
     HeaderBar,
-    TravelMap
+    TravelMap,
+    MainScreen
   }
 
 }
