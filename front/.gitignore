@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .DS_Store
 node_modules
@@ -23,3 +24,6 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
+=======
+node_modules/
+>>>>>>> d05ae8a8b37b4691abd8de35f93c69b194847f78
