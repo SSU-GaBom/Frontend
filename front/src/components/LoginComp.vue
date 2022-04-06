@@ -1,40 +1,46 @@
 
 <template>
-  <v-dialog v-dialog v-model="dialog" persistent max-width="600">
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        v-bind="attrs"
-        v-on="on"
-        icon
-        darks
-      >
-        <v-icon> mdi-account-arrow-right </v-icon>
-      </v-btn>
-    </template>
+    <v-dialog
+      v-dialog v-model="dialog" persistent max-width="600"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          v-bind="attrs"
+          v-on="on"
+          icon
+          darks
+        >
+          <v-icon> mdi-account-arrow-right </v-icon>
+        </v-btn>
+      </template>
+
         
-    <v-sheet min-height="500">
-      <div class="text-center"><img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid pa-3 my-5" alt="Logo" width="200" height="50"/></div>
+      <v-sheet min-height="500">
+        <div class="text-center"><img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid pa-3 my-5" alt="Logo" width="200" height="50"/></div>
       <v-sheet class="headline mb-2 text-center"> 로그인 </v-sheet>
+
       <v-card
         class="mx-auto px-5 ma-5"
         max-width="500"
         outlined>
-        <v-form
-          ref="form"
-          v-model="hasError"
-          lazy-validation
-          class="pa-5 ma-5"
-        >
-          <v-text-field
-            v-model="form.username"
-            :counter="20"
-            :rules="valid.username"
-            label="아이디"
-            placeholder="6글자 이상, 영문 대/소문자 및 숫자"
-            required
-            maxlength="20"
-          ></v-text-field>
-          <v-text-field
+        
+      <v-form
+        ref="form"
+        v-model="hasError"
+        lazy-validation
+        class="pa-5 ma-5"
+      >
+      <v-text-field
+        v-model="form.username"
+        :counter="20"
+        :rules="valid.username"
+        label="아이디"
+        placeholder="6글자 이상, 영문 대/소문자 및 숫자"
+        required
+        maxlength="20"
+      ></v-text-field>
+
+      <v-text-field
             v-model="form.password"
             :append-icon="options.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
             :rules="valid.password"
@@ -45,29 +51,37 @@
             counter
             required
             class="mb-5"
-          />
+      />
+        
         </v-form>
       </v-card>
-      
       <v-sheet class="headline mb-2 text-center">
         <v-btn color="primary" outlined :disabled="!form1OK" class="mr-2" >로그인</v-btn>
         <v-btn color="grey darken-2" @click="dialog=false" outlined>창닫기</v-btn>
       </v-sheet>
-
-      <v-sheet class="headline mb-2 text-center">
-        <v-btn color="primary" outlined :disabled="!form1OK" class="mr-2" >로그인</v-btn>
-        <v-btn color="grey darken-2" @click="dialog=false" outlined>창닫기</v-btn>
+      <br>
+      <v-divider></v-divider>
+      <v-sheet>
+        <find-id></find-id>
+        <v-text style="color: #9E9E9E">|</v-text>
+        <find-pw></find-pw>
       </v-sheet>
+    </v-sheet>
 
-    </v-sheet>  
-  </v-dialog>
+    </v-dialog>
 </template>
 
 <script>
 
+import FindId from './FindId.vue'
+import FindPw from './FindPw.vue'
 
 export default {
     name : 'loginComp',
+    components:{
+        FindId,
+        FindPw
+    },
     data : function (){
         return {
             form: {
@@ -97,6 +111,5 @@ export default {
 
 
 <style scoped>
-
 
 </style>

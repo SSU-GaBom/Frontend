@@ -64,21 +64,27 @@
 
           <v-form
             ref="form"
-            
             lazy-validation
           >
+          <v-row>
+            <v-text-field
+              v-model="form.loginId"
+              ref="loginId"
+              :counter="20"
+              :rules="valid.loginId"
+              label="아이디"
+              placeholder="6글자 이상, 영문 대/소문자 및 숫자"
+              required
+              maxlength="20"
+            ></v-text-field>
 
-          <v-text-field
-            v-model="form.loginId"
-            ref="loginId"
-            :counter="20"
-            :rules="valid.loginId"
-            label="아이디"
-            placeholder="6글자 이상, 영문 대/소문자 및 숫자"
-            required
-            maxlength="20"
-          ></v-text-field>
+            <v-btn width="8" height="40" @click="validateLoginId()">
+              중복
+            </v-btn>
+            
 
+          </v-row>
+         
           <v-text-field
             v-model="form.email"
             ref="email"
@@ -211,7 +217,7 @@
 </template>
 
 <script>
-import {joinUser} from '../api/index'
+import {joinUser , validateLoginId} from '../api/index'
 
 export default {
     name : 'JoinComp',
@@ -282,17 +288,29 @@ export default {
         this.stage = 3
       }else if(this.stage === 3 &&  this.$refs.name.validate() && this.$refs.nickName.validate()){
         console.log(this.form)
-        joinUser(this.form).then( () => {
 
+        try{
+          const response = joinUser(this.form);
           this.stage = 4
           this.countDown()
           this.clear()
-        }).catch( (error) => {
+        }catch(error){
+          console.log(error);
           this.errorMessage = '유저 등록에 실패했습니다. ' + error.message
           this.stage = 2
-        })
+        }
 
       }
+    },
+    async validateLoginId(){
+      try{
+        const response = await validateLoginId(this.form.loginId);
+        console.log(response);
+      }catch(error){
+        console.log(error);
+      }
+      
+
     },
     countDown () {
       if (this.counter > 0) {

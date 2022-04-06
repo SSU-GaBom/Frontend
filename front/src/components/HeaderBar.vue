@@ -1,8 +1,7 @@
 <template>
     <v-div>
-    
-    <v-app-bar dense>
-        <menu-bar ></menu-bar>
+    <v-app-bar dense color="light-green">
+        <menu-bar></menu-bar>
         <v-toolbar-title>GaBom</v-toolbar-title>
         <v-spacer></v-spacer>
         <join-comp></join-comp>
