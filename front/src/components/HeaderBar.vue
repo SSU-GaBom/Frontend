@@ -1,7 +1,6 @@
 <template>
     <v-div>
     <v-app-bar dense color="light-green">
-        <menu-bar></menu-bar>
         <v-toolbar-title>GaBom</v-toolbar-title>
         <v-spacer></v-spacer>
         <join-comp></join-comp>
@@ -13,12 +12,12 @@
 <script>
 import LoginComp from './LoginComp.vue'
 import JoinComp from './JoinComp.vue'
-import MenuBar from './MenuBar.vue'
+
 
 export default {
     name: 'HeaderBar',
     components:{
-        LoginComp,JoinComp,MenuBar
+        LoginComp,JoinComp
     }
 }
 </script>
