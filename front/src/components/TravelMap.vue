@@ -1,7 +1,5 @@
 <template>
-  <div>
     <div id="map"></div>
-  </div>
 </template>
 
 <script>
@@ -228,8 +226,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #map {
-  width: 100%;
+  width: 70%;
   height: 800px;
+  float: right;
+  display: inline-block;
 }
 
 </style>

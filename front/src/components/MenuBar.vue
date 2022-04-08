@@ -41,12 +41,7 @@ export default {
     name : 'MenuBar',
     data () {
         return {
-            items: [
-                { title: 'Travel작성' },
-                { title: '랭킹' },
-                { title: 'MyPage' },
-                
-            ]
+            
         }
     },
     component :{

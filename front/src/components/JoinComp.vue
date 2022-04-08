@@ -291,6 +291,14 @@ export default {
 
         try{
           const response = joinUser(this.form);
+          //아이디가 중복
+
+          //회원중복
+
+          //닉네임 중복
+
+          //
+          console.log(response)
           this.stage = 4
           this.countDown()
           this.clear()
@@ -306,6 +314,11 @@ export default {
       try{
         const response = await validateLoginId(this.form.loginId);
         console.log(response);
+        //만약 아이디가 중복됬을시 -> "아이디가 중복입니다. 아이디를 바꿔주세요"
+        //다이알로그
+
+        //만약 아이디가 중복 안됬을시 -> "아이디를 사용가능합니다."
+        //다이알로그
       }catch(error){
         console.log(error);
       }
