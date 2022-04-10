@@ -1,12 +1,13 @@
 <template>
   <v-app>
     <header-bar></header-bar> 
-    
+    <left-bar></left-bar>
     <v-content>
-      <left-bar></left-bar>
-      <travel-map></travel-map>
+      <div class="flex">
+        <router-view></router-view>
+        <travel-map></travel-map>
+      </div>
     </v-content>
-
   </v-app>
 </template>
 
@@ -37,7 +38,11 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
+.flex {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
 nav {
   padding: 30px;
 }
