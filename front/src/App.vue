@@ -13,7 +13,6 @@
 
 <script>
 import HeaderBar from './components/HeaderBar.vue'
-import MainScreen from './components/MainScreen.vue'
 import TravelMap from './components/TravelMap.vue'
 import LeftBar from './components/LeftBar.vue'
 
