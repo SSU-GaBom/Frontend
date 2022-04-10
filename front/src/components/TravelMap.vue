@@ -228,8 +228,6 @@ export default {
 #map {
   width: 70%;
   height: 800px;
-  float: right;
-  display: inline-block;
 }
 
 </style>

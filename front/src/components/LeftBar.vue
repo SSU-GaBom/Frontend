@@ -1,7 +1,9 @@
 <template>
-  <div >
+  <div id="left-bar">
     <div class='left'>
        <menu-list></menu-list>
+       <router-link to="/">home</router-link>
+       <router-link to="/about">about</router-link>
     </div>
     <img id='left_btn' @click='toggle' src='../assets/logo.png'>
   </div>
@@ -61,8 +63,11 @@ export default {
 </script>
 
 <style scoped>
-
-
+#left-bar {
+  position:absolute;
+  left:0;
+  z-index:10;
+}
   a{color:black}
   a:hover{color:rgb(98, 255, 111);}
   .left{    
