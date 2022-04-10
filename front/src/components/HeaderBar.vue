@@ -2,8 +2,11 @@
     <v-div>
     <v-app-bar dense color="light-green">
         <v-toolbar-title>GaBom</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <join-comp></join-comp>
+        <v-spacer/>
+        <router-link to="/">home&nbsp;&nbsp;</router-link><br>
+        <router-link to="/about">about&nbsp;&nbsp;</router-link>
+        <router-link to="/user">user</router-link>
+        <join-comp/>
         <login-comp/>
     </v-app-bar>
 </v-div>
