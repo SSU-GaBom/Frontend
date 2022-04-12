@@ -1,6 +1,7 @@
 package GaBom.Bom.service;
 
 
+import GaBom.Bom.dto.SignUpUserDto;
 import GaBom.Bom.dto.UserDto;
 import GaBom.Bom.entity.User;
 import GaBom.Bom.repository.UserRepository;
@@ -32,23 +33,17 @@ public class SignUpService {
         return true;
     }
 
-    //이메일이 존재하는지 확인정도의 서비스
-    @Transactional
-    public Boolean checkEmail(String email) {
-        if (userRepository.existsByEmail(email))
-            return false;
-        return true;
-    }
 
 
     @Transactional
-    public void joinUser(UserDto userDto) {
+    public void joinUser(SignUpUserDto signUpUserDto) {
+
         userRepository.save(User.builder()
-                .userId(userDto.getUserId())
-                .userPw(passwordEncoder.encode(userDto.getUserPw()))
-                .userName(userDto.getUserName())
-                .email(userDto.getEmail())
-                .nickName(userDto.getNickName())
+                .userId(signUpUserDto.getUserId())
+                .userPw(passwordEncoder.encode(signUpUserDto.getUserPw()))
+                .userName(signUpUserDto.getUserName())
+                .email(signUpUserDto.getEmail())
+                .nickName(signUpUserDto.getNickName())
                 .appendDate(localTime)
                 .updateDate(localTime)
                 .provider(null)

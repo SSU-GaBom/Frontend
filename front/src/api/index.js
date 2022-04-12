@@ -1,16 +1,25 @@
 import axios from 'axios'
 
-
 function joinUser(user){
-    console.log("joinUser")
-    return axios.post("/api/join",user);    
+    console.log("signup")
+    return axios.post("/api/signup",user);    
 }
 
-function validateLoginId(loginId){
-    console.log("validateLoginId")
-    return axios.get("/api/validtaeLoginId,",loginId);
+function validateLoginId(userId){
+    console.log(userId)
+    return axios.get(`/api/checkId/${userId}`);
+}
+
+function loginUser(loginDto){
+    console.log(loginDto)
+    return axios.post("api/signin",loginDto)
+}
+
+function testApi(userId){
+    console.log(userId)
+    return axios.get(`/api/testApi/${userId}`)
 }
 
 export {
-    joinUser
+    joinUser , validateLoginId ,testApi ,loginUser
 }
