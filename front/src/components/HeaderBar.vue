@@ -6,6 +6,7 @@
         <router-link to="/">home&nbsp;&nbsp;</router-link><br>
         <router-link to="/about">about&nbsp;&nbsp;</router-link>
         <router-link to="/user">user</router-link>
+        
         <join-comp/>
         <login-comp/>
     </v-app-bar>
@@ -19,6 +20,11 @@ import JoinComp from './JoinComp.vue'
 
 export default {
     name: 'HeaderBar',
+    data() {
+        return {
+            loginId : this.$store.user.loginId
+        }
+    },
     components:{
         LoginComp,JoinComp
     }

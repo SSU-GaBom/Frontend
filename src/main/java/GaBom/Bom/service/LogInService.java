@@ -9,11 +9,13 @@ import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.SingleResult;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LogInService {
@@ -30,14 +32,18 @@ public class LogInService {
         String id = loginDto.getLoginId();
         String password = loginDto.getLoginPw();
 
+        log.info("id : {}" , id);
+        log.info("password : {}" , password);
         User user = userRepository.findByUserId(id).orElseThrow(CEmailSigninFailedException::new);
         if (!passwordEncoder.matches(password, user.getPassword())) {
             // matches : 평문, 암호문 패스워드 비교 후 boolean 결과 return
             throw new CEmailSigninFailedException();
         }
+
         if(user.getEmailAuth() == false){
             throw new CEmailAuthTokenNotFoundException();
         }
+        log.info("signIn4");
         return responseService.getSingleResult(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), user.getRoles()));
     }
 }

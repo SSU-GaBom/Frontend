@@ -1,58 +1,73 @@
 package GaBom.Bom.controller;
 
-
-import GaBom.Bom.advice.exception.CCheckIdFailedException;
-import GaBom.Bom.advice.exception.CUserEmailAlreadyExistsException;
+import GaBom.Bom.advice.exception.CNickNameAlreadyExistsException;
+import GaBom.Bom.advice.exception.CUserIdAlreadyExistsException;
 import GaBom.Bom.dto.LoginDto;
+import GaBom.Bom.dto.SignUpUserDto;
 import GaBom.Bom.dto.UserDto;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
-import GaBom.Bom.service.ConfirmationTokenService;
-import GaBom.Bom.service.LogInService;
-import GaBom.Bom.service.ResponseService;
-import GaBom.Bom.service.SignUpService;
+import GaBom.Bom.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
-import java.util.HashMap;
 
+@Slf4j
 @Api(tags = {"1. Sign"})
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/sign")
 public class SignController {
 
     private final ResponseService responseService; // API 요청 결과에 대한 code, message
     private final SignUpService signUpService;
     private final ConfirmationTokenService confirmationTokenService;
     private final LogInService logInService;
+    private final CheckService checkService;
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
-    @PostMapping(value = "/signin")
+    @PostMapping(value = "/api/signin")
     public SingleResult<String> signin(@RequestBody LoginDto loginDto) {
+        log.info("login : {} , {}" ,loginDto.getLoginId() , loginDto.getLoginPw() );
+
         return logInService.signIn(loginDto);
     }
 
     @ApiOperation(value = "가입", notes = "회원가입을 한다.")
-    @PostMapping(value = "/signup")
-    public CommonResult signup(@RequestBody UserDto userDto) throws MessagingException {
-        if(!signUpService.checkEmail(userDto.getEmail())){
-            throw new CUserEmailAlreadyExistsException();
-        }
-        confirmationTokenService.createEmailConfirmationToken(userDto.getUserId(), userDto.getEmail());
-        signUpService.joinUser(userDto);
+    @PostMapping(value = "/api/signup")
+    public CommonResult signup(@RequestBody SignUpUserDto signUpUserDto) throws MessagingException {
+        log.info("email : {} " , signUpUserDto.getEmail());
+        log.info("userId : {} " , signUpUserDto.getUserId());
+        log.info("userName : {} " , signUpUserDto.getUserName());
+        log.info("nickname : {} " , signUpUserDto.getNickName());
+        log.info("password : {} " , signUpUserDto.getUserPw());
+        //아이디, 닉네임, 이메일 중복 확인
+        checkService.check(signUpUserDto);
+        log.info("hello1");
+        confirmationTokenService.createEmailConfirmationToken(signUpUserDto.getUserId(), signUpUserDto.getEmail());
+        signUpService.joinUser(signUpUserDto);
         return responseService.getSuccessResult();
     }
 
     //success값이 true 일 때만!
     @ApiOperation(value = "id중복체크")
-    @PostMapping(value = "/checkid")
-    public CommonResult checkId(@RequestParam HashMap<String, String> userId){
-        if(!signUpService.checkId(userId.get("userId")))
-            throw new CCheckIdFailedException();
+    @GetMapping("/api/checkId/{userId}")
+    public CommonResult checkId(@PathVariable String userId){
+        log.info("checkId : {} ",userId);
+        if(!checkService.checkId(userId))
+            throw new CUserIdAlreadyExistsException();
+        return responseService.getSuccessResult();
+    }
+
+    //success값이 true 일 때만!
+    @ApiOperation(value = "닉네임 중복체크")
+    @GetMapping(value = "/api/checkNickname")
+    public CommonResult checkNickName(@RequestBody UserDto userDto){
+        if(!checkService.checkNickName(userDto.getNickName()))
+            throw new CNickNameAlreadyExistsException();
         return responseService.getSuccessResult();
     }
 }

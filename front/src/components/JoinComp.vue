@@ -68,10 +68,10 @@
           >
           <v-row>
             <v-text-field
-              v-model="form.loginId"
-              ref="loginId"
+              v-model="form.userId"
+              ref="userId"
               :counter="20"
-              :rules="valid.loginId"
+              :rules="valid.userId"
               label="아이디"
               placeholder="6글자 이상, 영문 대/소문자 및 숫자"
               required
@@ -95,30 +95,30 @@
           ></v-text-field>
 
           <v-text-field
-            v-model="form.password"
-            ref="password"
-            :append-icon="options.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="valid.password"
-            :type="options.passwordShow ? 'text' : 'password'"
+            v-model="form.userPw"
+            ref="userPw"
+            :append-icon="options.userPwShow ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="valid.userPw"
+            :type="options.userPwShow ? 'text' : 'userPw'"
             name="input-10-1"
             label="패스워드"
             placeholder="최소 10글자, 대/소문자 구분"
             counter
             required
-            @click:append="options.passwordShow = !options.passwordShow"
+            @click:append="options.userPwShow = !options.userPwShow"
           />
 
           <v-text-field
-            ref="password2"
-            :append-icon="options.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="valid.password2"
-            :type="options.passwordShow ? 'text' : 'password'"
+            ref="userPw2"
+            :append-icon="options.userPwShow ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="valid.userPw2"
+            :type="options.userPwShow ? 'text' : 'userPw'"
             name="input-10-2"
             label="패스워드 확인"
             placeholder=" "
             counter
             required
-            @click:append="options.passwordShow = !options.passwordShow"
+            @click:append="options.userPwShow = !options.userPwShow"
           />
           </v-form>
 
@@ -153,10 +153,10 @@
         >
 
           <v-text-field
-            v-model="form.name"
-            ref="name"
+            v-model="form.userName"
+            ref="userName"
             :counter="10"
-            :rules="valid.name"
+            :rules="valid.userName"
             label="이름"
             placeholder="이름을 입력하세요 (최대 10자)"
             required
@@ -217,7 +217,7 @@
 </template>
 
 <script>
-import {joinUser , validateLoginId} from '../api/index'
+import {joinUser , testApi, validateLoginId} from '../api/index'
 
 export default {
     name : 'JoinComp',
@@ -227,32 +227,32 @@ export default {
         stage: 1,
         counter: 5,
         form: {
-          loginId: null,
-          password: null,
+          userId: null,
+          userPw: null,
           email: null,
-          name: null,
+          userName: null,
           nickName: null
         },
         options: {
-          passwordShow: false
+          userPwShow: false
         },
         valid: {
-          loginId: [
+          userId: [
             v => !!v || '아이디를 입력하세요.',
             v => (v && v.length <= 20 && v.length >= 6) || '아이디는 6글자 이상, 20글자 이하입니다.'
           ],
-          password: [
+          userPw: [
             v => !!v || '패스워드를 입력하세요.',
             v => (v && v.length >= 10) || '패스워드는 10글자 이상입니다.'
           ],
-          password2: [
-            v => (v === this.form.password) || '패스워드가 일치하지 않습니다.'
+          userPw2: [
+            v => (v === this.form.userPw) || '패스워드가 일치하지 않습니다.'
           ],
           email: [
             v => !!v || '이메일 주소를 입력하세요.',
             v => /.+@.+\..+/.test(v) || '이메일 주소 형식이 맞지 않습니다.'
           ],
-          name: [
+          userName: [
             v => !!v || '이름을 입력하세요.'
           ],
           nickName: [
@@ -264,33 +264,33 @@ export default {
     computed: {
       form1OK () {
         let ok = false
-        if (this.form.loginId && this.form.password && this.form.email) {
+        if (this.form.userId && this.form.userPw && this.form.email) {
           ok = true
         }
         return ok
       },
       form2OK () {
         let ok = false
-        if (this.form.name && this.form.nickName) {
+        if (this.form.userName && this.form.nickName) {
           ok = true
         }
         return ok
       }
   },
   methods:{
-    submit(){
+    async submit(){
       
-      if(this.stage === 2 &&  this.$refs.loginId.validate() &&
-        this.$refs.password.validate() &&
-        this.$refs.password2.validate() &&
+      if(this.stage === 2 &&  this.$refs.userId.validate() &&
+        this.$refs.userPw.validate() &&
+        this.$refs.userPw2.validate() &&
         this.$refs.email.validate()){
         console.log("stage2 -> stage3")
         this.stage = 3
-      }else if(this.stage === 3 &&  this.$refs.name.validate() && this.$refs.nickName.validate()){
+      }else if(this.stage === 3 &&  this.$refs.userName.validate() && this.$refs.nickName.validate()){
         console.log(this.form)
 
         try{
-          const response = joinUser(this.form);
+          const response = await joinUser(this.form);
           //아이디가 중복
 
           //회원중복
@@ -298,7 +298,7 @@ export default {
           //닉네임 중복
 
           //
-          console.log(response)
+          console.log(response.data)
           this.stage = 4
           this.countDown()
           this.clear()
@@ -312,8 +312,8 @@ export default {
     },
     async validateLoginId(){
       try{
-        const response = await validateLoginId(this.form.loginId);
-        console.log(response);
+        const response = await validateLoginId(this.form.userId);
+        console.log(response.data);
         //만약 아이디가 중복됬을시 -> "아이디가 중복입니다. 아이디를 바꿔주세요"
         //다이알로그
 
@@ -324,6 +324,9 @@ export default {
       }
       
 
+    },
+    async test(){
+      const response = await testApi();
     },
     countDown () {
       if (this.counter > 0) {

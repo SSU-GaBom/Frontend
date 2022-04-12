@@ -6,12 +6,14 @@ import GaBom.Bom.entity.ConfirmationToken;
 import GaBom.Bom.repository.ConfirmationTokenRepository;
 import io.jsonwebtoken.lang.Assert;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class ConfirmationTokenService {
@@ -23,7 +25,8 @@ public class ConfirmationTokenService {
      * @return
      */
     public String createEmailConfirmationToken(String userId, String receiverEmail){
-
+        log.info("userId : {}" , userId);
+        log.info("email : {}" , receiverEmail);
         Assert.hasText(userId,"userId는 필수 입니다.");
         Assert.hasText(receiverEmail,"receiverEmail은 필수 입니다.");
 
@@ -34,7 +37,7 @@ public class ConfirmationTokenService {
         mailMessage.setFrom("springgabom@gmail.com");
         mailMessage.setTo(receiverEmail);
         mailMessage.setSubject("회원가입 이메일 인증");
-        mailMessage.setText("http://localhost:8080/confirm-email?token="+emailConfirmationToken.getId());
+        mailMessage.setText("http://localhost:8080/api/confirm-email?token="+emailConfirmationToken.getId());
         emailService.send(mailMessage);
 
         return emailConfirmationToken.getId();
