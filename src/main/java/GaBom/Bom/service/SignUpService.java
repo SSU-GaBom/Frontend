@@ -26,16 +26,6 @@ public class SignUpService {
     String localTime = format.format(time);
 
     @Transactional
-    public boolean checkId(String userId) {
-        //아이디가 존재하면 생성 불가
-        if (userRepository.existsByUserId(userId))
-            return false;
-        return true;
-    }
-
-
-
-    @Transactional
     public void joinUser(SignUpUserDto signUpUserDto) {
 
         userRepository.save(User.builder()

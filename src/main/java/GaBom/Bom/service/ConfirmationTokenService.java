@@ -24,9 +24,10 @@ public class ConfirmationTokenService {
      * 이메일 인증 토큰 생성
      * @return
      */
-    public String createEmailConfirmationToken(String userId, String receiverEmail){
+    public Boolean createEmailConfirmationToken(String userId, String receiverEmail){
         log.info("userId : {}" , userId);
         log.info("email : {}" , receiverEmail);
+
         Assert.hasText(userId,"userId는 필수 입니다.");
         Assert.hasText(receiverEmail,"receiverEmail은 필수 입니다.");
 
@@ -37,10 +38,9 @@ public class ConfirmationTokenService {
         mailMessage.setFrom("springgabom@gmail.com");
         mailMessage.setTo(receiverEmail);
         mailMessage.setSubject("회원가입 이메일 인증");
-        mailMessage.setText("http://localhost:8080/api/confirm-email?token="+emailConfirmationToken.getId());
-        emailService.send(mailMessage);
+        mailMessage.setText("http://localhost:8080/api/user/confirm-email?token="+emailConfirmationToken.getId());
 
-        return emailConfirmationToken.getId();
+        return emailService.send(mailMessage);
     }
 
     /**

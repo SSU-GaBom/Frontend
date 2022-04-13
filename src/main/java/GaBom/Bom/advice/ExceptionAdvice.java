@@ -47,22 +47,34 @@ public class ExceptionAdvice {
         return responseService.getFailResult(Integer.valueOf(getMessage("emailAuthTokenNotFound.code")), getMessage("emailAuthTokenNotFound.msg"));
     }
 
-    @ExceptionHandler(CCheckIdFailedException.class)
+    @ExceptionHandler(CEmailNotFoundException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected CommonResult checkIdFailedException(HttpServletRequest request, CCheckIdFailedException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("checkIdFailed.code")), getMessage("checkIdFailed.msg"));
+    protected CommonResult CEmailNotFoundException(HttpServletRequest request, CEmailNotFoundException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("emailNotFoundException.code")), getMessage("emailNotFoundException.msg"));
     }
 
-    @ExceptionHandler(CUserEmailAlreadyExistsException.class)
+    @ExceptionHandler(CNickNameAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected CommonResult userEmailAlreadyExists(HttpServletRequest request, CUserEmailAlreadyExistsException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("userEmailAlreadyExists.code")), getMessage("userEmailAlreadyExists.msg"));
+    protected CommonResult nickNameAlreadyExistsException(HttpServletRequest request, CNickNameAlreadyExistsException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("nickNameAlreadyExists.code")), getMessage("nickNameFailedAlreadyExists.msg"));
     }
 
-    @ExceptionHandler(CEmailSigninFailedException.class)
+    @ExceptionHandler(CUserIdAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected CommonResult emailSigninFailed(HttpServletRequest request, CEmailSigninFailedException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("emailSigninFailed.code")), getMessage("emailSigninFailed.msg"));
+    protected CommonResult userIdAlreadyExistsException(HttpServletRequest request, CUserIdAlreadyExistsException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("userIdAlreadyExists.code")), getMessage("userIdAlreadyExists.msg"));
+    }
+
+    @ExceptionHandler(CUserAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    protected CommonResult userAlreadyExists(HttpServletRequest request, CUserAlreadyExistsException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("userAlreadyExists.code")), getMessage("userAlreadyExists.msg"));
+    }
+
+    @ExceptionHandler(CSigninFailedException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    protected CommonResult SigninFailed(HttpServletRequest request, CSigninFailedException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("SigninFailed.code")), getMessage("SigninFailed.msg"));
     }
 
     @ExceptionHandler(CAuthenticationEntryPointException.class)
