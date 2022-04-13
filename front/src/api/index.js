@@ -11,7 +11,7 @@ function validateLoginId(userId){
 }
 
 function loginUser(loginDto){
-    console.log(loginDto)
+    
     return axios.post("api/signin",loginDto)
 }
 
@@ -21,7 +21,7 @@ function testApi(userId){
 }
 
 function testUser(){
-    console.log(testUser)
+    console.log("testUser")
     return axios.get('/api/testUser')
 }
 

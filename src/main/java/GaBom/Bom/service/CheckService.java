@@ -7,10 +7,12 @@ import GaBom.Bom.dto.SignUpUserDto;
 import GaBom.Bom.dto.UserDto;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CheckService {
@@ -19,10 +21,13 @@ public class CheckService {
 
     @Transactional
     public void check(SignUpUserDto signUpUserDto){
+        log.info("check1");
     if(!checkUserNameAndEmail(signUpUserDto.getUserName(), signUpUserDto.getEmail()))
         throw new CUserAlreadyExistsException();
+    log.info("check2");
     if(!checkId(signUpUserDto.getUserId()))
         throw new CUserIdAlreadyExistsException();
+    log.info("check3");
     if(!checkNickName(signUpUserDto.getNickName()))
         throw new CNickNameAlreadyExistsException();
 }

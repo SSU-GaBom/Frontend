@@ -119,7 +119,6 @@ export default {
       async submitForm(){
           try {
             const response = await this.$store.dispatch('LOGIN',this.form)
-            
             console.log(response)
             this.dialog = false;
             
@@ -127,6 +126,7 @@ export default {
             console.log(error)
             this.errorMessage = "로그인에 실패했습니다."
           }
+          
       },
       initForm() {
         this.loginId = '';
