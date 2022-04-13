@@ -38,7 +38,7 @@ public class ConfirmationTokenService {
         mailMessage.setFrom("springgabom@gmail.com");
         mailMessage.setTo(receiverEmail);
         mailMessage.setSubject("회원가입 이메일 인증");
-        mailMessage.setText("http://localhost:8080/api/user/confirm-email?token="+emailConfirmationToken.getId());
+        mailMessage.setText("http://localhost:8080/api/confirm-email?token="+emailConfirmationToken.getId());
 
         return emailService.send(mailMessage);
     }

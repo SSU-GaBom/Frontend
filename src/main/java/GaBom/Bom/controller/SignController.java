@@ -31,7 +31,7 @@ public class SignController {
     private final CheckService checkService;
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
-    @GetMapping(value = "/api/signin")
+    @PostMapping(value = "/api/signin")
     public SingleResult<TokenUserIdDto> signin(@RequestBody LoginDto loginDto) {
         log.info("login : {} , {}" ,loginDto.getLoginId() , loginDto.getLoginPw() );
 
@@ -48,7 +48,7 @@ public class SignController {
         log.info("password : {} " , signUpUserDto.getUserPw());
         //아이디, 닉네임, 이메일 중복 확인
         checkService.check(signUpUserDto);
-        log.info("hello1");
+        log.info("signup1");
         if(!confirmationTokenService.createEmailConfirmationToken(signUpUserDto.getUserId(), signUpUserDto.getEmail()))
             throw new CEmailNotFoundException();
         signUpService.joinUser(signUpUserDto);
