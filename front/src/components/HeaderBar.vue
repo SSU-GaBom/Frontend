@@ -1,5 +1,9 @@
 <template>
-    <v-div>
+    <v-div>    
+    <v-sheet
+      class="mx-auto"
+      elevation="8"
+    >
         <v-app-bar dense color="light-green">
             <v-menu offset-y>
                 <template v-slot:activator="{ on, attrs }">
@@ -18,6 +22,8 @@
                     </v-btn>
                 </template>
                 <v-list>
+                    <rank-comp></rank-comp><br>
+                    <write-travel></write-travel>
                     <v-list-item
                         v-for="(item, index) in items"
                         :key="index"
@@ -44,14 +50,16 @@
 				
 			</template>
         </v-app-bar>
+    </v-sheet>
     </v-div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import LoginComp from './LoginComp.vue'
-import JoinComp from './JoinComp.vue'
-
+import LoginComp from './LoginComp.vue';
+import JoinComp from './JoinComp.vue';
+import RankComp from './RankComp.vue';
+import WriteTravel from './WriteTravel.vue';
 
 export default {
     name: 'HeaderBar',
@@ -76,7 +84,10 @@ export default {
         }
     },
     components:{
-        LoginComp, JoinComp
+        LoginComp,
+        JoinComp,
+        RankComp,
+        WriteTravel
     }
 }
 </script>

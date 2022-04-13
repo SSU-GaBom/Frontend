@@ -1,7 +1,6 @@
 <template>
   <v-app>
-    <header-bar></header-bar> 
-    <left-bar></left-bar>
+    <header-bar></header-bar>
     <v-main>
       <div class="flex">
         <router-view></router-view>
@@ -14,14 +13,12 @@
 <script>
 import HeaderBar from './components/HeaderBar.vue'
 import TravelMap from './components/TravelMap.vue'
-import LeftBar from './components/LeftBar.vue'
 
 
 export default {
   name: 'app',
   components:{
     HeaderBar,
-    LeftBar,
     TravelMap
   }
 

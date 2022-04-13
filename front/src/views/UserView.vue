@@ -16,8 +16,8 @@ export default {
   name: 'UserView',
   components: {
     UserPageInfo,
-    UserPageWishList,
-    UserPageTravelList
+    UserPageTravelList,
+    UserPageWishList
   },
 }
 </script>
