@@ -88,7 +88,6 @@ public class UserController {
     @GetMapping("/api/confirm-email")
     public void viewConfirmEmail(@Valid @RequestParam  String token, HttpServletResponse response) throws IOException {
         userService.confirmEmail(token);
-        String redirect_uri="http://localhost:8080/api/sign/sginin";
-        response.sendRedirect(redirect_uri);
+
     }
 }
