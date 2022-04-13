@@ -1,9 +1,11 @@
 package GaBom.Bom.controller;
 
+import GaBom.Bom.advice.exception.CEmailNotFoundException;
 import GaBom.Bom.advice.exception.CNickNameAlreadyExistsException;
 import GaBom.Bom.advice.exception.CUserIdAlreadyExistsException;
 import GaBom.Bom.dto.LoginDto;
 import GaBom.Bom.dto.SignUpUserDto;
+import GaBom.Bom.dto.TokenUserIdDto;
 import GaBom.Bom.dto.UserDto;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
@@ -29,8 +31,8 @@ public class SignController {
     private final CheckService checkService;
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
-    @PostMapping(value = "/api/signin")
-    public SingleResult<String> signin(@RequestBody LoginDto loginDto) {
+    @GetMapping(value = "/api/signin")
+    public SingleResult<TokenUserIdDto> signin(@RequestBody LoginDto loginDto) {
         log.info("login : {} , {}" ,loginDto.getLoginId() , loginDto.getLoginPw() );
 
         return logInService.signIn(loginDto);
@@ -47,7 +49,8 @@ public class SignController {
         //아이디, 닉네임, 이메일 중복 확인
         checkService.check(signUpUserDto);
         log.info("hello1");
-        confirmationTokenService.createEmailConfirmationToken(signUpUserDto.getUserId(), signUpUserDto.getEmail());
+        if(!confirmationTokenService.createEmailConfirmationToken(signUpUserDto.getUserId(), signUpUserDto.getEmail()))
+            throw new CEmailNotFoundException();
         signUpService.joinUser(signUpUserDto);
         return responseService.getSuccessResult();
     }

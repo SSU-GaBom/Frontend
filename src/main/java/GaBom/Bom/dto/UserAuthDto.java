@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class UserAuthDto {
-    String email;
-    String randNum;
-    String password;
+    private String email;
+    private String password;
 }
