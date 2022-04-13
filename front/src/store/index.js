@@ -40,14 +40,14 @@ export default new Vuex.Store({
   actions: {
 		async LOGIN({ commit }, data) {
 			const response = await loginUser(data);
-      console.log("LOGIN")
-      console.log(response)
-      console.log(response.data.data)
+			console.log("LOGIN")
+			console.log(response)
+			console.log(response.data.data)
       
-			commit('SET_USER', response.data.user);
+			// commit('SET_USER', response.data.user);
 			commit('SET_TOKEN', response.data.data);
-			saveUserToCookie(response.data.user.username);
-			saveAuthToCookie(response.data.token);
+			// saveUserToCookie(response.data.user.username);
+			saveAuthToCookie(response.data.data);
 			return response;
 		},
 	},

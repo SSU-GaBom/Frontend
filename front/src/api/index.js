@@ -20,6 +20,11 @@ function testApi(userId){
     return axios.get(`/api/testApi/${userId}`)
 }
 
+function testUser(){
+    console.log(testUser)
+    return axios.get('/api/testUser')
+}
+
 export {
-    joinUser , validateLoginId ,testApi ,loginUser
+    joinUser , validateLoginId ,testApi ,loginUser , testUser
 }

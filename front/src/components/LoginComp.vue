@@ -1,7 +1,7 @@
 
 <template>
     <v-dialog
-      v-dialog v-model="dialog" persistent max-width="600"
+      v-model="dialog" persistent max-width="600"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -26,7 +26,6 @@
         
       <v-form
         ref="form"
-        v-model="hasError"
         lazy-validation
         class="pa-5 ma-5"
       >
@@ -122,6 +121,7 @@ export default {
             const response = await this.$store.dispatch('LOGIN',this.form)
             
             console.log(response)
+            this.dialog = false;
             
           } catch (error) {
             console.log(error)
