@@ -12,4 +12,5 @@ public class TestService {
     public void save(Test test) {
         testRepository.save(test);
     }
+
 }
