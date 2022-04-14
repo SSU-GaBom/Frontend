@@ -205,7 +205,7 @@
 
             <div class="text--primary px-3">
               <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid mx-2" alt="Logo" width="100" height="50"/>
-              에 가입하신 것을 진심으로 환영합니다. 이제 로그인 후 서비스를 하실 수 있습니다.<br>
+              에 가입하신 것을 진심으로 환영합니다. 이메일 인증을 진행하신후 로그인 서비스를 하실 수 있습니다.<br>
               ({{ counter }}초후 자동으로 닫힙니다.)
             </div>
          </v-card-text>
@@ -225,7 +225,7 @@ export default {
       return {
         dialog: false,
         stage: 1,
-        counter: 5,
+        counter: 7,
         form: {
           userId: null,
           userPw: null,
