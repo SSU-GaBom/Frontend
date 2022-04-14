@@ -2,6 +2,7 @@ package GaBom.Bom.controller;
 
 
 import GaBom.Bom.advice.exception.CUserNotFoundException;
+import GaBom.Bom.dto.UserDto;
 import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.ListResult;
@@ -30,6 +31,14 @@ public class UserController {
     private final UserRepository userRepository; // Jpa를 활용한 CRUD 쿼리 가능
     private final ResponseService responseService; // 결과를 처리하는 Service
     private final UserService userService;
+
+
+    @GetMapping("/api/testUserApi/{userId}")
+    public User testUserApi(@PathVariable String userId){
+        log.info("testUserApi : {}" , userId);
+        User user = userRepository.findByUserId(userId).get();
+        return user;
+    }
 
 //    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 access_token",

@@ -67,9 +67,9 @@ public class SignController {
 
     //success값이 true 일 때만!
     @ApiOperation(value = "닉네임 중복체크")
-    @GetMapping(value = "/api/checkNickname")
-    public CommonResult checkNickName(@RequestBody UserDto userDto){
-        if(!checkService.checkNickName(userDto.getNickName()))
+    @GetMapping(value = "/api/checkNickname/{nickName}")
+    public CommonResult checkNickName(@PathVariable String nickName){
+        if(!checkService.checkNickName(nickName))
             throw new CNickNameAlreadyExistsException();
         return responseService.getSuccessResult();
     }

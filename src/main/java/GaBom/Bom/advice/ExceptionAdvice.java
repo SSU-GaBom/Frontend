@@ -24,7 +24,7 @@ public class ExceptionAdvice {
     private final MessageSource messageSource;
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     protected CommonResult defaultException(HttpServletRequest request, Exception e) {
         // CommonResult : 응답 결과에 대한 정보
         return responseService.getFailResult(Integer.valueOf(getMessage("unKnown.code")), getMessage("unKnown.msg"));
@@ -33,7 +33,7 @@ public class ExceptionAdvice {
     }
 
     @ExceptionHandler(CUserNotFoundException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     protected CommonResult userNotFoundException(HttpServletRequest request, CUserNotFoundException e) {
         // CommonResult : 응답 결과에 대한 정보
         return responseService.getFailResult(Integer.valueOf(getMessage("userNotFound.code")), getMessage("userNotFound.msg"));
@@ -42,39 +42,39 @@ public class ExceptionAdvice {
     }
 
     @ExceptionHandler(CEmailAuthTokenNotFoundException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     protected CommonResult emailAuthTokenNotFound(HttpServletRequest request, CEmailAuthTokenNotFoundException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("emailAuthTokenNotFound.code")), getMessage("emailAuthTokenNotFound.msg"));
     }
 
     @ExceptionHandler(CEmailNotFoundException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected CommonResult CEmailNotFoundException(HttpServletRequest request, CEmailNotFoundException e) {
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult emailNotFoundException(HttpServletRequest request, CEmailNotFoundException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("emailNotFoundException.code")), getMessage("emailNotFoundException.msg"));
     }
 
     @ExceptionHandler(CNickNameAlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     protected CommonResult nickNameAlreadyExistsException(HttpServletRequest request, CNickNameAlreadyExistsException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("nickNameAlreadyExists.code")), getMessage("nickNameFailedAlreadyExists.msg"));
     }
 
     @ExceptionHandler(CUserIdAlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     protected CommonResult userIdAlreadyExistsException(HttpServletRequest request, CUserIdAlreadyExistsException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("userIdAlreadyExists.code")), getMessage("userIdAlreadyExists.msg"));
     }
 
     @ExceptionHandler(CUserAlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     protected CommonResult userAlreadyExists(HttpServletRequest request, CUserAlreadyExistsException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("userAlreadyExists.code")), getMessage("userAlreadyExists.msg"));
     }
 
     @ExceptionHandler(CSigninFailedException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected CommonResult SigninFailed(HttpServletRequest request, CSigninFailedException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("SigninFailed.code")), getMessage("SigninFailed.msg"));
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult signinFailed(HttpServletRequest request, CSigninFailedException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("signinFailed.code")), getMessage("signinFailed.msg"));
     }
 
     @ExceptionHandler(CAuthenticationEntryPointException.class)
@@ -83,7 +83,7 @@ public class ExceptionAdvice {
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public CommonResult AccessDeniedException(HttpServletRequest request, AccessDeniedException e) {
+    public CommonResult accessDenied(HttpServletRequest request, AccessDeniedException e) {
         return responseService.getFailResult((Integer.valueOf(getMessage("accessDenied.code"))), getMessage("accessDenied.msg"));
     }
 

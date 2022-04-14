@@ -38,6 +38,9 @@
             <router-link to="/about">about&nbsp;&nbsp;</router-link>
             <router-link to="/user">user&nbsp;&nbsp;</router-link>
             <router-link to="/travel">travel</router-link>
+            <!-- <v-btn @click="test">   
+                Test
+            </v-btn> -->
             
             <template v-if="!isLoggedIn">
 				<join-comp/>
@@ -60,6 +63,8 @@ import LoginComp from './LoginComp.vue';
 import JoinComp from './JoinComp.vue';
 import RankComp from './RankComp.vue';
 import WriteTravel from './WriteTravel.vue';
+import {testUserApi} from '../api/index'
+
 
 export default {
     name: 'HeaderBar',
@@ -72,6 +77,12 @@ export default {
 			this.$store.commit('LOGOUT');
 			this.$router.push('/');
 		},
+        async test(){
+            
+            console.log(this.$store.state.user)
+            const response = await testUserApi(this.$store.state.user)
+            console.log(response.data)
+        }
     },
     data() {
         return {
