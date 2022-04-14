@@ -127,6 +127,14 @@
           <v-sheet class="text-center">
             <v-btn color="primary" @click="submit" outlined :disabled="!form1OK" class="mr-2">확인</v-btn>
             <v-btn color="grey darken-1" @click="dialog=false, stage = 1, clear()" outlined>취소</v-btn>
+            <v-alert
+              v-show="errorMessage"
+              type="error"
+              dense
+              outlined
+            >
+            {{ errorMessage }}
+            </v-alert>
           </v-sheet>
 
           </v-stepper-content>
@@ -163,16 +171,23 @@
             maxlength="10"
           ></v-text-field>
 
-          <v-text-field
-            v-model="form.nickName"
-            ref="nickName"
-            :rules="valid.nickName"
-            label="닉네임"
-            :counter="10"
-            placeholder="닉네임을 입력하세요 (최대 10자)"
-            required
-            maxlength="10"
-          ></v-text-field>  
+          <v-row>
+            <v-text-field
+              v-model="form.nickName"
+              ref="nickName"
+              :rules="valid.nickName"
+              label="닉네임"
+              :counter="10"
+              placeholder="닉네임을 입력하세요 (최대 10자)"
+              required
+              maxlength="10"
+           ></v-text-field>  
+
+            <v-btn width="8" height="40" @click="validateNickName()">
+                중복
+            </v-btn>
+          </v-row>
+          
 
         </v-form>
         </v-card>
@@ -217,7 +232,7 @@
 </template>
 
 <script>
-import {joinUser , testApi, validateLoginId} from '../api/index'
+import {joinUser , testApi, validateLoginId , validateNickName} from '../api/index'
 
 export default {
     name : 'JoinComp',
@@ -226,6 +241,7 @@ export default {
         dialog: false,
         stage: 1,
         counter: 7,
+        errorMessage: '',
         form: {
           userId: null,
           userPw: null,
@@ -291,17 +307,22 @@ export default {
 
         try{
           const response = await joinUser(this.form);
-          //아이디가 중복
-
-          //회원중복
-
-          //닉네임 중복
-
-          //
-          console.log(response.data)
-          this.stage = 4
-          this.countDown()
-          this.clear()
+          console.log(response.data.code)
+          //아이디가 중복 , 1005
+          //회원중복 , 1004
+          //닉네임 중복 , 1006
+          if(response.data.code !== 0 ){
+            this.errorMessage = '유저 등록에 실패했습니다. '+ response.data.msg
+            this.stage = 2
+          }else{
+            console.log(response.data)
+            this.stage = 4
+            this.countDown()
+            this.clear()
+          }
+          
+      
+          
         }catch(error){
           console.log(error);
           this.errorMessage = '유저 등록에 실패했습니다. ' + error.message
@@ -313,17 +334,33 @@ export default {
     async validateLoginId(){
       try{
         const response = await validateLoginId(this.form.userId);
-        console.log(response.data);
-        //만약 아이디가 중복됬을시 -> "아이디가 중복입니다. 아이디를 바꿔주세요"
-        //다이알로그
+        if(response.data.code !== 0){
+          console.log(response.data.msg)
 
-        //만약 아이디가 중복 안됬을시 -> "아이디를 사용가능합니다."
-        //다이알로그
+        }else{
+          console.log(response.data.msg)
+        }
+        
+        
       }catch(error){
         console.log(error);
       }
-      
+    },
+    async validateNickName(){
+      try {
+        const response = await validateNickName(this.form.nickName);
+        if(response.data.code !== 0 ){
+          console.log(response.data.msg)
 
+        }else{
+          console.log(response.data.msg)
+        }
+
+
+
+      } catch (error) {
+        console.log(error);
+      }
     },
     async test(){
       const response = await testApi();

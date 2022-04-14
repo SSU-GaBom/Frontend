@@ -41,14 +41,21 @@ export default new Vuex.Store({
 		async LOGIN({ commit }, data) {
 			const response = await loginUser(data);
 			console.log("LOGIN")
-			console.log(response)
-			console.log(response.data.data.token)
-			console.log(response.data.data.userId)
+
+			// 로그인 성공
+			if(response.data.code == 0){
+				console.log(response.data.msg)
+				commit('SET_USER', response.data.data.userId);
+				commit('SET_TOKEN', response.data.data.token);
+				saveUserToCookie(response.data.data.userId);
+				saveAuthToCookie(response.data.data.token);
+
+			}else{ // 로그인실패
+				console.log(response.data.code)
+				console.log(response.data.msg)
+			}
       
-			commit('SET_USER', response.data.data.userId);
-			commit('SET_TOKEN', response.data.data.token);
-			saveUserToCookie(response.data.data.userId);
-			saveAuthToCookie(response.data.data.token);
+			
 			return response;
 		},
 	},
