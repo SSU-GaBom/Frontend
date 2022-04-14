@@ -1,23 +1,23 @@
 <template>
   <div id="main">
     <user-page-info></user-page-info>
-    <user-page-travel-list id="content"></user-page-travel-list>
-    <user-page-wish-list id="content"></user-page-wish-list>
+    <user-page-travel id="content"></user-page-travel>
+    <user-page-wish id="content"></user-page-wish>
   </div>
 
 </template>
 
 <script>
 import UserPageInfo from '../components/UserPageInfo.vue'
-import UserPageTravelList from '../components/UserPageTravelList.vue'
-import UserPageWishList from '../components/UserPageWishList.vue'
+import UserPageTravel from '../components/UserPageTravel.vue'
+import UserPageWish from '../components/UserPageWish.vue'
 
 export default {
   name: 'UserView',
   components: {
     UserPageInfo,
-    UserPageTravelList,
-    UserPageWishList
+    UserPageTravel,
+    UserPageWish
   },
 }
 </script>
