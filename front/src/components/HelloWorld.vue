@@ -1,4 +1,6 @@
 <template>
+  <v-card
+    width="650px">
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
@@ -87,6 +89,7 @@
         </v-row>
       </v-col>
     </v-row>
+  </v-card>
 </template>
 
 <script>

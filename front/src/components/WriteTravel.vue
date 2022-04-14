@@ -4,10 +4,10 @@
         <v-btn
           v-bind="attrs"
           v-on="on"
+          icon
           darks
-          text
         >
-          TRAVEL 작성
+          여행작성
         </v-btn>
       </template>
 

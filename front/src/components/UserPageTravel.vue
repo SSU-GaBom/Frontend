@@ -13,6 +13,7 @@
           <v-list-item-title class="headline text-left">여행 목록</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      
       <v-slide-group
         v-model="model"
         class="pa-4"
@@ -54,7 +55,7 @@
           </v-card>
         </v-slide-item>
       </v-slide-group>
-    </v-sheet>
+    </v-sheet>      
   </v-card>
 </template>
 

@@ -26,7 +26,7 @@
               color="grey"
               size="128px"
             >
-              <v-img src="../assets/images/profile-example.jpg"></v-img>
+              <v-img src="../assets/images/profile-example.jpg"><upload-image/></v-img>
             </v-avatar>
           </v-col>
           <v-col class="py-0" align-self="center">
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import UploadImage from './UploadImage.vue'
 export default {
     data() {
         return {
@@ -49,7 +50,10 @@ export default {
             follower: 179,
             following: 279
         }
-    },        
+    },   
+    components:{
+        UploadImage
+    }     
 }
 </script>
 
