@@ -11,7 +11,7 @@
           <v-icon>mdi-account-plus</v-icon>
         </v-btn>
       </template>
-
+      
       <v-stepper v-model="stage" vertical id="stepper">
         <div class="text-center"><img src="../assets/GaBom.svg" class="img-fluid pa-3" alt="Logo" width="200" height="50"/></div>
         <v-sheet class="headline mb-2 text-center"> 회원 가입 </v-sheet>
