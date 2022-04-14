@@ -5,35 +5,12 @@
       elevation="8"
     >
         <v-app-bar dense color="light-green">
-            <v-menu offset-y>
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        small
-                        class="mx-2"
-                        fab
-                        dark
-                        color="teal"
-                        v-bind="attrs"
-                        v-on="on"
-                    >      
-                        <v-icon dark>
-                            mdi-format-list-bulleted-square
-                        </v-icon>
-                    </v-btn>
-                </template>
-                <v-list>
-                    <rank-comp></rank-comp><br>
-                    <write-travel></write-travel>
-                    <v-list-item
-                        v-for="(item, index) in items"
-                        :key="index"
-                    >
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                    </v-list-item>
-                </v-list>
-            </v-menu>
-            <v-toolbar-title>&nbsp;&nbsp;GaBom</v-toolbar-title>
+            <menu-list/>
+            <v-toolbar-title>&nbsp;&nbsp;
+                <router-link id="link" to="/">GaBom</router-link>
+            </v-toolbar-title>
             <v-spacer/>
+<<<<<<< HEAD
             <router-link to="/">home&nbsp;&nbsp;</router-link>
             <router-link to="/about">about&nbsp;&nbsp;</router-link>
             <router-link to="/user">user&nbsp;&nbsp;</router-link>
@@ -42,16 +19,19 @@
                 Test
             </v-btn> -->
             
+=======
+            <rank-comp></rank-comp>
+>>>>>>> 63e758d30616f4df62ca980deddc646d7fb66f42
             <template v-if="!isLoggedIn">
 				<join-comp/>
-                <login-comp></login-comp>
+                <login-comp/>
 			</template>
 			<template v-else>
                 <v-btn @click="logout">
                     LogOut
                 </v-btn>
-				
-			</template>
+
+			</template>   
         </v-app-bar>
     </v-sheet>
     </v-div>
@@ -62,9 +42,13 @@ import { mapGetters } from 'vuex';
 import LoginComp from './LoginComp.vue';
 import JoinComp from './JoinComp.vue';
 import RankComp from './RankComp.vue';
+<<<<<<< HEAD
 import WriteTravel from './WriteTravel.vue';
 import {testUserApi} from '../api/index'
 
+=======
+import MenuList from './MenuList.vue';
+>>>>>>> 63e758d30616f4df62ca980deddc646d7fb66f42
 
 export default {
     name: 'HeaderBar',
@@ -98,7 +82,14 @@ export default {
         LoginComp,
         JoinComp,
         RankComp,
-        WriteTravel
+        MenuList
     }
 }
 </script>
+
+<style scoped>
+#link {
+    color: black;
+    text-decoration: none;
+}
+</style>
