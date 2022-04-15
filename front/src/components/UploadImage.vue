@@ -1,13 +1,19 @@
 <template>
   <div>
-    <form method="post" enctype="multipart/form-data">
-      <div>
-        <label for="chooseFile">
-          Click
-        </label>
-      </div>
-    <input ref="image" @change="uploadImg()" type="file" id="chooseFile" name="chooseFile" accept="image/*">
-    </form>
+    <v-dialog width="500px">
+      <template v-slot:activator="{ on:rank , attrs}">
+        <v-btn
+          v-bind="attrs"
+          v-on="rank"
+          icon
+          darks
+        >
+          <v-icon>mdi-camera-flip-outline</v-icon>
+        </v-btn>
+      </template>
+      <v-file-input dark v-model="image" show-size label="File input"></v-file-input>
+      <p>File Name : {{ image.name }}</p>
+    </v-dialog>
     <img :src="image" alt="">
   </div>
 </template>
