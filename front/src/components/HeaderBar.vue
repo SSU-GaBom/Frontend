@@ -10,18 +10,7 @@
                 <router-link id="link" to="/">GaBom</router-link>
             </v-toolbar-title>
             <v-spacer/>
-<<<<<<< HEAD
-            <router-link to="/">home&nbsp;&nbsp;</router-link>
-            <router-link to="/about">about&nbsp;&nbsp;</router-link>
-            <router-link to="/user">user&nbsp;&nbsp;</router-link>
-            <router-link to="/travel">travel</router-link>
-            <!-- <v-btn @click="test">   
-                Test
-            </v-btn> -->
-            
-=======
             <rank-comp></rank-comp>
->>>>>>> 63e758d30616f4df62ca980deddc646d7fb66f42
             <template v-if="!isLoggedIn">
 				<join-comp/>
                 <login-comp/>
@@ -42,13 +31,7 @@ import { mapGetters } from 'vuex';
 import LoginComp from './LoginComp.vue';
 import JoinComp from './JoinComp.vue';
 import RankComp from './RankComp.vue';
-<<<<<<< HEAD
-import WriteTravel from './WriteTravel.vue';
-import {testUserApi} from '../api/index'
-
-=======
 import MenuList from './MenuList.vue';
->>>>>>> 63e758d30616f4df62ca980deddc646d7fb66f42
 
 export default {
     name: 'HeaderBar',
@@ -61,12 +44,6 @@ export default {
 			this.$store.commit('LOGOUT');
 			this.$router.push('/');
 		},
-        async test(){
-            
-            console.log(this.$store.state.user)
-            const response = await testUserApi(this.$store.state.user)
-            console.log(response.data)
-        }
     },
     data() {
         return {
