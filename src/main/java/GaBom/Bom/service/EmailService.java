@@ -13,6 +13,16 @@ import org.springframework.stereotype.Service;
 public class EmailService {
     private final JavaMailSender javaMailSender;
 
+    public SimpleMailMessage setMessage(String toEmail, String subject, String uri){
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom("springgabom@gmail.com");
+        mailMessage.setTo(toEmail);
+        mailMessage.setSubject(subject);
+        mailMessage.setText(uri);
+
+        return mailMessage;
+    }
+
     public Boolean send(SimpleMailMessage email) {
         try {
             javaMailSender.send(email);

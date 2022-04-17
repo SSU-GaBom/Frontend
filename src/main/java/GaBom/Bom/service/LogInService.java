@@ -28,7 +28,6 @@ public class LogInService {
 
     @Transactional
     public SingleResult<TokenUserIdDto> signIn(LoginDto loginDto){
-
         //입력받은 아이디와 비밀번호
         String id = loginDto.getLoginId();
         String password = loginDto.getLoginPw();
@@ -40,11 +39,9 @@ public class LogInService {
             // matches : 평문, 암호문 패스워드 비교 후 boolean 결과 return
             throw new CSigninFailedException();
         }
-
         if(user.getEmailAuth() == false){
             throw new CEmailAuthTokenNotFoundException();
         }
-        log.info("signIn4");
 
         TokenUserIdDto tokenUserIdDto = new TokenUserIdDto(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), user.getRoles()), user.getUserId());
 

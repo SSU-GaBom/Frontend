@@ -17,9 +17,10 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Service
 public class ConfirmationTokenService {
+
     private final ConfirmationTokenRepository confirmationTokenRepository;
     private final EmailService emailService;
-    private final JavaMailSender javaMailSender;
+
     /**
      * 이메일 인증 토큰 생성
      * @return
@@ -34,12 +35,7 @@ public class ConfirmationTokenService {
         ConfirmationToken emailConfirmationToken = ConfirmationToken.createEmailConfirmationToken(userId);
         confirmationTokenRepository.save(emailConfirmationToken);
 
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("springgabom@gmail.com");
-        mailMessage.setTo(receiverEmail);
-        mailMessage.setSubject("회원가입 이메일 인증");
-        mailMessage.setText("http://localhost:8080/api/user/confirm-email?token="+emailConfirmationToken.getId());
-
+        SimpleMailMessage mailMessage = emailService.setMessage(receiverEmail, "회원가입 이메일 인증", "http://localhost:8080/api/confirm-email?token="+emailConfirmationToken.getId());
         return emailService.send(mailMessage);
     }
 

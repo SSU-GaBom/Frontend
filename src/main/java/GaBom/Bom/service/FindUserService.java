@@ -51,14 +51,7 @@ public class FindUserService {
         ConfirmationToken emailConfirmationToken = ConfirmationToken.createEmailConfirmationToken(findUserDto.getUserId());
         confirmationTokenRepository.save(emailConfirmationToken);
 
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("springgabom@gmail.com");
-        mailMessage.setTo(findUserDto.getEmail());
-        mailMessage.setSubject("회원가입 이메일 인증");
-
-        //http://localhost:8080/changepw?token=~~으로 들어가면 비밀번호 받는 페이지 있고 해당 페이지에서
-        // 로그인 버튼 누르면 http://localhost:8080/finduser/changepw?token=으로 넘어가는 방식?
-        mailMessage.setText("http://localhost:8080/finduser/changepw?token="+emailConfirmationToken.getId());
+        SimpleMailMessage mailMessage = emailService.setMessage(findUserDto.getEmail(), "비밀번호 변경 이메일 인증", "http://localhost:8080/finduser/changepw?token="+emailConfirmationToken.getId());
         emailService.send(mailMessage);
 
         return emailConfirmationToken.getId();

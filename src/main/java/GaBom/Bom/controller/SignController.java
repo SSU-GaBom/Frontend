@@ -14,6 +14,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -31,10 +34,8 @@ public class SignController {
     private final CheckService checkService;
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
-    @GetMapping(value = "/api/signin")
+    @PostMapping(value = "/api/signin")
     public SingleResult<TokenUserIdDto> signin(@RequestBody LoginDto loginDto) {
-        log.info("login : {} , {}" ,loginDto.getLoginId() , loginDto.getLoginPw() );
-
         return logInService.signIn(loginDto);
     }
 
@@ -48,7 +49,6 @@ public class SignController {
         log.info("password : {} " , signUpUserDto.getUserPw());
         //아이디, 닉네임, 이메일 중복 확인
         checkService.check(signUpUserDto);
-        log.info("hello1");
         if(!confirmationTokenService.createEmailConfirmationToken(signUpUserDto.getUserId(), signUpUserDto.getEmail()))
             throw new CEmailNotFoundException();
         signUpService.joinUser(signUpUserDto);
@@ -67,9 +67,9 @@ public class SignController {
 
     //success값이 true 일 때만!
     @ApiOperation(value = "닉네임 중복체크")
-    @GetMapping(value = "/api/checkNickname")
-    public CommonResult checkNickName(@RequestBody UserDto userDto){
-        if(!checkService.checkNickName(userDto.getNickName()))
+    @GetMapping(value = "/api/checkNickname/{nickName}")
+    public CommonResult checkNickName(@PathVariable String nickName){
+        if(!checkService.checkNickName(nickName))
             throw new CNickNameAlreadyExistsException();
         return responseService.getSuccessResult();
     }

@@ -1,5 +1,6 @@
 package GaBom.Bom.configuration.security;
 
+import GaBom.Bom.service.CustomUserDetailService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -27,7 +28,7 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
 
     private long tokenValidMillisecond = 1000L * 60 * 60; // 1시간 토큰 유효
 
-    private final UserDetailsService userDetailsService;
+    private final CustomUserDetailService customUserDetailsService;
 
     @PostConstruct
     protected void init() {
@@ -49,7 +50,7 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
 
     // Jwt 토큰으로 인증 정보 조회
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
+        UserDetails userDetails = customUserDetailsService.loadUserByUsername(this.getUserPk(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 

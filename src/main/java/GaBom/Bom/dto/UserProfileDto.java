@@ -3,17 +3,19 @@ package GaBom.Bom.dto;
 import GaBom.Bom.entity.Image;
 import GaBom.Bom.entity.StoredTravel;
 import GaBom.Bom.entity.Travel;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class UserProfileDto {
-    private boolean loginUser;
+    private String loginUser;
     private boolean follow;
+    private boolean isMe;
     private String userId;
     private String userName;
     private String nickName;
