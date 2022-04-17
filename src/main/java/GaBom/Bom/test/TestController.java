@@ -22,6 +22,15 @@ public class TestController {
         return "testSuccess";
     }
 
+    /*
+    @GetMapping("/api/testUser")
+    public TestDto testUserApi(){
+        log.info("testUserApi");
+
+    }
+
+     */
+
     @PostMapping("/api/test")
     public String test(@RequestBody Test test){
         testService.save(test);

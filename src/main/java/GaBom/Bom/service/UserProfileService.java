@@ -1,6 +1,8 @@
 package GaBom.Bom.service;
 
 import GaBom.Bom.advice.exception.CUserNotFoundException;
+import GaBom.Bom.dto.UserDto;
+import GaBom.Bom.dto.UserProfileDto;
 import GaBom.Bom.entity.User;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,20 +15,35 @@ public class UserProfileService {
 
     private final UserRepository userRepository;
 
-    public User showInfo(String userId, String loginUserId){
+    public UserProfileDto showInfo(String userId, String loginUserId){
         User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
-        return new User();
+        UserProfileDto userProfileDto = new UserProfileDto();
+        userProfileDto.builder()
+                .loginUser(loginUserId)
+                .follow()
+                .userId(user.getUserId())
+                .userName(user.getUserName())
+                .nickName(user.getNickName())
+                .profileImage(user.getProfileImage())
+//                .userFollowerCount()
+//                .userFollowingCount()
+                .myTravelList(user.getMyTravelList())
+                .likedTravelList(user.getLikedTravelList())
+                .storedTravelList(user.getStoredTravelList())
+                .build();
+        if(userId.equals(loginUserId))
+            userProfileDto.setIsMe(true);
+        else
+            userProfileDto.setIsme(false);
+
+        if()
     }
 
     public void updateProfile(String userId, Authentication authentication){
-//        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
-//        UserDto userDto
-//        User.builder()
-//                //.userId(userDto.getUserId())
-//                .userPw(userDto.getUserPw())
-//                .userName(userDto.getUserName())
-//                .nickName(userDto.getNickName())
-//                .profileImage(userDto.getProfileImage())
-//                .build();
+        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
+        user.builder()
+                //.userId(userDto.getUserId())
+                .profileImage(userDto.getProfileImage())
+                .build();
     }
 }
