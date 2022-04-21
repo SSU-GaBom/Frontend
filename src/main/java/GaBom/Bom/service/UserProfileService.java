@@ -38,7 +38,7 @@ public class UserProfileService {
                 .userFollowerCount(user.getFollwerNum())
                 .userFollowingCount(user.getFollowingNum())
                 .myTravelList(user.getMyTravelList())
-                .likedTravelList(user.getLikedTravelList())
+                //.likedTravelList(user.getLikedTravelList())
                 .storedTravelList(user.getStoredTravelList())
                 .build();
 
