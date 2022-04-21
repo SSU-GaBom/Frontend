@@ -2,6 +2,7 @@ package GaBom.Bom.controller;
 
 import GaBom.Bom.advice.exception.CNotSameUserException;
 import GaBom.Bom.advice.exception.CSameUserException;
+import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.configuration.security.JwtTokenProvider;
 import GaBom.Bom.entity.Follow;
 import GaBom.Bom.entity.User;
@@ -16,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @RequiredArgsConstructor
 @RestController
@@ -35,11 +38,9 @@ public class UserProfileController {
     @GetMapping("/{user_id}")
     public SingleResult getUserInfo(@PathVariable(name = "user_id") String userId,
                                     @RequestParam String token){
-        boolean modifiable = false;
         Authentication authentication = jwtTokenProvider.getAuthentication(token);
 
-        userProfileService.showInfo(userId, authentication.getName());
-        return responseService.getSingleResult(userProfileService);
+        return userProfileService.showInfo(userId, authentication.getName());
     }
 
     @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 제외한 회원정보를 수정한다.")
@@ -47,17 +48,34 @@ public class UserProfileController {
     @PutMapping(value = "/update-profile/{user_id}")
     public SingleResult<User> updateProfile(
             @PathVariable(name = "user_id") String userId,
-            @RequestParam String token) {
-
+            @RequestParam String token,
+            @RequestParam MultipartFile profileImage) {
+        User user;
         Authentication authentication = jwtTokenProvider.getAuthentication(token);
+
         if(!userId.equals(authentication.getName()))
             throw new CNotSameUserException();
-        userProfileService.updateProfile(userId, authentication);
+        else
+            user = userRepository.findByUserId(authentication.getName()).orElseThrow(CUserNotFoundException::new);
 
-        return responseService.getSingleResult();
+        userProfileService.updateProfile(user, profileImage);
+
+        return responseService.getSingleResult(new User());
     }
 
-    //이 밑은 어느정도 된 듯
+    //나를 팔로우하고 있는 사람들 전체 출력
+    @GetMapping("/follow/{toUserId}/follower")
+    public SingleResult showFollower(){
+
+    }
+
+    //내가 팔로우하고 있는 사람 전체 출력
+    @GetMapping("/follow/{toUserId}/following")
+    public SingleResult showFollowing(){
+
+    }
+
+    //팔로우 버튼 눌렀을 때
     @PostMapping("/follow/{toUserId}")
     public SingleResult followUser(@PathVariable String toUserId,
                              @RequestParam String token){
@@ -65,12 +83,14 @@ public class UserProfileController {
 
         if(toUserId.equals(authentication.getName()))
             throw new CSameUserException();
+        followService.save(authentication.getName(), toUserId);
 
-        return followService.save(authentication.getName(), toUserId);
+        return followService.increase(authentication.getName(), toUserId);
     }
 
+    //언팔로우 버튼 눌렀을 때
     @DeleteMapping("/follow/{toUserId}")
-    public void unFollowUser(@PathVariable String toUserId,
+    public SingleResult unFollowUser(@PathVariable String toUserId,
                              @RequestParam String token){
         Authentication authentication = jwtTokenProvider.getAuthentication(token);
 
@@ -79,5 +99,7 @@ public class UserProfileController {
 
         Long id = followService.getFollowUserIdByFromUserIdToUserId(authentication.getName(), toUserId);
         followRepository.deleteById(id);
+
+        return followService.decrease(authentication.getName(), toUserId);
     }
 }

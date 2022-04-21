@@ -68,9 +68,8 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user")
     private Image profileImage;
 
-    //유저를 팔로우한 사람 수
-    //@NotNull
-    private Integer following;
+    private int followingNum;
+    private int follwerNum;
 
     private String provider;
     private String refreshToken;
@@ -88,9 +87,6 @@ public class User implements UserDetails {
     private List<Travel> likedTravelList = new ArrayList<>();
 
     //내가 분류하여 저장한 리뷰 리스트(분류 자체로 리스트여야 하고 분류 후에도 리스트여야 해서 고민 해야함.)
-
-
-
     @OneToMany
     @JoinColumn(name = "stored_travel_id")
     private List<StoredTravel> storedTravelList = new ArrayList<>();
