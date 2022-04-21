@@ -1,27 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <v-div>
-    <v-app-bar dense color="light-green">
-        <v-toolbar-title>GaBom</v-toolbar-title>
-        <v-spacer/>
-        <router-link to="/">home&nbsp;&nbsp;</router-link><br>
-        <router-link to="/about">about&nbsp;&nbsp;</router-link>
-        <router-link to="/user">user</router-link>
-        
-        <join-comp/>
-        <login-comp/>
-    </v-app-bar>
-</v-div>
-</template>
-
-<script>
-import LoginComp from './LoginComp.vue'
-import JoinComp from './JoinComp.vue'
-
-
-export default {
-    name: 'HeaderBar',
-=======
     <v-div>    
     <v-sheet
       class="mx-auto"
@@ -68,7 +45,6 @@ export default {
 			this.$router.push('/');
 		},
     },
->>>>>>> c39cc1ed80ad0933348399aba536b4b6e8571c78
     data() {
         return {
             loginId : this.$store.user.loginId
