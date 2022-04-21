@@ -34,4 +34,7 @@ sameUserException:
   msg: "로그인한 사용자와 프로필의 사용자와 같습니다."
 noRelationException:
   code: "-1009"
-  msg: "두 사용자는 서로 관계가 없습니다."
+  msg: "서로 팔로우를 하고 있지 않습니다."
+relationAlreadyExistsException:
+  code: "-1009"
+  msg: "이미 팔로우를 하고 있습니다."

@@ -53,9 +53,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // jwt token 필터를 id/password 인증 필터 전에 넣는다.
     }
 
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
-                "/swagger-ui.html", "/webjars/**", "/swagger/**");
-    }
+//    @Override
+//    public void configure(WebSecurity web) {
+//        web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
+//                "/swagger-ui.html", "/webjars/**", "/swagger/**");
+//    }
 }

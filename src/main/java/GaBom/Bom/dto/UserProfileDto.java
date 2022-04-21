@@ -15,7 +15,7 @@ import java.util.List;
 public class UserProfileDto {
     private String loginUser;
     private boolean follow;
-    private boolean isMe;
+    private boolean me;
     private String userId;
     private String userName;
     private String nickName;

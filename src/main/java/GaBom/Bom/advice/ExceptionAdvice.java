@@ -65,6 +65,12 @@ public class ExceptionAdvice {
         return responseService.getFailResult(Integer.valueOf(getMessage("noRelationException.code")), getMessage("noRelationException.msg"));
     }
 
+    @ExceptionHandler(CRelationAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult relationAlreadyExistsException(HttpServletRequest request, CRelationAlreadyExistsException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("relationAlreadyExistsException.code")), getMessage("relationAlreadyExistsException.msg"));
+    }
+
     @ExceptionHandler(CNotSameUserException.class)
     @ResponseStatus(HttpStatus.OK)
     protected CommonResult notSameUserException(HttpServletRequest request, CNotSameUserException e) {
