@@ -19,7 +19,7 @@ public class StoredTravel {
     private Long storedTravelId;
 
     //저장할 여행 리스트
-    @OneToMany
-    @JoinColumn(name = "travel_id")
-    private List<Travel> travelList;
+//    @OneToMany
+//    @JoinColumn(name = "travel_id")
+//    private List<Travel> travelList;
 }
