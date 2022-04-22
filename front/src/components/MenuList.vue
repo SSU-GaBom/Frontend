@@ -24,8 +24,15 @@
         text
       >
         <router-link id="link" to="/user">마이페이지</router-link>
+      </v-btn><br>      
+      <v-btn
+        v-bind="attrs"
+        v-on="on"
+        darks
+        text
+      >
+        <router-link id="link" to="/write">TRAVEL 작성</router-link>
       </v-btn><br>
-      <write-travel></write-travel><br>
       <v-btn
           v-bind="attrs"
           v-on="on"
@@ -53,11 +60,9 @@
 </template>
 
 <script>
-import WriteTravel from './WriteTravel.vue'
 export default {
     name : 'MenuList',
     components :{
-        WriteTravel
     },
     data() {
       return {
