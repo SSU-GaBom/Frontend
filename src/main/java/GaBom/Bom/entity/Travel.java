@@ -33,8 +33,11 @@ public class Travel{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_no")
-    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하나?
+    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하는지 고민
     private User user;
+
+
+
 
 //    리뷰 내부의 핀 리스트
     @OneToMany(mappedBy = "travel")

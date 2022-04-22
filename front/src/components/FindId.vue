@@ -31,6 +31,7 @@
             <v-form
               ref="form"
               lazy-validation
+              v-model="hasError"
               class="pa-5 ma-5"
             >
             <v-text-field
@@ -70,6 +71,7 @@
             <v-form
               ref="form2"      
               lazy-validation
+              v-model="hasError"
               class="pa-5 ma-5"
             >
               <v-text-field

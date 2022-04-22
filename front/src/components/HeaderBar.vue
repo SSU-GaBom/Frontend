@@ -47,26 +47,11 @@ export default {
     },
     data() {
         return {
-            items: [
-                { title: '메뉴1' },
-                { title: '메뉴2' },
-                { title: '메뉴3' },
-                { title: '메뉴4' },
-            ],
+            loginId : this.$store.user.loginId
         }
     },
     components:{
-        LoginComp,
-        JoinComp,
-        RankComp,
-        MenuList
+        LoginComp,JoinComp
     }
 }
 </script>
-
-<style scoped>
-#link {
-    color: black;
-    text-decoration: none;
-}
-</style>

@@ -43,8 +43,6 @@ public class LogInService {
             throw new CEmailAuthTokenNotFoundException();
         }
 
-        log.info("signIn4");
-
         TokenUserIdDto tokenUserIdDto = new TokenUserIdDto(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), user.getRoles()), user.getUserId());
 
         return responseService.getSingleResult(tokenUserIdDto);
