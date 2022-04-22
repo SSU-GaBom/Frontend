@@ -10,12 +10,8 @@ function validateLoginId(userId){
     return axios.get(`/api/checkId/${userId}`);
 }
 
-function validateNickName(nickName){
-    console.log(nickName)
-    return axios.get(`/api/checkNickName/${nickName}`);
-}
-
 function loginUser(loginDto){
+    console.log(loginDto)
     return axios.post("api/signin",loginDto)
 }
 
@@ -24,11 +20,6 @@ function testApi(userId){
     return axios.get(`/api/testApi/${userId}`)
 }
 
-function testUserApi(userId){
-    console.log("testUserApi")
-    return axios.get(`/api/testUserApi/${userId}`)
-}
-
 export {
-    joinUser , validateLoginId ,testApi ,loginUser , testUserApi , validateNickName
+    joinUser , validateLoginId ,testApi ,loginUser
 }

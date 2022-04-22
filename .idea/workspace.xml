@@ -4,38 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <list default="true" id="d5b9711b-6344-4470-a771-46076d33500e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ex.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/front/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/JoinComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/JoinComp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/LoginComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LoginComp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/MenuBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/MenuBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/RankComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/RankComp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/TravelMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelMap.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/mutation.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/mutation.js" afterDir="false" />
-=======
-    <list default="true" id="d5b9711b-6344-4470-a771-46076d33500e" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
->>>>>>> d05ae8a8b37b4691abd8de35f93c69b194847f78
-    </list>
-=======
-    <list default="true" id="d5b9711b-6344-4470-a771-46076d33500e" name="Changes" comment="Changes" />
->>>>>>> 8e951c3ae7518d1c0887d93d57c1dda8befed794
+    <list default="true" id="50830551-02a1-4322-b248-5f1959ab5323" name="Changes" comment="팔로우 버튼, 언팔 버튼, 회원 정보 가져오기 완성&#10;프로필 업데이트 미완성" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,22 +15,10 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view>
-          <tree_state>
-            <expand />
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -69,31 +26,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JpbToolWindowState">
-    <option name="myId2FirstActivated">
-      <map>
-        <entry key="JPA Inspector" value="true" />
-        <entry key="JPA Palette" value="true" />
-        <entry key="JPA Structure" value="true" />
-      </map>
-    </option>
-    <option name="myId2Visible">
-      <map>
-        <entry key="JPA Inspector" value="false" />
-        <entry key="JPA Palette" value="false" />
-        <entry key="JPA Structure" value="false" />
-      </map>
-    </option>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.6.2/fa11b3101454fa8ca30a1b4469d6563e7490d7eb/spring-security-web-5.6.2-sources.jar!/org/springframework/security/web/FilterChainProxy.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.3.16/177def51dd8d2c061f498c4a1114bb30af6f434d/spring-webmvc-5.3.16-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.6.2/fa11b3101454fa8ca30a1b4469d6563e7490d7eb/spring-security-web-5.6.2-sources.jar!/org/springframework/security/web/access/ExceptionTranslationFilter.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.3.16/5da5833da20b8f294355e07fd8f60ac5459f1360/spring-web-5.3.16-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.3.16/177def51dd8d2c061f498c4a1114bb30af6f434d/spring-webmvc-5.3.16-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.58/1f805e5897c0db19d1969ff09f58c1d9bdfe82a/tomcat-embed-core-9.0.58-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/9.0.58/14ccea85a0375eef8f973552f5c4189358e2270d/tomcat-embed-websocket-9.0.58-sources.jar!/org/apache/tomcat/websocket/server/WsFilter.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.6.2/fa11b3101454fa8ca30a1b4469d6563e7490d7eb/spring-security-web-5.6.2-sources.jar!/org/springframework/security/web/session/SessionManagementFilter.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="26pdFDuTXrPDiKL6FHptgR4cL95" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="27oZpXDyJxKohncDKMHNCACnmdN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -101,22 +56,77 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Bom\src\main\java\GaBom\Bom" />
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="GaBom.Bom.repository" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.PinRepositoryTest.PinRepositoryTest">
+    <configuration name="TravelServiceTest.OneUserAndTwo_Travel_Add" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.example.bom.gabom.service.TravelServiceTest.OneUserAndTwo_Travel_Add&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PinRepositoryTest.PinRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Bom.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GaBom.Bom.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="GaBom.Bom.repository" />
+      <option name="MAIN_CLASS_NAME" value="GaBom.Bom.repository.PinRepositoryTest" />
+      <option name="METHOD_NAME" value="PinRepositoryTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TravelServiceTest.OneUserAndTwo_Travel_Add" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Bom.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GaBom.Bom.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="GaBom.Bom.service" />
+      <option name="MAIN_CLASS_NAME" value="GaBom.Bom.service.TravelServiceTest" />
+      <option name="METHOD_NAME" value="OneUserAndTwo_Travel_Add" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BomApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="Bom.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="GaBom.Bom.BomApplication" />
@@ -124,37 +134,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GaBomApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="GaBom.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.bom.gabom.GaBomApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PinRepositoryTest.PinRepositoryTest" />
+        <item itemvalue="JUnit.TravelServiceTest.OneUserAndTwo_Travel_Add" />
+        <item itemvalue="Gradle.TravelServiceTest.OneUserAndTwo_Travel_Add" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d5b9711b-6344-4470-a771-46076d33500e" name="Changes" comment="" />
-      <created>1648124358631</created>
+      <changelist id="618942d3-d262-40a2-acac-1da7da2b0a21" name="Changes" comment="" />
+      <created>1649988582665</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1648124358631</updated>
-      <workItem from="1648124359901" duration="41000" />
-      <workItem from="1648124415366" duration="1094000" />
-      <workItem from="1648126112921" duration="1366000" />
-      <workItem from="1648193817679" duration="4704000" />
-      <workItem from="1648204454433" duration="2299000" />
-      <workItem from="1648207153054" duration="3717000" />
-      <workItem from="1648219595757" duration="3934000" />
-      <workItem from="1648260774543" duration="1828000" />
-      <workItem from="1648456939246" duration="9000" />
-      <workItem from="1648460175662" duration="1510000" />
-      <workItem from="1648477594609" duration="1296000" />
-<<<<<<< HEAD
-      <workItem from="1648774855267" duration="2231000" />
-      <workItem from="1648809704600" duration="1820000" />
-=======
-      <workItem from="1648774855267" duration="1640000" />
-      <workItem from="1648818342416" duration="799000" />
-<<<<<<< HEAD
->>>>>>> d05ae8a8b37b4691abd8de35f93c69b194847f78
-=======
-      <workItem from="1648961146743" duration="595000" />
->>>>>>> 8e951c3ae7518d1c0887d93d57c1dda8befed794
+      <updated>1649988582665</updated>
+      <workItem from="1649988583955" duration="914000" />
+      <workItem from="1649994885537" duration="619000" />
+      <workItem from="1649998132765" duration="1678000" />
+      <workItem from="1650009222187" duration="1349000" />
+      <workItem from="1650189681564" duration="606000" />
+      <workItem from="1650267637909" duration="1554000" />
     </task>
     <servers />
   </component>
@@ -172,12 +180,21 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="팔로우 버튼, 언팔 버튼, 회원 정보 가져오기 완성&#10;프로필 업데이트 미완성" />
+    <option name="LAST_COMMIT_MESSAGE" value="팔로우 버튼, 언팔 버튼, 회원 정보 가져오기 완성&#10;프로필 업데이트 미완성" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/GaBom/Bom/BomApplication.java</url>
-          <line>6</line>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/GaBom/Bom/service/TravelServiceTest.java</url>
+          <line>29</line>
+          <properties class="GaBom.Bom.service.TravelServiceTest" method="OneUserAndTwo_Travel_Add">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -4,9 +4,12 @@ import VueRouter from 'vue-router'
 import Home from "@/views/HomeView.vue";
 import About from "@/views/AboutView.vue";
 import User from "@/views/UserView.vue";
+<<<<<<< HEAD
 import Travel from "@/views/TravelView.vue";
 import Write from "@/views/WriteTravel.vue";
 import Test from "@/views/TestView.vue";
+=======
+>>>>>>> 7d2c3670423e60d9722743e8c084e77b013ac13b
 
 Vue.use(VueRouter)
 
@@ -22,6 +25,7 @@ const routes = [
     component:User
   },
   {
+<<<<<<< HEAD
     path: '/travel',
     name: 'travel',
     component:Travel
@@ -32,16 +36,12 @@ const routes = [
     component:Write
   },
   {
+=======
+>>>>>>> 7d2c3670423e60d9722743e8c084e77b013ac13b
     path: '/about',
     name: 'about',
     component:About
   },
-  {
-    path: '/test',
-    name: 'test',
-    component:Test
-  },
-  
 ]
 
 const router = new VueRouter({

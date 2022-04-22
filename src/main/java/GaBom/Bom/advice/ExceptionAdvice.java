@@ -36,15 +36,15 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.OK)
     protected CommonResult userNotFoundException(HttpServletRequest request, CUserNotFoundException e) {
         // CommonResult : 응답 결과에 대한 정보
-        return responseService.getFailResult(Integer.valueOf(getMessage("userNotFound.code")), getMessage("userNotFound.msg"));
+        return responseService.getFailResult(Integer.valueOf(getMessage("userNotFoundException.code")), getMessage("userNotFoundException.msg"));
         // 예외 처리 메시지를 MessageSource에서 가져오도록 수정
         // getFailResult : setSuccess, setCode, setMsg
     }
 
     @ExceptionHandler(CEmailAuthTokenNotFoundException.class)
     @ResponseStatus(HttpStatus.OK)
-    protected CommonResult emailAuthTokenNotFound(HttpServletRequest request, CEmailAuthTokenNotFoundException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("emailAuthTokenNotFound.code")), getMessage("emailAuthTokenNotFound.msg"));
+    protected CommonResult emailAuthTokenNotFoundException(HttpServletRequest request, CEmailAuthTokenNotFoundException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("emailAuthTokenNotFoundException.code")), getMessage("emailAuthTokenNotFoundException.msg"));
     }
 
     @ExceptionHandler(CEmailNotFoundException.class)
@@ -56,25 +56,49 @@ public class ExceptionAdvice {
     @ExceptionHandler(CNickNameAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.OK)
     protected CommonResult nickNameAlreadyExistsException(HttpServletRequest request, CNickNameAlreadyExistsException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("nickNameAlreadyExists.code")), getMessage("nickNameFailedAlreadyExists.msg"));
+        return responseService.getFailResult(Integer.valueOf(getMessage("nickNameAlreadyExistsException.code")), getMessage("nickNameFailedAlreadyExistsException.msg"));
+    }
+
+    @ExceptionHandler(CNoRelationException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult noRelationException(HttpServletRequest request, CNoRelationException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("noRelationException.code")), getMessage("noRelationException.msg"));
+    }
+
+    @ExceptionHandler(CRelationAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult relationAlreadyExistsException(HttpServletRequest request, CRelationAlreadyExistsException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("relationAlreadyExistsException.code")), getMessage("relationAlreadyExistsException.msg"));
+    }
+
+    @ExceptionHandler(CNotSameUserException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult notSameUserException(HttpServletRequest request, CNotSameUserException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("notSameUserException.code")), getMessage("notSameUserException.msg"));
+    }
+
+    @ExceptionHandler(CSameUserException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult sameUserException(HttpServletRequest request, CSameUserException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("sameUserException.code")), getMessage("sameUserException.msg"));
     }
 
     @ExceptionHandler(CUserIdAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.OK)
     protected CommonResult userIdAlreadyExistsException(HttpServletRequest request, CUserIdAlreadyExistsException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("userIdAlreadyExists.code")), getMessage("userIdAlreadyExists.msg"));
+        return responseService.getFailResult(Integer.valueOf(getMessage("userIdAlreadyExistsException.code")), getMessage("userIdAlreadyExistsException.msg"));
     }
 
     @ExceptionHandler(CUserAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.OK)
-    protected CommonResult userAlreadyExists(HttpServletRequest request, CUserAlreadyExistsException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("userAlreadyExists.code")), getMessage("userAlreadyExists.msg"));
+    protected CommonResult userAlreadyExistsException(HttpServletRequest request, CUserAlreadyExistsException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("userAlreadyExistsException.code")), getMessage("userAlreadyExistsException.msg"));
     }
 
     @ExceptionHandler(CSigninFailedException.class)
     @ResponseStatus(HttpStatus.OK)
-    protected CommonResult signinFailed(HttpServletRequest request, CSigninFailedException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("signinFailed.code")), getMessage("signinFailed.msg"));
+    protected CommonResult signinFailedException(HttpServletRequest request, CSigninFailedException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("signinFailedException.code")), getMessage("signinFailedException.msg"));
     }
 
     @ExceptionHandler(CAuthenticationEntryPointException.class)
@@ -83,8 +107,8 @@ public class ExceptionAdvice {
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public CommonResult accessDenied(HttpServletRequest request, AccessDeniedException e) {
-        return responseService.getFailResult((Integer.valueOf(getMessage("accessDenied.code"))), getMessage("accessDenied.msg"));
+    public CommonResult accessDeniedException(HttpServletRequest request, AccessDeniedException e) {
+        return responseService.getFailResult((Integer.valueOf(getMessage("accessDeniedException.code"))), getMessage("accessDeniedException.msg"));
     }
 
     // code 정보에 해당하는 메시지를 조회한다.
