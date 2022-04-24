@@ -38,3 +38,6 @@ noRelationException:
 relationAlreadyExistsException:
   code: "-1009"
   msg: "이미 팔로우를 하고 있습니다."
+extensionException:
+  code: "-1010"
+  msg: "올바르지 않은 확장자입니다."

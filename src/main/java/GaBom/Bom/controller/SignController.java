@@ -49,9 +49,9 @@ public class SignController {
         log.info("password : {} " , signUpUserDto.getUserPw());
         //아이디, 닉네임, 이메일 중복 확인
         checkService.check(signUpUserDto);
-        if(!confirmationTokenService.createEmailConfirmationToken(signUpUserDto.getUserId(), signUpUserDto.getEmail()))
-            throw new CEmailNotFoundException();
+        confirmationTokenService.createEmailConfirmationToken(signUpUserDto.getUserId(), signUpUserDto.getEmail());
         signUpService.joinUser(signUpUserDto);
+
         return responseService.getSuccessResult();
     }
 

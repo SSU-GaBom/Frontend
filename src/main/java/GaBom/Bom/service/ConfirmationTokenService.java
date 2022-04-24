@@ -25,18 +25,14 @@ public class ConfirmationTokenService {
      * 이메일 인증 토큰 생성
      * @return
      */
-    public Boolean createEmailConfirmationToken(String userId, String receiverEmail){
+    public void createEmailConfirmationToken(String userId, String receiverEmail){
         log.info("userId : {}" , userId);
         log.info("email : {}" , receiverEmail);
 
         Assert.hasText(userId,"userId는 필수 입니다.");
         Assert.hasText(receiverEmail,"receiverEmail은 필수 입니다.");
 
-        ConfirmationToken emailConfirmationToken = ConfirmationToken.createEmailConfirmationToken(userId);
-        confirmationTokenRepository.save(emailConfirmationToken);
-
-        SimpleMailMessage mailMessage = emailService.setMessage(receiverEmail, "회원가입 이메일 인증", "http://localhost:8081/api/confirm-email?token="+emailConfirmationToken.getId());
-        return emailService.send(mailMessage);
+        emailService.setMessage(receiverEmail, userId, "http://localhost:8081/api/confirm-email?token=");
     }
 
     /**

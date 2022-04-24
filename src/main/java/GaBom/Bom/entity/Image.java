@@ -17,9 +17,7 @@ import javax.validation.constraints.NotEmpty;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imagId;
-    @NotNull
-    private Integer boardIdx;
+    private Long imageId;
     @NotEmpty
     private String original_file_name;
     @NotEmpty

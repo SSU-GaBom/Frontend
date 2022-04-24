@@ -26,80 +26,54 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @RequestMapping("/api/profile")
 public class UserProfileController {
 
-    private final UserRepository userRepository; // Jpa를 활용한 CRUD 쿼리 가능
     private final ResponseService responseService; // 결과를 처리하는 Service
     private final UserProfileService userProfileService;
-    private final JwtTokenProvider jwtTokenProvider;
     private final FollowService followService;
-    private final FollowRepository followRepository;
 
     //isme 변수를 넘겨 받은 프론트 페이지에서는 수정 가능하다. -> 여기서 리턴한 isme 변수에 따라서
     @ApiOperation(value = "회원 보여주기", notes = "마이 페이지에서 회원 정보를 보여준다.")
-    @GetMapping("/{user_id}")
-    public SingleResult getUserInfo(@PathVariable(name = "user_id") String userId,
-                                    @RequestParam String token){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
-
-        return userProfileService.showInfo(userId, authentication.getName());
+    @GetMapping("/{nick_name}")
+    public SingleResult getUserInfo(@PathVariable(name = "nick_name") String nickName,
+                                    @RequestParam(name = "token") String token){
+        return userProfileService.showInfo(nickName, token);
     }
 
-    @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 제외한 회원정보를 수정한다.")
+    @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 수정한다.")
     @CrossOrigin("http://localhost:8081")
-    @PutMapping(value = "/update-profile/{user_id}")
+    @PutMapping(value = "/update-profile/{nick_name}")
     public SingleResult<User> updateProfile(
-            @PathVariable(name = "user_id") String userId,
-            @RequestParam String token,
-            @RequestParam MultipartFile profileImage) {
-        User user;
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+            @PathVariable(name = "nick_name") String nickName,
+            @RequestParam(name = "token") String token,
+            @RequestParam(name = "profile_image") MultipartFile profileImage) {
 
-        if(!userId.equals(authentication.getName()))
-            throw new CNotSameUserException();
-        else
-            user = userRepository.findByUserId(authentication.getName()).orElseThrow(CUserNotFoundException::new);
-
-        userProfileService.updateProfile(user, profileImage);
-
-        return responseService.getSingleResult(new User());
+        return userProfileService.updateProfile(nickName, profileImage, token);
     }
 
-    //나를 팔로우하고 있는 사람들 전체 출력
-    @GetMapping("/follow/{toUserId}/follower")
-    public SingleResult showFollower(){
-
+    //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
+    @GetMapping("/follow/{profile-nick-name}/follower")
+    public SingleResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName, @RequestParam(name = "token") String token){
+        return responseService.getSingleResult(followService.getFollower(profileNickName, token));
     }
 
     //내가 팔로우하고 있는 사람 전체 출력
-    @GetMapping("/follow/{toUserId}/following")
-    public SingleResult showFollowing(){
-
+    @GetMapping("/follow/{profile-nick-name}/following")
+    public SingleResult showFollowing(@PathVariable(name = "profile-nick-name") String profileNickName, @RequestParam(name = "token") String token){
+        return responseService.getSingleResult(followService.getFollowing(profileNickName, token));
     }
 
     //팔로우 버튼 눌렀을 때
-    @PostMapping("/follow/{toUserId}")
-    public SingleResult followUser(@PathVariable String toUserId,
-                             @RequestParam String token){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
-
-        if(toUserId.equals(authentication.getName()))
-            throw new CSameUserException();
-        followService.save(authentication.getName(), toUserId);
-
-        return followService.increase(authentication.getName(), toUserId);
+    @PostMapping("/follow/{to-nick-name}")
+    public SingleResult followUser(@PathVariable(name = "to-nick-name") String toNickName,
+                             @RequestParam(name = "token") String token){
+        followService.save(token, toNickName);
+        return followService.increase(token, toNickName);
     }
 
     //언팔로우 버튼 눌렀을 때
-    @DeleteMapping("/follow/{toUserId}")
-    public SingleResult unFollowUser(@PathVariable String toUserId,
-                             @RequestParam String token){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
-
-        if(toUserId.equals(authentication.getName()))
-            throw new CSameUserException();
-
-        Long id = followService.getFollowUserIdByFromUserIdToUserId(authentication.getName(), toUserId);
-        followRepository.deleteById(id);
-
-        return followService.decrease(authentication.getName(), toUserId);
+    @DeleteMapping("/follow/{to-nick-name}")
+    public SingleResult unFollowUser(@PathVariable(name = "to-nick-name") String toNickName,
+                             @RequestParam(name = "token") String token){
+        followService.deleteFollow(token, toNickName);
+        return followService.decrease(token, toNickName);
     }
 }
