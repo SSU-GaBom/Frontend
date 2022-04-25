@@ -11,6 +11,7 @@ import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,10 +25,9 @@ public class UserProfileService {
     private final UserRepository userRepository;
     private final ResponseService responseService;
     private final FileHandler fileHandler;
-    private final JwtTokenProvider jwtTokenProvider;
 
-    public SingleResult showInfo(String nickName, String token){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+    public SingleResult showInfo(String nickName){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginUserId = authentication.getName();
 
         User user = userRepository.findByNickName(nickName).orElseThrow(CUserNotFoundException::new);
@@ -58,12 +58,10 @@ public class UserProfileService {
     }
 
     @Transactional
-    public SingleResult updateProfile(String nickName, MultipartFile profileImage, String token){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+    public SingleResult updateProfile(String nickName, MultipartFile profileImage){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         User user = userRepository.findByNickName(nickName).orElseThrow(CUserNotFoundException::new);
-
-        log.info(token);
 
         if(!user.getUserId().equals(authentication.getName()))
             throw new CNotSameUserException();
