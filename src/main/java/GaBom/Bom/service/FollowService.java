@@ -14,6 +14,7 @@ import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.qlrm.mapper.JpaResultMapper;
 import javax.persistence.EntityManager;
@@ -29,13 +30,12 @@ public class FollowService {
     private final UserRepository userRepository;
     private final FollowRepository followRepository;
     private final ResponseService responseService;
-    private final JwtTokenProvider jwtTokenProvider;
     private final EntityManager em;
 
     //언팔하게 되면 상대방에게 본인을 팔로우하는 사람이 줄기 때문에 해당 숫자를 리턴
     @Transactional
-    public SingleResult decrease(String token, String toNickName){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+    public SingleResult decrease(String toNickName){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String fromUserId = authentication.getName();
 
         User fromUser = userRepository.findByUserId(fromUserId).orElseThrow(CUserNotFoundException::new);
@@ -49,8 +49,8 @@ public class FollowService {
 
     //팔로우 하게 되면 상대방에게 본인을 팔로우하는 사람이 늘기 때문에 해당 숫자를 리턴
     @Transactional
-    public SingleResult increase(String token, String toNickName){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+    public SingleResult increase(String toNickName){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String fromUserId = authentication.getName();
 
         User fromUser = userRepository.findByUserId(fromUserId).orElseThrow(CUserNotFoundException::new);
@@ -63,8 +63,8 @@ public class FollowService {
     }
 
     @Transactional
-    public void save(String token, String toNickName){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+    public void save(String toNickName){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String fromUserId = authentication.getName();
 
         User toUser = userRepository.findByNickName(toNickName).orElseThrow(CUserNotFoundException::new);
@@ -85,8 +85,8 @@ public class FollowService {
     }
 
     @Transactional
-    public void deleteFollow(String token, String toNickName){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+    public void deleteFollow(String toNickName){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String fromUserId = authentication.getName();
 
         User fromUser = userRepository.findByUserId(fromUserId).orElseThrow(CUserNotFoundException::new);
@@ -105,8 +105,8 @@ public class FollowService {
     }
 
     @Transactional
-    public SingleResult getFollower(String profileNickName, String token){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+    public SingleResult getFollower(String profileNickName){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
 
         log.info(profileNickName);
@@ -138,8 +138,8 @@ public class FollowService {
     }
 
     @Transactional
-    public SingleResult getFollowing(String profileNickName, String token){
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+    public SingleResult getFollowing(String profileNickName){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
 
         User toUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
