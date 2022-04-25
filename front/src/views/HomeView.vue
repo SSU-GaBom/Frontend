@@ -1,5 +1,7 @@
 <template>
-  <hello-world/>
+  <div id="main">
+    <hello-world/>
+  </div>
 </template>
 
 <script>
@@ -11,3 +13,11 @@ import HelloWorld from '../components/HelloWorld.vue'
     },
   }
 </script>
+
+<style scoped>
+#main {
+    position: relative;
+    width: 30%;
+    height: 780px;
+}
+</style>

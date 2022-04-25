@@ -1,5 +1,5 @@
 <template>
-  <div>about</div>
+  <div id="main">about</div>
 </template>
 
 <script>
@@ -11,3 +11,11 @@
     },
   }
 </script>
+
+<style scoped>
+#main {
+    position: relative;
+    width: 30%;
+    height: 780px;
+}
+</style>

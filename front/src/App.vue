@@ -1,28 +1,26 @@
 <template>
   <v-app>
-    <header-bar></header-bar> 
-    <left-bar></left-bar>
-    <v-content>
+    <header-bar></header-bar>
+    <v-main>
+      <!-- <router-view></router-view> -->
       <div class="flex">
         <router-view></router-view>
         <travel-map></travel-map>
       </div>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
 <script>
 import HeaderBar from './components/HeaderBar.vue'
 import TravelMap from './components/TravelMap.vue'
-import LeftBar from './components/LeftBar.vue'
 
 
 export default {
   name: 'app',
   components:{
     HeaderBar,
-    LeftBar,
-    TravelMap
+   TravelMap
   }
 
 }
@@ -38,8 +36,8 @@ export default {
   color: #2c3e50;
 }
 .flex {
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 nav {
