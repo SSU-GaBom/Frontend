@@ -1,0 +1,353 @@
+Index: src/main/java/GaBom/Bom/controller/SignController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package GaBom.Bom.controller;\r\n\r\nimport GaBom.Bom.advice.exception.CEmailNotFoundException;\r\nimport GaBom.Bom.advice.exception.CNickNameAlreadyExistsException;\r\nimport GaBom.Bom.advice.exception.CUserIdAlreadyExistsException;\r\nimport GaBom.Bom.dto.LoginDto;\r\nimport GaBom.Bom.dto.SignUpUserDto;\r\nimport GaBom.Bom.dto.TokenUserIdDto;\r\nimport GaBom.Bom.dto.UserDto;\r\nimport GaBom.Bom.model.response.CommonResult;\r\nimport GaBom.Bom.model.response.SingleResult;\r\nimport GaBom.Bom.service.*;\r\nimport io.swagger.annotations.Api;\r\nimport io.swagger.annotations.ApiOperation;\r\nimport lombok.RequiredArgsConstructor;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport javax.mail.MessagingException;\r\n\r\n@Slf4j\r\n@Api(tags = {\"1. Sign\"})\r\n@RequiredArgsConstructor\r\n@RestController\r\npublic class SignController {\r\n\r\n    private final ResponseService responseService; // API 요청 결과에 대한 code, message\r\n    private final SignUpService signUpService;\r\n    private final ConfirmationTokenService confirmationTokenService;\r\n    private final LogInService logInService;\r\n    private final CheckService checkService;\r\n\r\n    @ApiOperation(value = \"로그인\", notes = \"이메일 회원 로그인을 한다.\")\r\n    @PostMapping(value = \"/api/signin\")\r\n    public SingleResult<TokenUserIdDto> signin(@RequestBody LoginDto loginDto) {\r\n        log.info(\"login : {} , {}\" ,loginDto.getLoginId() , loginDto.getLoginPw() );\r\n\r\n        return logInService.signIn(loginDto);\r\n    }\r\n\r\n    @ApiOperation(value = \"가입\", notes = \"회원가입을 한다.\")\r\n    @PostMapping(value = \"/api/signup\")\r\n    public CommonResult signup(@RequestBody SignUpUserDto signUpUserDto) throws MessagingException {\r\n        log.info(\"email : {} \" , signUpUserDto.getEmail());\r\n        log.info(\"userId : {} \" , signUpUserDto.getUserId());\r\n        log.info(\"userName : {} \" , signUpUserDto.getUserName());\r\n        log.info(\"nickname : {} \" , signUpUserDto.getNickName());\r\n        log.info(\"password : {} \" , signUpUserDto.getUserPw());\r\n        //아이디, 닉네임, 이메일 중복 확인\r\n        checkService.check(signUpUserDto);\r\n        log.info(\"signup1\");\r\n        if(!confirmationTokenService.createEmailConfirmationToken(signUpUserDto.getUserId(), signUpUserDto.getEmail()))\r\n            throw new CEmailNotFoundException();\r\n        signUpService.joinUser(signUpUserDto);\r\n        return responseService.getSuccessResult();\r\n    }\r\n\r\n    //success값이 true 일 때만!\r\n    @ApiOperation(value = \"id중복체크\")\r\n    @GetMapping(\"/api/checkId/{userId}\")\r\n    public CommonResult checkId(@PathVariable String userId){\r\n        log.info(\"checkId : {} \",userId);\r\n        if(!checkService.checkId(userId))\r\n            throw new CUserIdAlreadyExistsException();\r\n        return responseService.getSuccessResult();\r\n    }\r\n\r\n    //success값이 true 일 때만!\r\n    @ApiOperation(value = \"닉네임 중복체크\")\r\n    @GetMapping(value = \"/api/checkNickname\")\r\n    public CommonResult checkNickName(@RequestBody UserDto userDto){\r\n        if(!checkService.checkNickName(userDto.getNickName()))\r\n            throw new CNickNameAlreadyExistsException();\r\n        return responseService.getSuccessResult();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/GaBom/Bom/controller/SignController.java b/src/main/java/GaBom/Bom/controller/SignController.java
+--- a/src/main/java/GaBom/Bom/controller/SignController.java	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/src/main/java/GaBom/Bom/controller/SignController.java	(date 1649916559785)
+@@ -33,8 +33,6 @@
+     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
+     @PostMapping(value = "/api/signin")
+     public SingleResult<TokenUserIdDto> signin(@RequestBody LoginDto loginDto) {
+-        log.info("login : {} , {}" ,loginDto.getLoginId() , loginDto.getLoginPw() );
+-
+         return logInService.signIn(loginDto);
+     }
+ 
+Index: src/main/java/GaBom/Bom/service/UserProfileService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package GaBom.Bom.service;\r\n\r\nimport GaBom.Bom.advice.exception.CUserNotFoundException;\r\nimport GaBom.Bom.entity.User;\r\nimport GaBom.Bom.repository.UserRepository;\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.security.core.Authentication;\r\nimport org.springframework.stereotype.Service;\r\n\r\n@Service\r\n@RequiredArgsConstructor\r\npublic class UserProfileService {\r\n\r\n    private final UserRepository userRepository;\r\n\r\n    public User showInfo(String userId, String loginUserId){\r\n        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);\r\n        return new User();\r\n    }\r\n\r\n    public void updateProfile(String userId, Authentication authentication){\r\n//        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);\r\n//        UserDto userDto\r\n//        User.builder()\r\n//                //.userId(userDto.getUserId())\r\n//                .userPw(userDto.getUserPw())\r\n//                .userName(userDto.getUserName())\r\n//                .nickName(userDto.getNickName())\r\n//                .profileImage(userDto.getProfileImage())\r\n//                .build();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/GaBom/Bom/service/UserProfileService.java b/src/main/java/GaBom/Bom/service/UserProfileService.java
+--- a/src/main/java/GaBom/Bom/service/UserProfileService.java	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/src/main/java/GaBom/Bom/service/UserProfileService.java	(date 1650199417815)
+@@ -1,6 +1,7 @@
+ package GaBom.Bom.service;
+ 
+ import GaBom.Bom.advice.exception.CUserNotFoundException;
++import GaBom.Bom.dto.UserDto;
+ import GaBom.Bom.entity.User;
+ import GaBom.Bom.repository.UserRepository;
+ import lombok.RequiredArgsConstructor;
+@@ -18,15 +19,10 @@
+         return new User();
+     }
+ 
+-    public void updateProfile(String userId, Authentication authentication){
+-//        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
+-//        UserDto userDto
+-//        User.builder()
+-//                //.userId(userDto.getUserId())
+-//                .userPw(userDto.getUserPw())
+-//                .userName(userDto.getUserName())
+-//                .nickName(userDto.getNickName())
+-//                .profileImage(userDto.getProfileImage())
+-//                .build();
++    public User updateProfile(String userId, Authentication authentication){
++        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
++        user.builder()
++                .profileImage(userDto.getProfileImage())
++                .build();
+     }
+ }
+Index: src/main/java/GaBom/Bom/configuration/security/JwtAuthenticationFilter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package GaBom.Bom.configuration.security;\r\n\r\nimport org.springframework.security.core.Authentication;\r\nimport org.springframework.security.core.context.SecurityContextHolder;\r\nimport org.springframework.web.filter.GenericFilterBean;\r\n\r\nimport javax.servlet.FilterChain;\r\nimport javax.servlet.ServletException;\r\nimport javax.servlet.ServletRequest;\r\nimport javax.servlet.ServletResponse;\r\nimport javax.servlet.http.HttpServletRequest;\r\nimport java.io.IOException;\r\n\r\npublic class JwtAuthenticationFilter extends GenericFilterBean {\r\n\r\n    private JwtTokenProvider jwtTokenProvider; // JWT 토큰을 생성 및 검증 모듈 클래스\r\n\r\n    // Jwt Provider 주입\r\n    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {\r\n        this.jwtTokenProvider = jwtTokenProvider;\r\n    }\r\n\r\n    // Request로 들어오는 Jwt Token의 유효성을 검증 (jwtTokenProvider.validateToken)하는\r\n    // filter를 filterChain에 등록한다.\r\n    @Override\r\n    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)\r\n            throws IOException, ServletException {\r\n        String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);\r\n        // resolveToken : Request의 Header에서 token 파싱\r\n        if (token != null && jwtTokenProvider.validateToken(token)) {\r\n            // validateToken : Jwt 토큰의 유효성 + 만료일자 확인\r\n            Authentication auth = jwtTokenProvider.getAuthentication(token);\r\n            // getAuthentication : Jwt 토큰으로 인증 정보 조회\r\n            SecurityContextHolder.getContext().setAuthentication(auth);\r\n        }\r\n        filterChain.doFilter(request, response);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/GaBom/Bom/configuration/security/JwtAuthenticationFilter.java b/src/main/java/GaBom/Bom/configuration/security/JwtAuthenticationFilter.java
+--- a/src/main/java/GaBom/Bom/configuration/security/JwtAuthenticationFilter.java	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/src/main/java/GaBom/Bom/configuration/security/JwtAuthenticationFilter.java	(date 1650199006625)
+@@ -1,5 +1,6 @@
+ package GaBom.Bom.configuration.security;
+ 
++import lombok.RequiredArgsConstructor;
+ import org.springframework.security.core.Authentication;
+ import org.springframework.security.core.context.SecurityContextHolder;
+ import org.springframework.web.filter.GenericFilterBean;
+Index: src/main/java/GaBom/Bom/controller/UserProfileController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package GaBom.Bom.controller;\r\n\r\nimport GaBom.Bom.entity.User;\r\nimport GaBom.Bom.model.response.SingleResult;\r\nimport GaBom.Bom.repository.UserRepository;\r\nimport GaBom.Bom.service.ResponseService;\r\nimport GaBom.Bom.service.UserProfileService;\r\nimport io.swagger.annotations.ApiOperation;\r\nimport lombok.RequiredArgsConstructor;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.slf4j.Logger;\r\nimport org.slf4j.LoggerFactory;\r\nimport org.springframework.security.core.Authentication;\r\nimport org.springframework.security.core.userdetails.UserDetails;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\n@RequiredArgsConstructor\r\n@RestController\r\n@RequestMapping(\"/api/profile\")\r\npublic class UserProfileController {\r\n\r\n    private final UserRepository userRepository; // Jpa를 활용한 CRUD 쿼리 가능\r\n    private final ResponseService responseService; // 결과를 처리하는 Service\r\n    private final UserProfileService userProfileService;\r\n    private static final Logger log = LoggerFactory.getLogger(UserProfileController.class);\r\n\r\n    @ApiOperation(value = \"회원 보여주기\", notes = \"마이 페이지에서 회원 정보를 보여준다.\")\r\n    @GetMapping(\"/{user_id}\")\r\n    public SingleResult getUserInfo(@PathVariable(name = \"user_id\") String userId, Authentication authentication){\r\n        boolean modifiable = false;\r\n        UserDetails userDetails = (UserDetails)authentication.getPrincipal();\r\n        System.out.println(userId);\r\n        log.debug(\"\"+userDetails.getAuthorities());\r\n        userProfileService.showInfo(userId, authentication.getName());\r\n        return responseService.getSingleResult(userProfileService);\r\n    }\r\n\r\n    @ApiOperation(value = \"회원 수정\", notes = \"프로필 이미지를 제외한 회원정보를 수정한다.\")\r\n    @CrossOrigin(\"http://localhost:8080\")\r\n    @PutMapping(value = \"/update-profile/{user_id}\")\r\n    public SingleResult<User> updateProfile(\r\n            @PathVariable(name = \"user_id\") String userId,\r\n                                            Authentication authentication) {\r\n\r\n        userProfileService.updateProfile(userId, authentication);\r\n\r\n        return responseService.getSingleResult(userRepository.save(new User()));\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/GaBom/Bom/controller/UserProfileController.java b/src/main/java/GaBom/Bom/controller/UserProfileController.java
+--- a/src/main/java/GaBom/Bom/controller/UserProfileController.java	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/src/main/java/GaBom/Bom/controller/UserProfileController.java	(date 1650199417879)
+@@ -1,5 +1,6 @@
+ package GaBom.Bom.controller;
+ 
++import GaBom.Bom.configuration.security.JwtTokenProvider;
+ import GaBom.Bom.entity.User;
+ import GaBom.Bom.model.response.SingleResult;
+ import GaBom.Bom.repository.UserRepository;
+@@ -7,6 +8,7 @@
+ import GaBom.Bom.service.UserProfileService;
+ import io.swagger.annotations.ApiOperation;
+ import lombok.RequiredArgsConstructor;
++import lombok.extern.log4j.Log4j;
+ import lombok.extern.slf4j.Slf4j;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+@@ -17,33 +19,35 @@
+ @RequiredArgsConstructor
+ @RestController
+ @RequestMapping("/api/profile")
++@Slf4j
+ public class UserProfileController {
+ 
+     private final UserRepository userRepository; // Jpa를 활용한 CRUD 쿼리 가능
+     private final ResponseService responseService; // 결과를 처리하는 Service
+     private final UserProfileService userProfileService;
+-    private static final Logger log = LoggerFactory.getLogger(UserProfileController.class);
++    public final JwtTokenProvider jwtTokenProvider;
+ 
+     @ApiOperation(value = "회원 보여주기", notes = "마이 페이지에서 회원 정보를 보여준다.")
+     @GetMapping("/{user_id}")
+-    public SingleResult getUserInfo(@PathVariable(name = "user_id") String userId, Authentication authentication){
++    public SingleResult getUserInfo(@PathVariable(name = "user_id") String userId, @RequestParam String token){
++        //여기서 보는거 하면 될 듯~
+         boolean modifiable = false;
+-        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+         System.out.println(userId);
+-        log.debug(""+userDetails.getAuthorities());
+         userProfileService.showInfo(userId, authentication.getName());
+         return responseService.getSingleResult(userProfileService);
+     }
+ 
+     @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 제외한 회원정보를 수정한다.")
+-    @CrossOrigin("http://localhost:8080")
++    @CrossOrigin("http://localhost:8081")
+     @PutMapping(value = "/update-profile/{user_id}")
+     public SingleResult<User> updateProfile(
+-            @PathVariable(name = "user_id") String userId,
+-                                            Authentication authentication) {
++            @PathVariable("user_id") String userId,
++            @RequestParam String token) {
++        //여기서 부터 이미지 업로드 하는거 하면 될 듯
++        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+ 
+-        userProfileService.updateProfile(userId, authentication);
++        User user = userProfileService.updateProfile(userId, authentication);
+ 
+-        return responseService.getSingleResult(userRepository.save(new User()));
++        return responseService.getSingleResult();
+     }
+ }
+Index: src/main/java/GaBom/Bom/service/FindUserService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package GaBom.Bom.service;\r\n\r\n\r\nimport GaBom.Bom.advice.exception.CUserNotFoundException;\r\nimport GaBom.Bom.dto.FindUserDto;\r\nimport GaBom.Bom.dto.UserAuthDto;\r\nimport GaBom.Bom.entity.ConfirmationToken;\r\nimport GaBom.Bom.entity.User;\r\nimport GaBom.Bom.model.response.CommonResult;\r\nimport GaBom.Bom.repository.ConfirmationTokenRepository;\r\nimport GaBom.Bom.repository.UserRepository;\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.mail.SimpleMailMessage;\r\nimport org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;\r\nimport org.springframework.security.crypto.password.PasswordEncoder;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport javax.servlet.http.HttpSession;\r\nimport javax.transaction.Transactional;\r\n\r\n@Service\r\n@RequiredArgsConstructor\r\npublic class FindUserService {\r\n\r\n    private final ConfirmationTokenRepository confirmationTokenRepository;\r\n    private final UserRepository userRepository;\r\n    private final CheckService checkService;\r\n    private final EmailService emailService;\r\n    private final PasswordEncoder passwordEncoder;\r\n    private final ResponseService responseService; // API 요청 결과에 대한 code, message\r\n\r\n    //return true면 유저가 존재해서 정상적으로 메일이 보내진거 false면 유저가 없거나 메일이 보내지지 않은 것\r\n    @Transactional\r\n    public String findId(FindUserDto findUserDto){\r\n        if(checkService.checkUserNameAndEmail(findUserDto.getUserName(), findUserDto.getEmail()))\r\n            throw new CUserNotFoundException();\r\n        return userRepository.findByUserNameAndEmail(findUserDto.getUserName(), findUserDto.getEmail()).orElseThrow().getUserId();\r\n    }\r\n\r\n    @Transactional\r\n    public CommonResult findPassword(FindUserDto findUserDto){\r\n        if(checkService.checkUserIdAndEmail(findUserDto.getUserId(), findUserDto.getEmail()))\r\n            throw new CUserNotFoundException();\r\n        sendAuthMail(findUserDto);\r\n        return responseService.getSuccessResult();\r\n        //return userRepository.findByUserIdAndEmail(findUserDto.getUserId(), findUserDto.getEmail()).orElseThrow().getUserId();\r\n    }\r\n\r\n    @Transactional\r\n    public String sendAuthMail(FindUserDto findUserDto){\r\n        ConfirmationToken emailConfirmationToken = ConfirmationToken.createEmailConfirmationToken(findUserDto.getUserId());\r\n        confirmationTokenRepository.save(emailConfirmationToken);\r\n\r\n        SimpleMailMessage mailMessage = new SimpleMailMessage();\r\n        mailMessage.setFrom(\"springgabom@gmail.com\");\r\n        mailMessage.setTo(findUserDto.getEmail());\r\n        mailMessage.setSubject(\"회원가입 이메일 인증\");\r\n\r\n        //http://localhost:8080/changepw?token=~~으로 들어가면 비밀번호 받는 페이지 있고 해당 페이지에서\r\n        // 로그인 버튼 누르면 http://localhost:8080/finduser/changepw?token=으로 넘어가는 방식?\r\n        mailMessage.setText(\"http://localhost:8080/finduser/changepw?token=\"+emailConfirmationToken.getId());\r\n        emailService.send(mailMessage);\r\n\r\n        return emailConfirmationToken.getId();\r\n    }\r\n\r\n    //넘겨 받은 객체로 이메일을 통해 유저 정보를 얻어서 비밀번호를 업데이트한다.\r\n    @Transactional\r\n    public boolean setPassword(String password, User user){\r\n        userRepository.updatePassWord(passwordEncoder.encode(password), user.getUserNo());\r\n\r\n        if(passwordEncoder.matches(password, user.getUserPw()))\r\n            return true;\r\n\r\n        return false;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/GaBom/Bom/service/FindUserService.java b/src/main/java/GaBom/Bom/service/FindUserService.java
+--- a/src/main/java/GaBom/Bom/service/FindUserService.java	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/src/main/java/GaBom/Bom/service/FindUserService.java	(date 1650180811355)
+@@ -54,7 +54,7 @@
+         SimpleMailMessage mailMessage = new SimpleMailMessage();
+         mailMessage.setFrom("springgabom@gmail.com");
+         mailMessage.setTo(findUserDto.getEmail());
+-        mailMessage.setSubject("회원가입 이메일 인증");
++        mailMessage.setSubject("비밀번호 찾기 이메일 인증");
+ 
+         //http://localhost:8080/changepw?token=~~으로 들어가면 비밀번호 받는 페이지 있고 해당 페이지에서
+         // 로그인 버튼 누르면 http://localhost:8080/finduser/changepw?token=으로 넘어가는 방식?
+Index: src/main/java/GaBom/Bom/service/CustomUserDetailsService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package GaBom.Bom.service;public class CustomUserDetailsService {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/GaBom/Bom/service/CustomUserDetailsService.java b/src/main/java/GaBom/Bom/service/CustomUserDetailsService.java
+--- a/src/main/java/GaBom/Bom/service/CustomUserDetailsService.java	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/src/main/java/GaBom/Bom/service/CustomUserDetailsService.java	(date 1650198831751)
+@@ -1,2 +1,24 @@
+-package GaBom.Bom.service;public class CustomUserDetailsService {
++package GaBom.Bom.service;
++
++import GaBom.Bom.advice.exception.CUserNotFoundException;
++import GaBom.Bom.entity.User;
++import GaBom.Bom.repository.UserRepository;
++import lombok.RequiredArgsConstructor;
++import org.springframework.security.core.userdetails.UserDetails;
++import org.springframework.security.core.userdetails.UserDetailsService;
++import org.springframework.security.core.userdetails.UsernameNotFoundException;
++import org.springframework.stereotype.Service;
++
++@RequiredArgsConstructor
++@Service
++public class CustomUserDetailsService implements UserDetailsService {
++
++    private final UserRepository userRepository;
++
++    @Override
++    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
++        User user = userRepository.findByUserId(username).orElseThrow(CUserNotFoundException::new);
++
++        return user;
++    }
+ }
+Index: src/main/java/GaBom/Bom/entity/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package GaBom.Bom.entity;\r\n\r\nimport com.fasterxml.jackson.annotation.JsonProperty;\r\nimport io.swagger.annotations.ApiModelProperty;\r\nimport lombok.*;\r\nimport org.springframework.security.core.GrantedAuthority;\r\nimport org.springframework.security.core.authority.SimpleGrantedAuthority;\r\nimport org.springframework.security.core.userdetails.UserDetails;\r\n\r\nimport javax.persistence.*;\r\nimport javax.validation.constraints.Email;\r\nimport java.util.ArrayList;\r\nimport java.util.Collection;\r\nimport java.util.List;\r\nimport java.util.stream.Collectors;\r\n\r\n@Builder\r\n@Getter\r\n@Setter\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\n@Entity\r\n//@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)\r\npublic class User implements UserDetails {\r\n\r\n    //notnull로 하면 자동 생성이 안되는 중임.\r\n    @ApiModelProperty(value = \"유저 number\", example = \"1\", required = true)\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    @Column(name = \"user_no\")\r\n    private Long userNo;\r\n\r\n    //유저가 사용할 아이디\r\n    //@NotNull\r\n    @Column(name = \"user_id\", unique = true)\r\n    private String userId;\r\n    //비밀번호\r\n    //@NotNull\r\n    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)\r\n    private String userPw;\r\n    //이메일\r\n    //@NotNull\r\n    @Email\r\n    @Column(unique = true)\r\n    private String email;\r\n    //유저 실명\r\n    //@NotNull\r\n    private String userName;\r\n\r\n    private String nickName;\r\n\r\n    //userAuth??\r\n    //@NotNull\r\n    @ElementCollection(fetch = FetchType.EAGER)\r\n    @Builder.Default\r\n    private List<String> roles = new ArrayList<>(); // 회원이 가지고 있는 권한 정보들\r\n\r\n    //계정 추가 시각\r\n    //@NotNull\r\n    private String appendDate;\r\n\r\n    //계정 수정 시각\r\n    //@NotNull\r\n    private String updateDate;\r\n\r\n    //유저 프로필이 저장될 경로\r\n    //@NotNull\r\n//    @OneToOne(mappedBy = \"user\")\r\n//    private Image profileImage;\r\n\r\n    //유저를 팔로우한 사람 수\r\n    //@NotNull\r\n    private Integer following;\r\n\r\n    private String provider;\r\n    private String refreshToken;\r\n    private Boolean emailAuth;\r\n\r\n    //내가 쓴 리뷰 리스트\r\n    @OneToMany(mappedBy = \"user\")\r\n    @Column(name = \"my_travel_list\")\r\n    private List<Travel> myTravelList = new ArrayList<>();\r\n\r\n    //찜을 누른 리뷰 리스트\r\n    @OneToMany\r\n    @JoinColumn(name = \"travel_id\")\r\n    @Column(name = \"liked_travel_list\")\r\n    private List<Travel> likedTravelList = new ArrayList<>();\r\n\r\n    //내가 분류하여 저장한 리뷰 리스트(분류 자체로 리스트여야 하고 분류 후에도 리스트여야 해서 고민 해야함.)\r\n\r\n\r\n\r\n    @OneToMany\r\n    @JoinColumn(name = \"stored_travel_id\")\r\n    private List<StoredTravel> storedTravelList = new ArrayList<>();\r\n\r\n    //이건 유저 이름 리턴하는건데 getUsername 오버라이드 된 것 때문에 오류 생겨서 getter로 안되는 듯\r\n    public String getUserName(){\r\n        return this.userName;\r\n    }\r\n\r\n    public void updateRefreshToken(String refreshToken) {\r\n        this.refreshToken = refreshToken;\r\n    }\r\n\r\n    public void emailVerifiedSuccess() {\r\n        this.emailAuth = true;\r\n    }\r\n\r\n    @Override\r\n    public Collection<? extends GrantedAuthority> getAuthorities() {\r\n        return this.roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());\r\n    }\r\n\r\n    @Override\r\n    public String getPassword() {\r\n        return this.userPw;\r\n    }\r\n\r\n    //이건 유일키 넘겨주는것\r\n    @Override\r\n    public String getUsername() {\r\n        return this.userId;\r\n    }\r\n\r\n    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)\r\n    @Override\r\n    public boolean isAccountNonExpired() {\r\n        return true;\r\n    }\r\n\r\n    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)\r\n    @Override\r\n    public boolean isAccountNonLocked() {\r\n        return true;\r\n    }\r\n\r\n    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)\r\n    @Override\r\n    public boolean isCredentialsNonExpired() {\r\n        return true;\r\n    }\r\n\r\n    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)\r\n    @Override\r\n    public boolean isEnabled() {\r\n        return true;\r\n    }\r\n\r\n    //    연관 관계 편의 메소드\r\n    public void add(Travel travel){\r\n        travel.setUser(this);\r\n        this.myTravelList.add(travel);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/GaBom/Bom/entity/User.java b/src/main/java/GaBom/Bom/entity/User.java
+--- a/src/main/java/GaBom/Bom/entity/User.java	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/src/main/java/GaBom/Bom/entity/User.java	(date 1650199417863)
+@@ -65,8 +65,8 @@
+ 
+     //유저 프로필이 저장될 경로
+     //@NotNull
+-//    @OneToOne(mappedBy = "user")
+-//    private Image profileImage;
++    @OneToOne(mappedBy = "user")
++    private Image profileImage;
+ 
+     //유저를 팔로우한 사람 수
+     //@NotNull
+Index: src/main/java/GaBom/Bom/configuration/security/JwtTokenProvider.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package GaBom.Bom.configuration.security;\r\n\r\nimport io.jsonwebtoken.Claims;\r\nimport io.jsonwebtoken.Jws;\r\nimport io.jsonwebtoken.Jwts;\r\nimport io.jsonwebtoken.SignatureAlgorithm;\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.beans.factory.annotation.Value;\r\nimport org.springframework.security.authentication.UsernamePasswordAuthenticationToken;\r\nimport org.springframework.security.core.Authentication;\r\nimport org.springframework.security.core.userdetails.UserDetails;\r\nimport org.springframework.security.core.userdetails.UserDetailsService;\r\nimport org.springframework.stereotype.Component;\r\n\r\nimport javax.annotation.PostConstruct;\r\nimport javax.servlet.http.HttpServletRequest;\r\nimport java.util.Base64;\r\nimport java.util.Date;\r\nimport java.util.List;\r\n\r\n@RequiredArgsConstructor\r\n@Component\r\npublic class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈\r\n\r\n    @Value(\"spring.jwt.secret\")\r\n    private String secretKey;\r\n\r\n    private long tokenValidMillisecond = 1000L * 60 * 60; // 1시간 토큰 유효\r\n\r\n    private final UserDetailsService userDetailsService;\r\n\r\n    @PostConstruct\r\n    protected void init() {\r\n        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());\r\n    }\r\n\r\n    // Jwt 토큰 생성\r\n    public String createToken(String userPk, List<String> roles) {\r\n        Claims claims = Jwts.claims().setSubject(userPk);\r\n        claims.put(\"roles\", roles);\r\n        Date now = new Date();\r\n        return Jwts.builder()\r\n                .setClaims(claims) // 데이터\r\n                .setIssuedAt(now) // 토큰 발행일자\r\n                .setExpiration(new Date(now.getTime() + tokenValidMillisecond)) // 토큰 유효시간 설정\r\n                .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, 암호키\r\n                .compact();\r\n    }\r\n\r\n    // Jwt 토큰으로 인증 정보 조회\r\n    public Authentication getAuthentication(String token) {\r\n        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));\r\n        return new UsernamePasswordAuthenticationToken(userDetails, \"\", userDetails.getAuthorities());\r\n    }\r\n\r\n    // Jwt 토큰에서 회원 구별 정보 추출\r\n    public String getUserPk(String token) {\r\n        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();\r\n    }\r\n\r\n    // Request의 Header에서 token 파싱 : \"X-AUTH-TOKEN: jwt토큰\"\r\n    public String resolveToken(HttpServletRequest req) {\r\n        return req.getHeader(\"X-AUTH-TOKEN\");\r\n    }\r\n\r\n    // Jwt 토큰의 유효성 + 만료일자 확인\r\n    public boolean validateToken(String jwtToken) {\r\n        try {\r\n            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);\r\n            return !claims.getBody().getExpiration().before(new Date());\r\n        } catch (Exception e) {\r\n            return false;\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/GaBom/Bom/configuration/security/JwtTokenProvider.java b/src/main/java/GaBom/Bom/configuration/security/JwtTokenProvider.java
+--- a/src/main/java/GaBom/Bom/configuration/security/JwtTokenProvider.java	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/src/main/java/GaBom/Bom/configuration/security/JwtTokenProvider.java	(date 1650199417825)
+@@ -1,5 +1,6 @@
+ package GaBom.Bom.configuration.security;
+ 
++import GaBom.Bom.service.CustomUserDetailsService;
+ import io.jsonwebtoken.Claims;
+ import io.jsonwebtoken.Jws;
+ import io.jsonwebtoken.Jwts;
+@@ -27,7 +28,7 @@
+ 
+     private long tokenValidMillisecond = 1000L * 60 * 60; // 1시간 토큰 유효
+ 
+-    private final UserDetailsService userDetailsService;
++    private final CustomUserDetailsService customUserDetailsService;
+ 
+     @PostConstruct
+     protected void init() {
+@@ -49,7 +50,7 @@
+ 
+     // Jwt 토큰으로 인증 정보 조회
+     public Authentication getAuthentication(String token) {
+-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
++        UserDetails userDetails = customUserDetailsService.loadUserByUsername(this.getUserPk(token));
+         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+     }
+ 
+Index: src/main/resources/i18n/exception_ko.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># exception_ko.yml\r\nunKnown:\r\n  code: \"-9999\"\r\n  msg: \"알 수 없는 오류가 발생하였습니다. SadPepe :(\"\r\nuserNotFound:\r\n  code: \"-1000\"\r\n  msg: \"존재하지 않는 회원입니다. SadPepe :(\"\r\nsigninFailed:\r\n  code: \"-1001\"\r\n  msg: \"계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다. SadPepe :(\"\r\nentryPointException:\r\n  code: \"-1002\"\r\n  msg: \"해당 리소스에 접근하기 위한 권한이 없습니다. SadPepe :(\"\r\naccessDenied:\r\n  code: \"-1003\"\r\n  msg: \"보유한 권한으로 접근할 수 없는 리소스 입니다. SadPepe :(\"\r\nuserAlreadyExists:\r\n  code: \"-1004\"\r\n  msg: \"이미 유저가 존재합니다. SadPepe :(\"\r\nuserIdAlreadyExists:\r\n  code: \"-1005\"\r\n  msg: \"이미 아이디가 존재합니다. SadPepe :(\"\r\nnickNameAlreadyExists:\r\n  code: \"-1006\"\r\n  msg: \"이미 닉네임이 존재합니다. SadPepe :(\"\r\nemailAuthTokenNotFound:\r\n  code: \"-1007\"\r\n  msg: \"이메일 인증이 되지 않았습니다. SadPepe :(\"\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/i18n/exception_ko.yml b/src/main/resources/i18n/exception_ko.yml
+--- a/src/main/resources/i18n/exception_ko.yml	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/src/main/resources/i18n/exception_ko.yml	(date 1649915855672)
+@@ -1,28 +1,28 @@
+ # exception_ko.yml
+ unKnown:
+   code: "-9999"
+-  msg: "알 수 없는 오류가 발생하였습니다. SadPepe :("
++  msg: "알 수 없는 오류가 발생하였습니다."
+ userNotFound:
+   code: "-1000"
+-  msg: "존재하지 않는 회원입니다. SadPepe :("
++  msg: "존재하지 않는 회원입니다."
+ signinFailed:
+   code: "-1001"
+-  msg: "계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다. SadPepe :("
++  msg: "계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다."
+ entryPointException:
+   code: "-1002"
+-  msg: "해당 리소스에 접근하기 위한 권한이 없습니다. SadPepe :("
++  msg: "해당 리소스에 접근하기 위한 권한이 없습니다."
+ accessDenied:
+   code: "-1003"
+-  msg: "보유한 권한으로 접근할 수 없는 리소스 입니다. SadPepe :("
++  msg: "보유한 권한으로 접근할 수 없는 리소스 입니다."
+ userAlreadyExists:
+   code: "-1004"
+-  msg: "이미 유저가 존재합니다. SadPepe :("
++  msg: "이미 유저가 존재합니다."
+ userIdAlreadyExists:
+   code: "-1005"
+-  msg: "이미 아이디가 존재합니다. SadPepe :("
++  msg: "이미 아이디가 존재합니다."
+ nickNameAlreadyExists:
+   code: "-1006"
+-  msg: "이미 닉네임이 존재합니다. SadPepe :("
++  msg: "이미 닉네임이 존재합니다."
+ emailAuthTokenNotFound:
+   code: "-1007"
+-  msg: "이메일 인증이 되지 않았습니다. SadPepe :("
++  msg: "이메일 인증이 되지 않았습니다."
+Index: build/resources/main/i18n/exception_ko.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># exception_ko.yml\r\nunKnown:\r\n  code: \"-9999\"\r\n  msg: \"알 수 없는 오류가 발생하였습니다. SadPepe :(\"\r\nuserNotFound:\r\n  code: \"-1000\"\r\n  msg: \"존재하지 않는 회원입니다. SadPepe :(\"\r\nemailSigninFailed:\r\n  code: \"-1001\"\r\n  msg: \"계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다. SadPepe :(\"\r\nentryPointException:\r\n  code: \"-1002\"\r\n  msg: \"해당 리소스에 접근하기 위한 권한이 없습니다. SadPepe :(\"\r\naccessDenied:\r\n  code: \"-1003\"\r\n  msg: \"보유한 권한으로 접근할 수 없는 리소스 입니다. SadPepe :(\"\r\nuserAlreadyExists:\r\n  code: \"-1004\"\r\n  msg: \"이미 유저가 존재합니다. SadPepe :(\"\r\nuserIdAlreadyExists:\r\n  code: \"-1005\"\r\n  msg: \"이미 아이디가 존재합니다. SadPepe :(\"\r\nnickNameAlreadyExists:\r\n  code: \"-1006\"\r\n  msg: \"이미 닉네임이 존재합니다. SadPepe :(\"\r\nemailAuthTokenNotFound:\r\n  code: \"-1007\"\r\n  msg: \"이메일 인증이 되지 않았습니다. SadPepe :(\"\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/resources/main/i18n/exception_ko.yml b/build/resources/main/i18n/exception_ko.yml
+--- a/build/resources/main/i18n/exception_ko.yml	(revision e750d7b4bc1dab7483d6e53e4ad99f187fda98a8)
++++ b/build/resources/main/i18n/exception_ko.yml	(date 1649916315053)
+@@ -1,28 +1,28 @@
+ # exception_ko.yml
+ unKnown:
+   code: "-9999"
+-  msg: "알 수 없는 오류가 발생하였습니다. SadPepe :("
++  msg: "알 수 없는 오류가 발생하였습니다."
+ userNotFound:
+   code: "-1000"
+-  msg: "존재하지 않는 회원입니다. SadPepe :("
+-emailSigninFailed:
++  msg: "존재하지 않는 회원입니다."
++signinFailed:
+   code: "-1001"
+-  msg: "계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다. SadPepe :("
++  msg: "계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다."
+ entryPointException:
+   code: "-1002"
+-  msg: "해당 리소스에 접근하기 위한 권한이 없습니다. SadPepe :("
++  msg: "해당 리소스에 접근하기 위한 권한이 없습니다."
+ accessDenied:
+   code: "-1003"
+-  msg: "보유한 권한으로 접근할 수 없는 리소스 입니다. SadPepe :("
++  msg: "보유한 권한으로 접근할 수 없는 리소스 입니다."
+ userAlreadyExists:
+   code: "-1004"
+-  msg: "이미 유저가 존재합니다. SadPepe :("
++  msg: "이미 유저가 존재합니다."
+ userIdAlreadyExists:
+   code: "-1005"
+-  msg: "이미 아이디가 존재합니다. SadPepe :("
++  msg: "이미 아이디가 존재합니다."
+ nickNameAlreadyExists:
+   code: "-1006"
+-  msg: "이미 닉네임이 존재합니다. SadPepe :("
++  msg: "이미 닉네임이 존재합니다."
+ emailAuthTokenNotFound:
+   code: "-1007"
+-  msg: "이메일 인증이 되지 않았습니다. SadPepe :("
++  msg: "이메일 인증이 되지 않았습니다."

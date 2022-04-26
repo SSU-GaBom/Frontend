@@ -1,6 +1,7 @@
 package GaBom.Bom.service;
 
 
+import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.dto.UpdateTravelDto;
 import GaBom.Bom.entity.Travel;
 import GaBom.Bom.entity.User;
@@ -26,7 +27,7 @@ public class TravelService {
 
     @Transactional
     public boolean save(String username, Travel travel){
-        User user = userRepository.findByUserName(username);
+        User user = userRepository.findByUserName(username).orElseThrow(CUserNotFoundException::new);
         //만약 userName이 없으면? -> 에러처리. 근데 로그인세션으로 할거니까 그때 보고?하기.
         user.add(travel);
         travelRepository.save(travel);

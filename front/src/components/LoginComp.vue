@@ -1,7 +1,7 @@
 
 <template>
     <v-dialog
-      v-dialog v-model="dialog" persistent max-width="600"
+      v-model="dialog" persistent max-width="600"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -26,7 +26,6 @@
         
       <v-form
         ref="form"
-        v-model="hasError"
         lazy-validation
         class="pa-5 ma-5"
       >
@@ -120,13 +119,21 @@ export default {
       async submitForm(){
           try {
             const response = await this.$store.dispatch('LOGIN',this.form)
+            if(response.data.code !== 0){
+              this.errorMessage = response.data.msg
+            }else{
+              this.dialog = false;
+            }
             
-            console.log(response)
+            // this.errorMessage = response.data.data.
+
+            
             
           } catch (error) {
             console.log(error)
             this.errorMessage = "로그인에 실패했습니다."
           }
+          
       },
       initForm() {
         this.loginId = '';
