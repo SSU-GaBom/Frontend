@@ -33,6 +33,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
             Authentication auth = jwtTokenProvider.getAuthentication(token);
             // getAuthentication : Jwt 토큰으로 인증 정보 조회
             SecurityContextHolder.getContext().setAuthentication(auth);
+            System.out.println("token 유효");
         }
         filterChain.doFilter(request, response);
     }

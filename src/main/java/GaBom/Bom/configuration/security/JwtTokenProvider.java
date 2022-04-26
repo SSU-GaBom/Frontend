@@ -67,6 +67,10 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
     public boolean validateToken(String jwtToken) {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
+            if(claims.getBody().getExpiration().getTime() - claims.getBody().getIssuedAt().getTime() != tokenValidMillisecond){
+                System.out.println("시간이 변조 됐습니다.");
+                return false;
+            }
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
             return false;

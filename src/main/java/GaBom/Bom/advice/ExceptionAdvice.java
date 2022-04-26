@@ -59,6 +59,12 @@ public class ExceptionAdvice {
         return responseService.getFailResult(Integer.valueOf(getMessage("nickNameAlreadyExistsException.code")), getMessage("nickNameFailedAlreadyExistsException.msg"));
     }
 
+    @ExceptionHandler(CExtensionException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult extensionException(HttpServletRequest request, CExtensionException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("extensionException.code")), getMessage("extensionException.msg"));
+    }
+
     @ExceptionHandler(CNoRelationException.class)
     @ResponseStatus(HttpStatus.OK)
     protected CommonResult noRelationException(HttpServletRequest request, CNoRelationException e) {

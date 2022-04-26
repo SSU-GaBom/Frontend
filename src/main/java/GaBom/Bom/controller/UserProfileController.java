@@ -2,48 +2,62 @@ package GaBom.Bom.controller;
 
 import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.SingleResult;
-import GaBom.Bom.repository.UserRepository;
+import GaBom.Bom.service.FollowService;
 import GaBom.Bom.service.ResponseService;
 import GaBom.Bom.service.UserProfileService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/profile")
 public class UserProfileController {
 
-    private final UserRepository userRepository; // Jpa를 활용한 CRUD 쿼리 가능
     private final ResponseService responseService; // 결과를 처리하는 Service
     private final UserProfileService userProfileService;
-    private static final Logger log = LoggerFactory.getLogger(UserProfileController.class);
+    private final FollowService followService;
 
     @ApiOperation(value = "회원 보여주기", notes = "마이 페이지에서 회원 정보를 보여준다.")
-    @GetMapping("/{user_id}")
-    public SingleResult getUserInfo(@PathVariable(name = "user_id") String userId, Authentication authentication){
-        boolean modifiable = false;
-        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
-        System.out.println(userId);
-        log.debug(""+userDetails.getAuthorities());
-        userProfileService.showInfo(userId, authentication.getName());
-        return responseService.getSingleResult(userProfileService);
+    @GetMapping("/{nick_name}")
+    public SingleResult getUserInfo(@PathVariable(name = "nick_name") String nickName){
+        return userProfileService.showInfo(nickName);
     }
 
-    @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 제외한 회원정보를 수정한다.")
-    @CrossOrigin("http://localhost:8080")
-    @PutMapping(value = "/update-profile/{user_id}")
+    @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 수정한다.")
+    @CrossOrigin("http://localhost:8081")
+    @PutMapping(value = "/update-profile/{nick_name}")
     public SingleResult<User> updateProfile(
-            @PathVariable(name = "user_id") String userId,
-                                            Authentication authentication) {
+            @PathVariable(name = "nick_name") String nickName,
+            @RequestParam(name = "profile_image") MultipartFile profileImage) {
 
-        userProfileService.updateProfile(userId, authentication);
+        return userProfileService.updateProfile(nickName, profileImage);
+    }
 
-        return responseService.getSingleResult(userRepository.save(new User()));
+    //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
+    @GetMapping("/follow/{profile-nick-name}/follower")
+    public SingleResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName){
+        return responseService.getSingleResult(followService.getFollower(profileNickName));
+    }
+
+    //내가 팔로우하고 있는 사람 전체 출력
+    @GetMapping("/follow/{profile-nick-name}/following")
+    public SingleResult showFollowing(@PathVariable(name = "profile-nick-name") String profileNickName){
+        return responseService.getSingleResult(followService.getFollowing(profileNickName));
+    }
+
+    //팔로우 버튼 눌렀을 때
+    @PostMapping("/follow/{to-nick-name}")
+    public SingleResult followUser(@PathVariable(name = "to-nick-name") String toNickName){
+        followService.save(toNickName);
+        return followService.increase(toNickName);
+    }
+
+    //언팔로우 버튼 눌렀을 때
+    @DeleteMapping("/follow/{to-nick-name}")
+    public SingleResult unFollowUser(@PathVariable(name = "to-nick-name") String toNickName){
+        followService.deleteFollow(toNickName);
+        return followService.decrease(toNickName);
     }
 }
