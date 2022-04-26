@@ -5,8 +5,7 @@ import GaBom.Bom.advice.exception.CNickNameAlreadyExistsException;
 import GaBom.Bom.advice.exception.CUserIdAlreadyExistsException;
 import GaBom.Bom.dto.LoginDto;
 import GaBom.Bom.dto.SignUpUserDto;
-import GaBom.Bom.dto.TokenUserIdDto;
-import GaBom.Bom.dto.UserDto;
+import GaBom.Bom.dto.TokenUserDto;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
 import GaBom.Bom.service.*;
@@ -14,9 +13,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -35,7 +31,7 @@ public class SignController {
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
     @PostMapping(value = "/api/signin")
-    public SingleResult<TokenUserIdDto> signin(@RequestBody LoginDto loginDto) {
+    public SingleResult<TokenUserDto> signin(@RequestBody LoginDto loginDto) {
         return logInService.signIn(loginDto);
     }
 
