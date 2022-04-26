@@ -120,11 +120,11 @@ public class FollowService {
             throw new CSameUserException();
 
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT u.id, u.name, u.profile_img_url, ");
-        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.id), TRUE, FALSE) AS followState, ");
-        sb.append("if ((?=u.id), TRUE, FALSE) AS loginUser ");
+        sb.append("SELECT u.user_id, u.user_name, ");
+        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.user_id), TRUE, FALSE) AS followState, ");
+        sb.append("if ((?=u.user_id), TRUE, FALSE) AS loginUser ");
         sb.append("FROM user u, follow f ");
-        sb.append("WHERE u.id = f.from_user_id AND f.to_user_id = ?");
+        sb.append("WHERE u.user_id = f.from_user_id AND f.to_user_id = ?");
 
         Query query = em.createNativeQuery(sb.toString())
                 .setParameter(1, loginId)
@@ -150,7 +150,7 @@ public class FollowService {
             throw new CSameUserException();
 
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT u.id, u.name, u.profile_img_url, ");
+        sb.append("SELECT u.user_id, u.name, u.profile_img_url, ");
         sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.id), TRUE, FALSE) AS followState, ");
         sb.append("if ((?=u.id), TRUE, FALSE) AS loginUser ");
         sb.append("FROM user u, follow f ");
