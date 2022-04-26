@@ -23,5 +23,7 @@ public class FileHandler {
 
         String path = userId + "/profile";
         File file = new File(path);
+
+        return new Image();
     }
 }

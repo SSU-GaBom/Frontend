@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TokenUserIdDto {
+public class TokenUserDto {
     private String token;
     private String userId;
+    private String nickName;
 }
