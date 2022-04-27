@@ -40,7 +40,8 @@ public class UserProfileService {
         else
             userProfileDto.setMe(false);
 
-        userProfileDto.builder()
+        return responseService.getSingleResult(
+                userProfileDto.builder()
                 .loginUser(loginUserId)
                 .userId(user.getUserId())
                 .userName(user.getUserName())
@@ -51,10 +52,7 @@ public class UserProfileService {
                 .myTravelList(user.getMyTravelList())
                 //.likedTravelList(user.getLikedTravelList())
                 .storedTravelList(user.getStoredTravelList())
-                .build();
-
-
-        return responseService.getSingleResult(userProfileDto);
+                .build());
     }
 
     @Transactional

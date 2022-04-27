@@ -3,10 +3,7 @@ package GaBom.Bom.entity;
 
 import GaBom.Bom.dto.UpdateTravelDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Getter
 @Setter
 //@AllArgsConstructor
@@ -37,8 +35,6 @@ public class Travel{
     private User user;
 
 
-
-
 //    리뷰 내부의 핀 리스트
     @OneToMany(mappedBy = "travel")
     @Column(name = "pin_list")
@@ -49,22 +45,13 @@ public class Travel{
     private String title;
 
     //생성 시각
-    @CreationTimestamp
-    @Column(name = "created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
-
+    private String appendDate;
     //수정 시각각
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private LocalDateTime updateAt = LocalDateTime.now();
-
+    private String updateDate;
     //여행 시작 날짜
-    @Column(name = "start_date")
-    private LocalDateTime startDate;
-
+    private String startDate;
     //여행 종료 날짜
-    @Column(name = "end_date")
-    private LocalDateTime endDate;
+    private String endDate;
 
 //    공유 여부
     @NotNull
