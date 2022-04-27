@@ -17,6 +17,14 @@ export default new Vuex.Store({
 		nickName : null
 	},
     token : '',
+	viewUser : {
+		nickName : null,
+		profileImage : null,
+		follower : null,
+		following : null,
+		travelList : [],
+		wishList : [],
+	}
   },
   getters: {
 		isLoggedIn(state) {
@@ -27,9 +35,9 @@ export default new Vuex.Store({
 		},
 	},
   mutations: {
-		SET_USER(state, id , nickName) {
-			state.user.id = id;
-			state.user.nickName = nickName
+		SET_USER(state, data) {
+			state.user.id = data.userId;
+			state.user.nickName = data.nickName;
 		},
 		SET_TOKEN(state, token) {
 			state.token = token;
@@ -45,13 +53,21 @@ export default new Vuex.Store({
 		async LOGIN({ commit }, data) {
 			const response = await loginUser(data);
 			console.log("LOGIN")
+		
 
 			// 로그인 성공
 			if(response.data.code == 0){
 				console.log(response.data.msg)
-			
-				commit('SET_USER', response.data.data.userId , response.data.data.userNickName);
+				console.log(response.data.data)
+				console.log(response.data.data.nickName)
+				const data = {
+					userId : response.data.data.userId,
+					nickName : response.data.data.nickName
+				}
+				commit('SET_USER',data);
+				console.log("h1")
 				commit('SET_TOKEN', response.data.data.token);
+				console.log("h1")
 				saveUserToCookie(response.data.data.userId);
 				saveAuthToCookie(response.data.data.token);
 
