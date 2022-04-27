@@ -1,6 +1,5 @@
 package GaBom.Bom.controller;
 
-import GaBom.Bom.advice.exception.CEmailNotFoundException;
 import GaBom.Bom.advice.exception.CNickNameAlreadyExistsException;
 import GaBom.Bom.advice.exception.CUserIdAlreadyExistsException;
 import GaBom.Bom.dto.LoginDto;
@@ -15,11 +14,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
-
 @Slf4j
 @Api(tags = {"1. Sign"})
 @RequiredArgsConstructor
+@RequestMapping(value = "/api")
 @RestController
 public class SignController {
 
@@ -30,14 +28,14 @@ public class SignController {
     private final CheckService checkService;
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
-    @PostMapping(value = "/api/signin")
+    @PostMapping(value = "/signin")
     public SingleResult<TokenUserDto> signin(@RequestBody LoginDto loginDto) {
         return logInService.signIn(loginDto);
     }
 
     @ApiOperation(value = "가입", notes = "회원가입을 한다.")
-    @PostMapping(value = "/api/signup")
-    public CommonResult signup(@RequestBody SignUpUserDto signUpUserDto) throws MessagingException {
+    @PostMapping(value = "/signup")
+    public CommonResult signup(@RequestBody SignUpUserDto signUpUserDto){
         log.info("email : {} " , signUpUserDto.getEmail());
         log.info("userId : {} " , signUpUserDto.getUserId());
         log.info("userName : {} " , signUpUserDto.getUserName());
@@ -53,7 +51,7 @@ public class SignController {
 
     //success값이 true 일 때만!
     @ApiOperation(value = "id중복체크")
-    @GetMapping("/api/checkId/{userId}")
+    @GetMapping("/check-id/{userId}")
     public CommonResult checkId(@PathVariable String userId){
         log.info("checkId : {} ",userId);
         if(!checkService.checkId(userId))
@@ -63,7 +61,7 @@ public class SignController {
 
     //success값이 true 일 때만!
     @ApiOperation(value = "닉네임 중복체크")
-    @GetMapping(value = "/api/checkNickname/{nickName}")
+    @GetMapping(value = "/check-nickname/{nickName}")
     public CommonResult checkNickName(@PathVariable String nickName){
         if(!checkService.checkNickName(nickName))
             throw new CNickNameAlreadyExistsException();
