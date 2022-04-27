@@ -119,22 +119,27 @@ public class FollowService {
         if(profileId.equals(loginId))
             throw new CSameUserException();
 
-        StringBuffer sb = new StringBuffer();
-        sb.append("SELECT u.user_id, u.user_name, ");
-        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.user_id), TRUE, FALSE) AS followState, ");
-        sb.append("if ((?=u.user_id), TRUE, FALSE) AS loginUser ");
-        sb.append("FROM user u, follow f ");
-        sb.append("WHERE u.user_id = f.from_user_id AND f.to_user_id = ?");
+        List<User> userList = followRepository.findFromUserByToUser(toUser).orElseThrow(CNoRelationException::new);
 
-        Query query = em.createNativeQuery(sb.toString())
-                .setParameter(1, loginId)
-                .setParameter(2, loginId)
-                .setParameter(3, profileId);
+        for(User user:userList)
+            System.out.println(user.getUserId());
 
-        JpaResultMapper result = new JpaResultMapper();
-        List<FollowDto> followDtoList = result.list(query, FollowDto.class);
+//        StringBuffer sb = new StringBuffer();
+//        sb.append("SELECT u.user_id, u.user_name ");
+//        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.user_id), TRUE, FALSE) AS followState, ");
+//        sb.append("if ((?=u.user_id), TRUE, FALSE) AS loginUser ");
+//        sb.append("FROM user u, follow f ");
+//        sb.append("WHERE u.user_id = f.from_user_id AND f.to_user_id = ?");
+//
+//        Query query = em.createNativeQuery(sb.toString())
+//                .setParameter(1, loginId)
+//                .setParameter(2, loginId)
+//                .setParameter(3, profileId);
+//
+//        JpaResultMapper result = new JpaResultMapper();
+//        List<FollowDto> followDtoList = result.list(query, FollowDto.class);
 
-        return responseService.getSingleResult(followDtoList);
+        return responseService.getSingleResult(userList);
     }
 
     @Transactional
@@ -143,29 +148,32 @@ public class FollowService {
         String loginId = authentication.getName();
 
         User toUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
+        User fromUser = userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new);
 
         String profileId = toUser.getUserId();
 
         if(profileId.equals(loginId))
             throw new CSameUserException();
 
-        StringBuffer sb = new StringBuffer();
-        sb.append("SELECT u.user_id, u.name, u.profile_img_url, ");
-        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.id), TRUE, FALSE) AS followState, ");
-        sb.append("if ((?=u.id), TRUE, FALSE) AS loginUser ");
-        sb.append("FROM user u, follow f ");
-        sb.append("WHERE u.id = f.to_user_id AND f.from_user_id = ?");
+        List<User> userList = followRepository.findToUserByFromUser(fromUser).orElseThrow(CNoRelationException::new);
 
-        // 쿼리 완성
-        Query query = em.createNativeQuery(sb.toString())
-                .setParameter(1, loginId)
-                .setParameter(2, loginId)
-                .setParameter(3, profileId);
+//        StringBuffer sb = new StringBuffer();
+//        sb.append("SELECT u.user_id, u.name, u.profile_img_url, ");
+//        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.id), TRUE, FALSE) AS followState, ");
+//        sb.append("if ((?=u.id), TRUE, FALSE) AS loginUser ");
+//        sb.append("FROM user u, follow f ");
+//        sb.append("WHERE u.id = f.to_user_id AND f.from_user_id = ?");
+//
+//        // 쿼리 완성
+//        Query query = em.createNativeQuery(sb.toString())
+//                .setParameter(1, loginId)
+//                .setParameter(2, loginId)
+//                .setParameter(3, profileId);
+//
+//        //JPA 쿼리 매핑 - DTO에 매핑
+//        JpaResultMapper result = new JpaResultMapper();
+//        List<FollowDto> followDtoList = result.list(query, FollowDto.class);
 
-        //JPA 쿼리 매핑 - DTO에 매핑
-        JpaResultMapper result = new JpaResultMapper();
-        List<FollowDto> followDtoList = result.list(query, FollowDto.class);
-
-        return responseService.getSingleResult(followDtoList);
+        return responseService.getSingleResult(userList);
     }
 }
