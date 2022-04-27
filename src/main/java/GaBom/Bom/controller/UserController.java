@@ -96,7 +96,8 @@ public class UserController {
 
     @GetMapping("/api/confirm-email")
     public void viewConfirmEmail(@Valid @RequestParam  String token, HttpServletResponse response) throws IOException {
+        String loginPage = "http://localhost/sign/signup";
         userService.confirmEmail(token);
-
+        response.sendRedirect(loginPage);
     }
 }

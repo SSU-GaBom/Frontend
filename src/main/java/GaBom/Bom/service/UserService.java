@@ -25,6 +25,7 @@ public class UserService  {
      * 이메일 인증 로직
      * @param token
      */
+    @Transactional
     public void confirmEmail(String token) {
         ConfirmationToken findConfirmationToken = confirmationTokenService.findByIdAndExpirationDateAfterAndExpired(token);
         User user = userRepository.findByUserId(findConfirmationToken.getUserId()).orElseThrow();
