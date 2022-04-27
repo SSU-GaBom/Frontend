@@ -48,9 +48,9 @@ public class UserProfileService {
                 .profileImage(user.getProfileImage())
                 .userFollowerCount(user.getFollwerNum())
                 .userFollowingCount(user.getFollowingNum())
-                .myTravelList(user.getMyTravelList())
+//                .myTravelList(user.getMyTravelList())
                 //.likedTravelList(user.getLikedTravelList())
-                .storedTravelList(user.getStoredTravelList())
+//                .storedTravelList(user.getStoredTravelList())
                 .build();
 
 
