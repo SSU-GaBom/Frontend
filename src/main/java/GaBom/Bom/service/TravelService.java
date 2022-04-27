@@ -54,7 +54,6 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
 
         System.out.println("ID :: loginId = " + loginId);
 
-
         List<Pin> pinList = travelDto.getPinList();
         for (Pin pin : pinList) {
             //pin에 있는 location 저장 후 dto 말고 객체로 저장하기.
@@ -62,7 +61,8 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
             locationRepository.save(pin.getLocation());
             //pin에 있는 card 저장 후
             for (Card card : pin.getCardList()) {
-                pin.add(card);
+                card.setPin(pin);
+//                pin.add(card);
                 cardRepository.save(card);
             }
             pinRepository.save(pin);
@@ -78,15 +78,13 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
                     .updateDate(localTime)
                     .startDate(travelDto.getStartDate())
                     .endDate(travelDto.getEndDate())
+                    .expense(travelDto.getExpense())
+                    .content(travelDto.getContent())
                     .isShared(false)
                     .likedCount(0)
+                    .transportation(null)
                     .build());
-//        Integer expense;
-//         String content;
-//        Transportation transportation;
     }
-
-
 
 
     public Travel travel_info(Long travelId) {
