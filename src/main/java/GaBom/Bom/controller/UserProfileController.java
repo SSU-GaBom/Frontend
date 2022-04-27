@@ -5,6 +5,7 @@ import GaBom.Bom.model.response.SingleResult;
 import GaBom.Bom.service.FollowService;
 import GaBom.Bom.service.ResponseService;
 import GaBom.Bom.service.UserProfileService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/profile")
 public class UserProfileController {
 
-    private final ResponseService responseService; // 결과를 처리하는 Service
     private final UserProfileService userProfileService;
     private final FollowService followService;
 
@@ -37,7 +37,7 @@ public class UserProfileController {
 
     //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
     @GetMapping("/follow/{profile-nick-name}/follower")
-    public SingleResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName){
+    public SingleResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName) throws JsonProcessingException {
         return followService.getFollower(profileNickName);
     }
 
