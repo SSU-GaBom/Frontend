@@ -5,12 +5,14 @@ import GaBom.Bom.entity.Pin;
 import GaBom.Bom.entity.Transportation;
 import GaBom.Bom.entity.Travel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
+@NoArgsConstructor
 public class TravelDto {
 
     private Long travelId;
@@ -26,15 +28,21 @@ public class TravelDto {
 
     private List<Pin> pinList;
 
-    public TravelDto(String title, String state, String city, String startDate, String endDate, List<Pin> pinList) {
-//        this.travelId = travelId;
+    private Integer expense;
+    private String content;
+
+    public TravelDto(Long travelId, String title, String state, String city, String startDate, String endDate, List<Pin> pinList, Integer expense, String content) {
+        this.travelId = travelId;
         this.title = title;
         this.state = state;
         this.city = city;
         this.startDate = startDate;
         this.endDate = endDate;
         this.pinList = pinList;
+        this.expense = expense;
+        this.content = content;
     }
+
 
     //    private Integer expense;
 //    private String content;

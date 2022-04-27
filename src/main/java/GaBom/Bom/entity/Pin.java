@@ -37,5 +37,4 @@ public class Pin{
         card.setPin(this);
         this.cardList.add(card);
     }
-
 }

@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Getter
@@ -15,7 +17,7 @@ import javax.validation.constraints.NotNull;
 public class Location{
 
     @Id
-    @GeneratedValue
+//    @GeneratedValue
     @Column(name = "location_id")
     private Long locationId;
 
@@ -27,6 +29,11 @@ public class Location{
     private String road_address_name;
 
     private String place_name;
+
+    //혹시 이것때문인가 하고 적어봄 ?? 왜 단방향이면 안되고 양방향 하면 되는것?
+//    @OneToMany(mappedBy = "location")
+//    @Column(name = "location_list")
+//    private List<Pin> locationList=new ArrayList<>();
 
     @NotNull
     private Float latitude; //x값

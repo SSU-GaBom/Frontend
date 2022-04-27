@@ -15,11 +15,12 @@ public class Card{
 
     @Id
     @Column(name = "card_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+//            (strategy = GenerationType.IDENTITY)
     //"카드 id" + "인덱스"
     private Long cardId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL) //여기 casacde 안하면
     @JoinColumn(name = "pin_id")
     private Pin pin;
 
