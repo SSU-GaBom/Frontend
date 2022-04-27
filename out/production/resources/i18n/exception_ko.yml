@@ -2,28 +2,28 @@
 unKnown:
   code: "-9999"
   msg: "알 수 없는 오류가 발생하였습니다."
-userNotFoundException:
+userNotFound:
   code: "-1000"
   msg: "존재하지 않는 회원입니다."
-signinFailedException:
+signinFailed:
   code: "-1001"
-  msg: "계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다. "
+  msg: "계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다."
 entryPointException:
   code: "-1002"
-  msg: "해당 리소스에 접근하기 위한 권한이 없습니다. "
-accessDeniedException:
+  msg: "해당 리소스에 접근하기 위한 권한이 없습니다."
+accessDenied:
   code: "-1003"
-  msg: "보유한 권한으로 접근할 수 없는 리소스 입니다. "
-userAlreadyExistsException:
+  msg: "보유한 권한으로 접근할 수 없는 리소스 입니다."
+userAlreadyExists:
   code: "-1004"
-  msg: "이미 유저가 존재합니다. "
-userIdAlreadyExistsException:
+  msg: "이미 유저가 존재합니다."
+userIdAlreadyExists:
   code: "-1005"
-  msg: "이미 아이디가 존재합니다. "
-nickNameAlreadyExistsException:
+  msg: "이미 아이디가 존재합니다."
+nickNameAlreadyExists:
   code: "-1006"
-  msg: "이미 닉네임이 존재합니다. "
-emailAuthTokenNotFoundException:
+  msg: "이미 닉네임이 존재합니다."
+emailAuthTokenNotFound:
   code: "-1007"
   msg: "이메일 인증이 되지 않았습니다. "
 notSameUserException:
