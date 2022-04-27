@@ -5,27 +5,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237dab48-c05a-4e1e-b7dd-9f197827f9de" name="Changes" comment="각 서비스들 코드 정리, 팔로우 컨트롤러 오류 찾음.">
-      <change beforePath="$PROJECT_DIR$/._layouts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/._public" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../basicSecurity/src/main/java/Security/basicSecurity/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.yarn-integrity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtTokenProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtTokenProvider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/SignController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/SignController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/UserProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/UserProfileController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/CustomUserDetailService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/FollowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/FollowService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/LogInService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/LogInService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/advice/ExceptionAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/advice/ExceptionAdvice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/configuration/security/JwtTokenProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/configuration/security/JwtTokenProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/configuration/security/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/configuration/security/SecurityConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/SignController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/SignController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/UserProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/UserProfileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/TokenUserIdDto$TokenUserIdDtoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/TokenUserIdDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Image.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Image.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Travel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Travel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/FollowRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/FollowRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/ImageRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/ImageRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/ConfirmationTokenService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/ConfirmationTokenService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CustomUserDetailService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CustomUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/EmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/EmailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/FindUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/FindUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/FollowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/FollowService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/LogInService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/LogInService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/PinService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/PinService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/GaBom/Bom/service/TravelServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/GaBom/Bom/service/TravelServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/i18n/exception_ko.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/i18n/exception_ko.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/HeaderBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/JoinComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/JoinComp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/UploadImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UploadImage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/i18n/exception_en.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/i18n/exception_en.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/resources/i18n/exception_ko.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/i18n/exception_ko.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/component/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/component/FileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/SignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/SignController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/UserProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/UserProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/FollowRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/FollowRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/CustomUserDetailService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/FollowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/FollowService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/i18n/exception_ko.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/i18n/exception_ko.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +74,37 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Bom" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Bom" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Bom" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -57,16 +126,28 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.6.2/fa11b3101454fa8ca30a1b4469d6563e7490d7eb/spring-security-web-5.6.2-sources.jar!/org/springframework/security/web/FilterChainProxy.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.3.16/177def51dd8d2c061f498c4a1114bb30af6f434d/spring-webmvc-5.3.16-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.6.2/fa11b3101454fa8ca30a1b4469d6563e7490d7eb/spring-security-web-5.6.2-sources.jar!/org/springframework/security/web/access/ExceptionTranslationFilter.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.3.16/5da5833da20b8f294355e07fd8f60ac5459f1360/spring-web-5.3.16-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.6.2/fa11b3101454fa8ca30a1b4469d6563e7490d7eb/spring-security-web-5.6.2-sources.jar!/org/springframework/security/web/FilterChainProxy.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.6.2/fa11b3101454fa8ca30a1b4469d6563e7490d7eb/spring-security-web-5.6.2-sources.jar!/org/springframework/security/web/session/SessionManagementFilter.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.3.16/177def51dd8d2c061f498c4a1114bb30af6f434d/spring-webmvc-5.3.16-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.3.16/177def51dd8d2c061f498c4a1114bb30af6f434d/spring-webmvc-5.3.16-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.jsonwebtoken/jjwt/0.9.1/4341772ad269e161a35d2d0ad66f4f6d2f5e79b9/jjwt-0.9.1-sources.jar!/io/jsonwebtoken/Jwts.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.58/1f805e5897c0db19d1969ff09f58c1d9bdfe82a/tomcat-embed-core-9.0.58-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/9.0.58/14ccea85a0375eef8f973552f5c4189358e2270d/tomcat-embed-websocket-9.0.58-sources.jar!/org/apache/tomcat/websocket/server/WsFilter.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.6.2/fa11b3101454fa8ca30a1b4469d6563e7490d7eb/spring-security-web-5.6.2-sources.jar!/org/springframework/security/web/session/SessionManagementFilter.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.persistence/jakarta.persistence-api/2.2.3/f9671636b64baca8130e3fcf516894d40173b47f/jakarta.persistence-api-2.2.3-sources.jar!/javax/persistence/FetchType.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.58/1f805e5897c0db19d1969ff09f58c1d9bdfe82a/tomcat-embed-core-9.0.58-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.3.16/5da5833da20b8f294355e07fd8f60ac5459f1360/spring-web-5.3.16-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="JPA Structure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="JPA Structure" value="false" />
+      </map>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -87,6 +168,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -108,7 +190,28 @@
       <recent name="GaBom.Bom.advice.exception" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BomApplication">
+  <component name="RunManager" selected="Spring Boot.BomApplication (1)">
+    <configuration name="Frontend_Develop [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="TravelServiceTest.OneUserAndTwo_Travel_Add" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -164,6 +267,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BomApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="GaBom.Bom.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="GaBom.Bom.BomApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BomApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="Bom.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="GaBom.Bom.BomApplication" />
@@ -180,6 +290,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Frontend_Develop [build]" />
         <item itemvalue="JUnit.PinRepositoryTest.PinRepositoryTest" />
         <item itemvalue="JUnit.TravelServiceTest.OneUserAndTwo_Travel_Add" />
         <item itemvalue="Gradle.TravelServiceTest.OneUserAndTwo_Travel_Add" />
@@ -210,6 +321,8 @@
       <workItem from="1650900154082" duration="5816000" />
       <workItem from="1650937196600" duration="1292000" />
       <workItem from="1650991636952" duration="7185000" />
+      <workItem from="1651030389399" duration="319000" />
+      <workItem from="1651030732597" duration="1106000" />
     </task>
     <task id="LOCAL-00001" summary="각 서비스들 코드 정리, 팔로우 컨트롤러 오류 찾음.">
       <created>1650828424681</created>
@@ -234,6 +347,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

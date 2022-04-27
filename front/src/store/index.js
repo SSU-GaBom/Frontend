@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {loginUser} from '../api/index'
+import {loginUser} from '../api/auth'
 import {
         saveAuthToCookie,
         saveUserToCookie,
@@ -12,7 +12,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user : {},
+    user : {
+		id : null,
+		nickName : null
+	},
     token : '',
   },
   getters: {
@@ -24,8 +27,9 @@ export default new Vuex.Store({
 		},
 	},
   mutations: {
-		SET_USER(state, user) {
-			state.user = user;
+		SET_USER(state, id , nickName) {
+			state.user.id = id;
+			state.user.nickName = nickName
 		},
 		SET_TOKEN(state, token) {
 			state.token = token;
@@ -45,7 +49,8 @@ export default new Vuex.Store({
 			// 로그인 성공
 			if(response.data.code == 0){
 				console.log(response.data.msg)
-				commit('SET_USER', response.data.data.userId);
+			
+				commit('SET_USER', response.data.data.userId , response.data.data.userNickName);
 				commit('SET_TOKEN', response.data.data.token);
 				saveUserToCookie(response.data.data.userId);
 				saveAuthToCookie(response.data.data.token);

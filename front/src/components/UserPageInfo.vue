@@ -35,8 +35,10 @@
           </v-col>
           <v-col class="py-0" align-self="center">
             <v-bind style="font-size: 24px"><b>{{ nickname }}</b></v-bind><br>
-            <v-btn text><v-text>팔로워 <b>{{follower}}</b></v-text></v-btn>&nbsp;&nbsp;&nbsp;&nbsp; 
-            <v-btn text><v-text>팔로잉 <b>{{following}}</b></v-text></v-btn><br>
+            <follower-comp v-bind:follower="this.follower"></follower-comp>
+            <following-comp v-bind:following="this.following"></following-comp>
+            <!-- <v-btn text><v-text>팔로워 <b>{{follower}}</b></v-text></v-btn>&nbsp;&nbsp;&nbsp;&nbsp; 
+            <v-btn text><v-text>팔로잉 <b>{{following}}</b></v-text></v-btn><br> -->
             <!--<v-text>{{ introduction }}</v-text>-->
           </v-col>
         </v-row>
@@ -46,7 +48,12 @@
 </template>
 
 <script>
+import FollowerComp from './FollowerComp.vue'
 import UploadImage from './UploadImage.vue'
+import FollowingComp from './FollowingComp.vue'
+import {getUserInfo} from '../api/profile'
+import store from '../store/index'
+
 export default {
     data() {
         return {
@@ -58,6 +65,22 @@ export default {
         }
     },   
     methods: {
+      async fetchUserInfo(){
+        
+        console.log(this.$route.query.nickName)
+        // 닉네임을 타고 들어온경우
+        if(this.$route.query.nickName){
+          console.log("hihi2");
+          const response = await getUserInfo(this.$route.query.nickName)
+
+
+        }else{ // 마이페이지로 들어온경우
+          const response = await getUserInfo(store.state.user.nickName)
+
+
+        }
+        
+      },
       updateImage() {
         if (!this.profileImage) {this.url="No File"}
         let reader = new FileReader();
@@ -68,8 +91,14 @@ export default {
       },
     },
     components:{
-        UploadImage
-    }     
+        UploadImage,
+        FollowerComp,
+        FollowingComp
+    },
+    created() {
+      this.fetchUserInfo();
+    },
+    
 }
 </script>
 
