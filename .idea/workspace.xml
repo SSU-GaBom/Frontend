@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="618942d3-d262-40a2-acac-1da7da2b0a21" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/LocationDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/TravelDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Location$LocationBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Travel$TravelBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/LocationService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/repository/LocationRepositoryTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/service/LocationServiceTest.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/LocationDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/LocationService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/GaBom/Bom/repository/LocationRepositoryTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/GaBom/Bom/service/LocationServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/TravelController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/SignUpUserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/SignUpUserDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/UserDto.class" afterDir="false" />
@@ -212,7 +220,7 @@
       <workItem from="1650267637909" duration="1554000" />
       <workItem from="1650331568600" duration="26380000" />
       <workItem from="1650698600356" duration="791000" />
-      <workItem from="1651031256939" duration="5792000" />
+      <workItem from="1651031256939" duration="6092000" />
     </task>
     <servers />
   </component>
