@@ -26,9 +26,6 @@ public class FileHandler {
         String path = user.getUserId() + "/profile";
         File file = new File(path);
 
-<<<<<<< HEAD
-        return new Image();
-=======
         if(!file.exists())
             file.mkdirs();
 
@@ -51,6 +48,5 @@ public class FileHandler {
                 .file_size(profileImage.getSize())
                 .user(user)
                 .build();
->>>>>>> 0ff046006c2ac9b5e76cc4ce95b6a5ce1dcffe89
     }
 }
