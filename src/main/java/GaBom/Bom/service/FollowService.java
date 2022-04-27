@@ -18,8 +18,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.qlrm.mapper.JpaResultMapper;
 import javax.persistence.EntityManager;
+import javax.persistence.InheritanceType;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -76,12 +78,16 @@ public class FollowService {
         if(toUserId.equals(fromUserId))
             throw new CSameUserException();
         //관계가 이미 형성 되어있으면 에러
-        followRepository.existsByFromUserAndToUser(fromUser, toUser).orElseThrow(CRelationAlreadyExistsException::new);
+        if(followRepository.existsByFromUserAndToUser(fromUser, toUser))
+            throw new CRelationAlreadyExistsException();
 
         log.info("from:"+fromUserId + " to:"+toUserId);
 
         //팔로우를 만들어낸 후 저장
-        followRepository.save(Follow.builder().fromUser(fromUser).toUser(toUser).build());
+        followRepository.save(Follow.builder()
+                .fromUser(fromUser)
+                .toUser(toUser)
+                .build());
     }
 
     @Transactional
@@ -112,17 +118,17 @@ public class FollowService {
         log.info(profileNickName);
         log.info(loginId);
 
-        User toUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
+        User profileUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
 
-        String profileId = toUser.getUserId();
+        String profileId = profileUser.getUserId();
 
         if(profileId.equals(loginId))
             throw new CSameUserException();
 
-        List<User> userList = followRepository.findFromUserByToUser(toUser).orElseThrow(CNoRelationException::new);
+        List<Follow> userList = followRepository.findAllByToUser(profileUser).orElseThrow(CNoRelationException::new);
 
-        for(User user:userList)
-            System.out.println(user.getUserId());
+        for(Follow follow:userList)
+            log.info(follow.getFromUser().getUserId());
 
 //        StringBuffer sb = new StringBuffer();
 //        sb.append("SELECT u.user_id, u.user_name ");
@@ -147,15 +153,20 @@ public class FollowService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
 
-        User toUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
-        User fromUser = userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new);
+        User profileUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
 
-        String profileId = toUser.getUserId();
+        log.info(profileNickName);
+        log.info(loginId);
+
+        String profileId = profileUser.getUserId();
 
         if(profileId.equals(loginId))
             throw new CSameUserException();
 
-        List<User> userList = followRepository.findToUserByFromUser(fromUser).orElseThrow(CNoRelationException::new);
+        List<Follow> userList = followRepository.findAllByFromUser(profileUser).orElseThrow(CNoRelationException::new);
+
+        for(Follow follow:userList)
+            log.info(follow.getToUser().getUserId());
 
 //        StringBuffer sb = new StringBuffer();
 //        sb.append("SELECT u.user_id, u.name, u.profile_img_url, ");
