@@ -5,7 +5,7 @@ import GaBom.Bom.advice.exception.CEmailAuthTokenNotFoundException;
 import GaBom.Bom.advice.exception.CSigninFailedException;
 import GaBom.Bom.configuration.security.JwtTokenProvider;
 import GaBom.Bom.dto.LoginDto;
-import GaBom.Bom.dto.TokenUserIdDto;
+import GaBom.Bom.dto.TokenUserDto;
 import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.SingleResult;
 import GaBom.Bom.repository.UserRepository;
@@ -27,7 +27,7 @@ public class LogInService {
     private final PasswordEncoder passwordEncoder; // 비밀번호 암호화
 
     @Transactional
-    public SingleResult<TokenUserIdDto> signIn(LoginDto loginDto){
+    public SingleResult<TokenUserDto> signIn(LoginDto loginDto){
         //입력받은 아이디와 비밀번호
         String id = loginDto.getLoginId();
         String password = loginDto.getLoginPw();
@@ -43,10 +43,12 @@ public class LogInService {
             throw new CEmailAuthTokenNotFoundException();
         }
 
-        log.info("signIn4");
-
-        TokenUserIdDto tokenUserIdDto = new TokenUserIdDto(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), user.getRoles()), user.getUserId());
-
-        return responseService.getSingleResult(tokenUserIdDto);
+        return responseService.getSingleResult(
+                TokenUserDto.builder()
+                        .token(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), user.getRoles()))
+                        .userId(user.getUserId())
+                        .nickName(user.getNickName())
+                        .build()
+        );
     }
 }

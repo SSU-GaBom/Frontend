@@ -22,7 +22,6 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class FindUserService {
 
-    private final ConfirmationTokenRepository confirmationTokenRepository;
     private final UserRepository userRepository;
     private final CheckService checkService;
     private final EmailService emailService;
@@ -39,29 +38,14 @@ public class FindUserService {
 
     @Transactional
     public CommonResult findPassword(FindUserDto findUserDto){
-        if(checkService.checkUserIdAndEmail(findUserDto.getUserId(), findUserDto.getEmail()))
+        String userId = findUserDto.getUserId();
+        String email = findUserDto.getEmail();
+
+        if(checkService.checkUserIdAndEmail(userId, email))
             throw new CUserNotFoundException();
-        sendAuthMail(findUserDto);
+        emailService.setMessage(userId, email, "http://localhost:8080/finduser/changepw?token=");
         return responseService.getSuccessResult();
         //return userRepository.findByUserIdAndEmail(findUserDto.getUserId(), findUserDto.getEmail()).orElseThrow().getUserId();
-    }
-
-    @Transactional
-    public String sendAuthMail(FindUserDto findUserDto){
-        ConfirmationToken emailConfirmationToken = ConfirmationToken.createEmailConfirmationToken(findUserDto.getUserId());
-        confirmationTokenRepository.save(emailConfirmationToken);
-
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("springgabom@gmail.com");
-        mailMessage.setTo(findUserDto.getEmail());
-        mailMessage.setSubject("회원가입 이메일 인증");
-
-        //http://localhost:8080/changepw?token=~~으로 들어가면 비밀번호 받는 페이지 있고 해당 페이지에서
-        // 로그인 버튼 누르면 http://localhost:8080/finduser/changepw?token=으로 넘어가는 방식?
-        mailMessage.setText("http://localhost:8080/finduser/changepw?token="+emailConfirmationToken.getId());
-        emailService.send(mailMessage);
-
-        return emailConfirmationToken.getId();
     }
 
     //넘겨 받은 객체로 이메일을 통해 유저 정보를 얻어서 비밀번호를 업데이트한다.
