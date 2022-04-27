@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 //@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class UserDto {
 
