@@ -38,13 +38,13 @@ public class UserProfileController {
     //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
     @GetMapping("/follow/{profile-nick-name}/follower")
     public SingleResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName){
-        return responseService.getSingleResult(followService.getFollower(profileNickName));
+        return followService.getFollower(profileNickName);
     }
 
     //내가 팔로우하고 있는 사람 전체 출력
     @GetMapping("/follow/{profile-nick-name}/following")
     public SingleResult showFollowing(@PathVariable(name = "profile-nick-name") String profileNickName){
-        return responseService.getSingleResult(followService.getFollowing(profileNickName));
+        return followService.getFollowing(profileNickName);
     }
 
     //팔로우 버튼 눌렀을 때

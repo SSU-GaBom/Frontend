@@ -56,7 +56,7 @@ public class ExceptionAdvice {
     @ExceptionHandler(CNickNameAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.OK)
     protected CommonResult nickNameAlreadyExistsException(HttpServletRequest request, CNickNameAlreadyExistsException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("nickNameAlreadyExistsException.code")), getMessage("nickNameFailedAlreadyExistsException.msg"));
+        return responseService.getFailResult(Integer.valueOf(getMessage("nickNameAlreadyExistsException.code")), getMessage("nickNameAlreadyExistsException.msg"));
     }
 
     @ExceptionHandler(CExtensionException.class)
