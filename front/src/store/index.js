@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {loginUser} from '../api/index'
+import {loginUser} from '../api/auth'
 import {
         saveAuthToCookie,
         saveUserToCookie,
@@ -12,8 +12,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user : {},
+    user : {
+		id : null,
+		nickName : null
+	},
     token : '',
+	viewUser : {
+		nickName : null,
+		profileImage : null,
+		followerCount : null,
+		followingCount : null,
+		travelList : [],
+		wishList : [],
+	}
   },
   getters: {
 		isLoggedIn(state) {
@@ -22,31 +33,56 @@ export default new Vuex.Store({
 		userToken(state) {
 			return state.token;
 		},
+		nickName(state){
+			return state.viewUser.nickName;
+		},
+		followerCount(state){
+			return state.viewUser.followerCount;
+		},
+		followingCount(state){
+			return state.viewUser.followingCount;
+		},
 	},
   mutations: {
-		SET_USER(state, user) {
-			state.user = user;
+		SET_USER(state, data) {
+			state.user.id = data.userId;
+			state.user.nickName = data.nickName;
 		},
 		SET_TOKEN(state, token) {
 			state.token = token;
 		},
 		LOGOUT(state) {
-			state.user = null;
+			state.user.id = null;
+			state.user.nickName = null;
 			state.token = null;
 			deleteCookie('til_auth');
 			deleteCookie('til_user');
 		},
+		SET_VIEWUSER(state,data){
+			console.log("set_viewuser")
+			state.viewUser.nickName = data.nickName;
+			state.viewUser.followerCount = data.userFollowerCount;
+			state.viewUser.followingCount = data.userFollowingCount;
+		}
 	},
   actions: {
 		async LOGIN({ commit }, data) {
 			const response = await loginUser(data);
 			console.log("LOGIN")
-
+		
 			// 로그인 성공
 			if(response.data.code == 0){
 				console.log(response.data.msg)
-				commit('SET_USER', response.data.data.userId);
+				console.log(response.data.data)
+				console.log(response.data.data.nickName)
+				const data = {
+					userId : response.data.data.userId,
+					nickName : response.data.data.nickName
+				}
+				commit('SET_USER',data);
+				console.log("h1")
 				commit('SET_TOKEN', response.data.data.token);
+				console.log("h1")
 				saveUserToCookie(response.data.data.userId);
 				saveAuthToCookie(response.data.data.token);
 

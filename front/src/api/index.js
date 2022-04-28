@@ -1,34 +1,30 @@
 import axios from 'axios'
+import {setInterceptors} from './interceptors'
 
-function joinUser(user){
-    console.log("signup")
-    return axios.post("/api/signup",user);    
+// instance & interceptor
+function beforeLogin(url, options) {
+	const instance = axios.create(Object.assign({ baseURL: url }, options));
+	return instance;
 }
 
-function validateLoginId(userId){
-    console.log(userId)
-    return axios.get(`/api/checkId/${userId}`);
+function afterLogin(url, options) {
+	const instance = axios.create(Object.assign({ baseURL: url }, options));
+	setInterceptors(instance);
+	return instance;
 }
 
-function validateNickName(nickName){
-    console.log(nickName)
-    return axios.get(`/api/checkNickName/${nickName}`);
-}
+export const noAuth = beforeLogin("/api");
+export const auth = afterLogin("/api");
 
-function loginUser(loginDto){
-    return axios.post("api/signin",loginDto)
-}
 
-function testApi(userId){
-    console.log(userId)
-    return axios.get(`/api/testApi/${userId}`)
-}
 
-function testUserApi(userId){
-    console.log("testUserApi")
-    return axios.get(`/api/testUserApi/${userId}`)
-}
+// function testApi(userId){
+//     console.log(userId)
+//     return axios.get(`/testApi/${userId}`)
+// }
 
-export {
-    joinUser , validateLoginId ,testApi ,loginUser , testUserApi , validateNickName
-}
+// function testUserApi(userId){
+//     console.log("testUserApi")
+//     return axios.get(`/testUserApi/${userId}`)
+// }
+

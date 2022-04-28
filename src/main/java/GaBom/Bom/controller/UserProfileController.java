@@ -4,18 +4,16 @@ import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.ListResult;
 import GaBom.Bom.model.response.SingleResult;
 import GaBom.Bom.service.FollowService;
-import GaBom.Bom.service.ResponseService;
 import GaBom.Bom.service.UserProfileService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.multipart.MultipartFile;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/profile")
@@ -26,10 +24,9 @@ public class UserProfileController {
 
     @ApiOperation(value = "회원 보여주기", notes = "마이 페이지에서 회원 정보를 보여준다.")
     @CrossOrigin("http://localhost:8081")
-    @GetMapping(value = "/{nick_name}"
-            //,produces = MediaType.IMAGE_JPEG_VALUE
-    )
+    @GetMapping(value = "/{nick_name}")
     public SingleResult getUserInfo(@PathVariable(name = "nick_name") String nickName) throws IOException {
+        log.info("getUserInfo");
         return userProfileService.showInfo(nickName);
     }
 
