@@ -1,5 +1,6 @@
 package GaBom.Bom.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,6 +28,7 @@ public class Image {
 
     //프로필 이미지로 사용할 때 사용하는 속성
     @OneToOne
+    @JsonBackReference
     @JoinColumn(name = "user_no")
     private User user;
 

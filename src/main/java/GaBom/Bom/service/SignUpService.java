@@ -21,12 +21,12 @@ public class SignUpService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder; // 비밀번호 암호화
 
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
-    Date time = new Date();
-    String localTime = format.format(time);
-
     @Transactional
     public void joinUser(SignUpUserDto signUpUserDto) {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
+        Date time = new Date();
+        String localTime = format.format(time);
 
         userRepository.save(User.builder()
                 .userId(signUpUserDto.getUserId())
