@@ -19,6 +19,8 @@ repositories {
 }
 
 dependencies {
+	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.2'
 	implementation group: 'ch.simas.qlrm', name: 'qlrm', version: '1.7.1'
 	implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
 	implementation 'org.springframework.boot:spring-boot-starter-security'

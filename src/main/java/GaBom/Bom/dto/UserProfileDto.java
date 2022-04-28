@@ -5,6 +5,7 @@ import GaBom.Bom.entity.StoredTravel;
 import GaBom.Bom.entity.Travel;
 import lombok.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class UserProfileDto {
     private String userId;
     private String userName;
     private String nickName;
-    private Image profileImage;
+    private byte[] profileImage;
     private int userFollowerCount;
     private int userFollowingCount;
     //내가 쓴 리뷰 리스트

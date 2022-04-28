@@ -25,7 +25,7 @@ import java.io.IOException;
 @Api(tags = {"2. User"}) // UserController를 대표하는 최상단 타이틀 영역에 표시될 값 세팅
 @RequiredArgsConstructor // class 내부의 final 객체는 Constructor Injection 수행, @Autowired도 가능
 @RestController // 결과를 JSON으로 도출
-@RequestMapping(value = "/") // api resource를 버전별로 관리, /v1 을 모든 리소스 주소에 적용
+@RequestMapping(value = "/api") // api resource를 버전별로 관리, /v1 을 모든 리소스 주소에 적용
 public class UserController {
 
     private final UserRepository userRepository; // Jpa를 활용한 CRUD 쿼리 가능
@@ -33,7 +33,7 @@ public class UserController {
     private final UserService userService;
 
 
-    @GetMapping("/api/testUserApi/{userId}")
+    @GetMapping("/testUserApi/{userId}")
     public User testUserApi(@PathVariable String userId){
         log.info("testUserApi : {}" , userId);
         User user = userRepository.findByUserId(userId).get();
@@ -94,7 +94,7 @@ public class UserController {
 //        // 성공 결과 정보만 필요한 경우 getSuccessResult()를 이용하여 결과를 출력
 //    }
 
-    @GetMapping("/api/confirm-email")
+    @GetMapping("/confirm-email")
     public void viewConfirmEmail(@Valid @RequestParam  String token, HttpServletResponse response) throws IOException {
         String loginPage = "http://localhost/sign/signup";
         userService.confirmEmail(token);
