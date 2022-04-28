@@ -7,12 +7,12 @@ function joinUser(user){
 
 function validateLoginId(userId){
     console.log(userId)
-    return noAuth.get(`/checkId/${userId}`);
+    return noAuth.get(`/check-id/${userId}`);
 }
 
 function validateNickName(nickName){
     console.log(nickName)
-    return noAuth.get(`/checkNickName/${nickName}`);
+    return noAuth.get(`/chec-nickName/${nickName}`);
 }
 
 function loginUser(loginDto){

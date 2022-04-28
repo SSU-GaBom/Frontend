@@ -7,9 +7,11 @@ import GaBom.Bom.service.ResponseService;
 import GaBom.Bom.service.UserProfileService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/profile")
@@ -22,6 +24,7 @@ public class UserProfileController {
     @ApiOperation(value = "회원 보여주기", notes = "마이 페이지에서 회원 정보를 보여준다.")
     @GetMapping("/{nick_name}")
     public SingleResult getUserInfo(@PathVariable(name = "nick_name") String nickName){
+        log.info("getUserInfo");
         return userProfileService.showInfo(nickName);
     }
 

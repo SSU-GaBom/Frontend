@@ -2,6 +2,8 @@ import {auth} from './index'
 import store from '../store/index'
 
 function getUserInfo(nickName){
+    console.log("getUserInfo")
+    console.log(nickName)
     return auth.get(`/profile/${nickName}`)
 }
 

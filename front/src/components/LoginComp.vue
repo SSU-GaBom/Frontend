@@ -126,8 +126,6 @@ export default {
             }
             
             // this.errorMessage = response.data.data.
-
-            
             
           } catch (error) {
             console.log(error)

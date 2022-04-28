@@ -20,8 +20,8 @@ export default new Vuex.Store({
 	viewUser : {
 		nickName : null,
 		profileImage : null,
-		follower : null,
-		following : null,
+		followerCount : null,
+		followingCount : null,
 		travelList : [],
 		wishList : [],
 	}
@@ -33,6 +33,15 @@ export default new Vuex.Store({
 		userToken(state) {
 			return state.token;
 		},
+		nickName(state){
+			return state.viewUser.nickName;
+		},
+		followerCount(state){
+			return state.viewUser.followerCount;
+		},
+		followingCount(state){
+			return state.viewUser.followingCount;
+		},
 	},
   mutations: {
 		SET_USER(state, data) {
@@ -43,18 +52,24 @@ export default new Vuex.Store({
 			state.token = token;
 		},
 		LOGOUT(state) {
-			state.user = null;
+			state.user.id = null;
+			state.user.nickName = null;
 			state.token = null;
 			deleteCookie('til_auth');
 			deleteCookie('til_user');
 		},
+		SET_VIEWUSER(state,data){
+			console.log("set_viewuser")
+			state.viewUser.nickName = data.nickName;
+			state.viewUser.followerCount = data.userFollowerCount;
+			state.viewUser.followingCount = data.userFollowingCount;
+		}
 	},
   actions: {
 		async LOGIN({ commit }, data) {
 			const response = await loginUser(data);
 			console.log("LOGIN")
 		
-
 			// 로그인 성공
 			if(response.data.code == 0){
 				console.log(response.data.msg)
