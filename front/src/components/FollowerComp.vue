@@ -4,11 +4,11 @@
             v-model="dialog"
             width="500"
          >
-            <template v-slot:activator="{ on, attrs }">
+            <template v-slot:activator="{ on : {[openFollower] : openFollower}, attrs }">
                 <v-btn
-                text
-                v-bind="attrs"
-                v-on="on"
+                  text
+                  v-bind="attrs"
+                  v-on="openFollower"
                 >
                 <v-text>
                     팔로워 {{follower}}

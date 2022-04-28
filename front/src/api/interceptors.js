@@ -8,7 +8,7 @@ function setInterceptors(instance) {
 		config => {
 			config.headers['X-AUTH-TOKEN'] =
 				store.getters['userToken'] || getAuthFromCookie();
-            console.log(config)
+            
 			return config;
 		},
 		error => Promise.reject(error.response),

@@ -51,7 +51,7 @@ public class SignController {
 
     //success값이 true 일 때만!
     @ApiOperation(value = "id중복체크")
-    @GetMapping("/checkId/{userId}")
+    @GetMapping("/check-id/{userId}")
     public CommonResult checkId(@PathVariable String userId){
         log.info("checkId : {} ",userId);
         if(!checkService.checkId(userId))
@@ -61,7 +61,7 @@ public class SignController {
 
     //success값이 true 일 때만!
     @ApiOperation(value = "닉네임 중복체크")
-    @GetMapping(value = "/checkNickname/{nickName}")
+    @GetMapping(value = "/check-nickname/{nickName}")
     public CommonResult checkNickName(@PathVariable String nickName){
         if(!checkService.checkNickName(nickName))
             throw new CNickNameAlreadyExistsException();

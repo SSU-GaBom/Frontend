@@ -6,13 +6,22 @@
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
-                </form>
+                <v-row>
+                    <v-text-field
+                        v-model="keyword"
+                        :counter="max"
+                        :rules="rules"
+                        label="keyword"
+                    ></v-text-field>
+                    <v-btn @click="searchPlaces()">
+                        검색
+                    </v-btn>
+                </v-row>
+                
+                
             </div>
         </div>
-        <hr>
+        
         <ul id="placesList"></ul>
         <div id="pagination"></div>
     </div>
@@ -35,6 +44,7 @@ export default {
             infowindow : null,
             markers: [],
             ps: null,
+            keyword : null,
 
         }
     },
@@ -72,18 +82,19 @@ export default {
             this.infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
             // 키워드로 장소를 검색합니다
-            this.searchPlaces();
+            // this.searchPlaces();
         },
         searchPlaces(){
-            var keyword = document.getElementById('keyword').value;
+            // var keyword = document.getElementById('keyword').value;
 
-            if (!keyword.replace(/^\s+|\s+$/g, '')) {
+
+            if (!this.keyword.replace(/^\s+|\s+$/g, '')) {
                 alert('키워드를 입력해주세요!');
                 return false;
             }
 
             // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-            this.ps.keywordSearch(keyword, this.placesSearchCB); 
+            this.ps.keywordSearch(this.keyword, this.placesSearchCB); 
         },
         placesSearchCB(data, status, pagination){
             if (status === kakao.maps.services.Status.OK) {
@@ -91,6 +102,7 @@ export default {
                 // 정상적으로 검색이 완료됐으면
                 // 검색 목록과 마커를 표출합니다
                 this.displayPlaces(data);
+                console.log(data)
 
                 // 페이지 번호를 표출합니다
                 this.displayPagination(pagination);

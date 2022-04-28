@@ -2,11 +2,11 @@
   <v-app>
     <header-bar></header-bar>
     <v-main>
-      <!-- <router-view></router-view> -->
-      <div class="flex">
+      <router-view></router-view>
+      <!-- <div class="flex">
         <router-view></router-view>
         <travel-map></travel-map>
-      </div>
+      </div> -->
     </v-main>
   </v-app>
 </template>
@@ -20,7 +20,7 @@ export default {
   name: 'app',
   components:{
     HeaderBar,
-   TravelMap
+  //  TravelMap
   }
 
 }
