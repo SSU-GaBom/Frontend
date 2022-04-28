@@ -4,44 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50830551-02a1-4322-b248-5f1959ab5323" name="Changes" comment="팔로우 버튼, 언팔 버튼, 회원 정보 가져오기 완성&#10;프로필 업데이트 미완성">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="50830551-02a1-4322-b248-5f1959ab5323" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/interceptors.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/interceptors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._FindId.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._FindPw.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._HeaderBar.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._JoinComp.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._LoginComp.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._MenuList.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._RankComp.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._TravelContent.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._TravelMap.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._UploadImage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._UserPageInfo.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._UserPageTravel.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._UserPageWish.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/._WriteTravel.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/FollowerComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/FollowerComp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/LoginComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LoginComp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/TestView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/TestView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/UserView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/ExceptionAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/ExceptionAdvice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/SignController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/SignController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/UserProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/UserProfileController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/UserProfileService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/i18n/exception_ko.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/i18n/exception_ko.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/advice/ExceptionAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/advice/ExceptionAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/SignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/SignController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/UserProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/UserProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/i18n/exception_ko.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/i18n/exception_ko.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/TravelDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/TravelDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Location$LocationBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Location$LocationBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/CustomUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/PinService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/PinService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/Security/CustomUserDetailService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/TravelService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/repository/PinRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/repository/PinRepositoryTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/service/TravelServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/service/TravelServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/TravelDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/TravelDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Pin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Pin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GaBom/Bom/repository/PinRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GaBom/Bom/repository/PinRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GaBom/Bom/service/TravelServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GaBom/Bom/service/TravelServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,28 +43,7 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Bom" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Bom" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Bom" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
+        <projects_view />
       </state>
     </system>
   </component>
@@ -110,8 +73,8 @@
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.3.16/177def51dd8d2c061f498c4a1114bb30af6f434d/spring-webmvc-5.3.16-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.3.16/177def51dd8d2c061f498c4a1114bb30af6f434d/spring-webmvc-5.3.16-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.jsonwebtoken/jjwt/0.9.1/4341772ad269e161a35d2d0ad66f4f6d2f5e79b9/jjwt-0.9.1-sources.jar!/io/jsonwebtoken/Jwts.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/9.0.58/14ccea85a0375eef8f973552f5c4189358e2270d/tomcat-embed-websocket-9.0.58-sources.jar!/org/apache/tomcat/websocket/server/WsFilter.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.persistence/jakarta.persistence-api/2.2.3/f9671636b64baca8130e3fcf516894d40173b47f/jakarta.persistence-api-2.2.3-sources.jar!/javax/persistence/FetchType.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/9.0.58/14ccea85a0375eef8f973552f5c4189358e2270d/tomcat-embed-websocket-9.0.58-sources.jar!/org/apache/tomcat/websocket/server/WsFilter.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.58/1f805e5897c0db19d1969ff09f58c1d9bdfe82a/tomcat-embed-core-9.0.58-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.3.16/5da5833da20b8f294355e07fd8f60ac5459f1360/spring-web-5.3.16-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java" root0="SKIP_INSPECTION" />
   </component>
@@ -123,7 +86,7 @@
     </option>
     <option name="myId2Visible">
       <map>
-        <entry key="JPA Structure" value="false" />
+        <entry key="JPA Structure" value="true" />
       </map>
     </option>
   </component>
@@ -138,28 +101,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="show.migrate.to.gradle.popup" value="false" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sion\Desktop\전종설\Frontend_Develop\src\main\java\GaBom\Bom\entity" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="GaBom.Bom.repository" />
@@ -169,49 +116,21 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.BomApplication (1)">
-    <configuration name="Frontend_Develop [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="TravelServiceTest.OneUserAndTwo_Travel_Add" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.example.bom.gabom.service.TravelServiceTest.OneUserAndTwo_Travel_Add&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
+    <configuration name="PinRepositoryTest.ConnectPinAndCard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Bom.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GaBom.Bom.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="GaBom.Bom.repository" />
+      <option name="MAIN_CLASS_NAME" value="GaBom.Bom.repository.PinRepositoryTest" />
+      <option name="METHOD_NAME" value="ConnectPinAndCard" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="PinRepositoryTest.PinRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Bom.test" />
@@ -245,8 +164,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BomApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="TravelServiceTest.joi1nTravelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Bom.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GaBom.Bom.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="GaBom.Bom.service" />
+      <option name="MAIN_CLASS_NAME" value="GaBom.Bom.service.TravelServiceTest" />
+      <option name="METHOD_NAME" value="joi1nTravelTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BomApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="GaBom.Bom.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GaBom.Bom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="GaBom.Bom.BomApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -268,10 +209,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Frontend_Develop [build]" />
+        <item itemvalue="Spring Boot.BomApplication (1)" />
+        <item itemvalue="JUnit.PinRepositoryTest.ConnectPinAndCard" />
+        <item itemvalue="JUnit.TravelServiceTest.joi1nTravelTest" />
         <item itemvalue="JUnit.PinRepositoryTest.PinRepositoryTest" />
         <item itemvalue="JUnit.TravelServiceTest.OneUserAndTwo_Travel_Add" />
-        <item itemvalue="Gradle.TravelServiceTest.OneUserAndTwo_Travel_Add" />
       </list>
     </recent_temporary>
   </component>
@@ -323,11 +265,16 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/GaBom/Bom/service/TravelServiceTest.java</url>
           <line>29</line>
-          <properties class="GaBom.Bom.service.TravelServiceTest" method="OneUserAndTwo_Travel_Add">
+          <properties class="GaBom.Bom.service.TravelServiceTest">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/GaBom/Bom/repository/PinRepositoryTest.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
