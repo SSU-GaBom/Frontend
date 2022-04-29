@@ -1,16 +1,16 @@
 <template>
   <div id="main">
-    <travel-content/>
+    <travel-content-list/>
   </div>
 
 </template>
 
 <script>
-import TravelContent from '../components/TravelContent.vue'
+import TravelContentList from '../components/TravelContentList.vue'
 export default {
-  name: 'TravelView',
+  name: 'TravelContentList',
   components: {
-    TravelContent
+    TravelContentList
   },
 }
 </script>

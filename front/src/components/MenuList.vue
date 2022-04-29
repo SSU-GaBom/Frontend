@@ -25,14 +25,13 @@
       >
         <router-link id="link" to="/user">마이페이지</router-link>
       </v-btn><br>
-      <write-travel></write-travel><br>
       <v-btn
-          v-bind="attrs"
-          v-on="on"
-          darks
-          text
+        v-bind="attrs"
+        v-on="on"
+        darks
+        text
       >
-        <router-link id="link" to="/travel">TRAVEL 탐색</router-link>
+        <router-link id="link" to="/travel/write">TRAVEL 작성</router-link>
       </v-btn><br>
       <v-btn
           v-bind="attrs"
@@ -40,7 +39,15 @@
           darks
           text
       >
-        <router-link id="link" to="/travel">찜 목록</router-link>
+        <router-link id="link" to="/travel/list">TRAVEL 탐색</router-link>
+      </v-btn><br>
+      <v-btn
+          v-bind="attrs"
+          v-on="on"
+          darks
+          text
+      >
+        <router-link id="link" to="/travel/content">찜 목록</router-link>
       </v-btn>
       <v-list-item
         v-for="(item, index) in items"
@@ -53,11 +60,9 @@
 </template>
 
 <script>
-import WriteTravel from './WriteTravel.vue'
 export default {
     name : 'MenuList',
     components :{
-        WriteTravel
     },
     data() {
       return {

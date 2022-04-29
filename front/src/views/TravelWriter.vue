@@ -1,16 +1,16 @@
 <template>
   <div id="main">
-    <travel-content/>
+    <write-travel/>
   </div>
 
 </template>
 
 <script>
-import TravelContent from '../components/TravelContent.vue'
+import WriteTravel from '../components/WriteTravel.vue'
 export default {
-  name: 'TravelView',
+  name: 'TravelWriter',
   components: {
-    TravelContent
+    WriteTravel
   },
 }
 </script>
