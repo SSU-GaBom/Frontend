@@ -17,9 +17,16 @@ const routes = [
     name: 'home',
     component:Home
   },
+  // 마이페이지
   {
     path: '/user',
-    name: 'user',
+    name: 'myPage',
+    component:User
+  },
+  // 유저페이지
+  {
+    path: '/user/:userNickName',
+    name: 'userPage',
     component:User
   },
   {

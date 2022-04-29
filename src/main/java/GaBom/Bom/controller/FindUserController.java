@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/finduser")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class FindUserController {
 

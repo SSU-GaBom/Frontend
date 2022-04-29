@@ -1,14 +1,13 @@
 package GaBom.Bom.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -20,7 +19,6 @@ public class Pin{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //Pin의 번호는 "트레블 ID" + "인덱스"
     private Long pinId;
-
     //단방향 다대1
     @ManyToOne
     @JoinColumn(name = "location_id")
@@ -39,5 +37,4 @@ public class Pin{
         card.setPin(this);
         this.cardList.add(card);
     }
-
 }

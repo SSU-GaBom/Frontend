@@ -1,9 +1,9 @@
 package GaBom.Bom.service;
 
-import GaBom.Bom.entity.Travel;
-import GaBom.Bom.entity.User;
-import GaBom.Bom.repository.TravelRepository;
-import GaBom.Bom.repository.UserRepository;
+import GaBom.Bom.dto.TravelDto;
+import GaBom.Bom.entity.*;
+import GaBom.Bom.repository.*;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,6 +29,152 @@ class TravelServiceTest {
     TravelRepository travelRepository;
     @Autowired
     TravelService travelService;
+    @Autowired
+    LocationRepository locationRepository;
+    
+    @Autowired
+    CardRepository cardRepository;
+    @Autowired
+    PinRepository   pinRepository;
+
+    @Test
+    @DisplayName("location,pin,card가 TravelDto에서 확인")
+    public void joinTravelTest() {
+        User createuser = new User();
+        createuser.setUserName("시온");
+        userRepository.save(createuser);
+
+        Location location = new Location();
+//        location.setAddress("서울시 마포구 10호");
+        location.setLatitude(3.555f);
+        location.setLocationId(1231231L);
+        location.setLongitude(2.333f);
+//        locationRepository.save(location);
+
+        Location location2 = new Location();
+//        location2.setAddress("부산시 마포구 10호");
+        location2.setLatitude(12.55f);
+        location2.setLocationId(123L);
+        location2.setLongitude(51.23f);
+//        locationRepository.save(location2);
+
+        Pin pin = new Pin();
+        pin.setLocation(location); // 이걸 set말고 다르게?
+        Pin pin2 = new Pin();
+        pin2.setLocation(location2); // 이걸 set말고 다르게?
+
+        Card card = new Card("마포여행꿀잼","path1");
+        Card card2 = new Card("마포여행꿀잼2","path21");
+        Card card3 = new Card("부산","path212");
+//        pin.add(card);
+//        pin.add(card2);
+//        pin2.add(card3);
+        //카드저장
+//        cardRepository.save(card);
+//        cardRepository.save(card2);
+//        cardRepository.save(card3);
+        // when
+        //핀 저장
+//        pinRepository.save(pin);
+//        pinRepository.save(pin2);
+        
+        List<Pin> pinList = new ArrayList<Pin>();
+        pinList.add(pin);
+        pinList.add(pin2);
+//        TravelDto traveldto = new TravelDto(1L,"Travel_Title","경기도","서울시","2017-02-30","2017-02-31", pinList);
+
+        System.out.println("pinList = " + pinList);
+        
+//        travelService.joinTravel(traveldto);
+
+//        Assertions.assertThat(travelRepository.findAll().get(0).getTitle()).isEqualTo(traveldto.getTitle());
+    }
+
+    @Test
+    @DisplayName("Location Id 따로 넣으면서하기")
+    public void fun3 () throws Exception {
+        //given
+        User createuser = new User();
+        createuser.setUserName("시온");
+        userRepository.save(createuser);
+
+        Location location = new Location();
+        //지금 setLocationID때문에 안됨, @GeneratedValue 설정 뭘로하지?
+//        location.setLocationId(123L); //이거
+//        location.setAddress("서울시 마포구 10호");
+        location.setLatitude(3.555f);
+        location.setLongitude(2.333f);
+        locationRepository.save(location);
+        //when
+
+        //then
+
+    }
+
+    @Test
+    @DisplayName("location,pin,card를 바로 처리하기")
+    public void joi1nTravelTest() {
+        User createuser = new User();
+        createuser.setUserName("시온");
+        createuser.setUserId("rkskek");
+        userRepository.save(createuser);
+
+        Location location = new Location();
+        location.setLocationId(123L); //이거
+//        location.setAddress("서울시 마포구 10호");
+        location.setLatitude(3.555f);
+        location.setLongitude(2.333f);
+
+        Location location2 = new Location();
+        location.setLocationId(123211223L);
+//        location2.setAddress("부산시 마포구 10호");
+        location2.setLatitude(12.55f);
+        location2.setLongitude(51.23f);
+
+
+        Pin pin = new Pin();
+        pin.setLocation(location); // 이걸 set말고 다르게?
+        Pin pin2 = new Pin();
+        pin2.setLocation(location2); // 이걸 set말고 다르게?
+
+        Card card = new Card("마포여행꿀잼","path1");
+        Card card2 = new Card("마포여행꿀잼2","path21");
+        Card card3 = new Card("부산","path212");
+
+        System.out.println(" HERE!!!");
+
+        List<Pin> pinList = new ArrayList<Pin>();
+        pinList.add(pin);
+        pinList.add(pin2);
+//        TravelDto traveldto = new TravelDto(1L,"Travel_Title","경기도","서울시","2017-02-30","2017-02-31", pinList);
+        TravelDto traveldto = new TravelDto(1L,"Travel_Title","경기도","서울시","2017-02-30","2017-02-31", pinList,100,"꿀잼");
+
+
+//        travelService.joinTravel("시온",traveldto);
+        travelService.joinTravel(traveldto);
+
+        Travel travel1 = travelRepository.findAll().get(0);
+        System.out.println("travel1 = " + travel1);
+
+        List<User> all = userRepository.findAll();
+        for (User user : all) {
+            System.out.println("user = " + user);
+        }
+        List<Travel> all1 = travelRepository.findAll();
+        for (Travel travel : all1) {
+            System.out.println("travel = " + travel);
+        }
+        List<Pin> all2 = pinRepository.findAll();
+        for (Pin pin1 : all2) {
+            System.out.println("pin1 = " + pin1);
+        }
+        List<Card> all3 = cardRepository.findAll();
+        for (Card card1 : all3) {
+            System.out.println("card1 = " + card1);
+        }
+    }
+
+
 
 
     @Test
