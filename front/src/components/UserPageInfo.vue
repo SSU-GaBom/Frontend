@@ -37,8 +37,8 @@
             <v-bind style="font-size: 24px"><b>{{ nickname }}</b></v-bind><br>
             <!-- <follower-comp v-bind:follower="this.followerCount"></follower-comp>
             <following-comp v-bind:following="this.followingCount"></following-comp> -->
-            <v-btn text @click="followerDialog=true"><v-text>팔로워 <b>{{followerCount}}</b></v-text></v-btn>
-            <v-btn text @click="followingDialog=true"><v-text>팔로잉 <b>{{followingCount}}</b></v-text></v-btn>
+            <v-btn text @click="followerDialog=true"><v-text>팔로워 <b>{{followerCount+1}}</b></v-text></v-btn>
+            <v-btn text @click="followingDialog=true"><v-text>팔로잉 <b>{{followingCount+1}}</b></v-text></v-btn>
             <!--<v-text>{{ introduction }}</v-text>-->
             <v-dialog
               v-model="followerDialog"
@@ -119,9 +119,12 @@ export default {
             followerDialog : false,
             followingDialog : false,
             profileImage: require('../assets/images/profile-example.jpg'),
-            nickname: store.state.viewUser.nickName,
-            followerCount: store.state.viewUser.followerCount,
-            followingCount: store.state.viewUser.followingCount,
+            // nickname: store.state.viewUser.nickName,
+            // followerCount: store.state.viewUser.followerCount,
+            // followingCount: store.state.viewUser.followingCount,
+            nickName : null,
+            followerCount : null,
+            followingCount : null
         }
     },   
     methods: {
@@ -134,13 +137,13 @@ export default {
         }
       },
     },
-    // computed : {
-    //   ...mapGetters({
-    //     nickname : 'nickName',
-    //     followerCount : 'followCount',
-    //     followingCount : 'followingCount'
-    //   })
-    // },
+    computed : {
+      ...mapGetters({
+        nickname : 'nickName',
+        followerCount : 'followerCount',
+        followingCount : 'followingCount'
+      })
+    },
     components:{
         UploadImage,
         // FollowerComp,

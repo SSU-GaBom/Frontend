@@ -43,6 +43,7 @@ export default {
         }else{ // 마이페이지로 들어온경우
           
           const response = await getUserInfo(store.state.user.nickName)
+          
           const data = {
             nickName : response.data.data.nickName,
             userFollowerCount : response.data.data.userFollowerCount,
@@ -50,6 +51,7 @@ export default {
             // myTravelList : response.data.data.myTravelList,
             // likedTravelList : response.data.data.likedTravelList
           }
+          
           
           store.commit('SET_VIEWUSER',data)
 
