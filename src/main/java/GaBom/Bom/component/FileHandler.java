@@ -68,6 +68,8 @@ public class FileHandler {
 
     public byte[] getProfileImageByte(Image profileImage) throws IOException {
         File file = new File(profileImage.getStored_file_path());
+        if(!file.exists())
+            return null;
         return Files.readAllBytes(file.toPath());
     }
 }
