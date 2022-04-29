@@ -24,7 +24,8 @@ export default new Vuex.Store({
 		followingCount : null,
 		travelList : [],
 		wishList : [],
-	}
+	},
+	travelList : []
   },
   getters: {
 		isLoggedIn(state) {
@@ -37,6 +38,7 @@ export default new Vuex.Store({
 			return state.viewUser.nickName;
 		},
 		followerCount(state){
+			
 			return state.viewUser.followerCount;
 		},
 		followingCount(state){
@@ -63,6 +65,9 @@ export default new Vuex.Store({
 			state.viewUser.nickName = data.nickName;
 			state.viewUser.followerCount = data.userFollowerCount;
 			state.viewUser.followingCount = data.userFollowingCount;
+		},
+		SET_TRAVEL(state,travel){
+			state.travelList.push(travel);
 		}
 	},
   actions: {
@@ -80,9 +85,7 @@ export default new Vuex.Store({
 					nickName : response.data.data.nickName
 				}
 				commit('SET_USER',data);
-				console.log("h1")
 				commit('SET_TOKEN', response.data.data.token);
-				console.log("h1")
 				saveUserToCookie(response.data.data.userId);
 				saveAuthToCookie(response.data.data.token);
 

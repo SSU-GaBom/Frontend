@@ -61,7 +61,7 @@ export default {
             }
             
         });
-        console.log("end-1")
+        
       
     },makePolygon(coordinates){
         let path = [];
