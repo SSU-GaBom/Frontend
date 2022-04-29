@@ -39,20 +39,27 @@ public class UserProfileService {
         User user = userRepository.findByNickName(nickName).orElseThrow(CUserNotFoundException::new);
         String profileId = user.getUserId();
 
-        byte profileImageByte[] = fileHandler.getProfileImageByte(user.getProfileImage());
-
         UserProfileDto userProfileDto = UserProfileDto.builder()
-                        .loginUser(loginUserId)
-                        .userId(user.getUserId())
-                        .userName(user.getUserName())
-                        .nickName(user.getNickName())
-                        .profileImage(profileImageByte)
-                        .userFollowerCount(user.getFollwerNum())
-                        .userFollowingCount(user.getFollowingNum())
-                        //.myTravelList(user.getMyTravelList())
-                        //.likedTravelList(user.getLikedTravelList())
-                        //.storedTravelList(user.getStoredTravelList())
-                        .build();
+                .loginUser(loginUserId)
+                .userId(user.getUserId())
+                .userName(user.getUserName())
+                .nickName(user.getNickName())
+                .userFollowerCount(user.getFollwerNum())
+                .userFollowingCount(user.getFollowingNum())
+                //.myTravelList(user.getMyTravelList())
+                //.likedTravelList(user.getLikedTravelList())
+                //.storedTravelList(user.getStoredTravelList())
+                .build();
+
+        byte profileImageByte[];
+
+        try {
+            Image profileImage = user.getProfileImage();
+            profileImageByte = fileHandler.getProfileImageByte(user.getProfileImage());
+            userProfileDto.setProfileImage(profileImageByte);
+        }catch (NullPointerException e){
+            profileImageByte = null;
+        }
 
         if(profileId.equals(loginUserId))
             userProfileDto.setMe(true);
