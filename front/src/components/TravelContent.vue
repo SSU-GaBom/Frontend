@@ -1,90 +1,109 @@
 <template>
-  <v-card
-    max-width="620"
-    class="mx-auto"
-  >
-    <v-container>
-      <v-row dense>
-
-        <v-col
-          v-for="(item, i) in items"
-          :key="i"
-          cols="12"
-        >
-          <v-card
-            :color="item.color"
-            dark
-          >
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <div>
-                <v-card-title
-                  class="text-h5"
-                  v-text="item.title"
-                ></v-card-title>
-
-                <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-
-                <v-card-actions>
-                  <v-btn
-                    v-if="item.artist === 'Ellie Goulding'"
-                    class="ml-2 mt-3"
-                    fab
-                    icon
-                    height="40px"
-                    right
-                    width="40px"
-                  >
-                    <v-icon>mdi-play</v-icon>
-                  </v-btn>
-
-                  <v-btn
-                    v-else
-                    class="ml-2 mt-5"
-                    outlined
-                    rounded
-                    small
-                  >
-                    START RADIO
-                  </v-btn>
-                </v-card-actions>
-              </div>
-
-              <v-avatar
-                class="ma-3"
-                size="125"
-                tile
-              >
-                <v-img :src="item.src"></v-img>
-              </v-avatar>
-            </div>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
+  <v-app>
+    <v-main>
+      <v-container>
+        <v-row>
+          <v-col cols="12" md="1">
+            <v-btn color="cyan" @click="movetomain"
+                   :style="{height:'50px', width:'90px', fontWeight:'bold', fontSize:'large'}">홈으로</v-btn>
+          </v-col>
+          <v-col cols="12" md="10">
+            <v-card>
+              <div style="width: 300px; margin-left: 100px; padding-top: 20px;">글쓴이 : {{writer}}</div>
+              <div style="width: 300px; margin-left: 100px; padding-top: 10px;">제목 : {{title}}</div>
+              <div style="width: 300px; margin-left: 100px; padding-top: 10px;">작성일 : {{createdAt}}</div>
+              <div style="width: 300px; margin-left: 100px; padding-top: 10px;">최근수정일 : {{updatedAt}}</div>
+              <div style="width: 300px; margin-left: 100px; padding-top: 10px;">내용</div>
+              <v-textarea v-model="text" outlined rows="13" style="width: 730px; margin-left: 100px; padding-top: 10px;"
+                          :disabled="editable===false"></v-textarea>
+              <!-- textarea의 disabled 속성을 통해 원래는 수정을 할 수 없지만
+              수정 버튼을 누르면 수정할 수 있게끔 바뀜 -->
+              <v-btn width="100px" style="margin-left: 470px; margin-bottom:20px;" @click="moveback">뒤로가기</v-btn>
+              <v-btn width="100px" style="margin-left: 30px; margin-bottom:20px;" @click="editcontent"
+                      v-if="editable===false">수정</v-btn>
+              <v-btn width="100px" style="margin-left: 30px; margin-bottom:20px;" @click="editcontentfinish"
+                     v-if="editable===true">수정완료</v-btn>
+              <v-btn width="100px" style="margin-left: 30px; margin-bottom:20px;" @click="deletecontent">삭제</v-btn>
+            </v-card>
+          </v-col>
+          <v-col cols="12" md="1"/>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      items: [
-        {
-          color: '#1F7087',
-          src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          title: 'Supermodel',
-          artist: 'Foster the People',
-        },
-        {
-          color: '#952175',
-          src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-          title: 'Halcyon Days',
-          artist: 'Ellie Goulding',
-        },
-      ],
-    }),
-  }
-</script>
+import axios from 'axios'
 
-<style lang="">
-    
-</style>
+export default {
+  data(){
+    return {
+      writer: '',			// 작성자
+      title: '',			// 글 제목
+      createdAt: '',		// 작성일
+      updatedAt: '',		// 최근 수정일
+      text: '',			// 글 내용
+      editable: false,		// 수정가능여부 (수정 버튼누르면 true로 바뀜)
+    }
+  },
+  mounted() {
+    axios({
+      url: "http://127.0.0.1:52273/content/content/",
+      method: "POST",
+      data: {
+        id: this.$route.query.id
+      },
+    }).then(res => {
+      this.writer = res.data.writer;
+      this.title = res.data.title;
+      this.createdAt = res.data.createdAt.split('T')[0];
+      this.updatedAt = res.data.updatedAt.split('T')[0];
+      this.text = res.data.text;
+    }).catch(err => {
+      alert(err);
+    });
+  },
+  methods: {
+    moveback() {
+      window.history.back();		// window.history.back()을 통해 뒤로가기
+    },
+    deletecontent() {			// 글에 들어가서 삭제버튼 눌렀을 때
+      axios({
+        url: "http://127.0.0.1:52273/content/delete/",
+        method: "POST",
+        data: {
+          id: this.$route.query.id
+        },
+      }).then(res => {
+        alert(res.data.message);
+        window.location.href = window.location.pathname.slice(0,-8) + '/?page=1';
+        // 삭제 후 그 게시판의 1페이지로 이동
+      }).catch(err => {
+        alert(err);
+      });
+    },
+    editcontent() {
+      this.editable = true;
+    },
+    editcontentfinish() {		// 수정완료 버튼을 눌렀을 때, 수정된 내용이 저장되야 되기 때문에 back서버와 통신 필요
+      axios({
+        url: "http://127.0.0.1:52273/content/edit/",
+        method: "POST",
+        data: {
+          id: this.$route.query.id,
+          text: this.text,
+        },
+      }).then(res => {
+        alert(res.data.message);
+        this.editable = false;
+      }).catch(err => {
+        alert(err);
+      });
+    },
+    movetomain() {
+      window.location.href='/';
+    },
+  },
+};
+</script>
