@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import {uploadImage} from '../api/profile'
+
 export default {
   data() {
     return {
@@ -26,14 +28,30 @@ export default {
     }
   },
   methods: {
-    uploadImg() {
-      console.log('들어왔다')
-      var image = this.$refs['image'].files[0]
+    async uploadImg() {
+      try {
 
-      const url = URL.createObjectURL(image)
-      this.image = url
-      console.log(url)
-      console.log(this.image)
+        console.log("uploadImg")
+        console.log(this.image)
+        const formData = new FormData();
+        formData.append('image',this.image);
+        const response = await uploadImage(formData);
+        console.log("success!!")
+        console.log(response.data)
+
+      } catch (error) {
+
+        console.log(error)
+
+      }
+      
+      // console.log('들어왔다')
+      // var image = this.$refs['image'].files[0]
+
+      // const url = URL.createObjectURL(image)
+      // this.image = url
+      // console.log(url)
+      // console.log(this.image)
     }
   }
 }

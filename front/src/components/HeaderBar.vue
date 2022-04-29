@@ -10,6 +10,9 @@
                 <router-link id="link" to="/">GaBom</router-link>
             </v-toolbar-title>
             <v-spacer/>
+            <!-- <v-btn @click="test()">
+                test
+            </v-btn> -->
             <rank-comp></rank-comp>
             <template v-if="!isLoggedIn">
 				<join-comp/>
@@ -39,6 +42,7 @@ export default {
 		...mapGetters(['isLoggedIn']),
 	},
     methods: {
+        
         logout() {
 			// bus.$emit('show:toast', 'User logged out');
 			this.$store.commit('LOGOUT');

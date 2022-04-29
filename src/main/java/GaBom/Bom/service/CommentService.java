@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class CommentService {
     private final CommentRepository commentRepository;
     private final TravelRepository travelRepository;
 
+    @Transactional
     public boolean CreateComment(Comment comment, Long travelId) { //로그인세션에 맞춰서 Travel 쓰도록 하기
         Travel travel = travelRepository.findByTravelId(travelId);
         if(travel==null){
@@ -22,7 +22,11 @@ public class CommentService {
             return false;
         }
         comment.setTravel(travel);
-        commentRepository.save(comment);
+       commentRepository.save(comment);
         return true;
+    }
+
+    @Transactional
+    public void deleteComment(Long commentId) { commentRepository.deleteByCommentId(commentId);
     }
 }

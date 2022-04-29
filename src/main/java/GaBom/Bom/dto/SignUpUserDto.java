@@ -2,6 +2,7 @@ package GaBom.Bom.dto;
 
 import lombok.Getter;
 
+
 @Getter
 public class SignUpUserDto {
 

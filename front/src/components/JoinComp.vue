@@ -192,6 +192,7 @@
         </v-form>
         </v-card>
         <v-sheet class="text-center">
+          <loading-spinner v-if="isLoading"></loading-spinner>
           <v-btn color="primary" @click="stage = 2" outlined class="mr-2">이전</v-btn>
           <v-btn color="primary" @click="submit" outlined :disabled="!form2OK" class="mr-2">다음</v-btn>
           <v-btn color="grey darken-1" @click="dialog=false, stage = 1" outlined>취소</v-btn>
@@ -232,12 +233,17 @@
 </template>
 
 <script>
-import {joinUser , testApi, validateLoginId , validateNickName} from '../api/index'
+import {joinUser , validateLoginId , validateNickName} from '../api/auth'
+import LoadingSpinner from './LoadingSpinner.vue'
 
 export default {
     name : 'JoinComp',
+    components : {
+      LoadingSpinner
+    },
     data () {
       return {
+        isLoading : false,
         dialog: false,
         stage: 1,
         counter: 7,
@@ -306,7 +312,10 @@ export default {
         console.log(this.form)
 
         try{
+          this.isLoading = true
           const response = await joinUser(this.form);
+          this.isLoading = false
+
           console.log(response.data.code)
           //아이디가 중복 , 1005
           //회원중복 , 1004
@@ -321,8 +330,6 @@ export default {
             this.clear()
           }
           
-      
-          
         }catch(error){
           console.log(error);
           this.errorMessage = '유저 등록에 실패했습니다. ' + error.message
@@ -335,10 +342,10 @@ export default {
       try{
         const response = await validateLoginId(this.form.userId);
         if(response.data.code !== 0){
-          console.log(response.data.msg)
+          alert("이미 존재하는 아이디 입니다.")
 
         }else{
-          console.log(response.data.msg)
+          alert("사용가능한 아이디 입니다.")
         }
         
         
@@ -350,21 +357,17 @@ export default {
       try {
         const response = await validateNickName(this.form.nickName);
         if(response.data.code !== 0 ){
-          console.log(response.data.msg)
+          alert("이미 존재하는 닉네임 입니다.")
 
         }else{
-          console.log(response.data.msg)
+          alert("사용가능한 닉네임 입니다.")
         }
-
-
 
       } catch (error) {
         console.log(error);
       }
     },
-    async test(){
-      const response = await testApi();
-    },
+    
     countDown () {
       if (this.counter > 0) {
         setTimeout(() => {

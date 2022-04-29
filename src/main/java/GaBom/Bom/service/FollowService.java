@@ -8,6 +8,7 @@ import GaBom.Bom.configuration.security.JwtTokenProvider;
 import GaBom.Bom.dto.FollowDto;
 import GaBom.Bom.entity.Follow;
 import GaBom.Bom.entity.User;
+import GaBom.Bom.model.response.ListResult;
 import GaBom.Bom.model.response.SingleResult;
 import GaBom.Bom.repository.FollowRepository;
 import GaBom.Bom.repository.UserRepository;
@@ -18,8 +19,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.qlrm.mapper.JpaResultMapper;
 import javax.persistence.EntityManager;
+import javax.persistence.InheritanceType;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -76,12 +79,16 @@ public class FollowService {
         if(toUserId.equals(fromUserId))
             throw new CSameUserException();
         //관계가 이미 형성 되어있으면 에러
-        followRepository.existsByFromUserAndToUser(fromUser, toUser).orElseThrow(CRelationAlreadyExistsException::new);
+        if(followRepository.existsByFromUserAndToUser(fromUser, toUser))
+            throw new CRelationAlreadyExistsException();
 
         log.info("from:"+fromUserId + " to:"+toUserId);
 
         //팔로우를 만들어낸 후 저장
-        followRepository.save(Follow.builder().fromUser(fromUser).toUser(toUser).build());
+        followRepository.save(Follow.builder()
+                .fromUser(fromUser)
+                .toUser(toUser)
+                .build());
     }
 
     @Transactional
@@ -105,75 +112,54 @@ public class FollowService {
     }
 
     @Transactional
-    public SingleResult getFollower(String profileNickName){
+    public ListResult getFollower(String profileNickName){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
 
         log.info(profileNickName);
         log.info(loginId);
 
-        User toUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
+        User profileUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
 
-        String profileId = toUser.getUserId();
+        String profileId = profileUser.getUserId();
 
         if(profileId.equals(loginId))
             throw new CSameUserException();
 
-        List<User> userList = followRepository.findFromUserByToUser(toUser).orElseThrow(CNoRelationException::new);
+        List<Follow> userList = followRepository.findAllByToUser(profileUser).orElseThrow(CNoRelationException::new);
+        List<String> fromUserList = new ArrayList<>();
 
-        for(User user:userList)
-            System.out.println(user.getUserId());
+        for(Follow follow:userList){
+            fromUserList.add(follow.getFromUser().getNickName());
+            log.info(follow.getFromUser().getNickName());
+        }
 
-//        StringBuffer sb = new StringBuffer();
-//        sb.append("SELECT u.user_id, u.user_name ");
-//        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.user_id), TRUE, FALSE) AS followState, ");
-//        sb.append("if ((?=u.user_id), TRUE, FALSE) AS loginUser ");
-//        sb.append("FROM user u, follow f ");
-//        sb.append("WHERE u.user_id = f.from_user_id AND f.to_user_id = ?");
-//
-//        Query query = em.createNativeQuery(sb.toString())
-//                .setParameter(1, loginId)
-//                .setParameter(2, loginId)
-//                .setParameter(3, profileId);
-//
-//        JpaResultMapper result = new JpaResultMapper();
-//        List<FollowDto> followDtoList = result.list(query, FollowDto.class);
-
-        return responseService.getSingleResult(userList);
+        return responseService.getListResult(fromUserList);
     }
 
     @Transactional
-    public SingleResult getFollowing(String profileNickName){
+    public ListResult getFollowing(String profileNickName){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
 
-        User toUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
-        User fromUser = userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new);
+        User profileUser = userRepository.findByNickName(profileNickName).orElseThrow(CUserNotFoundException::new);
 
-        String profileId = toUser.getUserId();
+        log.info(profileNickName);
+        log.info(loginId);
+
+        String profileId = profileUser.getUserId();
 
         if(profileId.equals(loginId))
             throw new CSameUserException();
 
-        List<User> userList = followRepository.findToUserByFromUser(fromUser).orElseThrow(CNoRelationException::new);
+        List<Follow> userList = followRepository.findAllByFromUser(profileUser).orElseThrow(CNoRelationException::new);
+        List<String> toUserList = new ArrayList<>();
 
-//        StringBuffer sb = new StringBuffer();
-//        sb.append("SELECT u.user_id, u.name, u.profile_img_url, ");
-//        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.id), TRUE, FALSE) AS followState, ");
-//        sb.append("if ((?=u.id), TRUE, FALSE) AS loginUser ");
-//        sb.append("FROM user u, follow f ");
-//        sb.append("WHERE u.id = f.to_user_id AND f.from_user_id = ?");
-//
-//        // 쿼리 완성
-//        Query query = em.createNativeQuery(sb.toString())
-//                .setParameter(1, loginId)
-//                .setParameter(2, loginId)
-//                .setParameter(3, profileId);
-//
-//        //JPA 쿼리 매핑 - DTO에 매핑
-//        JpaResultMapper result = new JpaResultMapper();
-//        List<FollowDto> followDtoList = result.list(query, FollowDto.class);
+        for(Follow follow:userList){
+            toUserList.add(follow.getToUser().getNickName());
+            log.info(follow.getToUser().getNickName());
+        }
 
-        return responseService.getSingleResult(userList);
+        return responseService.getListResult(toUserList);
     }
 }
