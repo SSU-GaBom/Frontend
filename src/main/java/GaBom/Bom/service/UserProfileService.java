@@ -38,9 +38,7 @@ public class UserProfileService {
 
         User user = userRepository.findByNickName(nickName).orElseThrow(CUserNotFoundException::new);
         String profileId = user.getUserId();
-
         byte profileImageByte[] = fileHandler.getProfileImageByte(user.getProfileImage());
-
         UserProfileDto userProfileDto = UserProfileDto.builder()
                         .loginUser(loginUserId)
                         .userId(user.getUserId())
@@ -58,7 +56,7 @@ public class UserProfileService {
             userProfileDto.setMe(true);
         else
             userProfileDto.setMe(false);
-        
+
 
         return responseService.getSingleResult(userProfileDto);
     }

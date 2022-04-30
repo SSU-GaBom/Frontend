@@ -7,7 +7,6 @@ import User from "@/views/UserView.vue";
 import TravelList from "@/views/TravelList.vue";
 import TravelView from "@/views/TravelView.vue";
 import TravelWriter from "@/views/TravelWriter.vue";
-import Test from "@/views/TestView.vue"
 
 Vue.use(VueRouter)
 
@@ -49,11 +48,7 @@ const routes = [
     name: 'about',
     component:About
   },
-  {
-    path: '/test',
-    name: 'test',
-    component:Test
-  },
+
   
 ]
 

@@ -2,11 +2,12 @@
   <v-app>
     <header-bar></header-bar>
     <v-main>
-      <router-view></router-view>
-      <!-- <div class="flex">
+      <!-- <router-view></router-view> -->
+      <div class="flex">
         <router-view></router-view>
-        <travel-map></travel-map>
-      </div> -->
+        <write-travel-map></write-travel-map>
+        <!-- <travel-map></travel-map> -->
+      </div>
     </v-main>
   </v-app>
 </template>
@@ -14,13 +15,15 @@
 <script>
 import HeaderBar from './components/HeaderBar.vue'
 import TravelMap from './components/TravelMap.vue'
+import WriteTravelMap from './components/WriteTravelMap.vue'
 
 
 export default {
   name: 'app',
   components:{
     HeaderBar,
-  //  TravelMap
+    WriteTravelMap,
+    //  TravelMap
   }
 
 }
