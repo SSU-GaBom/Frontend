@@ -33,7 +33,6 @@ public class CheckService {
     public boolean checkId(String userId) {
         //아이디가 존재하면 생성 불가
         if (userRepository.existsByUserId(userId)) {
-            log.error("UserId already exist");
             return false;
         }
         return true;
@@ -43,7 +42,6 @@ public class CheckService {
     @Transactional
     public Boolean checkUserNameAndEmail(String userName, String email) {
         if (userRepository.existsByUserNameAndEmail(userName, email)) {
-            log.error("User(Name or Email) already exist");
             return false;
         }
         return true;
@@ -52,7 +50,6 @@ public class CheckService {
     @Transactional
     public Boolean checkUserIdAndEmail(String userId, String email) {
         if (userRepository.existsByUserIdAndEmail(userId, email)) {
-            log.error("UserNot Found");
             return false;
         }
         return true;
@@ -62,7 +59,6 @@ public class CheckService {
     public boolean checkNickName(String NickName) {
         //아이디가 존재하면 생성 불가
         if (userRepository.existsByNickName(NickName)) {
-            log.error("NickName already exist");
             return false;
         }
         return true;
