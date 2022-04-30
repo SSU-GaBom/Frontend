@@ -24,20 +24,27 @@ public class UserProfileController {
 
     @ApiOperation(value = "회원 보여주기", notes = "마이 페이지에서 회원 정보를 보여준다.")
     @CrossOrigin("http://localhost:8081")
-    @GetMapping(value = "/{nick_name}")
-    public SingleResult getUserInfo(@PathVariable(name = "nick_name") String nickName) throws IOException {
+    @GetMapping(value = "/{nick-name}")
+    public SingleResult getUserInfo(@PathVariable(name = "nick-name") String nickName) throws IOException {
         log.info("getUserInfo");
         return userProfileService.showInfo(nickName);
     }
 
     @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 수정한다.")
     @CrossOrigin("http://localhost:8081")
-    @PutMapping(value = "/update-profile/{nick_name}")
+    @PutMapping(value = "/update-profile/{nick-name}")
     public SingleResult<User> updateProfile(
-            @PathVariable(name = "nick_name") String nickName,
-            @RequestParam(name = "profile_image") MultipartFile profileImage) throws IOException {
+            @PathVariable(name = "nick-name") String nickName,
+            @RequestParam(name = "profile-image") MultipartFile profileImage) throws IOException {
 
         return userProfileService.updateProfile(nickName, profileImage);
+    }
+
+    @DeleteMapping(value = "/delete-profile/{nick-name}")
+    public void deleteProfile(
+            @PathVariable(name = "nick-name") String nickName){
+
+        userProfileService.deleteProfile(nickName);
     }
 
     //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x

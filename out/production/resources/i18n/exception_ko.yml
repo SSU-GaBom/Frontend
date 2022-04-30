@@ -41,3 +41,6 @@ relationAlreadyExistsException:
 extensionException:
   code: "-1012"
   msg: "올바르지 않은 확장자입니다."
+imageNotFoundException:
+  code: "-1013"
+  msg: "이미지가 존재하지 않습니다."
