@@ -19,7 +19,9 @@ import java.util.Date;
 @Slf4j
 public class FileHandler {
 
-    private String path = "/Volumes/SSD/School/";
+//    private String path = "/Volumes/SSD/School/";
+
+    private String path = "C:/Users/psg98/MoaMoa/image/";
 
     public Image parseFileInfo(User user, MultipartFile profileImage) throws IOException {
         if(profileImage.isEmpty()) {

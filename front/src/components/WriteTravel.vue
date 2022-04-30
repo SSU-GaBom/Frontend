@@ -151,6 +151,7 @@
           <v-row dense no-gutters>
             <v-col cols="12" sm="6">
               <v-textarea
+                v-model="budget"
                 class="mx-0"
                 label="여행 경비(원)"
                 rows="1"
@@ -166,8 +167,8 @@
               style="padding-left: 12px"
               prepend-icon="mdi-train-car"
             >
-              <v-radio label="렌트카/자가용" value="radio-1"></v-radio>
-              <v-radio label="대중교통" value="radio-2"></v-radio>
+              <v-radio label="렌트카/자가용" value="렌트카/자가용"></v-radio>
+              <v-radio label="대중교통" value="대중교통"></v-radio>
             </v-radio-group>
           </v-row>
 
@@ -214,6 +215,9 @@
 
 <script>
 import axios from "axios";
+import {writeTravel} from '../api/travel'
+import {mapGetters} from 'vuex'
+import store from '../store/index'
 
 export default {
   data() {
@@ -230,6 +234,7 @@ export default {
       menu2: false,
       province: "",
       city: "",
+      travelList : [],
       province_list: [
         "서울특별시",
         "부산광역시",
@@ -420,27 +425,44 @@ export default {
     };
   },
   methods: {
-    onSubmitForm() {
-      if (this.$refs.form.validate()) {
-        // 위에 써준 rules를 만족하면 실행
-        axios({
-          url: "http://127.0.0.1:52273/content/write/",
-          method: "POST",
-          data: {
-            boardnum: this.$route.params.id,
-            writer: this.writer,
-            title: this.title,
-            text: this.text,
-          },
-        })
-          .then((res) => {
-            alert(res.data.message);
-            window.history.back();
-          })
-          .catch((err) => {
-            alert(err);
-          });
+    async onSubmitForm() {
+      if(this.$refs.form.validate()){
+        const travelDto = {
+          // writer : this.writer,
+          writer : store.state.user.nickName,
+          title : this.title,
+          content : this.text,
+          startDate : this.s_date,
+          endDate : this.e_date,
+          expense : this.budget,
+          transport : this.transport,
+          // travelList : this.travelList
+          travelList : store.state.travelList
+        }
+        const response = await writeTravel(travelDto);
+        console.log(response);
       }
+
+      // if (this.$refs.form.validate()) {
+      //   // 위에 써준 rules를 만족하면 실행
+      //   axios({
+      //     url: "http://127.0.0.1:52273/content/write/",
+      //     method: "POST",
+      //     data: {
+      //       boardnum: this.$route.params.id,
+      //       writer: this.writer,
+      //       title: this.title,
+      //       text: this.text,
+      //     },
+      //   })
+      //     .then((res) => {
+      //       alert(res.data.message);
+      //       window.history.back();
+      //     })
+      //     .catch((err) => {
+      //       alert(err);
+      //     });
+      // }
     },
     moveback() {
       window.history.back();
@@ -463,6 +485,10 @@ export default {
     dateRangeText() {
       return this.dates.join(" ~ ");
     },
+    ...mapGetters({
+        writer : 'myNickName',
+        travelList : 'myTravelList'
+      })
   },
 };
 </script>

@@ -1,32 +1,28 @@
 <template>
-  <div>
+<div id="main">
     <div class="map_wrap">
-    <div id="map" style="width:80%;height:130%;position:relative;overflow:hidden;"></div>
+        <div id="map" style="width:80%;height:130%;position:relative;overflow:hidden;"></div>
 
-    <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <v-row>
-                    <v-text-field
-                        v-model="keyword"
-                        :counter="max"
-                        :rules="rules"
-                        label="keyword"
-                    ></v-text-field>
-                    <v-btn @click="searchPlaces()">
-                        검색
-                    </v-btn>
-                </v-row>
-                
-                
+        <div id="menu_wrap" class="bg_white">
+            <div class="option">
+                <div>
+                    <v-row>
+                        <v-text-field
+                            v-model="keyword"
+                            label="keyword"
+                        ></v-text-field>
+                        <v-btn @click="searchPlaces()">
+                            검색
+                        </v-btn>
+                    </v-row>
+                </div>
             </div>
+            
+            <ul id="placesList"></ul>
+            <div id="pagination"></div>
         </div>
-        
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
     </div>
 </div>
-  </div>
 
 </template>
 
@@ -34,7 +30,7 @@
 import store from '../store/index'
 
 export default {
-    name: 'TestView',
+    name: 'WriteTravelMap',
     data () {
         return {
             mapContainer :  null,
@@ -45,6 +41,7 @@ export default {
             ps: null,
             keyword : null,
             place : null,
+            geocoder : null,
 
         }
     },
@@ -74,6 +71,9 @@ export default {
 
             // 지도를 생성합니다    
             this.map = new kakao.maps.Map(this.mapContainer, this.mapOption); 
+
+            // 주소-좌표 변환 객체를 생성합니다
+            this.geocoder = new kakao.maps.services.Geocoder();
 
             // 장소 검색 객체를 생성합니다
             this.ps = new kakao.maps.services.Places();  
@@ -118,6 +118,30 @@ export default {
                 return;
 
             }
+        },
+        addressSearchFunc(){
+            this.geocoder.addressSearch(this.keyword , (result,status) => {
+                // 정상적으로 검색이 완료됐으면 
+                if (status === kakao.maps.services.Status.OK) {
+
+                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                    // 결과값으로 받은 위치를 마커로 표시합니다
+                    var marker = new kakao.maps.Marker({
+                        map: this.map,
+                        position: coords
+                    });
+
+                    // 인포윈도우로 장소에 대한 설명을 표시합니다
+                    var infowindow = new kakao.maps.InfoWindow({
+                        content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+                    });
+                    infowindow.open(this.map, marker);
+
+                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                    this.map.setCenter(coords);
+                } 
+            })
         },
         displayPlaces(places){
             var listEl = document.getElementById('placesList'), 
@@ -278,27 +302,25 @@ export default {
 </script>
 
 <style scoped>
-.map_wrap,
+        #main{
+            position: relative;
+            width: 70%;
+            height: 580px;
+        }
+        
+        .map_wrap {position:relative;width:100%;height:500px;}
         .map_wrap * {
             margin: 0;
             padding: 0;
             font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
             font-size: 12px;
         }
-
         .map_wrap a,
         .map_wrap a:hover,
         .map_wrap a:active {
             color: #000;
             text-decoration: none;
         }
-
-        .map_wrap {
-            position: relative;
-            width: 100%;
-            height: 500px;
-        }
-
         #menu_wrap {
             position: absolute;
             top: 0;
@@ -463,4 +485,6 @@ export default {
             cursor: default;
             color: #777;
         }
+
+        
 </style>

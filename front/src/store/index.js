@@ -34,11 +34,16 @@ export default new Vuex.Store({
 		userToken(state) {
 			return state.token;
 		},
+		myNickName(state){
+			return state.user.nickName;
+		},
+		myTravelList(state){
+			return state.travelList;
+		},
 		nickName(state){
 			return state.viewUser.nickName;
 		},
 		followerCount(state){
-			
 			return state.viewUser.followerCount;
 		},
 		followingCount(state){
