@@ -31,15 +31,15 @@ public class UserProfileController {
     }
 
     @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 수정한다.")
-    @CrossOrigin("http://localhost:8081")
     @PutMapping(value = "/update-profile/{nick_name}")
     public SingleResult<User> updateProfile(
             @PathVariable(name = "nick_name") String nickName,
             @RequestParam(name = "profile_image") MultipartFile profileImage) throws IOException {
-
+        log.info("updateProfile Controller");
         return userProfileService.updateProfile(nickName, profileImage);
     }
 
+    
     //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
     @GetMapping("/follow/{profile-nick-name}/follower")
     public ListResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName){

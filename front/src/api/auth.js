@@ -12,7 +12,7 @@ function validateLoginId(userId){
 
 function validateNickName(nickName){
     console.log(nickName)
-    return noAuth.get(`/chec-nickName/${nickName}`);
+    return noAuth.get(`/check-nickName/${nickName}`);
 }
 
 function loginUser(loginDto){

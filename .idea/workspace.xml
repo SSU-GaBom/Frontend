@@ -5,16 +5,205 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Frontend_Develop.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23__3_36__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/FindUserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/JwtAuthenticationFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/JwtTokenProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/LogInService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/SignController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/UserProfileController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/file-system.probe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-23_오후_3_36_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-26__3_46__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-26_오후_3_46_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/advice/ExceptionAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/advice/ExceptionAdvice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/component/FileHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/component/FileHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/CommentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/FindUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/FindUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/SignController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/SignController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TestController/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TestController/AuthenticationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/UserProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/UserProfileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/SignUpUserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/SignUpUserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/TravelDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/TravelDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto$UserProfileDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto$UserProfileDtoBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Comment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Image$ImageBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Image$ImageBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Image.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Image.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Pin.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Pin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Travel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Travel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/CommentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/CommentRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/FollowRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/FollowRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/LocationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/LocationRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CommentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CustomUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/FollowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/FollowService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/SignUpService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/SignUpService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserInfoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/i18n/exception_ko.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/i18n/exception_ko.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/travel.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/travel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/HeaderBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/RankComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/RankComp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/UploadImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UploadImage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/WriteTravel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/WriteTravel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/WriteTravelMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/WriteTravelMap.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/TestView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/UserView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/BomApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/ExceptionAdvice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CAuthenticationEntryPointException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CCheckIdFailedException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CEmailAuthTokenNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CEmailNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CExtensionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CNickNameAlreadyExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CNoRelationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CNotSameUserException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CRelationAlreadyExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CSameUserException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CSigninFailedException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CUserAlreadyExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CUserEmailAlreadyExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CUserIdAlreadyExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/advice/exception/CUserNotFoundException.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/component/FileHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/component/FileHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/MessageConfiguration$YamlMessageSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/MessageConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/SwaggerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/CustomAccessDeniedHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/CustomAuthenticationEntryPoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/JwtTokenProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/configuration/security/SecurityConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/BestTravelerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/CommentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/FindUserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/HomeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/LikeTravelController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/MainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/MapController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/PinController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/SecurityMessage$SecurityMessageBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/SecurityMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/SignController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/TestController/AuthenticationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/TravelController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/UserProfileController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/WritingPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/controller/exception/ExceptionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/FindUserDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/FollowDto$FollowDtoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/FollowDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/LocationDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/LoginDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/SignUpUserDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/TokenUserDto$TokenUserDtoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/TokenUserDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/TravelDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/UpdateTravelDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/UserAuthDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/UserDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/UserProfileDto$UserProfileDtoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/dto/UserProfileDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Card.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Comment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/ConfirmationToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Follow$FollowBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Follow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Image$ImageBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Image.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Location$LocationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Location.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Pin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/StoredTravel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Transportation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Travel$TravelBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/Travel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/User$UserBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/model/response/CommonResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/model/response/ListResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/model/response/SingleResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/CardRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/CommentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/ConfirmationTokenRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/FollowRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/ImageRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/LocationRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/PinRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/StoredTravelRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/TravelRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/CheckService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/CommentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/ConfirmationTokenService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/CustomUserDetailsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/EmailService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/FindUserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/FollowService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/LocationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/LogInService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/PinService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/ResponseService$CommonResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/ResponseService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/SignUpService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/TravelService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/UserProfileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/GaBom/Bom/service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/i18n/exception_en.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/i18n/exception_ko.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/BomApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/repository/LocationRepositoryTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/repository/PinRepositoryTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/service/LocationServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/GaBom/Bom/service/TravelServiceTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/component/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/component/FileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TestController/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TestController/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/UserProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/UserProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +222,28 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Bom" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Bom" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Bom" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -70,8 +280,8 @@
     </option>
     <option name="myId2Visible">
       <map>
-        <entry key="JPA Inspector" value="true" />
-        <entry key="JPA Palette" value="true" />
+        <entry key="JPA Inspector" value="false" />
+        <entry key="JPA Palette" value="false" />
         <entry key="JPA Structure" value="false" />
       </map>
     </option>
@@ -92,9 +302,14 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MoaMoa" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -110,7 +325,7 @@
       <recent name="GaBom.Bom.advice.exception" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BomApplication (1)">
+  <component name="RunManager" selected="Spring Boot.BomApplication">
     <configuration name="PinRepositoryTest.ConnectPinAndCard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Bom.test" />
       <extension name="coverage">
@@ -214,6 +429,18 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="" />
+      <created>1651308118793</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1651308118793</updated>
+      <workItem from="1651308120864" duration="429000" />
+      <workItem from="1651308575223" duration="102000" />
+      <workItem from="1651308725590" duration="213000" />
+      <workItem from="1651308956153" duration="8061000" />
+      <workItem from="1651371923901" duration="5604000" />
+    </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,5 +457,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GaBom/Bom/BomApplication.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
