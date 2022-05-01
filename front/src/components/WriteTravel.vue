@@ -504,6 +504,7 @@ export default {
           pinList : pinList,
         }
         
+        
         const response = await writeTravel(travelDto);
         console.log(response);
       }
