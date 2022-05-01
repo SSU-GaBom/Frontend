@@ -20,8 +20,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public Optional<User> findByEmail(String email);
     public Optional<User> findByUserName(String username);
 
-    @Modifying(clearAutomatically = true)
-    @Query("Update User u SET u.userPw = :password where u.userNo = :userNo")
-    public void updatePassWord(String password, Long userNo);
-
 }

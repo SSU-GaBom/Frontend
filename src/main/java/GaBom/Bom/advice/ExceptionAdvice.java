@@ -32,6 +32,15 @@ public class ExceptionAdvice {
         // getFailResult : setSuccess, setCode, setMsg
     }
 
+    @ExceptionHandler(CImageNotFoundException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult imageNotFoundException(HttpServletRequest request, CImageNotFoundException e) {
+        // CommonResult : 응답 결과에 대한 정보
+        return responseService.getFailResult(Integer.valueOf(getMessage("imageNotFoundException.code")), getMessage("imageNotFoundException.msg"));
+        // 예외 처리 메시지를 MessageSource에서 가져오도록 수정
+        // getFailResult : setSuccess, setCode, setMsg
+    }
+
     @ExceptionHandler(CUserNotFoundException.class)
     @ResponseStatus(HttpStatus.OK)
     protected CommonResult userNotFoundException(HttpServletRequest request, CUserNotFoundException e) {
