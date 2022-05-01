@@ -40,7 +40,8 @@
             :key="item.tab"
           >
             <v-card flat>
-              <v-card-text>{{ item.content }}</v-card-text>
+              <!-- <v-card-text>{{ item.content }}</v-card-text> -->
+              <detail-rank-comp></detail-rank-comp>
             </v-card>
           </v-tab-item>
         </v-tabs-items>
@@ -51,7 +52,7 @@
 </template>
 
 <script>
-
+import DetailRankComp from './DetailRankComp.vue'
 
 export default {
     name : 'RankComp',
@@ -66,9 +67,11 @@ export default {
             { tab : "TravelZZimRank" , content : 'TravelZZimRank' },
             { tab : "FollwerRank" , content : 'FollwerRank' },
             { tab : "RecommendRank" , content : 'RecommendRank' }
-
            ]
         }
+    },
+    components : {
+      DetailRankComp
     }
 }
 </script>

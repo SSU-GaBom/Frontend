@@ -2,6 +2,7 @@ package GaBom.Bom.controller;
 
 import GaBom.Bom.dto.TravelDto;
 import GaBom.Bom.dto.UpdateTravelDto;
+import GaBom.Bom.entity.Pin;
 import GaBom.Bom.entity.Travel;
 import GaBom.Bom.service.TravelService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/travel")
 @RequiredArgsConstructor
 @RestControllerAdvice
 //@Transactional

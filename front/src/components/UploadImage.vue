@@ -11,10 +11,17 @@
           <v-icon>mdi-camera-flip-outline</v-icon>
         </v-btn>
       </template>
-      <v-file-input dark v-model="image" show-size label="File input"></v-file-input>
-      <p>File Name : {{ image.name }}</p>
+      <v-sheet
+        color="white"
+        elevation="1"
+        >
+        <v-file-input prepend-icon="mdi-camera" v-model="image" show-size label="File input"></v-file-input>
+        
+        <v-btn dark @click="uploadImg()">수정</v-btn>
+        </v-sheet>
+      
     </v-dialog>
-    <img :src="image" alt="">
+    <!-- <img :src="image" alt=""> -->
   </div>
 </template>
 
@@ -34,10 +41,10 @@ export default {
         console.log("uploadImg")
         console.log(this.image)
         const formData = new FormData();
-        formData.append('image',this.image);
+        formData.append('profile_image',this.image);
         const response = await uploadImage(formData);
         console.log("success!!")
-        console.log(response.data)
+        console.log(response)
 
       } catch (error) {
 

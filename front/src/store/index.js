@@ -19,13 +19,15 @@ export default new Vuex.Store({
     token : '',
 	viewUser : {
 		nickName : null,
-		profileImage : null,
+		profileImage : '',
 		followerCount : null,
 		followingCount : null,
 		travelList : [],
 		wishList : [],
 	},
-	travelList : []
+	pinList : [],
+	travelList : [],
+	cardList : []
   },
   getters: {
 		isLoggedIn(state) {
@@ -37,8 +39,11 @@ export default new Vuex.Store({
 		myNickName(state){
 			return state.user.nickName;
 		},
-		myTravelList(state){
+		writeTravelList(state){
 			return state.travelList;
+		},
+		writeCardList(state){
+			return state.cardList;
 		},
 		nickName(state){
 			return state.viewUser.nickName;
@@ -49,6 +54,9 @@ export default new Vuex.Store({
 		followingCount(state){
 			return state.viewUser.followingCount;
 		},
+		profileImage(state){
+			return state.viewUser.profileImage;
+		}
 	},
   mutations: {
 		SET_USER(state, data) {
@@ -70,9 +78,13 @@ export default new Vuex.Store({
 			state.viewUser.nickName = data.nickName;
 			state.viewUser.followerCount = data.userFollowerCount;
 			state.viewUser.followingCount = data.userFollowingCount;
+			state.viewUser.profileImage = data.profileImage;
 		},
 		SET_TRAVEL(state,travel){
 			state.travelList.push(travel);
+		},
+		SET_CARD(state,card){
+			state.cardList.push(card);
 		}
 	},
   actions: {

@@ -1,7 +1,7 @@
 <template>
 <div id="main">
     <div class="map_wrap">
-        <div id="map" style="width:80%;height:130%;position:relative;overflow:hidden;"></div>
+        <div id="map" style="width:100%;height:180%;position:relative;overflow:hidden;"></div>
 
         <div id="menu_wrap" class="bg_white">
             <div class="option">
@@ -40,6 +40,7 @@ export default {
             markers: [],
             ps: null,
             keyword : null,
+            places : [],
             place : null,
             geocoder : null,
 
@@ -153,11 +154,14 @@ export default {
             // 검색 결과 목록에 추가된 항목들을 제거합니다
             this.removeAllChildNods(listEl);
 
+            this.removePlaces();
+
             // 지도에 표시되고 있는 마커를 제거합니다
             this.removeMarker();
     
             for ( var i=0; i<places.length; i++ ) {
-                this.place = places[i];
+                this.places.push(places[i])
+                
                 // 마커를 생성하고 지도에 표시합니다
                 var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
                     marker = this.addMarker(placePosition, i), 
@@ -170,7 +174,7 @@ export default {
                 // 마커와 검색결과 항목에 mouseover 했을때
                 // 해당 장소에 인포윈도우에 장소명을 표시합니다
                 // mouseout 했을 때는 인포윈도우를 닫습니다
-                ((marker, title)=> {
+                ((marker, title ,i)=> {
                     kakao.maps.event.addListener(marker, 'mouseover', () => {
                         this.displayInfowindow(marker, title);
                     });
@@ -187,9 +191,10 @@ export default {
                         this.infowindow.close();
                     };
                     itemEl.onclick = () => {
-                        this.addPlace(this.place)
+                    
+                        this.addPlace(i);
                     }
-                })(marker, places[i].place_name);
+                })(marker, places[i].place_name , i);
 
                 fragment.appendChild(itemEl);
             }
@@ -288,10 +293,12 @@ export default {
                 el.removeChild (el.lastChild);
             }
         },
-        addPlace(places){
-            console.log("addPlace!!")
-            console.log(places)
-            store.commit('SET_TRAVEL',places)
+        addPlace(idx){
+            const place = this.places[idx];
+            store.commit('SET_TRAVEL',place)
+        },
+        removePlaces(){
+            this.places.splice(0,this.places.length)
         }
 
     },

@@ -151,6 +151,18 @@
           <v-row dense no-gutters>
             <v-col cols="12" sm="6">
               <v-textarea
+                v-model="title"
+                class="mx-0"
+                label="여행 타이틀"
+                rows="1"
+                prepend-icon="mdi-format-title"
+              ></v-textarea>
+            </v-col>
+          </v-row>
+
+          <v-row dense no-gutters>
+            <v-col cols="12" sm="6">
+              <v-textarea
                 v-model="budget"
                 class="mx-0"
                 label="여행 경비(원)"
@@ -198,8 +210,34 @@
             ></v-textarea>
           </v-row>
 
+          <template v-if="travelList">
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th class="text-left">
+                      Place_Name
+                    </th>
+                    <th class="text-left">
+                      Picture
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="travel in travelList"
+                    :key="travel.place_name"
+                  >
+                    <td>{{ travel.place_name }}</td>
+                    <td><card-comp></card-comp></td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </template>
+          <br>
           <v-btn width="100px" style="margin-bottom: 30px" type="submit"
-            >제출</v-btn
+            >작성</v-btn
           >
           <v-btn
             width="100px"
@@ -218,11 +256,11 @@ import axios from "axios";
 import {writeTravel} from '../api/travel'
 import {mapGetters} from 'vuex'
 import store from '../store/index'
+import CardComp from './CardComp.vue'
 
 export default {
   data() {
     return {
-      writer: "",
       title: "",
       text: "",
       budget: "",
@@ -234,7 +272,7 @@ export default {
       menu2: false,
       province: "",
       city: "",
-      travelList : [],
+      image:'',
       province_list: [
         "서울특별시",
         "부산광역시",
@@ -427,18 +465,45 @@ export default {
   methods: {
     async onSubmitForm() {
       if(this.$refs.form.validate()){
+        
+        const pinList = [];
+        
+        //핀 만들기
+        for (let i = 0; i < this.travelList.length; i++) {
+          
+          //사진 + 글
+          let formData = new FormData();
+          formData.append('text',this.cardList[i].text);
+          
+          for (let j = 0; j < this.cardList[i].images.length; j++) {
+            
+            formData.append('images',this.cardList[i].images[j]);
+          }
+          
+          //장소
+          let pin = {
+            location : this.travelList[i],
+            card : formData
+          }
+          
+          pinList.push(pin)
+          console.log(pin.card.getAll('images'))
+        }
+
         const travelDto = {
           // writer : this.writer,
-          writer : store.state.user.nickName,
+          writer : this.writer,
           title : this.title,
           content : this.text,
+          state : this.province,
+          city : this.city,
           startDate : this.s_date,
           endDate : this.e_date,
           expense : this.budget,
           transport : this.transport,
-          // travelList : this.travelList
-          travelList : store.state.travelList
+          pinList : pinList,
         }
+        
         const response = await writeTravel(travelDto);
         console.log(response);
       }
@@ -487,8 +552,12 @@ export default {
     },
     ...mapGetters({
         writer : 'myNickName',
-        travelList : 'myTravelList'
+        travelList : 'writeTravelList',
+        cardList : 'writeCardList'
       })
   },
+  components : {
+    CardComp,
+  }
 };
 </script>

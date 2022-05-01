@@ -38,7 +38,16 @@ public class UserProfileService {
 
         User user = userRepository.findByNickName(nickName).orElseThrow(CUserNotFoundException::new);
         String profileId = user.getUserId();
-        byte profileImageByte[] = fileHandler.getProfileImageByte(user.getProfileImage());
+
+        byte profileImageByte[];
+
+        try {
+            Image profileImage = user.getProfileImage();
+            profileImageByte = fileHandler.getProfileImageByte(user.getProfileImage());
+        }catch (NullPointerException e){
+            profileImageByte = null;
+        }
+
         UserProfileDto userProfileDto = UserProfileDto.builder()
                         .loginUser(loginUserId)
                         .userId(user.getUserId())
@@ -72,7 +81,6 @@ public class UserProfileService {
 
         Image profileImage = fileHandler.parseFileInfo(user, profileImageFile);
         imageRepository.save(profileImage);
-
         user.setProfileImage(profileImage);
         return responseService.getSingleResult(user.getProfileImage().getStored_file_path());
     }

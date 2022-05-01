@@ -19,10 +19,7 @@
                 <login-comp/>
 			</template>
 			<template v-else>
-                <v-btn @click="logout">
-                    LogOut
-                </v-btn>
-
+                <logout-comp></logout-comp>
 			</template>   
         </v-app-bar>
     </v-sheet>
@@ -35,35 +32,24 @@ import LoginComp from './LoginComp.vue';
 import JoinComp from './JoinComp.vue';
 import RankComp from './RankComp.vue';
 import MenuList from './MenuList.vue';
+import LogoutComp from './LogoutComp.vue'
 
 export default {
     name: 'HeaderBar',
     computed: {
 		...mapGetters(['isLoggedIn']),
 	},
-    methods: {
-        
-        logout() {
-			// bus.$emit('show:toast', 'User logged out');
-			this.$store.commit('LOGOUT');
-			this.$router.push('/');
-		},
-    },
     data() {
         return {
-            items: [
-                { title: '메뉴1' },
-                { title: '메뉴2' },
-                { title: '메뉴3' },
-                { title: '메뉴4' },
-            ],
+           
         }
     },
     components:{
         LoginComp,
         JoinComp,
         RankComp,
-        MenuList
+        MenuList,
+        LogoutComp
     }
 }
 </script>
