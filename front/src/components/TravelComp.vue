@@ -1,5 +1,5 @@
 <template>
-  <div>홈 화면</div>
+  <div>dsfsdfsfsdfsd</div>
 </template>
 
 <script>

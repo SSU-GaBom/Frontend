@@ -184,23 +184,6 @@
             </v-radio-group>
           </v-row>
 
-          <!--
-          <v-text-field
-            v-model="writer"
-            dense
-            outlined
-            label="작성자"
-            :rules="[(v) => !!v || '작성자는 필수입니다.']"
-          ></v-text-field>
-          <v-text-field
-            v-model="title"
-            dense
-            outlined
-            label="제목"
-            :rules="[(v) => !!v || '제목은 필수입니다.']"
-          ></v-text-field>-->
-          <!-- rules를 통해 작성자와 제목을 안 쓰면 제출 못하게끔 함 -->
-
           <v-row style="padding: 20px">
             <v-textarea
               v-model="text"
@@ -215,19 +198,12 @@
               <template v-slot:default>
                 <thead>
                   <tr>
-                    <th class="text-left">
-                      Place_Name
-                    </th>
-                    <th class="text-left">
-                      Picture
-                    </th>
+                    <th class="text-left">Place_Name</th>
+                    <th class="text-left">Picture</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    v-for="travel in travelList"
-                    :key="travel.place_name"
-                  >
+                  <tr v-for="travel in travelList" :key="travel.place_name">
                     <td>{{ travel.place_name }}</td>
                     <td><card-comp></card-comp></td>
                   </tr>
@@ -235,7 +211,7 @@
               </template>
             </v-simple-table>
           </template>
-          <br>
+          <br />
           <v-btn width="100px" style="margin-bottom: 30px" type="submit"
             >작성</v-btn
           >
@@ -253,10 +229,10 @@
 
 <script>
 import axios from "axios";
-import {writeTravel} from '../api/travel'
-import {mapGetters} from 'vuex'
-import store from '../store/index'
-import CardComp from './CardComp.vue'
+import { writeTravel } from "../api/travel";
+import { mapGetters } from "vuex";
+import store from "../store/index";
+import CardComp from "./CardComp.vue";
 
 export default {
   data() {
@@ -272,7 +248,7 @@ export default {
       menu2: false,
       province: "",
       city: "",
-      image:'',
+      image: "",
       province_list: [
         "서울특별시",
         "부산광역시",
@@ -290,7 +266,7 @@ export default {
         "경상남도",
         "전라북도",
         "전라남도",
-        "제주도특별자치도",
+        "제주특별자치도",
       ],
       gyeonggi_list: [
         "수원시",
@@ -464,47 +440,43 @@ export default {
   },
   methods: {
     async onSubmitForm() {
-      if(this.$refs.form.validate()){
-        
+      if (this.$refs.form.validate()) {
         const pinList = [];
-        
+
         //핀 만들기
         for (let i = 0; i < this.travelList.length; i++) {
-          
           //사진 + 글
           let formData = new FormData();
-          formData.append('text',this.cardList[i].text);
-          
+          formData.append("text", this.cardList[i].text);
+
           for (let j = 0; j < this.cardList[i].images.length; j++) {
-            
-            formData.append('images',this.cardList[i].images[j]);
+            formData.append("images", this.cardList[i].images[j]);
           }
-          
+
           //장소
           let pin = {
-            location : this.travelList[i],
-            card : formData
-          }
-          
-          pinList.push(pin)
-          console.log(pin.card.getAll('images'))
+            location: this.travelList[i],
+            card: formData,
+          };
+
+          pinList.push(pin);
+          console.log(pin.card.getAll("images"));
         }
 
         const travelDto = {
           // writer : this.writer,
-          writer : this.writer,
-          title : this.title,
-          content : this.text,
-          state : this.province,
-          city : this.city,
-          startDate : this.s_date,
-          endDate : this.e_date,
-          expense : this.budget,
-          transport : this.transport,
-          pinList : pinList,
-        }
-        
-        
+          writer: this.writer,
+          title: this.title,
+          content: this.text,
+          state: this.province,
+          city: this.city,
+          startDate: this.s_date,
+          endDate: this.e_date,
+          expense: this.budget,
+          transport: this.transport,
+          pinList: pinList,
+        };
+
         const response = await writeTravel(travelDto);
         console.log(response);
       }
@@ -552,13 +524,13 @@ export default {
       return this.dates.join(" ~ ");
     },
     ...mapGetters({
-        writer : 'myNickName',
-        travelList : 'writeTravelList',
-        cardList : 'writeCardList'
-      })
+      writer: "myNickName",
+      travelList: "writeTravelList",
+      cardList: "writeCardList",
+    }),
   },
-  components : {
+  components: {
     CardComp,
-  }
+  },
 };
 </script>
