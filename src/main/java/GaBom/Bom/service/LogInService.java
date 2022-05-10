@@ -35,13 +35,16 @@ public class LogInService {
         log.info("id : {}" , id);
         log.info("password : {}" , password);
         User user = userRepository.findByUserId(id).orElseThrow(CSigninFailedException::new);
+
         if (!passwordEncoder.matches(password, user.getPassword())) {
             // matches : 평문, 암호문 패스워드 비교 후 boolean 결과 return
             throw new CSigninFailedException();
         }
+
         if(user.getEmailAuth() == false){
             throw new CEmailAuthTokenNotFoundException();
         }
+
 
         return responseService.getSingleResult(
                 TokenUserDto.builder()

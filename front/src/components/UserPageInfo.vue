@@ -30,7 +30,7 @@
               >
                 <!-- <img :src="profileImage"/> -->
                 <img v-bind:src="'data:image/jpeg;base64,'+ profileImage" />
-                <upload-image class="update-image"></upload-image>
+                <upload-image v-if="nickName === myNickName" class="update-image"></upload-image>
               </v-avatar>
             </v-row>
           </v-col>
@@ -38,8 +38,8 @@
             <v-bind style="font-size: 24px"><b>{{ nickName }}</b></v-bind><br>
             <!-- <follower-comp v-bind:follower="this.followerCount"></follower-comp>
             <following-comp v-bind:following="this.followingCount"></following-comp> -->
-            <v-btn text @click="followerDialog=true"><v-text>팔로워 <b>{{followerCount+1}}</b></v-text></v-btn>
-            <v-btn text @click="followingDialog=true"><v-text>팔로잉 <b>{{followingCount+1}}</b></v-text></v-btn>
+            <v-btn text @click="followerDialog=true"><v-text>팔로워 <b>{{followerCount}}</b></v-text></v-btn>
+            <v-btn text @click="followingDialog=true"><v-text>팔로잉 <b>{{followingCount}}</b></v-text></v-btn>
             
             <!--<v-text>{{ introduction }}</v-text>-->
             <v-dialog
@@ -145,7 +145,8 @@ export default {
         'nickName',
         'followerCount',
         'followingCount',
-        'profileImage'
+        'profileImage',
+        'myNickName'
       ])
     },
     components:{

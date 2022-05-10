@@ -54,7 +54,6 @@ export default {
             // likedTravelList : response.data.data.likedTravelList
           }
           
-          
           store.commit('SET_VIEWUSER',data)
 
           // store.state.viewUser = response.data.data
