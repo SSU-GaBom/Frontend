@@ -95,8 +95,6 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
         for (Pin pin : pinList) {
             locationRepository.save(pin.getLocation()); //location이 안들어올때 에러처리 해야함 TODO
             String road_address_name = locationRepository.findAll().get(0).getRoad_address_name();
-            System.out.println("road_address_name = " + road_address_name);
-            System.out.println("pin.getLocation().getRoad_address_name() = " + pin.getLocation().getRoad_address_name());
             pinRepository.save(pin);
         }
 

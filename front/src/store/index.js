@@ -70,6 +70,10 @@ export default new Vuex.Store({
 			state.user.id = null;
 			state.user.nickName = null;
 			state.token = null;
+			state.viewUser.nickName = null;
+			state.viewUser.profileImage = null;
+			state.viewUser.followerCount = null;
+			state.viewUser.followingCount = null;
 			deleteCookie('til_auth');
 			deleteCookie('til_user');
 		},
@@ -85,6 +89,9 @@ export default new Vuex.Store({
 		},
 		SET_CARD(state,card){
 			state.cardList.push(card);
+		},
+		SET_PROFILEIMAGE(state,image){
+			state.viewUser.profileImage = image;
 		}
 	},
   actions: {

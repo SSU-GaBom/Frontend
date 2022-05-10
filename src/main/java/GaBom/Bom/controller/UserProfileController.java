@@ -34,7 +34,7 @@ public class UserProfileController {
     @PutMapping(value = "/update-profile/{nick_name}")
     public SingleResult<User> updateProfile(
             @PathVariable(name = "nick_name") String nickName,
-            @RequestParam(name = "profile_image") MultipartFile profileImage) throws IOException {
+            @RequestParam(name = "profile-image") MultipartFile profileImage) throws IOException {
         log.info("updateProfile Controller");
         return userProfileService.updateProfile(nickName, profileImage);
     }
