@@ -1,14 +1,12 @@
 package GaBom.Bom.dto;
 
-import GaBom.Bom.entity.Image;
+import GaBom.Bom.entity.ProfileImage;
 import GaBom.Bom.entity.Travel;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.validation.constraints.Email;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,7 +23,7 @@ public class UserDto {
     private String nickName;
     private String appendDate;
     private String updateDate;
-    private Image profileImage;
+    private ProfileImage profileImage;
     private Integer following;
     private List<String> roles;
     private List<Travel> myTravelList;

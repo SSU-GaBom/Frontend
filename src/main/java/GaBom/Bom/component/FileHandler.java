@@ -1,16 +1,14 @@
 package GaBom.Bom.component;
 
 import GaBom.Bom.advice.exception.CExtensionException;
-import GaBom.Bom.entity.Image;
+import GaBom.Bom.entity.ProfileImage;
 import GaBom.Bom.entity.User;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +19,7 @@ public class FileHandler {
 
     private String path = "/Volumes/SSD/School/";
 
-    public Image parseFileInfo(User user, MultipartFile profileImage) throws IOException {
+    public ProfileImage parseFileInfo(User user, MultipartFile profileImage) throws IOException {
         if(profileImage.isEmpty()) {
             log.info("null 인가?");
             return null;
@@ -58,7 +56,7 @@ public class FileHandler {
 
         log.info(file.getPath());
 
-        return Image.builder()
+        return ProfileImage.builder()
                 .original_file_name(profileImage.getOriginalFilename())
                 .stored_file_path(path + "/" + new_file_name)
                 .file_size(profileImage.getSize())
@@ -66,7 +64,7 @@ public class FileHandler {
                 .build();
     }
 
-    public byte[] getProfileImageByte(Image profileImage) throws IOException {
+    public byte[] getProfileImageByte(ProfileImage profileImage) throws IOException {
         File file = new File(profileImage.getStored_file_path());
         if(!file.exists())
             return null;

@@ -68,7 +68,7 @@ public class User implements UserDetails {
     //@NotNull
     @OneToOne(mappedBy = "user")
     @JsonManagedReference
-    private Image profileImage;
+    private ProfileImage profileImage;
 
     private int followingNum;
     private int follwerNum;

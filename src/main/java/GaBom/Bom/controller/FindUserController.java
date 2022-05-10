@@ -39,9 +39,9 @@ public class FindUserController {
 
     //프론트에서 확인 비밀번호와 그냥 비밀번호가 같다면 이메일과 함께 -> 여긴 고쳐야함.
     @PostMapping("/change-pw")
-    public void changePw(@RequestParam String token, @RequestBody UserAuthDto userAuthDto, HttpServletResponse response) throws IOException {
+    public CommonResult changePw(@RequestParam String token, @RequestBody UserAuthDto userAuthDto, HttpServletResponse response) throws IOException {
         userService.confirmEmailChangePw(token, userAuthDto);
-        String redirect_uri="http://localhost:8081/api/sign/sginin";
-        response.sendRedirect(redirect_uri);
+
+        return responseService.getSuccessResult();
     }
 }

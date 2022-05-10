@@ -4,9 +4,8 @@ import GaBom.Bom.advice.exception.CImageNotFoundException;
 import GaBom.Bom.advice.exception.CNotSameUserException;
 import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.component.FileHandler;
-import GaBom.Bom.configuration.security.JwtTokenProvider;
 import GaBom.Bom.dto.UserProfileDto;
-import GaBom.Bom.entity.Image;
+import GaBom.Bom.entity.ProfileImage;
 import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
@@ -14,7 +13,6 @@ import GaBom.Bom.repository.ImageRepository;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -43,7 +41,7 @@ public class UserProfileService {
         byte profileImageByte[];
 
         try {
-            Image profileImage = user.getProfileImage();
+            ProfileImage profileImage = user.getProfileImage();
             profileImageByte = fileHandler.getProfileImageByte(user.getProfileImage());
         }catch (NullPointerException e){
             profileImageByte = null;
@@ -79,7 +77,7 @@ public class UserProfileService {
         if(!user.getUserId().equals(authentication.getName()))
             throw new CNotSameUserException();
 
-        Image profileImage =  fileHandler.parseFileInfo(user, profileImageFile);
+        ProfileImage profileImage =  fileHandler.parseFileInfo(user, profileImageFile);
 
         log.info("imageBuild complete");
 
@@ -91,14 +89,14 @@ public class UserProfileService {
         }
         else{
             log.info("image file is not null");
-            Image currentProfileImage = imageRepository.findByUser(user).orElseThrow(CImageNotFoundException::new);
-            currentProfileImage.updateProfileImage(profileImage.getOriginal_file_name(), profileImage.getStored_file_path(), profileImage.getFile_size());
-            log.info(currentProfileImage.getOriginal_file_name());
+            ProfileImage currentProfileProfileImage = imageRepository.findByUser(user).orElseThrow(CImageNotFoundException::new);
+            currentProfileProfileImage.updateProfileImage(profileImage.getOriginal_file_name(), profileImage.getStored_file_path(), profileImage.getFile_size());
+            log.info(currentProfileProfileImage.getOriginal_file_name());
         }
 
         log.info(user.getProfileImage().getOriginal_file_name());
 
-        return responseService.getSingleResult(user.getProfileImage().getStored_file_path());
+        return responseService.getSingleResult("update completed");
     }
 
     @Transactional

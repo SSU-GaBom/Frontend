@@ -1,11 +1,9 @@
 package GaBom.Bom.dto;
 
-import GaBom.Bom.entity.Image;
 import GaBom.Bom.entity.StoredTravel;
 import GaBom.Bom.entity.Travel;
 import lombok.*;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
