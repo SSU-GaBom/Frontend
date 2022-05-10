@@ -43,7 +43,7 @@ public class FindUserService {
 
         if(checkService.checkUserIdAndEmail(userId, email))
             throw new CUserNotFoundException();
-        emailService.setMessage(userId, email, "http://localhost:8080/finduser/changepw?token=");
+        emailService.setMessage(email, userId, "http://localhost:8081/api/change-pw?token=");
         return responseService.getSuccessResult();
         //return userRepository.findByUserIdAndEmail(findUserDto.getUserId(), findUserDto.getEmail()).orElseThrow().getUserId();
     }
@@ -51,7 +51,7 @@ public class FindUserService {
     //넘겨 받은 객체로 이메일을 통해 유저 정보를 얻어서 비밀번호를 업데이트한다.
     @Transactional
     public boolean setPassword(String password, User user){
-        userRepository.updatePassWord(passwordEncoder.encode(password), user.getUserNo());
+        user.setUserPw(passwordEncoder.encode(password));
 
         if(passwordEncoder.matches(password, user.getUserPw()))
             return true;

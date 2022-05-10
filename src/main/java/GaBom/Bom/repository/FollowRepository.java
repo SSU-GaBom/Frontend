@@ -11,8 +11,8 @@ import java.util.Optional;
 public interface FollowRepository extends JpaRepository<Follow, Long> {
 
     public Optional<Follow> findFollowByFromUserAndToUser(User fromUser, User toUser);
-    public Optional<Boolean> existsByFromUserAndToUser(User fromUser, User toUser);
-    public Optional<List<User>> findFromUserByToUser(User toUser);
-    public Optional<List<User>> findToUserByFromUser(User fromUser);
+    public Boolean existsByFromUserAndToUser(User fromUser, User toUser);
+    public Optional<List<Follow>> findAllByFromUser(User fromUser);
+    public Optional<List<Follow>> findAllByToUser(User toUser);
 
 }
