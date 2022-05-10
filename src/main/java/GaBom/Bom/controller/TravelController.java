@@ -23,9 +23,8 @@ import java.util.List;
 @RestControllerAdvice
 //@Transactional
 @Slf4j
-@RequestMapping("/travel")
+@RequestMapping("/api/travel")
 public class TravelController {
-
     private final TravelService travelService;
     // 예외 핸들러
 
@@ -34,12 +33,6 @@ public class TravelController {
         System.out.println("Error in TravelController = " + e);//log로찍기.
     }
 
-//    @PostMapping("")
-//    public String writeTravel(@RequestBody TravelDto travelDto) { //로그인세션에 맞춰서 Travel 쓰도록 하기
-//        String name = "사사사"; //name이 중복되거나 없으면 안되네
-//        travelService.save(name, travelDto);
-//        return "write";
-//    }
 @PostMapping("")
 public String writeTravel(@RequestBody TravelDto travelDto) { //로그인세션에 맞춰서 Travel 쓰도록 하기
     System.out.println(" write start");

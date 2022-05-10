@@ -44,50 +44,80 @@ public class TravelService {
 //        return true;
 //    }
 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
-    Date time = new Date();
-    String localTime = format.format(time);
+//    Date time = new Date();
+//    String localTime = format.format(time);
+
+//    @Transactional
+//    public void joinTravel (TravelDto travelDto) {
+//        System.out.println("joinStart");
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String loginId = authentication.getName();
+//        //유저아이디
+//
+//        System.out.println("ID :: loginId = " + loginId);
+//
+//        List<Pin> pinList = travelDto.getPinList();
+//        for (Pin pin : pinList) {
+//            //pin에 있는 location 저장 후 dto 말고 객체로 저장하기.
+//            //이유 : 이미 날라온 travelDto에는 location으로 있기때문.( 고쳐볼까 )
+//            locationRepository.save(pin.getLocation());
+//            //pin에 있는 card 저장 후
+//        }
+//        travelRepository.save(Travel.builder()
+//                    .travelId(travelDto.getTravelId())
+//                    .user(userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new))//이거 고쳐야함
+//                    .pinList(travelDto.getPinList())
+//                    .title(travelDto.getTitle())
+//                    .city(travelDto.getCity())
+//                    .state(travelDto.getState())
+//                    .appendDate(localTime)
+//                    .updateDate(localTime)
+//                    .startDate(travelDto.getStartDate())
+//                    .endDate(travelDto.getEndDate())
+//                    .expense(travelDto.getExpense())
+//                    .content(travelDto.getContent())
+//                    .isShared(false)
+//                    .likedCount(0)
+//                    .transportation(null)
+//                    .build());
+//    }
+//
 
     @Transactional
     public void joinTravel (TravelDto travelDto) {
-        System.out.println("joinStart");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
-        //유저아이디
 
-        System.out.println("ID :: loginId = " + loginId);
-
+        Date time = new Date();
+        String localTime = format.format(time);
         List<Pin> pinList = travelDto.getPinList();
+
         for (Pin pin : pinList) {
-            //pin에 있는 location 저장 후 dto 말고 객체로 저장하기.
-            //이유 : 이미 날라온 travelDto에는 location으로 있기때문.( 고쳐볼까 )
-            locationRepository.save(pin.getLocation());
-            //pin에 있는 card 저장 후
-            for (Card card : pin.getCardList()) {
-                card.setPin(pin);
-//                pin.add(card);
-                cardRepository.save(card);
-            }
+            locationRepository.save(pin.getLocation()); //location이 안들어올때 에러처리 해야함 TODO
+            String road_address_name = locationRepository.findAll().get(0).getRoad_address_name();
+            System.out.println("road_address_name = " + road_address_name);
+            System.out.println("pin.getLocation().getRoad_address_name() = " + pin.getLocation().getRoad_address_name());
             pinRepository.save(pin);
         }
-        travelRepository.save(Travel.builder()
-                    .travelId(travelDto.getTravelId())
-                    .user(userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new))//이거 고쳐야함
-                    .pinList(travelDto.getPinList())
-                    .title(travelDto.getTitle())
-                    .city(travelDto.getCity())
-                    .state(travelDto.getState())
-                    .appendDate(localTime)
-                    .updateDate(localTime)
-                    .startDate(travelDto.getStartDate())
-                    .endDate(travelDto.getEndDate())
-                    .expense(travelDto.getExpense())
-                    .content(travelDto.getContent())
-                    .isShared(false)
-                    .likedCount(0)
-                    .transportation(null)
-                    .build());
-    }
 
+        travelRepository.save(Travel.builder()
+                .travelId(travelDto.getTravelId())
+                .user(userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new))//이거 고쳐야함
+                .pinList(travelDto.getPinList())
+                .title(travelDto.getTitle())
+                .city(travelDto.getCity())
+                .state(travelDto.getState())
+                .appendDate(localTime)
+                .updateDate(localTime)
+                .startDate(travelDto.getStartDate())
+                .endDate(travelDto.getEndDate())
+                .expense(travelDto.getExpense())
+                .content(travelDto.getContent())
+                .isShared(false)
+                .likedCount(0)
+                .transportation(null)
+                .build());
+    }
 
     public Travel travel_info(Long travelId) {
         return travelRepository.findByTravelId(travelId);

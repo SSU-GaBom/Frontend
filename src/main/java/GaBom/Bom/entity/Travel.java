@@ -78,10 +78,10 @@ public class Travel{
     //user에 안들어가지는것같음.
 
     //    연관 관계 편의 메소드
-    public void add(Pin pin){
-        pin.setTravel(this);
-        this.pinList.add(pin);
-    }
+//    public void add(Pin pin){
+//        pin.setTravel(this);
+//        this.pinList.add(pin);
+//    }
 
 
     public Travel(User user, String title, Boolean isShared, Integer likedCount, String state, String city) {
