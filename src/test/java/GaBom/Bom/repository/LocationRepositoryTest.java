@@ -18,23 +18,23 @@ class LocationRepositoryTest {
 
     @Autowired
     LocationRepository locationRepository;
-    @Test
-    @DisplayName("exists 함수 되는지 확인")
-    public void  func() throws Exception {
-        //given
-        Location location = new Location();
-        location.setLocationId(2L);
-        location.setLatitude(3.22f);
-        location.setLongitude(3.222f);
-        locationRepository.save(location);
-        //when
-        boolean b = locationRepository.existsByLocationId(location.getLocationId());
-        boolean c = locationRepository.existsByLocationId(3L);
-        //then
-        Assertions.assertThat(b).isEqualTo(true);
-        Assertions.assertThat(c).isEqualTo(false);
-
-    }
+//    @Test
+//    @DisplayName("exists 함수 되는지 확인")
+//    public void  func() throws Exception {
+//        //given
+//        Location location = new Location();
+//        location.setLocationId(2L);
+//        location.setLatitude(3.22f);
+//        location.setLongitude(3.222f);
+//        locationRepository.save(location);
+//        //when
+//        boolean b = locationRepository.existsByLocationId(location.getLocationId());
+//        boolean c = locationRepository.existsByLocationId(3L);
+//        //then
+//        Assertions.assertThat(b).isEqualTo(true);
+//        Assertions.assertThat(c).isEqualTo(false);
+//
+//    }
 
     @Test
     @DisplayName("Location 저장 되는지 확인")
