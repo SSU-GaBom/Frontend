@@ -28,16 +28,79 @@
                 color="grey"
                 size="128px"
               >
-                <img :src="profileImage"/>
+                <!-- <img :src="profileImage"/> -->
+                <img v-bind:src="'data:image/jpeg;base64,'+ profileImage" />
                 <upload-image class="update-image"></upload-image>
               </v-avatar>
             </v-row>
           </v-col>
           <v-col class="py-0" align-self="center">
-            <v-bind style="font-size: 24px"><b>{{ nickname }}</b></v-bind><br>
-            <v-btn text><v-text>팔로워 <b>{{follower}}</b></v-text></v-btn>&nbsp;&nbsp;&nbsp;&nbsp; 
-            <v-btn text><v-text>팔로잉 <b>{{following}}</b></v-text></v-btn><br>
+            <v-bind style="font-size: 24px"><b>{{ nickName }}</b></v-bind><br>
+            <!-- <follower-comp v-bind:follower="this.followerCount"></follower-comp>
+            <following-comp v-bind:following="this.followingCount"></following-comp> -->
+            <v-btn text @click="followerDialog=true"><v-text>팔로워 <b>{{followerCount+1}}</b></v-text></v-btn>
+            <v-btn text @click="followingDialog=true"><v-text>팔로잉 <b>{{followingCount+1}}</b></v-text></v-btn>
+            
             <!--<v-text>{{ introduction }}</v-text>-->
+            <v-dialog
+              v-model="followerDialog"
+              width="500"
+            >
+              <v-simple-table>
+                <template v-slot:default>
+                <thead>
+                    <tr>
+                    <th class="text-left">
+                        NickName
+                    </th>
+                    <th class="text-left">
+                        FollowerNum
+                    </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        v-for="item in desserts"
+                        :key="item.name"
+                    >
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.calories }}</td>
+                    </tr>
+                </tbody>
+                </template>
+            </v-simple-table>
+           </v-dialog>
+
+           <v-dialog
+              v-model="followingDialog"
+              width="500"
+            >
+              <v-simple-table>
+                <template v-slot:default>
+                <thead>
+                    <tr>
+                    <th class="text-left">
+                        NickName
+                    </th>
+                    <th class="text-left">
+                        FollowerNum
+                    </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        v-for="item in desserts"
+                        :key="item.name"
+                    >
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.calories }}</td>
+                    </tr>
+                </tbody>
+                </template>
+            </v-simple-table>
+           </v-dialog>
+
+
           </v-col>
         </v-row>
       </v-img>
@@ -46,15 +109,25 @@
 </template>
 
 <script>
+import FollowerComp from './FollowerComp.vue'
 import UploadImage from './UploadImage.vue'
+import FollowingComp from './FollowingComp.vue'
+import {mapGetters} from 'vuex'
+import store from '../store/index'
+
 export default {
     data() {
         return {
-            profileImage: require('../assets/images/profile-example.jpg'),
-            nickname: '존잘윤세연',
-            introduction: '안녕하세요. 여행이 좋아!',
-            follower: 179,
-            following: 279,
+            followerDialog : false,
+            followingDialog : false,
+            // profileImage: require('../assets/images/profile-example.jpg'),
+            // profileImage: '',
+            // nickname: store.state.viewUser.nickName,
+            // followerCount: store.state.viewUser.followerCount,
+            // followingCount: store.state.viewUser.followingCount,
+            // nickName : '',
+            // followerCount :'',
+            // followingCount : ''
         }
     },   
     methods: {
@@ -67,9 +140,21 @@ export default {
         }
       },
     },
+    computed : {
+      ...mapGetters([
+        'nickName',
+        'followerCount',
+        'followingCount',
+        'profileImage'
+      ])
+    },
     components:{
-        UploadImage
-    }     
+        UploadImage,
+        // FollowerComp,
+        // FollowingComp
+    },
+    
+    
 }
 </script>
 

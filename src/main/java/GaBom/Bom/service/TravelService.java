@@ -1,6 +1,7 @@
 package GaBom.Bom.service;
 
 
+import GaBom.Bom.advice.exception.CNotSameUserException;
 import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.dto.LocationDto;
 import GaBom.Bom.dto.SignUpUserDto;

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/finduser")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class FindUserController {
 
@@ -41,7 +41,7 @@ public class FindUserController {
     @PostMapping("/change-pw")
     public void changePw(@RequestParam String token, @RequestBody UserAuthDto userAuthDto, HttpServletResponse response) throws IOException {
         userService.confirmEmailChangePw(token, userAuthDto);
-        String redirect_uri="http://localhost:8080/api/sign/sginin";
+        String redirect_uri="http://localhost:8081/api/sign/sginin";
         response.sendRedirect(redirect_uri);
     }
 }
