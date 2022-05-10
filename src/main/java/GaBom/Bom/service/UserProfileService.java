@@ -81,7 +81,6 @@ public class UserProfileService {
         if(!user.getUserId().equals(authentication.getName()))
             throw new CNotSameUserException();
 
-
         Image profileImage =  fileHandler.parseFileInfo(user, profileImageFile);
 
         log.info("imageBuild complete");
@@ -95,8 +94,8 @@ public class UserProfileService {
         else{
             log.info("image file is not null");
             Image currentProfileImage = imageRepository.findByUser(user).orElseThrow(CImageNotFoundException::new);
-            currentProfileImage.updateProfileImage(profileImage.getOriginal_file_name(), profileImage.getStored_file_path(), profileImage.getFile_size());
             log.info(currentProfileImage.getOriginal_file_name());
+            currentProfileImage.updateProfileImage(profileImage.getOriginal_file_name(), profileImage.getStored_file_path(), profileImage.getFile_size());
         }
 
         log.info(user.getProfileImage().getOriginal_file_name());

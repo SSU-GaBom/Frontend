@@ -26,7 +26,8 @@
 </template>
 
 <script>
-import {uploadImage} from '../api/profile'
+import {uploadImage,getUserInfo} from '../api/profile'
+import store from '../store/index'
 
 export default {
   data() {
@@ -41,10 +42,27 @@ export default {
         console.log("uploadImg")
         console.log(this.image)
         const formData = new FormData();
-        formData.append('profile_image',this.image);
+        formData.append('profile-image',this.image);
         const response = await uploadImage(formData);
-        console.log("success!!")
         console.log(response)
+        
+        if(response.status == 200){
+          // store.commit('SET_PROFILEIMAGE',this.image);
+
+          const response = await getUserInfo(store.state.user.nickName)
+          
+          
+          const data = {
+            nickName : response.data.data.nickName,
+            userFollowerCount : response.data.data.userFollowerCount,
+            userFollowingCount : response.data.data.userFollowingCount,
+            profileImage : response.data.data.profileImage
+            // myTravelList : response.data.data.myTravelList,
+            // likedTravelList : response.data.data.likedTravelList
+          }
+          
+          store.commit('SET_VIEWUSER',data)
+        }
 
       } catch (error) {
 
