@@ -5,8 +5,8 @@
       <!-- <router-view></router-view> -->
       <div class="flex">
         <router-view></router-view>
-        <write-travel-map></write-travel-map>
-        <!-- <travel-map></travel-map> -->
+        <write-travel-map v-if="this.$route.name === 'travel-writer'"></write-travel-map>
+        <travel-map  v-if="this.$route.name !== 'travel-writer'"></travel-map>
       </div>
     </v-main>
   </v-app>
@@ -23,7 +23,7 @@ export default {
   components:{
     HeaderBar,
     WriteTravelMap,
-    //  TravelMap
+    TravelMap
   }
 
 }
@@ -46,6 +46,9 @@ export default {
 nav {
   padding: 30px;
 }
+
+
+
 
 nav a {
   font-weight: bold;

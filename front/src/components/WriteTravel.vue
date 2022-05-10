@@ -447,20 +447,25 @@ export default {
         for (let i = 0; i < this.travelList.length; i++) {
           //사진 + 글
           let formData = new FormData();
-          formData.append("text", this.cardList[i].text);
 
           for (let j = 0; j < this.cardList[i].images.length; j++) {
             formData.append("images", this.cardList[i].images[j]);
           }
 
-          //장소
           let pin = {
-            location: this.travelList[i],
-            card: formData,
-          };
+            location : this.travelList[i],
+            locationContent : this.cardList[i].text,
+            images : formData
+          }
+
+          // //장소
+          // let pin = {
+          //   location: this.travelList[i],
+          //   card: formData,
+          // };
 
           pinList.push(pin);
-          console.log(pin.card.getAll("images"));
+          console.log(pin.images.getAll("images"));
         }
 
         const travelDto = {
