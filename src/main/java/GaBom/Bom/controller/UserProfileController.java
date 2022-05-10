@@ -31,7 +31,6 @@ public class UserProfileController {
     }
 
     @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 수정한다.")
-<<<<<<< HEAD
     @PutMapping(value = "/update-profile/{nick_name}")
     public SingleResult<User> updateProfile(
             @PathVariable(name = "nick_name") String nickName,
@@ -40,16 +39,6 @@ public class UserProfileController {
         return userProfileService.updateProfile(nickName, profileImage);
     }
 
-    
-=======
-    @CrossOrigin("http://localhost:8081")
-    @PutMapping(value = "/update-profile/{nick-name}")
-    public SingleResult<User> updateProfile(
-            @PathVariable(name = "nick-name") String nickName,
-            @RequestParam(name = "profile-image") MultipartFile profileImage) throws IOException {
-
-        return userProfileService.updateProfile(nickName, profileImage);
-    }
 
     @DeleteMapping(value = "/delete-profile/{nick-name}")
     public void deleteProfile(
@@ -58,7 +47,6 @@ public class UserProfileController {
         userProfileService.deleteProfile(nickName);
     }
 
->>>>>>> 528b4b513bcf79c60e70e60c1d4d8f978682a33b
     //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
     @GetMapping("/follow/{profile-nick-name}/follower")
     public ListResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName){

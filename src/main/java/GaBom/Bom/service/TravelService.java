@@ -49,6 +49,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
 
     @Transactional
     public void joinTravel (TravelDto travelDto) {
+        System.out.println("joinStart");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
         //유저아이디
