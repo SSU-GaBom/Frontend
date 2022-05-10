@@ -1,6 +1,13 @@
 <template>
-  <div id="main">
+  <div id="main" class="my-3">
     <travel-comp />
+    <v-divider></v-divider>
+    <travel-comp />
+    <v-divider></v-divider>
+    <travel-comp />
+    <v-divider></v-divider>
+    <travel-comp />
+    <v-divider></v-divider>
   </div>
 </template>
 
