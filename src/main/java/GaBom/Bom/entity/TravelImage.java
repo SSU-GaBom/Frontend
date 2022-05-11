@@ -13,10 +13,10 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Image {
+public class TravelImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imageId;
+    private Long travel_image_Id;
     @NotEmpty
     private String original_file_name;
     @NotEmpty
@@ -24,24 +24,24 @@ public class Image {
 
     private long file_size;
 
-    //프로필 이미지로 사용할 때 사용하는 속성
-    @OneToOne
-    @JsonBackReference
-    @JoinColumn(name = "user_no")
-    private User user;
-
-    //
-
-
 
     //게시글 올릴 때 사용하는 속성
-//    @ManyToOne
-//    @JoinColumn(name = "card_id")
-//    private Card card;
+    @ManyToOne
+    @JoinColumn(name = "pin_id")
+    private Pin pin;
 
-    public void updateProfileImage(String original_file_name, String stored_file_path, long file_size){
+    public void updateTravelImage(String original_file_name, String stored_file_path, long file_size) {
         this.original_file_name = original_file_name;
         this.stored_file_path = stored_file_path;
         this.file_size = file_size;
+//        this.pin = pin;
     }
+
+    //
+//    public void updateTravelImage(String travel_original_file_name, String travel_stored_file_path, long travel_file_size) {
+//        this.travel_original_file_name = travel_original_file_name;
+//        this.travel_stored_file_path = travel_stored_file_path;
+//        this.travel_file_size = travel_file_size;
+//    }
+
 }
