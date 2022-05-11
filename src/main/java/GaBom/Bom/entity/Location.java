@@ -1,5 +1,6 @@
 package GaBom.Bom.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -37,9 +38,10 @@ public class Location{
 
 
     //혹시 이것때문인가 하고 적어봄 ?? 왜 단방향이면 안되고 양방향 하면 되는것?
-    @OneToMany(mappedBy = "location")
-    @Column(name = "location_list")
-    private List<Pin> locationList=new ArrayList<>();
+//    @OneToMany(mappedBy = "location")
+//    @Column(name = "location_list")
+//    @JsonBackReference
+//    private List<Pin> locationList=new ArrayList<>();
 
     @NotNull
     private Float x; //x값

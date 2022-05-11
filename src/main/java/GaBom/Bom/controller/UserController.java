@@ -3,6 +3,7 @@ package GaBom.Bom.controller;
 
 import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.dto.UserDto;
+import GaBom.Bom.entity.Travel;
 import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.ListResult;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Api(tags = {"2. User"}) // UserController를 대표하는 최상단 타이틀 영역에 표시될 값 세팅
@@ -100,4 +102,12 @@ public class UserController {
         userService.confirmEmail(token);
         response.sendRedirect(loginPage);
     }
+
+    //TODO:: user별 myTravelList 반환
+//    @GetMapping("/{userId}/my_list")
+//    public void viewMyTravelList(@PathVariable String userId){ //userId : 닉네임
+//        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
+//        List<Travel> myTravelList = user.getMyTravelList();
+//
+//    }
 }

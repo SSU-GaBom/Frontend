@@ -51,17 +51,17 @@ public class UserProfileService {
         }
 
         UserProfileDto userProfileDto = UserProfileDto.builder()
-                        .loginUser(loginUserId)
-                        .userId(user.getUserId())
-                        .userName(user.getUserName())
-                        .nickName(user.getNickName())
-                        .profileImage(profileImageByte)
-                        .userFollowerCount(user.getFollwerNum())
-                        .userFollowingCount(user.getFollowingNum())
-                        //.myTravelList(user.getMyTravelList())
-                        //.likedTravelList(user.getLikedTravelList())
-                        //.storedTravelList(user.getStoredTravelList())
-                        .build();
+                .loginUser(loginUserId)
+                .userId(user.getUserId())
+                .userName(user.getUserName())
+                .nickName(user.getNickName())
+                .profileImage(profileImageByte)
+                .userFollowerCount(user.getFollwerNum())
+                .userFollowingCount(user.getFollowingNum())
+                //.myTravelList(user.getMyTravelList())
+                //.likedTravelList(user.getLikedTravelList())
+                //.storedTravelList(user.getStoredTravelList())
+                .build();
 
         if(profileId.equals(loginUserId))
             userProfileDto.setMe(true);
