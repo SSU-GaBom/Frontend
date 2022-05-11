@@ -31,7 +31,7 @@
           <v-text class="ms-2">{{ recommendNum }}</v-text>
         </v-btn>
 
-        <v-btn text color="red lighten-0">
+        <v-btn max-width="80px" text color="red lighten-0">
           <v-icon>mdi-cards-heart</v-icon>
           <v-text class="ms-2">{{ wishNum }}</v-text>
         </v-btn>
