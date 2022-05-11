@@ -20,9 +20,9 @@ public class Card{
     //"카드 id" + "인덱스"
     private Long cardId;
 
-    @ManyToOne(cascade = CascadeType.ALL) //여기 casacde 안하면
-    @JoinColumn(name = "pin_id")
-    private Pin pin;
+//    @ManyToOne(cascade = CascadeType.ALL) //여기 casacde 안하면
+//    @JoinColumn(name = "pin_id")
+//    private Pin pin;
 
     //카드의 본문 내용
     @NotNull

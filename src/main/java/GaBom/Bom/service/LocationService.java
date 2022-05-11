@@ -10,6 +10,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,23 +25,24 @@ public class LocationService {
 
     @Transactional
     public void RegistLoc(LocationDto locationDto){
-        Long Id = locationDto.getLocationId();
-        if(locationRepository.existsByLocationId(Id)){
+        Long Id = locationDto.getId();
+        if(locationRepository.existsById(Id)){
             return;
         }//있으니까 그냥 return
         Location location=new Location();
         locationRepository.save(Location.builder()
-                .locationId(locationDto.getLocationId())
+                .Id(locationDto.getId())
                 .address_name(locationDto.getAddress_name())
                 .road_address_name(locationDto.getRoad_address_name())
                 .place_name(locationDto.getPlace_name())
-                .latitude(locationDto.getLatitude())
-                .longitude(locationDto.getLongitude())
-                .city(null) //바꿀예정
-                .state(null)
+                .x(locationDto.getX())
+                .y(locationDto.getY())
                 .build());
+//         .city(null) //바꿀예정
+//                .state(null)
 
     }
     //Location 삭제 : 필요한가?
+
 
 }
