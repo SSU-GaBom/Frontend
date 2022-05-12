@@ -20,9 +20,9 @@ public class TravelImage {
     @Column(name = "travel_image_id")
     private Long id;
 
-    private String imageName;
-    private String uploadImageName;
-    private String travelImageName;
+    private String fileName;
+    private String uploadFileName;
+    private String travelFileName;
     private String base64Image;
 
     @ManyToOne(fetch = FetchType.LAZY)

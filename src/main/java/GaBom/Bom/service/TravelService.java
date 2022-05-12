@@ -73,17 +73,33 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
                 .build();
 
         for (Pin pin : pinList) {
-//            List<TravelImage> travelImages= pin.getTravelImageList();
-//            try {
-//                travelImageService.createPin(pin , travelImages);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
+            List<TravelImage> travelImages= pin.getImages();
+            System.out.println("travelImages = " + travelImages);
+            for (TravelImage travelImage : travelImages) {
+                System.out.println("travelImage.getFileName() = " + travelImage.getFileName());
+                System.out.println("travelImage.getBase64Image() = " + travelImage.getBase64Image());
+                System.out.println("travelImage.getTravelFileName() = " + travelImage.getTravelFileName());
+                System.out.println("travelImage.getUploadFileName() = " + travelImage.getUploadFileName());
+
+            }
+            try {
+                travelImageService.createPin(pin , travelImages);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            log.info("Pin 1 ");
             locationRepository.save(pin.getLocation()); //location이 안들어올때 에러처리 해야함 TODO
+            log.info("pin : ");
+            System.out.println("pin2 = " + pin);
+            log.info("Pin After save location.save(pin.getLocation() ");
             pin.setTravel(build);
+            log.info("Pin After pin.setTravel(build);");
             pinRepository.save(pin);
+            log.info("Pin After pinRepository.save(pin);");
         }
+        log.info("Pin before travelRepository.save(build);;");
         travelRepository.save(build);
+        log.info("Pin after travelRepository.save(build);;");
     }
 
 

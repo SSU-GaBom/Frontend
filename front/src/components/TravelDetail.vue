@@ -22,7 +22,7 @@
       <!-- 작성자, 추천 수, 저장 수, 댓글 수 -->
       <v-row align="center" class="mx-0 my-0">
         <v-icon size="28px" color="black darken-4">mdi-account</v-icon>
-        <v-btn max-width="120px" text>
+        <v-btn max-width="120px" text @click="toProfilePage()">
           <v-text style="text-decoration: underline">{{ author }}</v-text>
         </v-btn>
 
@@ -118,7 +118,7 @@ import CommentComp from "./CommentComp.vue";
 export default {
   data: () => ({
     title: "올해 최고의 제주도 여행 !!!",
-    author: "username",
+    author: "ex1",
     recommendNum: 293,
     wishNum: 12,
     province: "제주특별자치도",
@@ -134,9 +134,17 @@ export default {
   methods: {
     reserve() {
       this.loading = true;
-
       setTimeout(() => (this.loading = false), 2000);
     },
+    toProfilePage(){
+      this.$router.push({ name: 'userPage', params: {userNickName: this.author} })
+    },
+    async fetchTravelInfo(){
+      // title,recommednNum,wishNum,province,city,s_Date,e_Date,budget,transport,text , pinList -> 지도에 표시!!
+    }
+  },
+  created() {
+    this.fetchTravelInfo();
   },
   components: {
     CommentComp,

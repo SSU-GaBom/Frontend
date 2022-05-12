@@ -7,7 +7,7 @@ import lombok.Getter;
 @Builder
 public class TravelImageDto {
 
-    private String imageName;
+    private String fileName;
     private String base64Image;
 
 }
