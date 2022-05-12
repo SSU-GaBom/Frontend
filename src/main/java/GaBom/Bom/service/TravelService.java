@@ -98,6 +98,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
             log.info("Pin After pinRepository.save(pin);");
         }
         log.info("Pin before travelRepository.save(build);;");
+
         travelRepository.save(build);
         log.info("Pin after travelRepository.save(build);;");
     }

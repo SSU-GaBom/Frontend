@@ -23,10 +23,13 @@ public class TravelImage {
     private String fileName;
     private String uploadFileName;
     private String travelFileName;
+    //base64 Image의 길이는 약 3천 이상임. <-- update에서는 동작하지 않는다고함.
+    @Column(columnDefinition = "LONGTEXT")
     private String base64Image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "pin_id")
+    @JsonBackReference
     private Pin pin;
     public TravelImage() {
     }
