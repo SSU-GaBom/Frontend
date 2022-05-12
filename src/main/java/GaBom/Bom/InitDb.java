@@ -66,10 +66,20 @@ public class InitDb {
                     .followingNum(105)
                     .build();
 
+            User so = User.builder()
+                    .nickName("최강씨2")
+                    .emailAuth(true)
+                    .userId("rkskek")
+                    .userPw(passwordEncoder.encode("rlatldhs33@naver.com"))
+                    .follwerNum(100)
+                    .followingNum(105)
+                    .build();
+
             em.persist(sg);
             em.persist(ex1);
             em.persist(ex2);
             em.persist(ex3);
+            em.persist(so);
         }
     }
 

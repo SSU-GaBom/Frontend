@@ -1,5 +1,6 @@
 package GaBom.Bom.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -78,9 +79,10 @@ public class User implements UserDetails {
     private Boolean emailAuth;
 
     //내가 쓴 리뷰 리스트
-//    @OneToMany(mappedBy = "user")
-//    @Column(name = "my_travel_list")
-//    private List<Travel> myTravelList = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    @Column(name = "my_travel_list")
+    @JsonBackReference
+    private List<Travel> myTravelList = new ArrayList<>();
 
     //찜을 누른 리뷰 리스트
     // 이걸 1대 다 단방향이 엔티티측면에선 좋은데 DB에선 안좋다 해서 1대 다 양방향으로 하려는데 그게 안되서 일단 잠시 넘어감 ㅎ

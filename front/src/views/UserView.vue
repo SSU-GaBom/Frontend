@@ -42,15 +42,6 @@ export default {
           }
           store.commit('SET_VIEWUSER',data)
 
-          // store.state.viewUser.nickName = response.data.data.nickName
-          // store.state.viewUser.follower = response.data.data.userFollowerCount
-          // store.state.viewUser.following = response.data.data.userFollwingCount
-          // store.state.viewUser.travelList = response.data.data.myTravelList
-          // store.state.viewUser.wishList = response.data.data.likedTravelList
-
-          // store.state.viewUser = response.data.data
-
-
         }else{ // 마이페이지로 들어온경우
           
           const response = await getUserInfo(store.state.user.nickName)
@@ -65,7 +56,7 @@ export default {
             // likedTravelList : response.data.data.likedTravelList
           }
           store.commit('SET_VIEWUSER',data)
-          // store.state.viewUser = response.data.data
+          
         }
         
         

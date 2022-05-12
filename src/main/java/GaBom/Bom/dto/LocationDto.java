@@ -4,19 +4,19 @@ import lombok.Getter;
 
 @Getter
 public class LocationDto {
-    private Long locationId;
+    private Long Id;
     private String address_name;
     private String road_address_name;
     private String place_name;
-    private Float latitude;//x
-    private Float longitude;//y
+    private Float x;//x
+    private Float y;//y
 
-    public LocationDto(Long locationId, String address_name, String road_address_name, String place_name, Float latitude, Float longitude) {
-        this.locationId = locationId;
+    public LocationDto(Long Id, String address_name, String road_address_name, String place_name, Float x, Float y) {
+        this.Id = Id;
         this.address_name = address_name;
         this.road_address_name = road_address_name;
         this.place_name = place_name;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.x = x;
+        this.y = y;
     }
 }
