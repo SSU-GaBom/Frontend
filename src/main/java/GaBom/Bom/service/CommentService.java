@@ -1,5 +1,6 @@
 package GaBom.Bom.service;
 
+import GaBom.Bom.advice.exception.CTravelNotFoundException;
 import GaBom.Bom.entity.Comment;
 import GaBom.Bom.entity.Travel;
 import GaBom.Bom.repository.CommentRepository;
@@ -16,7 +17,7 @@ public class CommentService {
 
     @Transactional
     public boolean CreateComment(Comment comment, Long travelId) { //로그인세션에 맞춰서 Travel 쓰도록 하기
-        Travel travel = travelRepository.findByTravelId(travelId);
+        Travel travel = travelRepository.findByTravelId(travelId).orElseThrow(CTravelNotFoundException::new);
         if(travel==null){
             System.out.println("댓글 달기 중 travel 없음");
             return false;

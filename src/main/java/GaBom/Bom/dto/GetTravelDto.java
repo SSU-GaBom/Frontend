@@ -13,26 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 @Getter
 @NoArgsConstructor
-public class TravelDto {
+public class GetTravelDto {
 
     private Long travelId;
-
     private String title;
     private String state;
     private String city;
-
-    // 입력이 String -> LocalDatetime 형으로 변환해서 들어가도록
     private String startDate;
-
     private String endDate;
-
     private List<Pin> pinList;
-
     private Integer expense;
     private String content;
 
     private String transportation;
-    public TravelDto(Long travelId, String title, String state, String city, String startDate, String endDate, List<Pin> pinList, Integer expense, String content) {
+
+    public GetTravelDto(Long travelId, String title, String state, String city, String startDate, String endDate, List<Pin> pinList, Integer expense, String content) {
         this.travelId = travelId;
         this.title = title;
         this.state = state;
@@ -42,6 +37,21 @@ public class TravelDto {
         this.pinList = pinList;
         this.expense = expense;
         this.content = content;
+        this.transportation=null;
     }
+
+    public GetTravelDto(Travel travel){
+        this.travelId = travel.getTravelId();
+        this.title = travel.getTitle();
+        this.state = travel.getState();
+        this.city = travel.getCity();
+        this.startDate = travel.getStartDate();
+        this.endDate = travel.getEndDate();
+        this.pinList = travel.getPinList();
+        this.expense = travel.getExpense();
+        this.content = travel.getContent();
+        this.transportation=travel.getTransportation();
+    }
+
 
 }
