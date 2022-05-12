@@ -32,10 +32,17 @@ public class Travel{
     private Long travelId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_no")
+    @JoinColumn
 //    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하는지 고민
-    @JsonBackReference
-    private User user;
+//    @JsonBackReference
+    private User myuser;
+
+    //TODO :: 좋아요 구현해야함. 게시물마다 이게 내가 좋아요를 눌렀는지에 대한 함수 까지
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+//    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하는지 고민.
+//    @JsonBackReference
+    private User likeuser;
 
 
 //    리뷰 내부의 핀 리스트
@@ -89,7 +96,7 @@ public class Travel{
 
 
     public Travel(User user, String title, Boolean isShared, Integer likedCount, String state, String city) {
-        this.user = user;
+        this.myuser = user;
         this.title = title;
         this.isShared = isShared;
         this.likedCount = likedCount;
@@ -106,7 +113,7 @@ public class Travel{
 
     public static Travel CreateTravel(User user, String title, Boolean isShared, Integer likedCount, String state, String city) {
         Travel travel = new Travel();
-        travel.setUser(user);
+        travel.setMyuser(user);
         travel.title = title;
         travel.isShared = isShared;
         travel.likedCount = likedCount;

@@ -36,13 +36,23 @@ public class Pin{
     @JsonBackReference
     private Travel travel;
 
-    @OneToMany(mappedBy="pin") //사진들
-    @Column(name = "travel_images")
-    @JsonIgnore
-    private List<TravelImage> travelImages;
+
+
+    @OneToMany(mappedBy = "pin" , cascade = CascadeType.ALL)
+    @JoinColumn(name="images")
+    private List<TravelImage> travelImageList = new ArrayList<>();
+
+
+//    @OneToMany(mappedBy="pin") //사진들
+//    @Column(name = "travel_images")
+//    @JsonIgnore
+//    private List<TravelImage> travelImages;
 
     private String locationContent;
 
-
+    public void setTravelImage(TravelImage image){
+        image.setPin(this);
+        this.travelImageList.add(image);
+    }
 
 }
