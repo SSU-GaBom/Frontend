@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -36,10 +37,17 @@ public class TravelController {
     }
 
     @PostMapping("")
-    public String writeTravel(@RequestBody TravelDto travelDto) { //로그인세션에 맞춰서 Travel 쓰도록 하기
+    public String writeTravel(@RequestBody TravelDto travelDto) throws IOException { //로그인세션에 맞춰서 Travel 쓰도록 하기
         travelService.joinTravel(travelDto);
         return "write"; //Return값 어떻게?
     }
+
+
+
+
+
+
+
 
     // Travel 자세한 내용 리턴. 지금은 그냥 Title 리턴하게 잠시.
     @GetMapping("/{travelId}")
@@ -49,19 +57,15 @@ public class TravelController {
         return getTravelDto;
     }
 
-    @GetMapping("/list/like")
-    //현재는 그냥 사이즈 3으로 하고 LikeCount 순으로 정렬
-    @ResponseBody
-    public Page<Travel> TravelPageByLikeCount(){
-        Page<Travel> page= travelService.TravelsByLikeCount(0,3);
-        return page;
-    }
-//    @GetMapping("/{travelId}")
-//    public GetTravelDto Travel_info(@PathVariable Long travelId){
-//        Travel travel = travelService.travel_info(travelId);
-//        GetTravelDto getTravelDto = new GetTravelDto(travel);
-//        return getTravelDto;
+//    @GetMapping("/list/like")
+//    //현재는 그냥 사이즈 3으로 하고 LikeCount 순으로 정렬
+//    @ResponseBody
+//    public Page<GetTravelDto> TravelPageByLikeCount(){
+//        Page<GetTravelDto> page= travelService.TravelsByLikeCount(0,3);
+//        return page;
 //    }
+
+
 
 
     @PostMapping("/update")
@@ -75,10 +79,7 @@ public class TravelController {
     }
 
 
-    @GetMapping("/zzim/{userId}")
-    public void func(){
 
-    }
 
     @GetMapping("/recommend") //전국에서 추천 많은순 여행리스트
     public void func2(){
@@ -89,15 +90,11 @@ public class TravelController {
     public void func4(){
 
     }
-
-
     //redirect 생각
     @DeleteMapping("/{travelId}")
     String deleteTravel(@PathVariable Long travelId) {
         travelService.deleteTravel(travelId);
         return "deleted";
     }
-
-
 
 }

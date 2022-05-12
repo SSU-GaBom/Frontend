@@ -1,5 +1,7 @@
 package GaBom.Bom;
 
+import GaBom.Bom.advice.exception.CUserNotFoundException;
+import GaBom.Bom.entity.Travel;
 import GaBom.Bom.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -80,6 +82,7 @@ public class InitDb {
             em.persist(ex2);
             em.persist(ex3);
             em.persist(so);
+
         }
     }
 
