@@ -25,20 +25,22 @@ export default {
   methods: {
      async fetchUserInfo(){
         console.log("fetchUserInfo1")
-        console.log(this.$route.query.nickName)
+        console.log(this.$route.params.userNickName)
         // 닉네임을 타고 들어온경우
-        if(this.$route.query.nickName){
+        if(this.$route.params.userNickName){
           
-          const response = await getUserInfo(this.$route.query.nickName)
+          const response = await getUserInfo(this.$route.params.userNickName)
+          console.log(response)
 
-          store.state.viewUser.nickName = response.data.data.nickName
-          store.state.viewUser.follower = response.data.data.userFollowerCount
-          store.state.viewUser.following = response.data.data.userFollwingCount
-          store.state.viewUser.travelList = response.data.data.myTravelList
-          store.state.viewUser.wishList = response.data.data.likedTravelList
-
-          // store.state.viewUser = response.data.data
-
+          const data = {
+            nickName : response.data.data.nickName,
+            userFollowerCount : response.data.data.userFollowerCount,
+            userFollowingCount : response.data.data.userFollowingCount,
+            profileImage : response.data.data.profileImage
+            // myTravelList : response.data.data.myTravelList,
+            // likedTravelList : response.data.data.likedTravelList
+          }
+          store.commit('SET_VIEWUSER',data)
 
         }else{ // 마이페이지로 들어온경우
           
@@ -53,11 +55,10 @@ export default {
             // myTravelList : response.data.data.myTravelList,
             // likedTravelList : response.data.data.likedTravelList
           }
-          
           store.commit('SET_VIEWUSER',data)
-
-          // store.state.viewUser = response.data.data
+          
         }
+        
         
       },
   },

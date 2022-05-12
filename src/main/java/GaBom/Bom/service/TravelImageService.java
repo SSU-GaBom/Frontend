@@ -37,39 +37,54 @@ public class TravelImageService {
 //    private final TravelFileHandler travelFileHandler;
     private final PinRepository pinRepository;
 
-    @Value("C:/User/Desktop/")
+    @Value("C:\\Users\\sion\\Desktop")
     private String imageDir;
 
+    public String getFullPath(String fileName) {
+        return imageDir + fileName;
+    }
     @Transactional
     public void createPin(Pin pin, List<TravelImage> base64Images) throws IOException {
         log.info("ImageService : createPin");
         //이미지를 실제로 저장하고 이미지객체를 아이템과 연관시키기
         for (TravelImage base64Image : base64Images) {
+            log.info("ImageService : createPin 1 ");
             TravelImage image = travelImage(base64Image);
+            log.info("ImageService : createPin 2 ");
             pin.setTravelImage(image);
+            System.out.println("pin.getImages()  = " + pin.getImages());
+            log.info("ImageService : createPin 3 ");
         }
-
+        log.info("ImageService : createPin 4");
+        System.out.println("pin.getImages() Total = " + pin.getImages());
         pinRepository.save(pin);
+        log.info("ImageService : createPin 5 ");
+        System.out.println("pin1 = " + pin);
     }
 
     public TravelImage travelImage(TravelImage image) throws IOException
     {
         log.info("ImageService : travelImage");
-        String travelImageName = createTravelFileName(image.getImageName());
-        File imagefile = new File(getFullPath(travelImageName));
+        String travelFileName = createTravelFileName(image.getFileName());
+        log.info("ImageService : travelImage 2 ");
+        File imagefile = new File(getFullPath(travelFileName));
+        log.info("ImageService : travelImage 3 ");
         byte[] decodeBytes = Base64.getDecoder().decode(image.getBase64Image().getBytes());
+        log.info("ImageService : travelImage 4 ");
         FileOutputStream fos = new FileOutputStream(imagefile);
+        log.info("ImageService : travelImage 5 ");
         fos.write(decodeBytes);
+        log.info("ImageService : travelImage 6 ");
         fos.close();
-
+        log.info("ImageService : travelImage 7 ");
         return TravelImage.builder()
-                    .uploadImageName(image.getImageName())
-                    .travelImageName(travelImageName)
+                    .uploadFileName(image.getFileName())
+                    .travelFileName(travelFileName)
                     .build();
     }
 
-    private String createTravelFileName(String originalImageName) {
-        //String ext = extractExt(originalImageName);
+    private String createTravelFileName(String originalFileName) {
+        //String ext = extractExt(originalFileName);
         String uuid = UUID.randomUUID().toString();
         return uuid + "." + "png";
     }

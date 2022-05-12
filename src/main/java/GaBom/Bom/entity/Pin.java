@@ -39,8 +39,8 @@ public class Pin{
 
 
     @OneToMany(mappedBy = "pin" , cascade = CascadeType.ALL)
-    @JoinColumn(name="images")
-    private List<TravelImage> travelImageList = new ArrayList<>();
+    @Column(name="images")
+    private List<TravelImage> images = new ArrayList<>();
 
 
 //    @OneToMany(mappedBy="pin") //사진들
@@ -52,7 +52,7 @@ public class Pin{
 
     public void setTravelImage(TravelImage image){
         image.setPin(this);
-        this.travelImageList.add(image);
+        this.images.add(image);
     }
 
 }
