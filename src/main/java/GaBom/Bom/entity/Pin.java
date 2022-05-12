@@ -25,7 +25,7 @@ public class Pin{
     private Long pinId;
 
     //단방향 다대1
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
 //    @JsonManagedReference
     private Location location;
@@ -40,6 +40,7 @@ public class Pin{
 
     @OneToMany(mappedBy = "pin" , cascade = CascadeType.ALL)
     @Column(name="images")
+    @JsonManagedReference
     private List<TravelImage> images = new ArrayList<>();
 
 
@@ -52,7 +53,7 @@ public class Pin{
 
     public void setTravelImage(TravelImage image){
         image.setPin(this);
-        this.images.add(image);
+//        this.images.add(image);
     }
 
 }
