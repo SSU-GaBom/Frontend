@@ -37,12 +37,12 @@ public class TravelImageService {
 //    private final TravelFileHandler travelFileHandler;
     private final PinRepository pinRepository;
 
-    @Value("C:\\Users\\sion\\Desktop")
+    @Value("C:\\Users\\sion\\Desktop") //변경가능
     private String imageDir;
 
     public String getFullPath(String fileName) {
         return imageDir + fileName;
-    }
+    } //저장되는곳.
     @Transactional
     public void createPin(Pin pin, List<TravelImage> base64Images) throws IOException {
         log.info("ImageService : createPin");
@@ -57,7 +57,12 @@ public class TravelImageService {
         }
         log.info("ImageService : createPin 4");
         System.out.println("pin.getImages() Total = " + pin.getImages());
-        pinRepository.save(pin);
+        System.out.println("pin = " + pin);
+        System.out.println("pin.getPinId() = " + pin.getPinId());
+        System.out.println("pin.getLocation() = " + pin.getLocation());
+        System.out.println("pin.getLocationContent() = " + pin.getLocationContent());
+
+//        pinRepository.save(pin); // <-- pin_id는 달라도 id 는 같을 수도 있음.
         log.info("ImageService : createPin 5 ");
         System.out.println("pin1 = " + pin);
     }

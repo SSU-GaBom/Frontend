@@ -24,13 +24,14 @@ public class Pin{
     //Pin의 번호는 "트레블 ID" + "인덱스"
     private Long pinId;
 
-    //단방향 다대1
-    @ManyToOne(cascade = CascadeType.ALL)
+    //pin <-> location : 다 대 1 단방향
+    //양방향으로 바꿀까..?
+    @ManyToOne(cascade = CascadeType.MERGE) //MERGE  이유 : location과 pin을 따로따로 저장해야해서
     @JoinColumn(name = "id")
 //    @JsonManagedReference
     private Location location;
 
-    //양방향 다대1
+    //pin과 travel  : 다 : 1양방향 다대1
     @ManyToOne
     @JoinColumn(name = "travel_id")
     @JsonBackReference
@@ -38,6 +39,7 @@ public class Pin{
 
 
 
+    //pin 과 location : 1 대 다
     @OneToMany(mappedBy = "pin" , cascade = CascadeType.ALL)
     @Column(name="images")
     @JsonManagedReference

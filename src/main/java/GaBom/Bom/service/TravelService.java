@@ -89,6 +89,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
             }
             log.info("Pin 1 ");
             locationRepository.save(pin.getLocation()); //location이 안들어올때 에러처리 해야함 TODO
+            //?? 이거 안해도 저장이 되는구나
             log.info("pin : ");
             System.out.println("pin2 = " + pin);
             log.info("Pin After save location.save(pin.getLocation() ");
