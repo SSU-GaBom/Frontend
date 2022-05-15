@@ -31,14 +31,14 @@ public class UserProfileController {
     }
 
     @ApiOperation(value = "회원 수정", notes = "프로필 이미지를 수정한다.")
-    @CrossOrigin("http://localhost:8081")
-    @PutMapping(value = "/update-profile/{nick-name}")
+    @PutMapping(value = "/update-profile/{nick_name}")
     public SingleResult<User> updateProfile(
-            @PathVariable(name = "nick-name") String nickName,
+            @PathVariable(name = "nick_name") String nickName,
             @RequestParam(name = "profile-image") MultipartFile profileImage) throws IOException {
-
+        log.info("updateProfile Controller");
         return userProfileService.updateProfile(nickName, profileImage);
     }
+
 
     @DeleteMapping(value = "/delete-profile/{nick-name}")
     public void deleteProfile(

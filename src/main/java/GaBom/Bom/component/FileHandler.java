@@ -19,6 +19,8 @@ public class FileHandler {
 
     private String path = "/Volumes/SSD/School/";
 
+    //private String path = "C:/Users/psg98/GaBom/image/";
+
     public ProfileImage parseFileInfo(User user, MultipartFile profileImage) throws IOException {
         if(profileImage.isEmpty()) {
             log.info("null 인가?");

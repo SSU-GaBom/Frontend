@@ -2,7 +2,7 @@ package GaBom.Bom.controller;
 
 
 import GaBom.Bom.dto.FindUserDto;
-import GaBom.Bom.dto.UserAuthDto;
+import GaBom.Bom.dto.UpdatePasswordDto;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
 import GaBom.Bom.service.FindUserService;
@@ -10,9 +10,6 @@ import GaBom.Bom.service.ResponseService;
 import GaBom.Bom.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -30,17 +27,22 @@ public class FindUserController {
         return responseService.getSingleResult(findUserService.findId(finduserDto));
     }
 
-    //이메일과 아이디를 넘기면 난수를 생성하고 이메일칸, 아이디 칸은 비활성한다. 그리고 인증번호 치는 창이 활성화 된다. 정상적으로 생성 됐는지 true false로 결과 값 출력
-    //boolean type return 임.
-    @PostMapping("/find-pw")
-    public CommonResult isUserPwExist(@RequestBody FindUserDto findUserDto) {
-        return findUserService.findPassword(findUserDto);
+    //성공하면 db에 유저별로 난수(유효시간 5분)가 저장 되고 이메일이 전송됨.
+    @PostMapping("/send-randomint")
+    public CommonResult sendRandomInt(@RequestBody FindUserDto findUserDto){
+        return findUserService.sendRandomInt(findUserDto);
     }
 
-    //프론트에서 확인 비밀번호와 그냥 비밀번호가 같다면 이메일과 함께 -> 여긴 고쳐야함.
-    @PostMapping("/change-pw")
-    public CommonResult changePw(@RequestParam String token, @RequestBody UserAuthDto userAuthDto, HttpServletResponse response) throws IOException {
-        userService.confirmEmailChangePw(token, userAuthDto);
+    //인증이 완료되면 "일치합니다." 라는 값이 data에 담겨 넘어감.
+    @PostMapping("/authentication-randomint")
+    public CommonResult authenticationRandomInt(@RequestParam String randomInt,
+                                                @RequestBody FindUserDto findUserDto){
+        return findUserService.authenticationRandomInt(randomInt, findUserDto);
+    }
+
+    @PostMapping("/update-pw")
+    public CommonResult changePw(@RequestBody UpdatePasswordDto updatePasswordDto){
+        findUserService.updatePassword(updatePasswordDto);
 
         return responseService.getSuccessResult();
     }

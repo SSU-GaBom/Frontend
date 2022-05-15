@@ -1,24 +1,23 @@
 <template>
   <div id="main">
-    <travel-content-list/>
+    <travel-comp />
   </div>
-
 </template>
 
 <script>
-import TravelContentList from '../components/TravelContentList.vue'
+import TravelComp from "../components/TravelComp.vue";
 export default {
-  name: 'TravelContentList',
+  name: "TravelList",
   components: {
-    TravelContentList
+    TravelComp,
   },
-}
+};
 </script>
 
 <style scoped>
 #main {
-    position: relative;
-    width: 30%;
-    height: 780px;
+  position: relative;
+  width: 30%;
+  height: 780px;
 }
 </style>

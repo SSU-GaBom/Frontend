@@ -3,13 +3,12 @@ import store from '../store/index'
 
 function getUserInfo(nickName){
     console.log("getUserInfo")
-    console.log(nickName)
     return auth.get(`/profile/${nickName}`)
 }
 
 function uploadImage(formData){
     console.log("uploadImage")
-    return auth.post(`/profile/update-profile/${store.state.user.nickName}`,
+    return auth.put(`/profile/update-profile/${store.state.user.nickName}`,
     formData , {
         headers: {
             'Content-Type': 'multipart/form-data'

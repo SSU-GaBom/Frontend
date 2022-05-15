@@ -18,7 +18,7 @@ public class EmailService {
     private final JavaMailSender javaMailSender;
     private final ConfirmationTokenRepository confirmationTokenRepository;
 
-    public void setMessage(String toEmail, String userId, String uri){
+    public void pageAuth(String toEmail, String userId, String uri){
         ConfirmationToken emailConfirmationToken = ConfirmationToken.createEmailConfirmationToken(userId);
         confirmationTokenRepository.save(emailConfirmationToken);
 
@@ -27,6 +27,16 @@ public class EmailService {
         mailMessage.setTo(toEmail);
         mailMessage.setSubject("인증 메일입니다.");
         mailMessage.setText(uri+emailConfirmationToken.getId());
+
+        send(mailMessage);
+    }
+
+    public void intAuth(String toEmail,String randomIntString){
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom("springgabom@gmail.com");
+        mailMessage.setTo(toEmail);
+        mailMessage.setSubject("인증 메일입니다.");
+        mailMessage.setText(randomIntString + "해당 인증번호를 입력하세요.");
 
         send(mailMessage);
     }

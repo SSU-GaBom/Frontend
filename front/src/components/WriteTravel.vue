@@ -151,6 +151,19 @@
           <v-row dense no-gutters>
             <v-col cols="12" sm="6">
               <v-textarea
+                v-model="title"
+                class="mx-0"
+                label="여행 타이틀"
+                rows="1"
+                prepend-icon="mdi-format-title"
+              ></v-textarea>
+            </v-col>
+          </v-row>
+
+          <v-row dense no-gutters>
+            <v-col cols="12" sm="6">
+              <v-textarea
+                v-model="budget"
                 class="mx-0"
                 label="여행 경비(원)"
                 rows="1"
@@ -166,27 +179,10 @@
               style="padding-left: 12px"
               prepend-icon="mdi-train-car"
             >
-              <v-radio label="렌트카/자가용" value="radio-1"></v-radio>
-              <v-radio label="대중교통" value="radio-2"></v-radio>
+              <v-radio label="렌트카/자가용" value="렌트카/자가용"></v-radio>
+              <v-radio label="대중교통" value="대중교통"></v-radio>
             </v-radio-group>
           </v-row>
-
-          <!--
-          <v-text-field
-            v-model="writer"
-            dense
-            outlined
-            label="작성자"
-            :rules="[(v) => !!v || '작성자는 필수입니다.']"
-          ></v-text-field>
-          <v-text-field
-            v-model="title"
-            dense
-            outlined
-            label="제목"
-            :rules="[(v) => !!v || '제목은 필수입니다.']"
-          ></v-text-field>-->
-          <!-- rules를 통해 작성자와 제목을 안 쓰면 제출 못하게끔 함 -->
 
           <v-row style="padding: 20px">
             <v-textarea
@@ -197,8 +193,27 @@
             ></v-textarea>
           </v-row>
 
+          <template v-if="travelList">
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th class="text-left">Place_Name</th>
+                    <th class="text-left">Picture</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="travel in travelList" :key="travel.place_name">
+                    <td>{{ travel.place_name }}</td>
+                    <td><card-comp></card-comp></td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </template>
+          <br />
           <v-btn width="100px" style="margin-bottom: 30px" type="submit"
-            >제출</v-btn
+            >작성</v-btn
           >
           <v-btn
             width="100px"
@@ -214,11 +229,14 @@
 
 <script>
 import axios from "axios";
+import { writeTravel } from "../api/travel";
+import { mapGetters } from "vuex";
+import store from "../store/index";
+import CardComp from "./CardComp.vue";
 
 export default {
   data() {
     return {
-      writer: "",
       title: "",
       text: "",
       budget: "",
@@ -230,6 +248,7 @@ export default {
       menu2: false,
       province: "",
       city: "",
+      image: "",
       province_list: [
         "서울특별시",
         "부산광역시",
@@ -247,7 +266,7 @@ export default {
         "경상남도",
         "전라북도",
         "전라남도",
-        "제주도특별자치도",
+        "제주특별자치도",
       ],
       gyeonggi_list: [
         "수원시",
@@ -420,27 +439,73 @@ export default {
     };
   },
   methods: {
-    onSubmitForm() {
+    async onSubmitForm() {
       if (this.$refs.form.validate()) {
-        // 위에 써준 rules를 만족하면 실행
-        axios({
-          url: "http://127.0.0.1:52273/content/write/",
-          method: "POST",
-          data: {
-            boardnum: this.$route.params.id,
-            writer: this.writer,
-            title: this.title,
-            text: this.text,
-          },
-        })
-          .then((res) => {
-            alert(res.data.message);
-            window.history.back();
-          })
-          .catch((err) => {
-            alert(err);
-          });
+        const pinList = [];
+
+        //핀 만들기
+        for (let i = 0; i < this.travelList.length; i++) {
+          //사진 + 글
+          let formData = new FormData();
+
+          for (let j = 0; j < this.cardList[i].images.length; j++) {
+            formData.append("images", this.cardList[i].images[j]);
+          }
+
+          let pin = {
+            location : this.travelList[i],
+            locationContent : this.cardList[i].text,
+            images : formData
+          }
+
+          // //장소
+          // let pin = {
+          //   location: this.travelList[i],
+          //   card: formData,
+          // };
+
+          pinList.push(pin);
+          console.log(pin.images.getAll("images"));
+        }
+
+        const travelDto = {
+          // writer : this.writer,
+          writer: this.writer,
+          title: this.title,
+          content: this.text,
+          state: this.province,
+          city: this.city,
+          startDate: this.s_date,
+          endDate: this.e_date,
+          expense: this.budget,
+          transport: this.transport,
+          pinList: pinList,
+        };
+
+        const response = await writeTravel(travelDto);
+        console.log(response);
       }
+
+      // if (this.$refs.form.validate()) {
+      //   // 위에 써준 rules를 만족하면 실행
+      //   axios({
+      //     url: "http://127.0.0.1:52273/content/write/",
+      //     method: "POST",
+      //     data: {
+      //       boardnum: this.$route.params.id,
+      //       writer: this.writer,
+      //       title: this.title,
+      //       text: this.text,
+      //     },
+      //   })
+      //     .then((res) => {
+      //       alert(res.data.message);
+      //       window.history.back();
+      //     })
+      //     .catch((err) => {
+      //       alert(err);
+      //     });
+      // }
     },
     moveback() {
       window.history.back();
@@ -463,6 +528,14 @@ export default {
     dateRangeText() {
       return this.dates.join(" ~ ");
     },
+    ...mapGetters({
+      writer: "myNickName",
+      travelList: "writeTravelList",
+      cardList: "writeCardList",
+    }),
+  },
+  components: {
+    CardComp,
   },
 };
 </script>
