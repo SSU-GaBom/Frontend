@@ -28,17 +28,19 @@
                 color="grey"
                 size="128px"
               >
-                <img :src="profileImage"/>
-                <upload-image class="update-image"></upload-image>
+                <!-- <img :src="profileImage"/> -->
+                <img v-bind:src="'data:image/jpeg;base64,'+ profileImage" />
+                <upload-image v-if="nickName === myNickName" class="update-image"></upload-image>
               </v-avatar>
             </v-row>
           </v-col>
           <v-col class="py-0" align-self="center">
-            <v-bind style="font-size: 24px"><b>{{ nickname }}</b></v-bind><br>
+            <v-bind style="font-size: 24px"><b>{{ nickName }}</b></v-bind><br>
             <!-- <follower-comp v-bind:follower="this.followerCount"></follower-comp>
             <following-comp v-bind:following="this.followingCount"></following-comp> -->
             <v-btn text @click="followerDialog=true"><v-text>팔로워 <b>{{followerCount}}</b></v-text></v-btn>
             <v-btn text @click="followingDialog=true"><v-text>팔로잉 <b>{{followingCount}}</b></v-text></v-btn>
+            
             <!--<v-text>{{ introduction }}</v-text>-->
             <v-dialog
               v-model="followerDialog"
@@ -118,10 +120,14 @@ export default {
         return {
             followerDialog : false,
             followingDialog : false,
-            profileImage: require('../assets/images/profile-example.jpg'),
-            nickname: store.state.viewUser.nickName,
-            followerCount: store.state.viewUser.followerCount,
-            followingCount: store.state.viewUser.followingCount,
+            // profileImage: require('../assets/images/profile-example.jpg'),
+            // profileImage: '',
+            // nickname: store.state.viewUser.nickName,
+            // followerCount: store.state.viewUser.followerCount,
+            // followingCount: store.state.viewUser.followingCount,
+            // nickName : '',
+            // followerCount :'',
+            // followingCount : ''
         }
     },   
     methods: {
@@ -134,13 +140,15 @@ export default {
         }
       },
     },
-    // computed : {
-    //   ...mapGetters({
-    //     nickname : 'nickName',
-    //     followerCount : 'followCount',
-    //     followingCount : 'followingCount'
-    //   })
-    // },
+    computed : {
+      ...mapGetters([
+        'nickName',
+        'followerCount',
+        'followingCount',
+        'profileImage',
+        'myNickName'
+      ])
+    },
     components:{
         UploadImage,
         // FollowerComp,

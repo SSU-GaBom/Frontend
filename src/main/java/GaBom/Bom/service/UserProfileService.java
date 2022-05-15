@@ -9,7 +9,7 @@ import GaBom.Bom.entity.ProfileImage;
 import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
-import GaBom.Bom.repository.ImageRepository;
+import GaBom.Bom.repository.ProfileImageRepository;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ import java.io.IOException;
 public class UserProfileService {
 
     private final UserRepository userRepository;
-    private final ImageRepository imageRepository;
+    private final ProfileImageRepository profileImageRepository;
     private final ResponseService responseService;
     private final FileHandler fileHandler;
 
@@ -38,6 +38,7 @@ public class UserProfileService {
 
         User user = userRepository.findByNickName(nickName).orElseThrow(CUserNotFoundException::new);
         String profileId = user.getUserId();
+
         byte profileImageByte[];
 
         try {
@@ -65,6 +66,7 @@ public class UserProfileService {
         else
             userProfileDto.setMe(false);
 
+
         return responseService.getSingleResult(userProfileDto);
     }
 
@@ -83,15 +85,15 @@ public class UserProfileService {
 
         if(user.getProfileImage() == null){
             log.info("image file is null");
-            imageRepository.save(profileImage);
+            profileImageRepository.save(profileImage);
             user.setProfileImage(profileImage);
             log.info(user.getProfileImage().getOriginal_file_name());
         }
         else{
             log.info("image file is not null");
-            ProfileImage currentProfileProfileImage = imageRepository.findByUser(user).orElseThrow(CImageNotFoundException::new);
-            currentProfileProfileImage.updateProfileImage(profileImage.getOriginal_file_name(), profileImage.getStored_file_path(), profileImage.getFile_size());
-            log.info(currentProfileProfileImage.getOriginal_file_name());
+            ProfileImage currentProfileImage = profileImageRepository.findByUser(user).orElseThrow(CImageNotFoundException::new);
+            currentProfileImage.updateProfileImage(profileImage.getOriginal_file_name(), profileImage.getStored_file_path(), profileImage.getFile_size());
+            log.info(currentProfileImage.getOriginal_file_name());
         }
 
         log.info(user.getProfileImage().getOriginal_file_name());
@@ -113,7 +115,7 @@ public class UserProfileService {
         }
 
         user.setProfileImage(null);
-        imageRepository.deleteByUser(user);
+        profileImageRepository.deleteByUser(user);
         return responseService.getSuccessResult();
     }
 }

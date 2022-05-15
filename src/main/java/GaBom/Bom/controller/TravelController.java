@@ -2,6 +2,7 @@ package GaBom.Bom.controller;
 
 import GaBom.Bom.dto.TravelDto;
 import GaBom.Bom.dto.UpdateTravelDto;
+import GaBom.Bom.entity.Pin;
 import GaBom.Bom.entity.Travel;
 import GaBom.Bom.service.TravelService;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +19,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/travel")
 @RequiredArgsConstructor
 @RestControllerAdvice
 //@Transactional
 @Slf4j
+@RequestMapping("travel")
 public class TravelController {
 
     private final TravelService travelService;
@@ -41,6 +42,7 @@ public class TravelController {
 //    }
 @PostMapping("")
 public String writeTravel(@RequestBody TravelDto travelDto) { //로그인세션에 맞춰서 Travel 쓰도록 하기
+    System.out.println(" write start");
 //    String name = "사사사"; //name이 중복되거나 없으면 안되네
     travelService.joinTravel(travelDto);
     return "write";

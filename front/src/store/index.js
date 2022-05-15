@@ -19,12 +19,15 @@ export default new Vuex.Store({
     token : '',
 	viewUser : {
 		nickName : null,
-		profileImage : null,
+		profileImage : '',
 		followerCount : null,
 		followingCount : null,
 		travelList : [],
 		wishList : [],
-	}
+	},
+	pinList : [],
+	travelList : [],
+	cardList : []
   },
   getters: {
 		isLoggedIn(state) {
@@ -32,6 +35,15 @@ export default new Vuex.Store({
 		},
 		userToken(state) {
 			return state.token;
+		},
+		myNickName(state){
+			return state.user.nickName;
+		},
+		writeTravelList(state){
+			return state.travelList;
+		},
+		writeCardList(state){
+			return state.cardList;
 		},
 		nickName(state){
 			return state.viewUser.nickName;
@@ -42,6 +54,9 @@ export default new Vuex.Store({
 		followingCount(state){
 			return state.viewUser.followingCount;
 		},
+		profileImage(state){
+			return state.viewUser.profileImage;
+		}
 	},
   mutations: {
 		SET_USER(state, data) {
@@ -55,6 +70,10 @@ export default new Vuex.Store({
 			state.user.id = null;
 			state.user.nickName = null;
 			state.token = null;
+			state.viewUser.nickName = null;
+			state.viewUser.profileImage = null;
+			state.viewUser.followerCount = null;
+			state.viewUser.followingCount = null;
 			deleteCookie('til_auth');
 			deleteCookie('til_user');
 		},
@@ -63,6 +82,16 @@ export default new Vuex.Store({
 			state.viewUser.nickName = data.nickName;
 			state.viewUser.followerCount = data.userFollowerCount;
 			state.viewUser.followingCount = data.userFollowingCount;
+			state.viewUser.profileImage = data.profileImage;
+		},
+		SET_TRAVEL(state,travel){
+			state.travelList.push(travel);
+		},
+		SET_CARD(state,card){
+			state.cardList.push(card);
+		},
+		SET_PROFILEIMAGE(state,image){
+			state.viewUser.profileImage = image;
 		}
 	},
   actions: {
@@ -80,9 +109,7 @@ export default new Vuex.Store({
 					nickName : response.data.data.nickName
 				}
 				commit('SET_USER',data);
-				console.log("h1")
 				commit('SET_TOKEN', response.data.data.token);
-				console.log("h1")
 				saveUserToCookie(response.data.data.userId);
 				saveAuthToCookie(response.data.data.token);
 
