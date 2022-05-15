@@ -1,5 +1,7 @@
 package GaBom.Bom;
 
+import GaBom.Bom.advice.exception.CUserNotFoundException;
+import GaBom.Bom.entity.Travel;
 import GaBom.Bom.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

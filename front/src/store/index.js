@@ -79,6 +79,7 @@ export default new Vuex.Store({
 		},
 		SET_VIEWUSER(state,data){
 			console.log("set_viewuser")
+			console.log(data)
 			state.viewUser.nickName = data.nickName;
 			state.viewUser.followerCount = data.userFollowerCount;
 			state.viewUser.followingCount = data.userFollowingCount;
@@ -88,6 +89,10 @@ export default new Vuex.Store({
 			state.travelList.push(travel);
 		},
 		SET_CARD(state,card){
+<<<<<<< HEAD
+=======
+			console.log(card)
+>>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
 			state.cardList.push(card);
 		},
 		SET_PROFILEIMAGE(state,image){

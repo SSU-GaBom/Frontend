@@ -25,6 +25,9 @@ public class TravelDto {
     private Integer expense;
     private String content;
 
+//    private List<TravelImageDto> base64Images;
+
+    private String transportation;
     public TravelDto(Long travelId, String title, String state, String city, String startDate, String endDate, List<Pin> pinList, Integer expense, String content) {
         this.travelId = travelId;
         this.title = title;
@@ -37,8 +40,4 @@ public class TravelDto {
         this.content = content;
     }
 
-
-    //    private Integer expense;
-//    private String content;
-//    private Transportation transportation;
 }
