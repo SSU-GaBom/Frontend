@@ -1,6 +1,18 @@
 <template>
+<<<<<<< HEAD
   <div id="main">
     <travel-comp />
+=======
+  <div id="main" class="my-3">
+    <travel-comp />
+    <v-divider></v-divider>
+    <travel-comp />
+    <v-divider></v-divider>
+    <travel-comp />
+    <v-divider></v-divider>
+    <travel-comp />
+    <v-divider></v-divider>
+>>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
   </div>
 </template>
 

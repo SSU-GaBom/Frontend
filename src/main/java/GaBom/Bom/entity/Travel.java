@@ -2,7 +2,9 @@ package GaBom.Bom.entity;
 
 
 import GaBom.Bom.dto.UpdateTravelDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -30,14 +32,23 @@ public class Travel{
     private Long travelId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_no")
-    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하는지 고민
-    private User user;
+    @JoinColumn
+//    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하는지 고민
+//    @JsonBackReference
+    private User myuser;
+
+    //TODO :: 좋아요 구현해야함. 게시물마다 이게 내가 좋아요를 눌렀는지에 대한 함수 까지
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+//    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하는지 고민.
+//    @JsonBackReference
+    private User likeuser;
 
 
 //    리뷰 내부의 핀 리스트
     @OneToMany(mappedBy = "travel")
     @Column(name = "pin_list")
+    @JsonManagedReference
     private List<Pin> pinList=new ArrayList<>();
 
     //리뷰 제목
@@ -71,21 +82,21 @@ public class Travel{
     //여행 경비, 본문, 교통수단
     private Integer expense;
     private String content;
-    private Transportation transportation;
+    private String transportation; //TODO: enum으로 바꾸기 (?) 조회하기 쉽게
 
 
 
     //user에 안들어가지는것같음.
 
     //    연관 관계 편의 메소드
-    public void add(Pin pin){
-        pin.setTravel(this);
-        this.pinList.add(pin);
-    }
+//    public void add(Pin pin){
+//        pin.setTravel(this);
+//        this.pinList.add(pin);
+//    }
 
 
     public Travel(User user, String title, Boolean isShared, Integer likedCount, String state, String city) {
-        this.user = user;
+        this.myuser = user;
         this.title = title;
         this.isShared = isShared;
         this.likedCount = likedCount;
@@ -102,7 +113,7 @@ public class Travel{
 
     public static Travel CreateTravel(User user, String title, Boolean isShared, Integer likedCount, String state, String city) {
         Travel travel = new Travel();
-        travel.setUser(user);
+        travel.setMyuser(user);
         travel.title = title;
         travel.isShared = isShared;
         travel.likedCount = likedCount;
