@@ -40,7 +40,7 @@ public class Pin{
 
 
     //pin 과 location : 1 대 다
-    @OneToMany(mappedBy = "pin" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pin" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Column(name="images")
     @JsonManagedReference
     private List<TravelImage> images = new ArrayList<>();
@@ -53,9 +53,9 @@ public class Pin{
 
     private String locationContent;
 
-    public void setTravelImage(TravelImage image){
+    public void setTravelImage(TravelImage image){ //image에 pin 을 설정
         image.setPin(this);
-//        this.images.add(image);
+//        this.images.add(image); //pin에도 image를 등록해야함. 하지만 이미 등록이 된 상태이기때문에
     }
 
 }

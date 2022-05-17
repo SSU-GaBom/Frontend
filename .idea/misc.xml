@@ -5,12 +5,10 @@
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
-<<<<<<< HEAD
-=======
+
   <component name="SwUserDefinedSpecifications">
     <option name="specTypeByUrl">
       <map />
     </option>
   </component>
->>>>>>> 5377bb2a67ce283817d5db183dbda128a8bb5fd9
 </project>

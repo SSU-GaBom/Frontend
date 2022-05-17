@@ -37,12 +37,23 @@ public class Travel{
 //    @JsonBackReference
     private User myuser;
 
+
+
+
+
     //TODO :: 좋아요 구현해야함. 게시물마다 이게 내가 좋아요를 눌렀는지에 대한 함수 까지
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-//    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하는지 고민.
-//    @JsonBackReference
-    private User likeuser;
+    //
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn
+////    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하는지 고민.
+////    @JsonBackReference
+//    private User likeuser;
+
+//    @OneToMany(mappedBy = "travel")
+//    private List<User> likeusers = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "")
+    private List<User> likeusers = new ArrayList<>();
 
 
 //    리뷰 내부의 핀 리스트
@@ -50,6 +61,12 @@ public class Travel{
     @Column(name = "pin_list")
     @JsonManagedReference
     private List<Pin> pinList=new ArrayList<>();
+
+    @OneToMany(mappedBy = "travel")
+    @Column(name = "comment_list")
+    @JsonManagedReference
+    private List<Comment> commentList=new ArrayList<>();
+
 
     //리뷰 제목
     @NotNull
@@ -125,5 +142,10 @@ public class Travel{
     public void updateTravel(UpdateTravelDto updateTravelDto){
         this.title = updateTravelDto.getTitle();
         this.content = updateTravelDto.getContent();
+    }
+
+    public void add (Comment comment){
+        comment.setTravel(this);
+        this.commentList.add(comment);
     }
 }
