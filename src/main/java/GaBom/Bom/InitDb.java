@@ -93,18 +93,6 @@ public class InitDb {
             em.persist(so);
             em.persist(s3o);
 
-//            Travel travel =  Travel.builder()
-//                    .travelId(1L)
-//                    .myuser(so)
-//                    .title("제목1")
-//                    .city("도시1")
-//                    .state("도 1")
-//                    .expense(1000)
-//                    .content("내용")
-//                    .isShared(true)
-//                    .likedCount(3)
-//                    .build();
-//            em.persist(travel);
 
         }
     }

@@ -46,6 +46,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
 
     @Transactional
     public void joinTravel (TravelDto travelDto) {
+        System.out.println("joinStart");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
         // TODO :: 만약 이거 없으면 뭐나옴? ->예외처리 물어보기

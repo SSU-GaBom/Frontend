@@ -1,1 +1,6 @@
 /src/main/resources/application.properties
+/.gradle/
+/.idea/
+/build/
+/out/
+/src/main/java/GaBom/Bom/InitDb

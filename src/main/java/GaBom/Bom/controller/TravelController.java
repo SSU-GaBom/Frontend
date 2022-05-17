@@ -43,7 +43,9 @@ public class TravelController {
         travelService.joinTravel(travelDto);
         return "write"; //Return값 어떻게?
     }
-    @Transactional
+
+
+
     @GetMapping("/{travelId}")
     public GetTravelDto Travel_info(@PathVariable Long travelId){
         Travel travel = travelService.travel_info(travelId);
@@ -51,39 +53,6 @@ public class TravelController {
         return getTravelDto;
     }
 
-
-    //최신순 travellist 모두 Page는 기본 12임.
-//    @Transactional
-//    @GetMapping("/updatelist")
-//    public Page<GetTravelDto> Updatelist(@PageableDefault(size = 12, sort ="updateDate",
-//            direction = Sort.Direction.DESC) Pageable pageable) {
-//        Page<GetTravelDto> travels = travelService.getTravelDtopages(pageable);
-//        return travels;
-//    }
-//
-//    @Transactional
-//    @GetMapping("/likelist")
-//    public Page<GetTravelDto> Likelist(@PageableDefault(size = 12, sort ="likedCount",
-//            direction = Sort.Direction.DESC) Pageable pageable) {
-//        Page<GetTravelDto> travels = travelService.getTravelDtopages(pageable);
-//        return travels;
-//    }
-//
-//    // Travel 자세한 내용 리턴. 지금은 그냥 Title 리턴하게잠 시.
-//
-//
-//    @Transactional
-//    @GetMapping("/{userId}/my_list")
-//    public List<GetTravelDto> viewMyTravelList(@PathVariable String userId){ //userId : 닉네임
-//        List<GetTravelDto> lists = travelService.TravelsByUser(userId);
-//        return lists;
-//    }
-//    @Transactional
-//    @GetMapping("/{userId}/like_list")
-//    public List<GetTravelDto> viewMyTravelList(@PathVariable String userId){ //userId : 닉네임
-//        List<GetTravelDto> lists = travelService.TravelsByUser(userId);
-//        return lists;
-//    }
 
 
 

@@ -1,12 +1,9 @@
 package GaBom.Bom.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-
 
 @Builder
 @Getter

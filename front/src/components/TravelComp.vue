@@ -1,4 +1,19 @@
 <template>
+<<<<<<< HEAD
+  <div>dsfsdfsfsdfsd</div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style scoped>
+div {
+  position: relative;
+  padding-top: 50px;
+}
+</style>
+=======
   <v-container>
     <v-row dense>
       <v-col v-model="items">
@@ -110,3 +125,4 @@ export default {
 </script>
 
 <style scoped></style>
+>>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
