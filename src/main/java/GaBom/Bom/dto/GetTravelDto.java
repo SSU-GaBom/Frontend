@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class GetTravelDto {
 
+    private String userId; //유저의 id임. rkskek
     private Long travelId;
     private String title;
     private String state;
@@ -25,22 +26,12 @@ public class GetTravelDto {
     private Integer expense;
     private String content;
 
+    private Integer likedCount;
     private String transportation;
 
-    public GetTravelDto(Long travelId, String title, String state, String city, String startDate, String endDate, List<Pin> pinList, Integer expense, String content) {
-        this.travelId = travelId;
-        this.title = title;
-        this.state = state;
-        this.city = city;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.pinList = pinList;
-        this.expense = expense;
-        this.content = content;
-        this.transportation=null;
-    }
 
     public GetTravelDto(Travel travel){
+        this.userId=travel.getMyuser().getUserId();
         this.travelId = travel.getTravelId();
         this.title = travel.getTitle();
         this.state = travel.getState();
@@ -50,6 +41,7 @@ public class GetTravelDto {
         this.pinList = travel.getPinList();
         this.expense = travel.getExpense();
         this.content = travel.getContent();
+        this.likedCount=travel.getLikedCount();
         this.transportation=travel.getTransportation();
     }
 

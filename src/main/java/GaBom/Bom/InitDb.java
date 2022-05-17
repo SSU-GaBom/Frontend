@@ -77,11 +77,34 @@ public class InitDb {
                     .followingNum(105)
                     .build();
 
+            User s3o = User.builder()
+                    .nickName("최강씨3")
+                    .emailAuth(true)
+                    .userId("rnsnen")
+                    .userPw(passwordEncoder.encode("rlatldhs33@naver.com"))
+                    .follwerNum(100)
+                    .followingNum(105)
+                    .build();
+
             em.persist(sg);
             em.persist(ex1);
             em.persist(ex2);
             em.persist(ex3);
             em.persist(so);
+            em.persist(s3o);
+
+//            Travel travel =  Travel.builder()
+//                    .travelId(1L)
+//                    .myuser(so)
+//                    .title("제목1")
+//                    .city("도시1")
+//                    .state("도 1")
+//                    .expense(1000)
+//                    .content("내용")
+//                    .isShared(true)
+//                    .likedCount(3)
+//                    .build();
+//            em.persist(travel);
 
         }
     }

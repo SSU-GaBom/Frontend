@@ -5,6 +5,7 @@ import GaBom.Bom.dto.TravelDto;
 import GaBom.Bom.dto.UpdateTravelDto;
 import GaBom.Bom.entity.Pin;
 import GaBom.Bom.entity.Travel;
+import GaBom.Bom.repository.TravelRepository;
 import GaBom.Bom.service.TravelService;
 import GaBom.Bom.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +16,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
 
-@RestController
+//@RestController
 @RequiredArgsConstructor
 @RestControllerAdvice
 //@Transactional
@@ -41,15 +43,7 @@ public class TravelController {
         travelService.joinTravel(travelDto);
         return "write"; //Return값 어떻게?
     }
-
-
-
-
-
-
-
-
-    // Travel 자세한 내용 리턴. 지금은 그냥 Title 리턴하게 잠시.
+    @Transactional
     @GetMapping("/{travelId}")
     public GetTravelDto Travel_info(@PathVariable Long travelId){
         Travel travel = travelService.travel_info(travelId);
@@ -57,14 +51,39 @@ public class TravelController {
         return getTravelDto;
     }
 
-//    @GetMapping("/list/like")
-//    //현재는 그냥 사이즈 3으로 하고 LikeCount 순으로 정렬
-//    @ResponseBody
-//    public Page<GetTravelDto> TravelPageByLikeCount(){
-//        Page<GetTravelDto> page= travelService.TravelsByLikeCount(0,3);
-//        return page;
-//    }
 
+    //최신순 travellist 모두 Page는 기본 12임.
+//    @Transactional
+//    @GetMapping("/updatelist")
+//    public Page<GetTravelDto> Updatelist(@PageableDefault(size = 12, sort ="updateDate",
+//            direction = Sort.Direction.DESC) Pageable pageable) {
+//        Page<GetTravelDto> travels = travelService.getTravelDtopages(pageable);
+//        return travels;
+//    }
+//
+//    @Transactional
+//    @GetMapping("/likelist")
+//    public Page<GetTravelDto> Likelist(@PageableDefault(size = 12, sort ="likedCount",
+//            direction = Sort.Direction.DESC) Pageable pageable) {
+//        Page<GetTravelDto> travels = travelService.getTravelDtopages(pageable);
+//        return travels;
+//    }
+//
+//    // Travel 자세한 내용 리턴. 지금은 그냥 Title 리턴하게잠 시.
+//
+//
+//    @Transactional
+//    @GetMapping("/{userId}/my_list")
+//    public List<GetTravelDto> viewMyTravelList(@PathVariable String userId){ //userId : 닉네임
+//        List<GetTravelDto> lists = travelService.TravelsByUser(userId);
+//        return lists;
+//    }
+//    @Transactional
+//    @GetMapping("/{userId}/like_list")
+//    public List<GetTravelDto> viewMyTravelList(@PathVariable String userId){ //userId : 닉네임
+//        List<GetTravelDto> lists = travelService.TravelsByUser(userId);
+//        return lists;
+//    }
 
 
 
@@ -96,5 +115,6 @@ public class TravelController {
         travelService.deleteTravel(travelId);
         return "deleted";
     }
+
 
 }
