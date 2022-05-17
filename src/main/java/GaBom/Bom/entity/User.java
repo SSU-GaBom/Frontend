@@ -71,7 +71,7 @@ public class User implements UserDetails {
     //@NotNull
     @OneToOne(mappedBy = "user")
     @JsonManagedReference
-    private Image profileImage;
+    private ProfileImage profileImage;
 
     private int followingNum;
     private int follwerNum;
@@ -114,6 +114,10 @@ public class User implements UserDetails {
 //    @OneToMany
 //    @JoinColumn(name = "stored_travel_id")
 //    private List<StoredTravel> storedTravelList = new ArrayList<>();
+
+    public void updatePassword(String userPw){
+        this.userPw = userPw;
+    }
 
     //이건 유저 이름 리턴하는건데 getUsername 오버라이드 된 것 때문에 오류 생겨서 getter로 안되는 듯
     public String getUserName(){

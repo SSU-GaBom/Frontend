@@ -44,3 +44,9 @@ extensionException:
 imageNotFoundException:
   code: "-1013"
   msg: "이미지가 존재하지 않습니다."
+<<<<<<< HEAD
+randomIntNotExistsException:
+  code: "-1014"
+  msg: "난수가 db에 존재하지 않습니다."
+=======
+>>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586

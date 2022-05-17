@@ -1,7 +1,6 @@
 package GaBom.Bom.dto;
 
-import GaBom.Bom.entity.Image;
-import GaBom.Bom.entity.User;
+import GaBom.Bom.entity.ProfileImage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class FollowDto {
 
     private long id;
-    private Image profileImage;
+    private ProfileImage profileImage;
     private String name;
     private String loginUser;
     private int followState;

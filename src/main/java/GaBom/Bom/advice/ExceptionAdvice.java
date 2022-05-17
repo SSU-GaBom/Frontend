@@ -96,6 +96,12 @@ public class ExceptionAdvice {
         return responseService.getFailResult(Integer.valueOf(getMessage("relationAlreadyExistsException.code")), getMessage("relationAlreadyExistsException.msg"));
     }
 
+    @ExceptionHandler(CRandomIntNotExistsException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult randomIntNotExistsException(HttpServletRequest request, CRandomIntNotExistsException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("randomIntNotExistsException.code")), getMessage("randomIntNotExistsException.msg"));
+    }
+
     @ExceptionHandler(CNotSameUserException.class)
     @ResponseStatus(HttpStatus.OK)
     protected CommonResult notSameUserException(HttpServletRequest request, CNotSameUserException e) {

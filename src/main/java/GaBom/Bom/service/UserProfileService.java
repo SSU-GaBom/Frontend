@@ -4,17 +4,15 @@ import GaBom.Bom.advice.exception.CImageNotFoundException;
 import GaBom.Bom.advice.exception.CNotSameUserException;
 import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.component.FileHandler;
-import GaBom.Bom.configuration.security.JwtTokenProvider;
 import GaBom.Bom.dto.UserProfileDto;
-import GaBom.Bom.entity.Image;
+import GaBom.Bom.entity.ProfileImage;
 import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
-import GaBom.Bom.repository.ImageRepository;
+import GaBom.Bom.repository.ProfileImageRepository;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -29,7 +27,7 @@ import java.io.IOException;
 public class UserProfileService {
 
     private final UserRepository userRepository;
-    private final ImageRepository imageRepository;
+    private final ProfileImageRepository profileImageRepository;
     private final ResponseService responseService;
     private final FileHandler fileHandler;
 
@@ -44,7 +42,7 @@ public class UserProfileService {
         byte profileImageByte[];
 
         try {
-            Image profileImage = user.getProfileImage();
+            ProfileImage profileImage = user.getProfileImage();
             profileImageByte = fileHandler.getProfileImageByte(user.getProfileImage());
         }catch (NullPointerException e){
             profileImageByte = null;
@@ -81,26 +79,27 @@ public class UserProfileService {
         if(!user.getUserId().equals(authentication.getName()))
             throw new CNotSameUserException();
 
-        Image profileImage =  fileHandler.parseFileInfo(user, profileImageFile);
+        ProfileImage profileImage =  fileHandler.parseFileInfo(user, profileImageFile);
 
         log.info("imageBuild complete");
 
         if(user.getProfileImage() == null){
             log.info("image file is null");
-            imageRepository.save(profileImage);
+            profileImageRepository.save(profileImage);
             user.setProfileImage(profileImage);
             log.info(user.getProfileImage().getOriginal_file_name());
         }
         else{
             log.info("image file is not null");
-            Image currentProfileImage = imageRepository.findByUser(user).orElseThrow(CImageNotFoundException::new);
+            ProfileImage currentProfileImage = profileImageRepository.findByUser(user).orElseThrow(CImageNotFoundException::new);
+            currentProfileImage.updateProfileImage(profileImage.getOriginal_file_name(), profileImage.getStored_file_path(), profileImage.getFile_size());
             log.info(currentProfileImage.getOriginal_file_name());
             currentProfileImage.updateProfileImage(profileImage.getOriginal_file_name(), profileImage.getStored_file_path(), profileImage.getFile_size());
         }
 
         log.info(user.getProfileImage().getOriginal_file_name());
 
-        return responseService.getSingleResult(user.getProfileImage().getStored_file_path());
+        return responseService.getSingleResult("update completed");
     }
 
     @Transactional
@@ -117,7 +116,7 @@ public class UserProfileService {
         }
 
         user.setProfileImage(null);
-        imageRepository.deleteByUser(user);
+        profileImageRepository.deleteByUser(user);
         return responseService.getSuccessResult();
     }
 }

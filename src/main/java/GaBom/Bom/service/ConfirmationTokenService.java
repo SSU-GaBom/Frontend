@@ -32,7 +32,7 @@ public class ConfirmationTokenService {
         Assert.hasText(userId,"userId는 필수 입니다.");
         Assert.hasText(receiverEmail,"receiverEmail은 필수 입니다.");
 
-        emailService.setMessage(receiverEmail, userId, "http://localhost:8081/api/confirm-email?token=");
+        emailService.pageAuth(receiverEmail, userId, "http://localhost:8081/api/confirm-email?token=");
     }
 
     /**

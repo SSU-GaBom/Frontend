@@ -22,7 +22,11 @@
       <!-- 작성자, 추천 수, 저장 수, 댓글 수 -->
       <v-row align="center" class="mx-0 my-0">
         <v-icon size="28px" color="black darken-4">mdi-account</v-icon>
+<<<<<<< HEAD
+        <v-btn max-width="120px" text>
+=======
         <v-btn max-width="120px" text @click="toProfilePage()">
+>>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
           <v-text style="text-decoration: underline">{{ author }}</v-text>
         </v-btn>
 
@@ -31,7 +35,11 @@
           <v-text class="ms-2">{{ recommendNum }}</v-text>
         </v-btn>
 
+<<<<<<< HEAD
+        <v-btn text color="red lighten-0">
+=======
         <v-btn max-width="80px" text color="red lighten-0">
+>>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
           <v-icon>mdi-cards-heart</v-icon>
           <v-text class="ms-2">{{ wishNum }}</v-text>
         </v-btn>
@@ -118,7 +126,11 @@ import CommentComp from "./CommentComp.vue";
 export default {
   data: () => ({
     title: "올해 최고의 제주도 여행 !!!",
+<<<<<<< HEAD
+    author: "username",
+=======
     author: "ex1",
+>>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
     recommendNum: 293,
     wishNum: 12,
     province: "제주특별자치도",
@@ -134,6 +146,11 @@ export default {
   methods: {
     reserve() {
       this.loading = true;
+<<<<<<< HEAD
+
+      setTimeout(() => (this.loading = false), 2000);
+    },
+=======
       setTimeout(() => (this.loading = false), 2000);
     },
     toProfilePage(){
@@ -145,6 +162,7 @@ export default {
   },
   created() {
     this.fetchTravelInfo();
+>>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
   },
   components: {
     CommentComp,
