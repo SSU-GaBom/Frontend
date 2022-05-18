@@ -3,8 +3,6 @@ import store from '../store/index'
 
 function writeTravel(travelDto){
     console.log("writeTravel")
-
-    
     console.log(travelDto)
     // for (let i = 0; i < travelDto.pinList.length; i++) {
     //     console.log(travelDto.pinList[i].location)
@@ -14,4 +12,9 @@ function writeTravel(travelDto){
     return auth.post(`/travel`,travelDto)
 }
 
-export { writeTravel}
+function getTravel() {
+    console.log("getList")
+    return auth.get(`/travellist/update`)
+}
+
+export {writeTravel, getTravel}
