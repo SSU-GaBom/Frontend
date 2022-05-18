@@ -55,6 +55,9 @@ public class Travel{
     @ManyToMany(mappedBy = "")
     private List<User> likeusers = new ArrayList<>();
 
+//    @ManyToMany(mappedBy = "")
+//    private List<User> zzimusers = new ArrayList<>();
+
 
 //    리뷰 내부의 핀 리스트
     @OneToMany(mappedBy = "travel")

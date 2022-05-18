@@ -1,6 +1,6 @@
 package GaBom.Bom.repository;
 
-import GaBom.Bom.entity.Image;
+//import GaBom.Bom.entity.Image;
 import GaBom.Bom.entity.TravelImage;
 import GaBom.Bom.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

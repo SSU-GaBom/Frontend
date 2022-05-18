@@ -1,6 +1,6 @@
 package GaBom.Bom.dto;
 
-import GaBom.Bom.entity.Image;
+//import GaBom.Bom.entity.Image;
 import GaBom.Bom.entity.Pin;
 import GaBom.Bom.entity.Transportation;
 import GaBom.Bom.entity.Travel;

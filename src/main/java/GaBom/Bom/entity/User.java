@@ -102,6 +102,10 @@ public class User implements UserDetails {
     @JoinColumn(name="travel_id")
     private List<Travel> LikedTravelList = new ArrayList<>();
 
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name="travel_id")
+//    private List<Travel> zzimTravelList = new ArrayList<>();
+
 
 
 //    @OneToMany(mappedBy="user")
