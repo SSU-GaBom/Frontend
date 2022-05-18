@@ -1,6 +1,7 @@
 package GaBom.Bom.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -83,7 +84,7 @@ public class User implements UserDetails {
     //내가 쓴 리뷰 리스트
     @OneToMany(mappedBy = "myuser")
     @Column(name = "my_travel_list")
-//    @JsonBackReference
+    @JsonBackReference
     private List<Travel> myTravelList = new ArrayList<>();
 
     //찜을 누른 리뷰 리스트
@@ -100,11 +101,13 @@ public class User implements UserDetails {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="travel_id")
+    @JsonIgnore
     private List<Travel> LikedTravelList = new ArrayList<>();
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name="travel_id")
-//    private List<Travel> zzimTravelList = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="travel_id")
+    @JsonIgnore
+    private List<Travel> zzimTravelList = new ArrayList<>();
 
 
 
@@ -206,4 +209,20 @@ public class User implements UserDetails {
         }
 
     }
+
+//    public void addZzimTravel(Travel travel) {
+//        this.getZzimTravelList().add(travel);
+//        travel.getZzimusers().add(this);
+//        travel.setZzimCount(travel.getZzimCount()+1);
+//    }
+//
+//    public void cancelZzimTravel(Travel travel) {
+//        if(travel.getZzimCount()<=0){
+//            log.info("찜 수가 0보다 작음. 오류. ");
+//        }else {
+//            this.getZzimTravelList().remove(travel);
+//            travel.getZzimusers().remove(this);
+//            travel.setZzimCount(travel.getZzimCount() - 1);
+//        }
+//    }
 }

@@ -36,28 +36,34 @@ export default {
           const data = {
             nickName : response.data.data.nickName,
             userFollowerCount : response.data.data.userFollowerCount,
+
             userFollowingCount : response.data.data.userFollowingCount,
-            profileImage : response.data.data.profileImage
-            // myTravelList : response.data.data.myTravelList,
+            profileImage : response.data.data.profileImage,
+            myTravelList : response.data.data.myTravelList,
             // likedTravelList : response.data.data.likedTravelList
           }
           store.commit('SET_VIEWUSER',data)
 
         }else{ // 마이페이지로 들어온경우
-          
+          console.log("hihi")
           const response = await getUserInfo(store.state.user.nickName)
+
+          console.log("response data : ")
           console.log(response.data)
-          
+
           const data = {
             nickName : response.data.data.nickName,
             userFollowerCount : response.data.data.userFollowerCount,
             userFollowingCount : response.data.data.userFollowingCount,
-            profileImage : response.data.data.profileImage
-            // myTravelList : response.data.data.myTravelList,
+            profileImage : response.data.data.profileImage,
+            myTravelList : response.data.data.myTravelList,
             // likedTravelList : response.data.data.likedTravelList
           }
           store.commit('SET_VIEWUSER',data)
-          
+          console.log("data.getmyNickname: ")
+          console.log(data.nickName)
+          console.log("data.getmytravellist : ")
+          console.log(data.myTravelList)
         }
         
         
