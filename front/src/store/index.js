@@ -56,7 +56,11 @@ export default new Vuex.Store({
 		},
 		profileImage(state){
 			return state.viewUser.profileImage;
-		}
+		},
+	  	travelList(state){
+			return state.viewUser.travelList;
+	  	}
+		  // 시온추가
 	},
   mutations: {
 		SET_USER(state, data) {
@@ -84,7 +88,9 @@ export default new Vuex.Store({
 			state.viewUser.followerCount = data.userFollowerCount;
 			state.viewUser.followingCount = data.userFollowingCount;
 			state.viewUser.profileImage = data.profileImage;
-		},
+			state.viewUser.travelList=data.myTravelList;
+			// state.viewUser.wishList=data.lik
+			},
 		SET_TRAVEL(state,travel){
 			state.travelList.push(travel);
 		},

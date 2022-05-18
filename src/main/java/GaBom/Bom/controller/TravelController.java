@@ -41,6 +41,7 @@ public class TravelController {
 
     @PostMapping("")
     public String writeTravel(@RequestBody TravelDto travelDto) throws IOException { //로그인세션에 맞춰서 Travel 쓰도록 하기
+
         travelService.joinTravel(travelDto);
         return "write"; //Return값 어떻게?
     }

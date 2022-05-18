@@ -70,6 +70,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
                 .content(travelDto.getContent())
                 .isShared(false)
                 .likedCount(0)
+                .ZzimCount(0)
                 .transportation(travelDto.getTransportation())
                 .build();
 
@@ -109,22 +110,22 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
         return true;
     }
 
-    @Transactional
-    public List<GetTravelDto> TravelsByUpdateTime(){
-        List<Travel> travels =travelRepository.findAll();
-        List<GetTravelDto> lists= new ArrayList<>();
-        for (Travel travel : travels) {
-            List<Pin> pinList = travel.getPinList();
-            Hibernate.initialize(pinList); //정보확인
-            for (Pin pin : pinList) {
-                Hibernate.initialize(pin.getImages());
-            }
-            Hibernate.initialize(travel.getPinList());
-            //lazy
-            lists.add(new GetTravelDto(travel));
-        }
-        return lists;
-    }
+//    @Transactional
+//    public List<GetTravelDto> TravelsByUpdateTime(){
+//        List<Travel> travels =travelRepository.findAll();
+//        List<GetTravelDto> lists= new ArrayList<>();
+//        for (Travel travel : travels) {
+//            List<Pin> pinList = travel.getPinList();
+//            Hibernate.initialize(pinList); //정보확인
+//            for (Pin pin : pinList) {
+//                Hibernate.initialize(pin.getImages());
+//            }
+//            Hibernate.initialize(travel.getPinList());
+//            //lazy
+//            lists.add(new GetTravelDto(travel));
+//        }
+//        return lists;
+//    }
 
 
     @Transactional

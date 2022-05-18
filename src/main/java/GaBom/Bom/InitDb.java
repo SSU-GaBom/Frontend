@@ -92,9 +92,6 @@ public class InitDb {
             em.persist(ex3);
             em.persist(so);
             em.persist(s3o);
-
-
         }
     }
-
 }
