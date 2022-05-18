@@ -19,11 +19,8 @@
         color="white"
         elevation="1"
         >
-<<<<<<< HEAD
-        <v-file-input  prepend-icon="mdi-camera" multiple v-model="card.images" show-size label="File input"></v-file-input>
-=======
+
         <v-file-input  prepend-icon="mdi-camera" multiple v-model="images" show-size label="File input"></v-file-input>
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
         <v-textarea
             v-model="card.text"
             label="소개글"
@@ -46,10 +43,7 @@ export default {
     data() {
         return {
             dialog : false,
-<<<<<<< HEAD
-=======
             images : [],
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
             card : {
                 images : [],
                 text : null
@@ -58,11 +52,7 @@ export default {
     },
     methods: {
         addCard(){
-<<<<<<< HEAD
-          
-          store.commit('SET_CARD',this.card)
-          this.dialog = false;
-=======
+
           for (let index = 0; index < this.images.length; index++) {
             let image = {
               fileName : this.images[index].name,
@@ -85,7 +75,6 @@ export default {
             reader.onload = () => resolve(reader.result);
             reader.onerror = error => reject(error);
          });
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
         }
     }
 }

@@ -25,11 +25,8 @@ export default {
   methods: {
      async fetchUserInfo(){
         console.log("fetchUserInfo1")
-<<<<<<< HEAD
-        console.log(this.$route.query.nickName)
-=======
+
         console.log(this.$route.params.userNickName)
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
         // 닉네임을 타고 들어온경우
         if(this.$route.params.userNickName){
           

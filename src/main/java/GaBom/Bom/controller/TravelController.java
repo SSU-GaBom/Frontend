@@ -26,9 +26,10 @@ import java.util.List;
 //@RestController
 @RequiredArgsConstructor
 @RestControllerAdvice
-//@Transactional
+@Transactional
 @Slf4j
 @RequestMapping("/api/travel")
+
 public class TravelController {
     private final TravelService travelService;
     // 예외 핸들러

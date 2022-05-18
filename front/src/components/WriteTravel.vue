@@ -442,26 +442,12 @@ export default {
     async onSubmitForm() {
       if (this.$refs.form.validate()) {
         const pinList = [];
-<<<<<<< HEAD
-=======
         var reader = new FileReader();
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
 
         //핀 만들기
         for (let i = 0; i < this.travelList.length; i++) {
           //사진 + 글
-<<<<<<< HEAD
-          let formData = new FormData();
 
-          for (let j = 0; j < this.cardList[i].images.length; j++) {
-            formData.append("images", this.cardList[i].images[j]);
-          }
-
-          let pin = {
-            location : this.travelList[i],
-            locationContent : this.cardList[i].text,
-            images : formData
-=======
           // let formData = new FormData();
 
           // for (let j = 0; j < this.cardList[i].images.length; j++) {
@@ -473,7 +459,6 @@ export default {
             location : this.travelList[i],
             locationContent : this.cardList[i].text,
             images : this.cardList[i].images
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
           }
 
           // //장소
@@ -483,11 +468,7 @@ export default {
           // };
 
           pinList.push(pin);
-<<<<<<< HEAD
-          console.log(pin.images.getAll("images"));
-=======
           
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
         }
 
         const travelDto = {
