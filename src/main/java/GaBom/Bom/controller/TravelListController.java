@@ -39,6 +39,17 @@ public class TravelListController {
         return travels;
     }
 
+    //제목 검색해보기
+    @GetMapping("/find/{title}")
+    public Page<GetTravelDto> FindTitles(@PathVariable String title,@PageableDefault(size = 4, sort ="likedCount",
+            direction = Sort.Direction.DESC) Pageable pageable){
+        Page<GetTravelDto> titlePages = travelService.getTitlePages(title, pageable);
+        System.out.println("titlePages.getContent() = " + titlePages.getContent());
+        System.out.println("titlePages.getTotalPages() = " + titlePages.getTotalPages());
+        return titlePages;
+    }
+
+
     // Travel 자세한 내용 리턴. 지금은 그냥 Title 리턴하게잠 시.
 
 //
