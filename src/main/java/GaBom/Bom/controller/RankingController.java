@@ -26,6 +26,11 @@ public class RankingController {
     @GetMapping("")
     public RankingDto showRank(){
         RankingDto rankingDto = rankingService.findRank();
+        log.info("rankingDto print!");
+        System.out.println("rankingDto = " + rankingDto);
+        System.out.println("rankingDto.getRankingZzimDtos() = " + rankingDto.getRankingZzimDtos());
+        System.out.println("rankingDto.getRankingFollowDto() = " + rankingDto.getRankingFollowDto());
+        System.out.println("rankingDto.getRankingRecommend = " + rankingDto.getRankingRecommendDtos());
         return rankingDto;
     }
 }

@@ -36,28 +36,43 @@ public class RankingService {
 
 
     public RankingDto findRank(){
+        log.info("ranking start");
         RankingDto rankingDto = new RankingDto();
-        List<RankingRecommendDto> rankingRecommendDtos = new ArrayList<>();
-        List<RankingZzimDto> rankingZzimDto = new ArrayList<>();
-        List<RankingFollowDto> rankingFollowDtos = new ArrayList<>();
+        try {
 
-        //정렬
-        extractedRecommend(rankingRecommendDtos);
 
-        Pageable sortedByZzimcount =
-                PageRequest.of(0, 10,  Sort.by("zzimCount").descending());
-        Page<Travel> Zzim_travel =  travelRepository.findAll(sortedByZzimcount);
-        List<Travel> tmptravels = Zzim_travel.getContent();
-        for (Travel tmptravel : tmptravels) {
-            rankingZzimDto.add(new RankingZzimDto(tmptravel));
+            List<RankingRecommendDto> rankingRecommendDtos = new ArrayList<>();
+            List<RankingZzimDto> rankingZzimDto = new ArrayList<>();
+            List<RankingFollowDto> rankingFollowDtos = new ArrayList<>();
+            //정렬
+            log.info("extract Recommend");
+
+            extractedRecommend(rankingRecommendDtos);
+
+            log.info("extract Zzim");
+
+            Pageable sortedByzzimcount =
+                    PageRequest.of(0, 10,  Sort.by(Sort.Direction.DESC,"zzimCount"));
+//                    PageRequest.of(0, 10, Sort.by("zzimCount").descending());
+            Page<Travel> Zzim_travel = travelRepository.findAll(sortedByzzimcount);
+            List<Travel> tmptravels = Zzim_travel.getContent();
+            for (Travel tmptravel : tmptravels) {
+                rankingZzimDto.add(new RankingZzimDto(tmptravel));
+            }
+            log.info("extract Follower");
+
+
+            extractedFollwers(rankingFollowDtos);
+            //travel -> like순으로 돌리기
+            rankingDto.setRankingRecommendDtos(rankingRecommendDtos);
+            rankingDto.setRankingZzimDtos(rankingZzimDto);
+            rankingDto.setRankingFollowDto(rankingFollowDtos);
+
+            log.info("Ranking end");
+            return rankingDto;
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
-        extractedFollwers(rankingFollowDtos);
-        //travel -> like순으로 돌리기
-        rankingDto.setRankingRecommendDtos(rankingRecommendDtos);
-        rankingDto.setRankingZzimDtos(rankingZzimDto);
-        rankingDto.setRankingFollowDto(rankingFollowDtos);
-
         return rankingDto;
     }
 
@@ -82,23 +97,52 @@ public class RankingService {
 //    }
 
     private void extractedRecommend(List<RankingRecommendDto> rankingRecommendDtos) {
+        log.info("recommend 1");
         Pageable sortedByLikeCount =
-                PageRequest.of(0, 10,  Sort.by("likeCount").descending());
-        Page<Travel> Like_travels =  travelRepository.findAll(sortedByLikeCount);
-        List<Travel> tmptravels = Like_travels.getContent();
-        for (Travel tmptravel : tmptravels) {
-            rankingRecommendDtos.add(new RankingRecommendDto(tmptravel));
+                PageRequest.of(0, 10,  Sort.by(Sort.Direction.DESC,"likedCount"));
+//                PageRequest.of(0, 10,  Sort.by("likeCount").descending());
+        log.info("recommend 2");
+        try {
+            Page<Travel> Like_travels = travelRepository.findAll(sortedByLikeCount);
+            log.info("recommend 3");
+            List<Travel> tmptravels = Like_travels.getContent();
+            log.info("recommend 5");
+
+            for (Travel tmptravel : tmptravels) {
+                rankingRecommendDtos.add(new RankingRecommendDto(tmptravel));
+            }
+            log.info("recommend 4");
+        }catch(Exception e){
+            e.printStackTrace();
         }
+//        log.info("recommend 3");
+//        List<Travel> tmptravels = Like_travels.getContent();
+//        log.info("recommend 5");
+//
+//        for (Travel tmptravel : tmptravels) {
+//            rankingRecommendDtos.add(new RankingRecommendDto(tmptravel));
+//        }
+//        log.info("recommend 4");
+
+
+
     }
 
     private void extractedZzim(List<RankingRecommendDto> rankingRecommendDtos) {
+        System.out.println(" 1!");
         Pageable sortedByLikeCount =
                 PageRequest.of(0, 10,  Sort.by("likeCount").descending());
+        System.out.println(" 2!");
+
         Page<Travel> Like_travels =  travelRepository.findAll(sortedByLikeCount);
+        System.out.println(" 3!");
+
         List<Travel> tmptravels = Like_travels.getContent();
         for (Travel tmptravel : tmptravels) {
             rankingRecommendDtos.add(new RankingRecommendDto(tmptravel));
         }
+        System.out.println(" 4!");
+
     }
 
 

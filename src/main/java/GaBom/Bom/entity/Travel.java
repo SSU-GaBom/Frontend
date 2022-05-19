@@ -95,7 +95,7 @@ public class Travel{
     private Integer likedCount;
 
     @NotNull
-    private Integer ZzimCount;
+    private Integer zzimCount;
 
     //도 or 특별시
     @NotNull

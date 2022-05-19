@@ -12,12 +12,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class RankingFollowDto {
     @NotNull
-    public String NickName;
+    public String nickName;
     @NotNull
-    public Integer FollowerNums;
+    public Integer followerNums;
 
     public RankingFollowDto(User user) {
-        NickName = user.getNickName();
-        FollowerNums = user.getFollwerNum();
+        nickName = user.getNickName();
+        followerNums = user.getFollwerNum();
     }
 }
