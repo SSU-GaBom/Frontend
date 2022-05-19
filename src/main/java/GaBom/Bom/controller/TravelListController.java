@@ -1,6 +1,7 @@
-package GaBom.Bom.service;
+package GaBom.Bom.controller;
 
 import GaBom.Bom.dto.GetTravelDto;
+import GaBom.Bom.service.TravelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -49,6 +50,12 @@ public class TravelListController {
     @GetMapping("/{userId}/like_list")
     public List<GetTravelDto> viewMyLikeList(@PathVariable String userId){ //userId : 닉네임
         List<GetTravelDto> lists = travelService.MyLikeTravels(userId);
+        return lists;
+    }
+
+    @GetMapping("/{userId}/zzim_list")
+    public List<GetTravelDto> viewMyZzimikeList(@PathVariable String userId){ //userId : 닉네임
+        List<GetTravelDto> lists = travelService.MyZzimTravels(userId);
         return lists;
     }
 

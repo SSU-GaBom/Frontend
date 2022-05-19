@@ -72,7 +72,7 @@ public class InitDb {
                     .nickName("최강씨2")
                     .emailAuth(true)
                     .userId("rkskek")
-                    .userPw(passwordEncoder.encode("rlatldhs33@naver.com"))
+                    .userPw(passwordEncoder.encode("1234567890"))
                     .follwerNum(100)
                     .followingNum(105)
                     .build();
@@ -81,7 +81,7 @@ public class InitDb {
                     .nickName("최강씨3")
                     .emailAuth(true)
                     .userId("rnsnen")
-                    .userPw(passwordEncoder.encode("rlatldhs33@naver.com"))
+                    .userPw(passwordEncoder.encode("1234567890"))
                     .follwerNum(100)
                     .followingNum(105)
                     .build();
@@ -92,6 +92,7 @@ public class InitDb {
             em.persist(ex3);
             em.persist(so);
             em.persist(s3o);
+
         }
     }
 }

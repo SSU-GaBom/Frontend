@@ -29,7 +29,6 @@ import java.util.List;
 @Transactional
 @Slf4j
 @RequestMapping("/api/travel")
-
 public class TravelController {
     private final TravelService travelService;
     // 예외 핸들러
