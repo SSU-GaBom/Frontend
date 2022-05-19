@@ -37,7 +37,8 @@ public class TravelImageService {
 //    private final TravelFileHandler travelFileHandler;
     private final PinRepository pinRepository;
 
-    @Value("C:\\Users\\sion\\Desktop\\") //변경가능
+
+    @Value("C:\\Users\\yoon971224\\Desktop") //변경가능
     private String imageDir;
 
     public String getFullPath(String fileName) {
