@@ -206,6 +206,15 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
         return travels;
     }
 
+    @Transactional
+    public Page<GetTravelDto> getTitlePages(String title,Pageable pageable){
+        Page<Travel> pages = travelRepository.findByTitleContaining(title,pageable);
+        for (Travel page : pages) {
+            initHibernate(page);
+        }
+        Page<GetTravelDto> getTravelDtos= pages.map(GetTravelDto::new);
+        return getTravelDtos;
+    }
 
     //Json으로 Lazy로 안딸려나와서 만든 함수. 이렇게 하는게 맞나?
     void initHibernate(Travel travel){

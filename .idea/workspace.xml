@@ -11,16 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="각 서비스들 코드 정리, 팔로우 컨트롤러 오류 찾음.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Travel$TravelBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Travel$TravelBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Travel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Travel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelImageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelImageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/TravelRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/TravelRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/InitDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/RankingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/RankingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/RankingFollowDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/RankingFollowDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Travel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Travel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/RankingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/RankingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/TravelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/TravelRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -292,7 +286,7 @@
       <workItem from="1652833197606" duration="171000" />
       <workItem from="1652833467700" duration="587000" />
       <workItem from="1652834076739" duration="13457000" />
-      <workItem from="1652850754076" duration="36016000" />
+      <workItem from="1652850754076" duration="40130000" />
     </task>
     <servers />
   </component>
