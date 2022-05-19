@@ -70,7 +70,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
                 .content(travelDto.getContent())
                 .isShared(false)
                 .likedCount(0)
-                .ZzimCount(0)
+                .zzimCount(0)
                 .transportation(travelDto.getTransportation())
                 .build();
 

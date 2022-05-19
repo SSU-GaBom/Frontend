@@ -34,11 +34,10 @@ import static org.apache.commons.io.FilenameUtils.getFullPath;
 public class TravelImageService {
     private final TravelImageRepository travelImageRepository;
     private final UserRepository userRepository;
-//    private final TravelFileHandler travelFileHandler;
     private final PinRepository pinRepository;
 
 
-    @Value("C:\\Users\\yoon971224\\Desktop") //변경가능
+    @Value("C:\\Users\\sion\\Desktop\\") //변경가능
     private String imageDir;
 
     public String getFullPath(String fileName) {
@@ -48,23 +47,13 @@ public class TravelImageService {
     public void createPin(Pin pin, List<TravelImage> base64Images) throws IOException {
         //이미지를 실제로 저장하고 이미지객체를 아이템과 연관시키기
         for (TravelImage base64Image : base64Images) {
-//            TravelImage image = travelImage(base64Image);
-//            String filetype = base64Image.getFileName().split(".")[1];
             TravelImage image3 = travelImage(base64Image);
-//            base64Image.setBase64Image(image3.getBase64Image());
-            //현재 TravelImage의 fileName에는 기존 값이 들어가있음.
             System.out.println("!! base64Image = " + base64Image.getFileName());
             String[] filetype = base64Image.getFileName().split("\\.");
             if(filetype.length>0) base64Image.setIdentifier(filetype[filetype.length-1]);
             base64Image.setTravelFileName(image3.getTravelFileName());
-
-            //경로 + filename
-//            base64Image.setFilePathAndName(base64Image.getTravelFileName());
-            //base64Image에 있는 값
             pin.setTravelImage(base64Image);
-            log.info("here1");
         }
-//        pinRepository.save(pin); // <-- pin_id는 달라도 id 는 같을 수도 있음.
     }
 
 //    public List<TravelImage> readImage(Pin pin) throws IOException {
@@ -85,26 +74,15 @@ public class TravelImageService {
     public TravelImage travelImage(TravelImage image) throws IOException
     {
         log.info("Service : travelImage");
-//        String filetype = image.getFileName().split(".")[1];
         String travelFileName = createTravelFileName(image.getFileName()); //파일이름
-//        String File
-        //이미지 저장
-        System.out.println("travelFileName = " + travelFileName);
-        System.out.println("getFullPath(travelFileName) = " + getFullPath(travelFileName));
-        System.out.println(" 파일 저장 시작 ");
         File imagefile = new File(getFullPath(travelFileName));
         byte[] decodeBytes = Base64.getDecoder().decode(image.getBase64Image().getBytes());
         FileOutputStream fos = new FileOutputStream(imagefile);
         fos.write(decodeBytes);
         fos.close();
-        //
-        log.info("after image upload");
-        //경로:
         String path = getFullPath(travelFileName);
-
         log.info("Service : travelImage2");
         return TravelImage.builder()
-//                    .uploadFileName(image.getFileName())
                     .travelFileName(path)
                     .build();
     }
