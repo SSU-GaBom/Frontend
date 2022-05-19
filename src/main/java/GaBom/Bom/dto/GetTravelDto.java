@@ -16,6 +16,8 @@ import java.util.List;
 public class GetTravelDto {
 
     private String userId; //유저의 id임. rkskek
+
+    private String userNickname;
     private Long travelId;
     private String title;
     private String state;
@@ -27,11 +29,13 @@ public class GetTravelDto {
     private String content;
 
     private Integer likedCount;
+
+    private Integer zzimCount;
     private String transportation;
 
 
     public GetTravelDto(Travel travel){
-        this.userId=travel.getMyuser().getUserId();
+        this.userNickname=travel.getMyuser().getNickName();
         this.travelId = travel.getTravelId();
         this.title = travel.getTitle();
         this.state = travel.getState();
@@ -41,6 +45,7 @@ public class GetTravelDto {
         this.pinList = travel.getPinList();
         this.expense = travel.getExpense();
         this.content = travel.getContent();
+        this.zzimCount=travel.getZzimCount();
         this.likedCount=travel.getLikedCount();
         this.transportation=travel.getTransportation();
     }

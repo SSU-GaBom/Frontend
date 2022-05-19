@@ -169,6 +169,28 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
         return lists;
     }
 
+    @Transactional
+    public List<GetTravelDto> MyZzimTravels(String userId){
+        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
+        List<Travel> LikeTravelList = user.getZzimTravelList();
+        System.out.println(" 찜 list 출력");
+        for (Travel travel : LikeTravelList) {
+            System.out.println("travel.getTitle() = " + travel.getTitle());
+        }
+        //없으면??
+        List<GetTravelDto> lists= new ArrayList<>();
+        for (Travel travel : LikeTravelList) {
+            List<Pin> pinList = travel.getPinList();
+            Hibernate.initialize(pinList); //정보확인
+            for (Pin pin : pinList) {
+                Hibernate.initialize(pin.getImages());
+            }
+            Hibernate.initialize(travel.getPinList());
+            lists.add(new GetTravelDto(travel));
+        }
+        return lists;
+    }
+
 
     @Transactional
     public void deleteTravel(Long travelId) { travelRepository.deleteByTravelId(travelId);

@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Entity
 @Slf4j
+@Transactional
 //@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class User implements UserDetails {
 
@@ -74,8 +76,8 @@ public class User implements UserDetails {
     @JsonManagedReference
     private ProfileImage profileImage;
 
-    private int followingNum;
-    private int follwerNum;
+    private Integer followingNum;
+    private Integer follwerNum;
 
     private String provider;
     private String refreshToken;
@@ -210,19 +212,21 @@ public class User implements UserDetails {
 
     }
 
-//    public void addZzimTravel(Travel travel) {
-//        this.getZzimTravelList().add(travel);
-//        travel.getZzimusers().add(this);
-//        travel.setZzimCount(travel.getZzimCount()+1);
-//    }
-//
-//    public void cancelZzimTravel(Travel travel) {
-//        if(travel.getZzimCount()<=0){
-//            log.info("찜 수가 0보다 작음. 오류. ");
-//        }else {
-//            this.getZzimTravelList().remove(travel);
-//            travel.getZzimusers().remove(this);
-//            travel.setZzimCount(travel.getZzimCount() - 1);
-//        }
-//    }
+    public void addZzimTravel(Travel travel) {
+        System.out.println("before : this.getLikedTravelList() = " + this.getZzimTravelList());
+        System.out.println("travel.getLikeusers() = " + travel.getZzimusers());
+        this.getZzimTravelList().add(travel);
+        travel.getZzimusers().add(this);
+        travel.setZzimCount(travel.getZzimCount()+1);
+    }
+
+    public void cancelZzimTravel(Travel travel) {
+        if(travel.getZzimCount()<=0){
+            log.info("찜 수가 0보다 작음. 오류. ");
+        }else {
+            this.getZzimTravelList().remove(travel);
+            travel.getZzimusers().remove(this);
+            travel.setZzimCount(travel.getZzimCount() - 1);
+        }
+    }
 }
