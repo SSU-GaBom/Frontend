@@ -29,8 +29,8 @@
               <v-card-text class="row mx-0 py-0 pb-0">
                 <v-icon fixed size="1"> mdi-account </v-icon>
                 <v-text class="ms-2" style="font-size: 1px">
-                  {{travelList[0].title}}
-<!--                  {{ items[0].author }}-->
+                  {{ travelList[0].title }}
+                  <!--                  {{ items[0].author }}-->
                 </v-text>
               </v-card-text>
               <v-card-text class="row mx-0 py-0 pb-0">
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   data: () => ({
@@ -83,15 +83,15 @@ export default {
       },
     ],
   }),
-  computed : {
+  computed: {
     ...mapGetters([
       // 'nickName',
       // 'followerCount',
       // 'followingCount',
       // 'profileImage',
       // 'myNickName',
-      'travelList',
-    ])
+      "travelList",
+    ]),
   },
 };
 </script>
