@@ -9,10 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,8 +46,18 @@ public class TravelListController {
         return titlePages;
     }
 
-
-    // Travel 자세한 내용 리턴. 지금은 그냥 Title 리턴하게잠 시.
+    //TODO:: 도시 및 제목별 추출
+//
+//    @GetMapping("/find")
+//    public Page<GetTravelDto> FindTitles(@PageableDefault(size = 4) Pageable pageable,
+//            @RequestParam(required = false,defaultValue = "") String title,
+//                                         @RequestParam(required = false,defaultValue = "") String state){
+//    {
+//        Page<GetTravelDto> titlePages = travelService.getTitlePages(title, pageable);
+//        System.out.println("titlePages.getContent() = " + titlePages.getContent());
+//        System.out.println("titlePages.getTotalPages() = " + titlePages.getTotalPages());
+//        return titlePages;
+//    }
 
 //
     @GetMapping("/{userId}/my_list")
