@@ -17,4 +17,38 @@ function getTravel() {
     return auth.get(`/travellist/update`)
 }
 
-export {writeTravel, getTravel}
+function getTitleTravel(title) {
+    console.log("getTitleList")
+    return auth.get(`/travellist/find/${title}`)
+}
+
+function getTravelDetail(travelId) {
+    console.log("Detail-On")
+    return auth.get(`/travel/${travelId}`)
+}
+
+function postLiked(likedCnt, isLike, travelId) {
+    console.log("postLiked")
+    console.log(likedCnt)
+    if (isLike === false) {
+        return auth.post(`/travel/like/${travelId}`)
+    } else {
+        return auth.post(`/travel/like/cancel/${travelId}`)
+    }
+}
+
+function postZzim(zzimCnt, isZzim, travelId) {
+	console.log("postZzim")
+	console.log(zzimCnt)
+    if (isZzim === false) {
+        return auth.post(`/travel/zzim/${travelId}`)
+    } else {
+        return auth.post(`/travel/zzim/cancel/${travelId}`)
+    }
+}
+
+function getRank() {
+    return auth.get(`rank`)
+}
+
+export {writeTravel, getTravel, getTitleTravel, getTravelDetail, postLiked, postZzim, getRank}

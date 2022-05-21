@@ -25,7 +25,8 @@ export default new Vuex.Store({
 		travelList : [],
 		wishList : [],
 	},
-	pinList : [],
+	pinList: [],
+	travelInfo : [],
 	travelList : [],
 	ttravelList: [],
 	cardList : []
@@ -63,6 +64,9 @@ export default new Vuex.Store({
 		},
 		travelList(state){
 			return state.viewUser.travelList;
+	  	},
+		travelInfo(state) {
+			return state.travelInfo;
 		}
 		// 시온추가
 	},
@@ -98,9 +102,12 @@ export default new Vuex.Store({
 			},
 		SET_TRAVEL(state,travel){
 			state.travelList.push(travel);
-	  },
-	  SET_TRAVEL_LIST(state, data) {
-		  state.ttravelList = data;
+	  	},
+	  	SET_TRAVEL_LIST(state, data) {
+		  	state.ttravelList = data;
+	  	},
+	  	SET_TRAVEL_DETAIL(state, data) {
+			state.travelInfo = data;
 		},
 		SET_CARD(state,card){
 			console.log(card)

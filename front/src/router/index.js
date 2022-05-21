@@ -34,7 +34,7 @@ const routes = [
     component:TravelList
   },
   {
-    path: '/travel/content',
+    path: '/travel/content/:travelContentId',
     name: 'travel-view',
     component:TravelView
   },

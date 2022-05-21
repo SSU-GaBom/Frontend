@@ -21,12 +21,15 @@ export default {
       console.log(response.data);
       let data = [];
       for (let index = 0; index < response.data.content.length; index++) {
+        let travelId = response.data.content[index].travelId;
         let title = response.data.content[index].title;
-        let author = "author";
+        let author = response.data.content[index].userNickname;
         let state = response.data.content[index].state;
         let city = response.data.content[index].city;
         let s_date = response.data.content[index].startDate;
         let e_date = response.data.content[index].endDate;
+        let likedCnt = response.data.content[index].likedCount;
+        let zzimCnt = response.data.content[index].zzimCount;
         let images = [];
         for (
           let pinIdx = 0;
@@ -44,7 +47,18 @@ export default {
             );
           }
         }
-        data.push({ title, author, state, city, s_date, e_date, images });
+        data.push({
+          travelId,
+          title,
+          author,
+          state,
+          city,
+          s_date,
+          e_date,
+          likedCnt,
+          zzimCnt,
+          images,
+        });
       }
       console.log(data);
       store.commit("SET_TRAVEL_LIST", data);
