@@ -126,13 +126,13 @@ export default {
         
         
         if(multi){
-            console.log(name + 'Multi');
+            // console.log(name + 'Multi');
             let returnValue = this.makeMultiPolygon(coordinates);
             
             polygon = returnValue.polygon;
             points.push(returnValue.points)
         }else{
-            console.log(name + 'Single');
+            // console.log(name + 'Single');
             let returnValue = this.makePolygon(coordinates);
             
             polygon = returnValue.polygon;
@@ -147,7 +147,7 @@ export default {
         // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
         // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
         kakao.maps.event.addListener(polygon, 'mouseover', (mouseEvent) => {
-            console.log("mouseOver")
+            // console.log("mouseOver")
             polygon.setOptions({ fillColor: '#09f' });
 
             this.customOverlay.setContent('<div class="area">' + name + '</div>');
@@ -158,7 +158,7 @@ export default {
         
         // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
         kakao.maps.event.addListener(polygon, 'mousemove', (mouseEvent)=> {
-            console.log("mouseMove")
+            // console.log("mouseMove")
             this.customOverlay.setPosition(mouseEvent.latLng);
         });
         
@@ -166,15 +166,14 @@ export default {
         // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
         // 커스텀 오버레이를 지도에서 제거합니다
         kakao.maps.event.addListener(polygon, 'mouseout', () => {
-            console.log("mouseOut")
+            // console.log("mouseOut")
             polygon.setOptions({ fillColor: '#fff' });
             this.customOverlay.setMap(null);
         });
 
         // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다.
         kakao.maps.event.addListener(polygon, 'click', (mouseEvent) => {
-            
-            console.log("click")
+            // console.log("click")
             //만약 도클릭시 -> 지도확대되면서 시/군으로 폴리곤 구분
             
             let level = this.map.getLevel()-2;

@@ -6,7 +6,8 @@
       <div class="flex">
         <router-view></router-view>
         <write-travel-map v-if="this.$route.name === 'travel-writer'"></write-travel-map>
-        <travel-map  v-if="this.$route.name !== 'travel-writer'"></travel-map>
+        <detail-travel-map v-else-if="this.$route.name === 'travel-view'"></detail-travel-map>
+        <travel-map  v-else></travel-map>
       </div>
     </v-main>
   </v-app>
@@ -16,6 +17,7 @@
 import HeaderBar from './components/HeaderBar.vue'
 import TravelMap from './components/TravelMap.vue'
 import WriteTravelMap from './components/WriteTravelMap.vue'
+import DetailTravelMap from './components/DetailTravelMap.vue'
 
 
 export default {
@@ -23,7 +25,8 @@ export default {
   components:{
     HeaderBar,
     WriteTravelMap,
-    TravelMap
+    TravelMap,
+    DetailTravelMap
   }
 
 }

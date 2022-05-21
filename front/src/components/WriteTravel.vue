@@ -442,6 +442,7 @@ export default {
     async onSubmitForm() {
       if (this.$refs.form.validate()) {
         const pinList = [];
+
         var reader = new FileReader();
 
         //핀 만들기
@@ -459,6 +460,7 @@ export default {
             location : this.travelList[i],
             locationContent : this.cardList[i].text,
             images : this.cardList[i].images
+
           }
 
           // //장소
@@ -468,7 +470,7 @@ export default {
           // };
 
           pinList.push(pin);
-          
+
         }
 
         const travelDto = {
@@ -481,7 +483,7 @@ export default {
           startDate: this.s_date,
           endDate: this.e_date,
           expense: this.budget,
-          transport: this.transport,
+          transportaion: this.transport,
           pinList: pinList,
         };
 

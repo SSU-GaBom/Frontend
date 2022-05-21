@@ -1,5 +1,4 @@
 <template>
-
   <v-container>
     <v-row dense>
       <v-col v-model="items">
@@ -75,6 +74,8 @@
 </template>
 
 <script>
+import {getTravelList} from '../api/travel'
+
 export default {
   data() {
     return {
@@ -107,7 +108,18 @@ export default {
       },
     };
   },
+  methods: {
+    async fetchTravelList(){
+      console.log("fetchTravelList")
+      const response = await getTravelList()
+      console.log(response)
+    }
+  },
+  created() {
+    this.fetchTravelList()
+  },
 };
 </script>
 
 <style scoped></style>
+

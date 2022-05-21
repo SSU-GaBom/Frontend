@@ -21,6 +21,7 @@
         >
 
         <v-file-input  prepend-icon="mdi-camera" multiple v-model="images" show-size label="File input"></v-file-input>
+
         <v-textarea
             v-model="card.text"
             label="소개글"
@@ -75,6 +76,7 @@ export default {
             reader.onload = () => resolve(reader.result);
             reader.onerror = error => reject(error);
          });
+
         }
     }
 }

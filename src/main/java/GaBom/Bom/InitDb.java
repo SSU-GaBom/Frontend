@@ -17,7 +17,6 @@ public class InitDb {
 
     private final InitService initService;
 
-
     @PostConstruct
     public void init() {
         initService.dbInit1();
@@ -33,7 +32,7 @@ public class InitDb {
 
         public void dbInit1(){
             User sg = User.builder()
-                    .nickName("SSUSG")
+                    .nickName("시균팍")
                     .emailAuth(true)
                     .userId("qwe123")
                     .userPw(passwordEncoder.encode("123"))
