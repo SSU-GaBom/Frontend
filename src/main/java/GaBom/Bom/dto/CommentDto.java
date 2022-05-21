@@ -14,13 +14,16 @@ public class CommentDto {
     private Long commentId;
     private String content;
 
-    private String userId;
+//    private String userId;
 
-    public Comment toEntity(String userId){
+    private String userNickname;
+
+    public Comment toEntity(String Nickname){
+
         return Comment.builder()
                 .commentId(commentId)
                 .content(content)
-                .userId(userId)
+                .userNickname(Nickname)
                 .build();
     }
 }
