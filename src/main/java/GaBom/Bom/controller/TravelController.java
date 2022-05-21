@@ -42,7 +42,7 @@ public class TravelController {
     public String writeTravel(@RequestBody TravelDto travelDto) throws IOException { //로그인세션에 맞춰서 Travel 쓰도록 하기
 //        try {
             travelService.joinTravel(travelDto);
-            return "redirect:";
+            return "redirect:/";
 ////        }
 //        return "write"; //Return값 어떻게?
     }

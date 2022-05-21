@@ -13,7 +13,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelListController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +284,7 @@
       <workItem from="1652833467700" duration="587000" />
       <workItem from="1652834076739" duration="13457000" />
       <workItem from="1652850754076" duration="40337000" />
-      <workItem from="1652945339644" duration="4539000" />
+      <workItem from="1652945339644" duration="7866000" />
     </task>
     <servers />
   </component>
