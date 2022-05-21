@@ -29,10 +29,11 @@ function getTravelDetail(travelId) {
 
 function postLiked(likedCnt, isLike, travelId) {
     console.log("postLiked")
-    console.log(likedCnt)
     if (isLike === false) {
+        console.log("likedCnt-On")
         return auth.post(`/travel/like/${travelId}`)
     } else {
+        console.log("likedCnt-Off")
         return auth.post(`/travel/like/cancel/${travelId}`)
     }
 }
@@ -41,8 +42,10 @@ function postZzim(zzimCnt, isZzim, travelId) {
 	console.log("postZzim")
 	console.log(zzimCnt)
     if (isZzim === false) {
+        console.log("zzimCnt-On")
         return auth.post(`/travel/zzim/${travelId}`)
     } else {
+        console.log("zzimCnt-Off")
         return auth.post(`/travel/zzim/cancel/${travelId}`)
     }
 }

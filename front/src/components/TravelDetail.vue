@@ -26,26 +26,46 @@
         </v-btn>
 
         <div v-if="travelInfo.isLike === true">
-          <v-btn max-width="80px" text color="blue lighten-0">
+          <v-btn
+            max-width="80px"
+            text
+            color="blue lighten-0"
+            @click="clickLiked(travelInfo)"
+          >
             <v-icon>mdi-thumb-up</v-icon>
             <v-text class="ms-2">{{ travelInfo.likedCount }}</v-text>
           </v-btn>
         </div>
         <div v-else>
-          <v-btn max-width="80px" text color="blue lighten-0">
+          <v-btn
+            max-width="80px"
+            text
+            color="blue lighten-0"
+            @click="clickLiked(travelInfo)"
+          >
             <v-icon>mdi-thumb-up-outline</v-icon>
             <v-text class="ms-2">{{ travelInfo.likedCount }}</v-text>
           </v-btn>
         </div>
 
         <div v-if="travelInfo.isZzim === true">
-          <v-btn max-width="80px" text color="red lighten-0">
+          <v-btn
+            max-width="80px"
+            text
+            color="red lighten-0"
+            @click="clickZzim(travelInfo)"
+          >
             <v-icon>mdi-cards-heart</v-icon>
             <v-text class="ms-2">{{ travelInfo.zzimCount }}</v-text>
           </v-btn>
         </div>
         <div v-else>
-          <v-btn max-width="80px" text color="red lighten-0">
+          <v-btn
+            max-width="80px"
+            text
+            color="red lighten-0"
+            @click="clickZzim(travelInfo)"
+          >
             <v-icon>mdi-cards-heart-outline</v-icon>
             <v-text class="ms-2">{{ travelInfo.zzimCount }}</v-text>
           </v-btn>
