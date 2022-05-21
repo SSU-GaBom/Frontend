@@ -38,6 +38,8 @@ public class TravelService {
 //    private final TravelFileHandler travelFileHandler;
     private final PinRepository pinRepository;
 
+    private final TravelLikeService travelLikeService;
+    private final ZzimService zzimService;
 
     private final TravelImageService travelImageService;
 
@@ -94,10 +96,21 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
 
 
     @Transactional
-    public Travel travel_info(Long travelId) {
+    public GetTravelDto travel_info(Long travelId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginId = authentication.getName();
+        //이미 눌렀던 상황이면 누르지 않게 해야함
+        if(loginId=="anonymousUser") {
+            log.error("session is end");
+        }
+        User user = userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new);
         Travel travel = travelRepository.findByTravelId(travelId).orElseThrow(CTravelNotFoundException::new);
         initHibernate(travel);
-        return travel;
+        GetTravelDto getTravelDto = new GetTravelDto(travel);
+        getTravelDto.setIsLike(travelLikeService.CheckLike(user,travel));
+        getTravelDto.setIsZzim(zzimService.CheckZzim(user,travel));
+
+        return getTravelDto;
     }
 
 

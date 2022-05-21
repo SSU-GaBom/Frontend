@@ -6,12 +6,14 @@ import GaBom.Bom.entity.Transportation;
 import GaBom.Bom.entity.Travel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
+@Setter
 @NoArgsConstructor
 public class GetTravelDto {
 
@@ -33,6 +35,8 @@ public class GetTravelDto {
     private Integer zzimCount;
     private String transportation;
 
+    private boolean IsLike;
+    private boolean IsZzim;
 
     public GetTravelDto(Travel travel){
         this.userNickname=travel.getMyuser().getNickName();

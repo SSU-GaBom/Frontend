@@ -47,8 +47,8 @@ public class TravelController {
 
     @GetMapping("/{travelId}")
     public GetTravelDto Travel_info(@PathVariable Long travelId) {
-        Travel travel = travelService.travel_info(travelId);
-        GetTravelDto getTravelDto = new GetTravelDto(travel);
+        GetTravelDto getTravelDto = travelService.travel_info(travelId);
+//        GetTravelDto getTravelDto = new GetTravelDto(travel);
         return getTravelDto;
     }
 
