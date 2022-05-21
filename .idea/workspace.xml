@@ -11,10 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="각 서비스들 코드 정리, 팔로우 컨트롤러 오류 찾음.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/GetTravelDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/GetTravelDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/CommentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/CommentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/CommentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
