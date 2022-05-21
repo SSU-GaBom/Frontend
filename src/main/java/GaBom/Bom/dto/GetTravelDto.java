@@ -46,5 +46,4 @@ public class GetTravelDto {
         this.transportation=travel.getTransportation();
     }
 
-
 }
