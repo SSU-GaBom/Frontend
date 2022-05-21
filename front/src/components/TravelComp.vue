@@ -1,7 +1,12 @@
 <template>
   <v-container>
     <v-row dense no-gutters>
-      <v-col class="d-flex" cols="12" sm="8">
+      <v-col
+        class="d-flex"
+        style="position: relative; top: 6px"
+        cols="8"
+        sm="7"
+      >
         <v-select
           v-model="province"
           :items="province_list"
@@ -16,7 +21,6 @@
           :items="gyeonggi_list"
           label="시/군"
           dense
-          sm="5"
         ></v-select>
         <v-select
           v-if="province === '강원도'"
@@ -68,6 +72,14 @@
           dense
         ></v-select>
       </v-col>
+      <v-col sm="6" md="4">
+        <v-text-field class="pa-0" label="검색" v-model="title"></v-text-field>
+      </v-col>
+      <v-col sm="0" md="0" class="my-1">
+        <v-btn plain icon @click="searchTitle()">
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+      </v-col>
     </v-row>
     <v-row dense>
       <div v-for="travel in ttravelList" :key="travel.title">
@@ -89,48 +101,55 @@
               </v-avatar>
             </v-card>
             <v-card flat>
-              <v-card-title class="row mx-0 pb-0" style="font-size: 100%">
-                {{ travel.title }}
-              </v-card-title>
-              <v-divider class="row mx-4"></v-divider>
-              <v-card-text class="row mx-0 py-2 pb-0">
+              <v-btn
+                class="mx-4 my-0 pa-0"
+                plain
+                text
+                @click="toTravelDetail(travel.travelId)"
+              >
+                <v-text id="title" left>
+                  <b>{{ travel.title }}</b>
+                </v-text>
+              </v-btn>
+              <v-divider class="row mx-4 my-0"></v-divider>
+              <v-btn
+                class="row mx-4 my-0 pa-0"
+                plain
+                text
+                @click="toProfilePage(travel.author)"
+              >
                 <v-icon fixed> mdi-account </v-icon>
                 <v-text class="ms-2">
                   {{ travel.author }}
                 </v-text>
-              </v-card-text>
-              <v-card-text class="row mx-0 py-1 pb-0">
+              </v-btn>
+              <v-card-text class="row mx-0 my-0 py-0 pb-0">
                 <v-icon fixed> mdi-map-outline </v-icon>
                 <v-text class="ms-2">
                   {{ travel.state }} {{ travel.city }}
                 </v-text>
               </v-card-text>
-              <v-card-text class="row mx-0 py-1 pb-0">
+              <v-card-text class="row mx-0 my-0 py-1 pb-0">
                 <v-icon fixed> mdi-calendar </v-icon>
                 <v-text class="ms-2">
                   {{ travel.s_date }} ~ {{ travel.e_date }}
                 </v-text>
               </v-card-text>
-              <v-card-actions>
-                <v-btn
-                  v-if="items.author === 'Ellie Goulding'"
-                  fab
-                  icon
-                  height="40px"
-                  right
-                  width="40px"
-                >
-                  <v-icon>mdi-play</v-icon>
-                </v-btn>
-              </v-card-actions>
 
-              <div class="row ma-0 mx-3 pa-0">
-                <v-btn icon color="blue lighten-0">
-                  <v-icon>mdi-thumb-up</v-icon>
-                </v-btn>
-                <v-btn icon color="red lighten-0">
-                  <v-icon>mdi-cards-heart</v-icon>
-                </v-btn>
+              <div class="row mx-5 my-2 py-0">
+                <div>
+                  <v-icon color="blue lighten-0">mdi-thumb-up</v-icon>
+                  <v-text class="ms-2" style="color: #2196f3">{{
+                    travel.likedCnt
+                  }}</v-text>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <div>
+                  <v-icon color="red lighten-0">mdi-cards-heart</v-icon>
+                  <v-text class="ms-2" style="color: #f44336">{{
+                    travel.zzimCnt
+                  }}</v-text>
+                </div>
               </div>
             </v-card>
 
@@ -177,26 +196,20 @@
                     {{ travel.s_date }} ~ {{ travel.e_date }}
                   </v-text>
                 </v-card-text>
-                <v-card-actions>
-                  <v-btn
-                    v-if="items.author === 'Ellie Goulding'"
-                    fab
-                    icon
-                    height="40px"
-                    right
-                    width="40px"
-                  >
-                    <v-icon>mdi-play</v-icon>
-                  </v-btn>
-                </v-card-actions>
-
-                <div class="row ma-0 mx-3 pa-0">
-                  <v-btn icon color="blue lighten-0">
-                    <v-icon>mdi-thumb-up</v-icon>
-                  </v-btn>
-                  <v-btn icon color="red lighten-0">
-                    <v-icon>mdi-cards-heart</v-icon>
-                  </v-btn>
+                <div class="row mx-5 my-5 pa-0">
+                  <div>
+                    <v-icon color="blue lighten-0">mdi-thumb-up</v-icon>
+                    <v-text class="ms-2" style="color: #2196f3">{{
+                      travel.likedCnt
+                    }}</v-text>
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <div>
+                    <v-icon color="red lighten-0">mdi-cards-heart</v-icon>
+                    <v-text class="ms-2" style="color: #f44336">{{
+                      travel.zzimCnt
+                    }}</v-text>
+                  </div>
                 </div>
               </v-card>
 
@@ -242,26 +255,20 @@
                     {{ travel.s_date }} ~ {{ travel.e_date }}
                   </v-text>
                 </v-card-text>
-                <v-card-actions>
-                  <v-btn
-                    v-if="items.author === 'Ellie Goulding'"
-                    fab
-                    icon
-                    height="40px"
-                    right
-                    width="40px"
-                  >
-                    <v-icon>mdi-play</v-icon>
-                  </v-btn>
-                </v-card-actions>
-
-                <div class="row ma-0 mx-3 pa-0">
-                  <v-btn icon color="blue lighten-0">
-                    <v-icon>mdi-thumb-up</v-icon>
-                  </v-btn>
-                  <v-btn icon color="red lighten-0">
-                    <v-icon>mdi-cards-heart</v-icon>
-                  </v-btn>
+                <div class="row mx-5 my-5 pa-0">
+                  <div>
+                    <v-icon color="blue lighten-0">mdi-thumb-up</v-icon>
+                    <v-text class="ms-2" style="color: #2196f3">{{
+                      travel.likedCnt
+                    }}</v-text>
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <div>
+                    <v-icon color="red lighten-0">mdi-cards-heart</v-icon>
+                    <v-text class="ms-2" style="color: #f44336">{{
+                      travel.zzimCnt
+                    }}</v-text>
+                  </div>
                 </div>
               </v-card>
 
@@ -271,20 +278,32 @@
         </div>
         <div v-else></div>
         <!-- </v-card> -->
-        <v-divider></v-divider>
+        <v-divider class="py-1"></v-divider>
       </div>
     </v-row>
+    <!-- <div class="text-center">
+      <v-pagination
+        v-model="currentpage"
+        :length="calculateMaxPage"
+        :total-visible="7"
+        prev-icon="mdi-menu-left"
+        next-icon="mdi-menu-right"
+      ></v-pagination>
+    </div> -->
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import { getTitleTravel } from "../api/travel";
+import { getTravelDetail } from "../api/travel";
 import store from "../store/index";
 
 export default {
   name: "TravelComp",
   data() {
     return {
+      currentpage: 1,
       images: [
         "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
         "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
@@ -292,6 +311,7 @@ export default {
         "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
       ],
       items: {},
+      title: "",
       province: "",
       city: "",
       province_list: [
@@ -483,10 +503,89 @@ export default {
       ],
     };
   },
+  methods: {
+    async toProfilePage(nickname) {
+      this.$router.push({
+        name: "userPage",
+        params: { userNickName: nickname },
+      });
+    },
+    async toTravelDetail(travelId) {
+      const response = await getTravelDetail(travelId);
+      console.log(response.data);
+      store.commit("SET_TRAVEL_DETAIL", response.data);
+      this.$router.push({
+        name: "travel-view",
+        params: { travelContentId: travelId },
+      });
+    },
+    async searchTitle() {
+      const response = await getTitleTravel(this.title);
+      console.log(response);
+      let data = [];
+      for (let index = 0; index < response.data.content.length; index++) {
+        let title = response.data.content[index].title;
+        let author = response.data.content[index].userNickname;
+        let state = response.data.content[index].state;
+        let city = response.data.content[index].city;
+        let s_date = response.data.content[index].startDate;
+        let e_date = response.data.content[index].endDate;
+        let likedCnt = response.data.content[index].likedCount;
+        let zzimCnt = response.data.content[index].zzimCount;
+        let images = [];
+        for (
+          let pinIdx = 0;
+          pinIdx < response.data.content[index].pinList.length;
+          pinIdx++
+        ) {
+          for (
+            let imgIdx = 0;
+            imgIdx < response.data.content[index].pinList[pinIdx].images.length;
+            imgIdx++
+          ) {
+            images.push(
+              response.data.content[index].pinList[pinIdx].images[imgIdx]
+                .base64Image
+            );
+          }
+        }
+        data.push({
+          title,
+          author,
+          state,
+          city,
+          s_date,
+          e_date,
+          likedCnt,
+          zzimCnt,
+          images,
+        });
+      }
+      console.log(data);
+      store.commit("SET_TRAVEL_LIST", data);
+    },
+  },
   computed: {
     ...mapGetters(["ttravelList"]),
+    calculateMaxPage() {
+      if (this.ttravelList.length % 4 === 0) {
+        return this.ttravelList.length / 4;
+      } else {
+        return this.ttravelList.length / 4 + 1;
+      }
+    },
   },
+  components: {},
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#title {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 20px;
+  max-width: 200px;
+}
+</style>
