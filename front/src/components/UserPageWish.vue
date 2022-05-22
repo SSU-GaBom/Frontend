@@ -1,4 +1,5 @@
 <template>
+
   <v-sheet class="mx-auto" elevation="8" max-width="800">
     <v-list-item one-line>
       <v-list-item-content>
@@ -50,6 +51,7 @@
       </v-slide-item>
     </v-slide-group>
   </v-sheet>
+
 </template>
 
 <script>
@@ -57,29 +59,7 @@ export default {
   data: () => ({
     model: null,
 
-    items: [
-      {
-        author: "Username1",
-        province: "제주특별자치도",
-        city: "",
-        s_date: "2022-05-02",
-        e_date: "2022-05-04",
-      },
-      {
-        author: "Username2",
-        province: "경상남도",
-        city: "김해시",
-        s_date: "2021-04-02",
-        e_date: "2022-04-07",
-      },
-      {
-        author: "Username3",
-        province: "강원도",
-        city: "영월군",
-        s_date: "2021-01-01",
-        e_date: "2021-02-04",
-      },
-    ],
+
   }),
 };
 </script>
@@ -91,4 +71,4 @@ export default {
   text-decoration: none;
 }
 </style>
->>>>>>> c8a36870112bec0b1d91b2570f7e2cddbeed586
+

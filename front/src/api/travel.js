@@ -55,3 +55,4 @@ function getRank() {
 }
 
 export {writeTravel, getTravel, getTitleTravel, getTravelDetail, postLiked, postZzim, getRank}
+

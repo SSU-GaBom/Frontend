@@ -1,4 +1,5 @@
 <template>
+
   <div id="main" class="my-3">
     <travel-comp />
   </div>

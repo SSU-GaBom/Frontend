@@ -66,6 +66,7 @@ public class UserProfileService {
                 .userFollowingCount(user.getFollowingNum())
 //                .myTravelList(user.getMyTravelList())
 //                .likedTravelList(user.getLikedTravelList())
+
                 .build();
         List<GetTravelDto> mytravellists = MyTravelsByUser(user);
         userProfileDto.setMyTravelList(mytravellists);

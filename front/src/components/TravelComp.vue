@@ -294,10 +294,12 @@
 </template>
 
 <script>
+
 import { mapGetters } from "vuex";
 import { getTitleTravel } from "../api/travel";
 import { getTravelDetail } from "../api/travel";
 import store from "../store/index";
+
 
 export default {
   name: "TravelComp",
@@ -504,6 +506,7 @@ export default {
     };
   },
   methods: {
+
     async toProfilePage(nickname) {
       this.$router.push({
         name: "userPage",
@@ -589,3 +592,4 @@ export default {
   max-width: 200px;
 }
 </style>
+

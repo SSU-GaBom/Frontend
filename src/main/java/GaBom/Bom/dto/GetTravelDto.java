@@ -26,6 +26,7 @@ public class GetTravelDto {
     private String city;
     private String startDate;
     private String endDate;
+
     private List<Pin> pinList;
     private Integer expense;
     private String content;
@@ -53,6 +54,5 @@ public class GetTravelDto {
         this.likedCount=travel.getLikedCount();
         this.transportation=travel.getTransportation();
     }
-
 
 }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {loginUser} from '../api/auth'
+import createPersistedState from 'vuex-persistedstate';
 import {
         saveAuthToCookie,
         saveUserToCookie,
@@ -11,6 +12,12 @@ import {
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
+	plugins: [
+		createPersistedState({
+			blackList:["selectedMarker" , "viewUser" , "travelList" , "cardList" , "travelInfo" , "pinList"]
+		}),
+	],
   state: {
     user : {
 		id : null,
@@ -29,7 +36,8 @@ export default new Vuex.Store({
 	travelInfo : [],
 	travelList : [],
 	ttravelList: [],
-	cardList : []
+	cardList : [],
+	selectedMarker : null,
   },
   getters: {
 		isLoggedIn(state) {
@@ -42,7 +50,7 @@ export default new Vuex.Store({
 			return state.user.nickName;
 		},
 		writeTravelList(state){
-			return state.travelList;
+			return state.writeTravelList;
 		},
 		writeCardList(state){
 			return state.cardList;
@@ -58,6 +66,7 @@ export default new Vuex.Store({
 		},
 		profileImage(state){
 			return state.viewUser.profileImage;
+
 	  	},
 	  	ttravelList(state) {
 			return state.ttravelList;
@@ -67,6 +76,9 @@ export default new Vuex.Store({
 	  	},
 		travelInfo(state) {
 			return state.travelInfo;
+		},
+		selectedMarker(state){
+			return state.selectedMarker;
 		}
 		// 시온추가
 	},
@@ -115,6 +127,17 @@ export default new Vuex.Store({
 		},
 		SET_PROFILEIMAGE(state,image){
 			state.viewUser.profileImage = image;
+		},
+
+		SET_MARKER(state,marker){
+			console.log("SET_MARKER")
+			console.log(marker)
+			state.selectedMarker = marker;
+			console.log(state.selectedMarker)
+		},
+		SET_MARKERNULL(state){
+			console.log("SET_MARKERNULL")
+			state.selectedMarker = null;
 		}
 	},
   actions: {

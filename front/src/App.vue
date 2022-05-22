@@ -7,14 +7,10 @@
       <!-- <router-view></router-view> -->
       <div class="flex">
         <router-view style="position: relative"></router-view>
-        <write-travel-map
-          v-if="this.$route.name === 'travel-writer'"
-          style="position: fixed; right: 0px"
-        ></write-travel-map>
-        <travel-map
-          v-if="this.$route.name !== 'travel-writer'"
-          style="position: fixed; right: 0px"
-        ></travel-map>
+        <write-travel-map v-if="this.$route.name === 'travel-writer'" style="position: fixed; right: 0px"></write-travel-map>
+        <detail-travel-map v-else-if="this.$route.name === 'travel-view'" style="position: fixed; right: 0px"></detail-travel-map>
+        <travel-map v-else style="position: fixed; right: 0px"></travel-map>
+        
       </div>
     </v-main>
   </v-app>
@@ -24,6 +20,7 @@
 import HeaderBar from "./components/HeaderBar.vue";
 import TravelMap from "./components/TravelMap.vue";
 import WriteTravelMap from "./components/WriteTravelMap.vue";
+import DetailTravelMap from './components/DetailTravelMap.vue'
 
 export default {
   name: "app",
@@ -31,8 +28,10 @@ export default {
     HeaderBar,
     WriteTravelMap,
     TravelMap,
+    DetailTravelMap
   },
 };
+
 </script>
 
 <style>
