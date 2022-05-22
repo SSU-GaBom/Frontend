@@ -15,7 +15,14 @@ export default new Vuex.Store({
 
 	plugins: [
 		createPersistedState({
-			blackList:["selectedMarker" , "viewUser" , "travelList" , "cardList" , "travelInfo" , "pinList"]
+			storage : window.localStorage,
+			reducer: state => ({
+				user : {
+					id : state.user.id,
+					nickName : state.user.nickName
+				},
+				token : state.token,
+			  })
 		}),
 	],
   state: {

@@ -24,7 +24,7 @@ export default {
         if (window.kakao && window.kakao.maps) {
             setTimeout(() =>{
                 this.initMap();
-            }, 2000);
+            }, 1000);
             
         } else {
             
@@ -35,7 +35,7 @@ export default {
                 script.src =
                     "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9361ff07bc1d810e5c855e8be3e33c42";
                  document.head.appendChild(script);
-            }, 2000);
+            }, 1000);
             
         }
     },

@@ -54,14 +54,14 @@ const routes = [
   },
 ]
 
-function beforeEnter(to, from, next) {
-	if (store.getters['isLoggedIn'] || getUserFromCookie()) {
-		next();
-	} else {
-		alert('sign in please');
-    next('/home');
-	}
-}
+// function beforeEnter(to, from, next) {
+// 	if (store.getters['isLoggedIn'] || getUserFromCookie()) {
+// 		next();
+// 	} else {
+// 		alert('sign in please');
+//     next('/home');
+// 	}
+// }
 
 const router = new VueRouter({
   mode: 'history',

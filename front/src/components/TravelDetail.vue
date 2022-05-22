@@ -50,6 +50,7 @@
 
         <div v-if="travelInfo.isZzim === true">
           <v-btn
+            class="mx-2"
             max-width="80px"
             text
             color="red lighten-0"
@@ -61,6 +62,7 @@
         </div>
         <div v-else>
           <v-btn
+            class="mx-2"
             max-width="80px"
             text
             color="red lighten-0"
@@ -70,7 +72,9 @@
             <v-text class="ms-2">{{ travelInfo.zzimCount }}</v-text>
           </v-btn>
         </div>
-        <comment-comp></comment-comp>
+        <div class="mx-2">
+          <comment-comp></comment-comp>
+        </div>
       </v-row>
 
       <!-- 지역, 일정-->
@@ -114,39 +118,39 @@
     <v-card-title>
       <b>핀 리스트</b>
     </v-card-title>
-     <v-card-text class="mx-auto">
+    <v-card-text class="mx-auto">
       <template v-if="travelInfo">
-            <v-simple-table>
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-center">
-                      Place_Name
-                    </th>
-                    <th class="text-center">
-                      Picture
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="pin in travelInfo.pinList" :key="pin.location.place_name">
-                    <td>{{ pin.location.place_name }}</td>
-                    <td><card-view-comp :pin="pin"></card-view-comp></td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-center">Place_Name</th>
+                <th class="text-center">Picture</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="pin in travelInfo.pinList"
+                :key="pin.location.place_name"
+              >
+                <td>{{ pin.location.place_name }}</td>
+                <td><card-view-comp :pin="pin"></card-view-comp></td>
+              </tr>
+            </tbody>
           </template>
+        </v-simple-table>
+      </template>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import { postLiked , getTravelDetail , postZzim } from "../api/travel";
+
+import { postLiked, getTravelDetail, postZzim } from "../api/travel";
 import CommentComp from "./CommentComp.vue";
-import CardViewComp from './CardViewComp.vue'
-import store from '../store/index'
+import CardViewComp from "./CardViewComp.vue";
+import store from "../store/index";
 
 export default {
   data() {
@@ -174,6 +178,8 @@ export default {
         travelInfo.travelId
       );
       console.log(responseLike);
+
+      this.toTravelDetail(travelInfo.travelId);
     },
     async clickZzim(travelInfo) {
       const responseZzim = await postZzim(
@@ -182,24 +188,36 @@ export default {
         travelInfo.travelId
       );
       console.log(responseZzim);
+
+      this.toTravelDetail(travelInfo.travelId);
+    },
+    async toTravelDetail(travelId) {
+      const response = await getTravelDetail(travelId);
+      console.log(response.data);
+      store.commit("SET_TRAVEL_DETAIL", response.data);
+      this.$router.push({
+        name: "travel-view",
+        params: { travelContentId: travelId },
+      });
     },
     async fetchTravelInfo() {
-       console.log("fetchTravelInfo")
-      const response = await getTravelDetail(this.$route.params.travelContentId)
-      console.log(response)
-      store.commit('SET_TRAVEL_DETAIL', response.data);
+      console.log("fetchTravelInfo");
+      const response = await getTravelDetail(
+        this.$route.params.travelContentId
+      );
+      console.log(response);
+      store.commit("SET_TRAVEL_DETAIL", response.data);
     },
   },
   created() {
     this.fetchTravelInfo();
-    
   },
   computed: {
     ...mapGetters(["travelInfo"]),
   },
   components: {
     CommentComp,
-    CardViewComp
+    CardViewComp,
   },
 };
 </script>

@@ -9,49 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="before pull">
-      <change afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/advice/exception/CCommentNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/TravelwithCommentsDto.java" afterDir="false" />
+
+    <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="각 서비스들 코드 정리, 팔로우 컨트롤러 오류 찾음.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/advice/ExceptionAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/advice/ExceptionAdvice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/component/FileHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/component/FileHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelLikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/TravelLikeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/CardDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/CommentDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/CommentDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/GetTravelDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/GetTravelDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Comment$CommentBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Comment$CommentBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/entity/Comment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/CommentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/repository/CommentRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CommentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelLikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelLikeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/front/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/advice/ExceptionAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/advice/ExceptionAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/component/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/component/FileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/BestTravelerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/HomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/LikeTravelController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/MapController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/PinController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/TravelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/WritingPageController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/CardDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/CommentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/CommentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/GetTravelDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/GetTravelDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelImageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/interceptors.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/interceptors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/LogoutComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LogoutComp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/WriteTravel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/WriteTravel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +128,7 @@
     <option name="foldersAlwaysOnTop" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RequestMappingsPanelOrder0": "0",
@@ -173,6 +139,17 @@
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2022.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external"
   }
 }]]></component>
+=======
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/DeskTop/Frontend_Develop (2)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+>>>>>>> refs/remotes/origin/main
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -321,6 +298,7 @@
       <workItem from="1652833467700" duration="587000" />
       <workItem from="1652834076739" duration="13457000" />
       <workItem from="1652850754076" duration="40130000" />
+      <workItem from="1653184447108" duration="1934000" />
     </task>
     <servers />
   </component>
