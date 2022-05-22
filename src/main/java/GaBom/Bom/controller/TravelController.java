@@ -2,6 +2,7 @@ package GaBom.Bom.controller;
 
 import GaBom.Bom.dto.GetTravelDto;
 import GaBom.Bom.dto.TravelDto;
+import GaBom.Bom.dto.TravelwithCommentsDto;
 import GaBom.Bom.dto.UpdateTravelDto;
 import GaBom.Bom.entity.Pin;
 import GaBom.Bom.entity.Travel;
@@ -45,12 +46,22 @@ public class TravelController {
         return "write"; // Return값 어떻게?
     }
 
+//    @GetMapping("/{travelId}")
+//    public GetTravelDto Travel_info(@PathVariable Long travelId) {
+//        GetTravelDto getTravelDto = travelService.travel_info(travelId);
+////        GetTravelDto getTravelDto = new GetTravelDto(travel);
+//        return getTravelDto;
+//    }
+
+
     @GetMapping("/{travelId}")
-    public GetTravelDto Travel_info(@PathVariable Long travelId) {
-        GetTravelDto getTravelDto = travelService.travel_info(travelId);
+    public TravelwithCommentsDto Travel_info_2(@PathVariable Long travelId) {
+        TravelwithCommentsDto travelwithCommentsDto = travelService.travel_info_comments(travelId);
 //        GetTravelDto getTravelDto = new GetTravelDto(travel);
-        return getTravelDto;
+        return travelwithCommentsDto;
     }
+
+
 
     @PostMapping("/update")
     public String updateBoard(
@@ -72,7 +83,7 @@ public class TravelController {
     }
 
     // redirect 생각
-    @DeleteMapping("/{travelId}")
+    @PostMapping("/delete/{travelId}")
     String deleteTravel(@PathVariable Long travelId) {
         travelService.deleteTravel(travelId);
         return "deleted";

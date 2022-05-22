@@ -59,6 +59,15 @@ public class ExceptionAdvice {
         // getFailResult : setSuccess, setCode, setMsg
     }
 
+    @ExceptionHandler(CCommentNotFoundException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult CCommentNotFoundException(HttpServletRequest request, CCommentNotFoundException e) {
+        // CommonResult : 응답 결과에 대한 정보
+        return responseService.getFailResult(Integer.valueOf(getMessage("CCommentNotFoundException.code")), getMessage("CCommentNotFoundException.msg"));
+        // 예외 처리 메시지를 MessageSource에서 가져오도록 수정
+        // getFailResult : setSuccess, setCode, setMsg
+    }
+
 
     @ExceptionHandler(CEmailAuthTokenNotFoundException.class)
     @ResponseStatus(HttpStatus.OK)

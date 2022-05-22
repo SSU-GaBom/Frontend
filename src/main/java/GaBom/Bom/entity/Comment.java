@@ -27,6 +27,14 @@ public class Comment {
     @JsonBackReference
     private Travel travel;
 
-    private String userNickname;
+//    private String userNickname;
+
+//    private String appendDate;
+    //수정 시각각
+    private String updateDate;
     //연관관계 편의
+    private String Nickname;
+
+//    @Column(columnDefinition = "LONGTEXT")
+//    private String profileImage;
 }

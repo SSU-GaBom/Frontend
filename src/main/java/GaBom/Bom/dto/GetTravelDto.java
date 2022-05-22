@@ -36,6 +36,8 @@ public class GetTravelDto {
     private Integer zzimCount;
     private String transportation;
 
+//    private Integer commentCount;
+
     private boolean IsLike;
     private boolean IsZzim;
 
