@@ -1,9 +1,7 @@
 package GaBom.Bom.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class Comment {
 
     @Id
@@ -25,5 +24,9 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "travel_id")
+    @JsonBackReference
     private Travel travel;
+
+    private String userNickname;
+    //연관관계 편의
 }

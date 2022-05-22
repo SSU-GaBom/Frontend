@@ -56,9 +56,9 @@ export default {
             nickName : response.data.data.nickName,
             userFollowerCount : response.data.data.userFollowerCount,
             userFollowingCount : response.data.data.userFollowingCount,
-            profileImage : response.data.data.profileImage
+            profileImage : response.data.data.profileImage,
             // myTravelList : response.data.data.myTravelList,
-            // likedTravelList : response.data.data.likedTravelList
+            // likedTravelList : response.data.data.likedTravelList;
           }
           
           store.commit('SET_VIEWUSER',data)

@@ -50,6 +50,16 @@ public class ExceptionAdvice {
         // getFailResult : setSuccess, setCode, setMsg
     }
 
+    @ExceptionHandler(CTravelNotFoundException.class)
+    @ResponseStatus(HttpStatus.OK)
+    protected CommonResult TravelNotFoundException(HttpServletRequest request, CTravelNotFoundException e) {
+        // CommonResult : 응답 결과에 대한 정보
+        return responseService.getFailResult(Integer.valueOf(getMessage("CTravelNotFoundException.code")), getMessage("CTravelNotFoundException.msg"));
+        // 예외 처리 메시지를 MessageSource에서 가져오도록 수정
+        // getFailResult : setSuccess, setCode, setMsg
+    }
+
+
     @ExceptionHandler(CEmailAuthTokenNotFoundException.class)
     @ResponseStatus(HttpStatus.OK)
     protected CommonResult emailAuthTokenNotFoundException(HttpServletRequest request, CEmailAuthTokenNotFoundException e) {

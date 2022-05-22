@@ -1,77 +1,10 @@
 <template>
-<<<<<<< HEAD
-  <v-card class="mx-auto" tile>
-    <v-sheet class="mx-auto" height="200px" elevation="8" max-width="800">
-      <v-list-item one-line>
-        <v-list-item-content>
-          <v-list-item-title class="headline text-left"
-            >찜 목록</v-list-item-title
-          >
-        </v-list-item-content>
-      </v-list-item>
 
-      <v-row class="mx-2 my-2">
-        <v-btn
-          outlined
-          height="100px"
-          weight="100px"
-          v-bind="attrs"
-          v-on="on"
-          darks
-          text
-        >
-          <v-icon>mdi-marker</v-icon>
-          <router-link id="link" to="/travel/content"> 게시글 </router-link>
-        </v-btn>
-        &nbsp;
-        <v-btn
-          outlined
-          height="100px"
-          weight="100px"
-          v-bind="attrs"
-          v-on="on"
-          darks
-          text
-        >
-          <v-icon>mdi-marker</v-icon>
-          <router-link id="link" to="/travel/content"> 게시글 </router-link>
-        </v-btn>
-        &nbsp;
-        <v-btn
-          outlined
-          height="100px"
-          weight="100px"
-          v-bind="attrs"
-          v-on="on"
-          darks
-          text
-        >
-          <v-icon>mdi-marker</v-icon>
-          <router-link id="link" to="/travel/content"> 게시글 </router-link>
-        </v-btn>
-        &nbsp;
-        <v-btn
-          outlined
-          height="100px"
-          weight="100px"
-          v-bind="attrs"
-          v-on="on"
-          darks
-          text
-        >
-          <v-icon>mdi-marker</v-icon>
-          <router-link id="link" to="/travel/content"> 게시글 </router-link>
-        </v-btn>
-        &nbsp;
-      </v-row>
-    </v-sheet>
-  </v-card>
-=======
   <v-sheet class="mx-auto" elevation="8" max-width="800">
     <v-list-item one-line>
       <v-list-item-content>
         <v-list-item-title class="headline text-left">
-          여행 목록
+          좋아요 여행 목록
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
@@ -118,50 +51,24 @@
       </v-slide-item>
     </v-slide-group>
   </v-sheet>
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
+
 </template>
 
 <script>
 export default {
   data: () => ({
     model: null,
-<<<<<<< HEAD
-=======
-    items: [
-      {
-        author: "Username1",
-        province: "제주특별자치도",
-        city: "",
-        s_date: "2022-05-02",
-        e_date: "2022-05-04",
-      },
-      {
-        author: "Username2",
-        province: "경상남도",
-        city: "김해시",
-        s_date: "2021-04-02",
-        e_date: "2022-04-07",
-      },
-      {
-        author: "Username3",
-        province: "강원도",
-        city: "영월군",
-        s_date: "2021-01-01",
-        e_date: "2021-02-04",
-      },
-    ],
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
+
+
   }),
 };
 </script>
 
-<<<<<<< HEAD
-<style></style>
-=======
+
 <style>
 #link {
   color: black;
   text-decoration: none;
 }
 </style>
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
+

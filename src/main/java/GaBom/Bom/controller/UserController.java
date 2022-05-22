@@ -105,9 +105,8 @@ public class UserController {
 
     //TODO:: user별 myTravelList 반환
 //    @GetMapping("/{userId}/my_list")
-//    public void viewMyTravelList(@PathVariable String userId){ //userId : 닉네임
-//        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
-//        List<Travel> myTravelList = user.getMyTravelList();
-//
+//    public List<Travel> viewMyTravelList(@PathVariable String userId){ //userId : 닉네임
+//        List<Travel> myTravelList = travelR
+//        return myTravelList;
 //    }
 }

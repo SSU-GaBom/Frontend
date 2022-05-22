@@ -1,19 +1,19 @@
-package GaBom.Bom;
-
-import GaBom.Bom.advice.exception.CUserNotFoundException;
-import GaBom.Bom.entity.Travel;
-import GaBom.Bom.entity.User;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-
-@Component
-@RequiredArgsConstructor
-public class InitDb {
+//package GaBom.Bom;
+//
+//import GaBom.Bom.advice.exception.CUserNotFoundException;
+//import GaBom.Bom.entity.Travel;
+//import GaBom.Bom.entity.User;
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.stereotype.Component;
+//import org.springframework.transaction.annotation.Transactional;
+//
+//import javax.annotation.PostConstruct;
+//import javax.persistence.EntityManager;
+//
+////@Component
+//@RequiredArgsConstructor
+//public class InitDb {
 //
 //    private final InitService initService;
 //
@@ -68,11 +68,32 @@ public class InitDb {
 //                    .followingNum(105)
 //                    .build();
 //
+//            User so = User.builder()
+//                    .nickName("최강씨2")
+//                    .emailAuth(true)
+//                    .userId("rkskek")
+//                    .userPw(passwordEncoder.encode("1234567890"))
+//                    .follwerNum(100)
+//                    .followingNum(105)
+//                    .build();
+//
+//            User s3o = User.builder()
+//                    .nickName("최강씨3")
+//                    .emailAuth(true)
+//                    .userId("rnsnen")
+//                    .userPw(passwordEncoder.encode("1234567890"))
+//                    .follwerNum(100)
+//                    .followingNum(105)
+//                    .build();
+//
 //            em.persist(sg);
 //            em.persist(ex1);
 //            em.persist(ex2);
 //            em.persist(ex3);
+//            em.persist(so);
+//            em.persist(s3o);
+//
 //        }
 //    }
+//}
 
-}

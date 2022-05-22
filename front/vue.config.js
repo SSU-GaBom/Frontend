@@ -1,6 +1,15 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   outputDir: "../src/main/resources/static",  // 빌드 타겟 디렉토리
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       prependData: `
+  //         @import "@/scss/main.scss";
+  //       `
+  //     }
+  //   }
+  // },
   devServer: {
     proxy: {
       '/api': {

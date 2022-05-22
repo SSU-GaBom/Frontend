@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {loginUser} from '../api/auth'
+import createPersistedState from 'vuex-persistedstate';
 import {
         saveAuthToCookie,
         saveUserToCookie,
@@ -11,6 +12,12 @@ import {
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
+	plugins: [
+		createPersistedState({
+			blackList:["selectedMarker" , "viewUser" , "travelList" , "cardList" , "travelInfo" , "pinList"]
+		}),
+	],
   state: {
     user : {
 		id : null,
@@ -25,9 +32,13 @@ export default new Vuex.Store({
 		travelList : [],
 		wishList : [],
 	},
-	pinList : [],
+	pinList: [],
+	travelInfo : [],
+	writeTravelList : [],
 	travelList : [],
-	cardList : []
+	ttravelList: [],
+	cardList : [],
+	selectedMarker : null,
   },
   getters: {
 		isLoggedIn(state) {
@@ -40,7 +51,7 @@ export default new Vuex.Store({
 			return state.user.nickName;
 		},
 		writeTravelList(state){
-			return state.travelList;
+			return state.writeTravelList;
 		},
 		writeCardList(state){
 			return state.cardList;
@@ -56,7 +67,21 @@ export default new Vuex.Store({
 		},
 		profileImage(state){
 			return state.viewUser.profileImage;
+
+	  	},
+	  	ttravelList(state) {
+			return state.ttravelList;
+		},
+		travelList(state){
+			return state.viewUser.travelList;
+	  	},
+		travelInfo(state) {
+			return state.travelInfo;
+		},
+		selectedMarker(state){
+			return state.selectedMarker;
 		}
+		// 시온추가
 	},
   mutations: {
 		SET_USER(state, data) {
@@ -78,25 +103,47 @@ export default new Vuex.Store({
 			deleteCookie('til_user');
 		},
 		SET_VIEWUSER(state,data){
-			console.log("set_viewuser")
-			console.log(data)
-			state.viewUser.nickName = data.nickName;
-			state.viewUser.followerCount = data.userFollowerCount;
-			state.viewUser.followingCount = data.userFollowingCount;
-			state.viewUser.profileImage = data.profileImage;
+		console.log("set_viewuser")
+		console.log(data)
+		state.viewUser.nickName = data.nickName;
+		state.viewUser.followerCount = data.userFollowerCount;
+		state.viewUser.followingCount = data.userFollowingCount;
+		state.viewUser.profileImage = data.profileImage;
+		state.viewUser.travelList = data.myTravelList;
+		
+		// state.viewUser.wishList=data.lik
+		},
+		SET_WRITETRAVELLIST(state,travel){
+			state.writeTravelList.push(travel)
 		},
 		SET_TRAVEL(state,travel){
 			state.travelList.push(travel);
+	  	},
+	  	SET_TRAVEL_LIST(state, data) {
+		  	state.ttravelList = data;
+	  	},
+	  	SET_TRAVEL_DETAIL(state, data) {
+			console.log("hi1")
+			state.travelInfo = data;
+			console.log("hi2")
 		},
 		SET_CARD(state,card){
-<<<<<<< HEAD
-=======
 			console.log(card)
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
 			state.cardList.push(card);
 		},
 		SET_PROFILEIMAGE(state,image){
 			state.viewUser.profileImage = image;
+		},
+
+		SET_MARKER(state,marker){
+			console.log("SET_MARKER")
+			console.log(marker)
+			state.selectedMarker = marker;
+			console.log(state.selectedMarker)
+		},
+		SET_MARKERNULL(state){
+			console.log("SET_MARKERNULL")
+			state.selectedMarker = null;
 		}
 	},
   actions: {

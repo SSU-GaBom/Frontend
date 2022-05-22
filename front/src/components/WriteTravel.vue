@@ -193,7 +193,7 @@
             ></v-textarea>
           </v-row>
 
-          <template v-if="travelList">
+          <template v-if="writeTravelList">
             <v-simple-table>
               <template v-slot:default>
                 <thead>
@@ -203,7 +203,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="travel in travelList" :key="travel.place_name">
+                  <tr v-for="travel in writeTravelList" :key="travel.place_name">
                     <td>{{ travel.place_name }}</td>
                     <td><card-comp></card-comp></td>
                   </tr>
@@ -442,39 +442,26 @@ export default {
     async onSubmitForm() {
       if (this.$refs.form.validate()) {
         const pinList = [];
-<<<<<<< HEAD
-=======
+
         var reader = new FileReader();
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
 
         //핀 만들기
-        for (let i = 0; i < this.travelList.length; i++) {
+        for (let i = 0; i < this.writeTravelList.length; i++) {
           //사진 + 글
-<<<<<<< HEAD
-          let formData = new FormData();
 
-          for (let j = 0; j < this.cardList[i].images.length; j++) {
-            formData.append("images", this.cardList[i].images[j]);
-          }
-
-          let pin = {
-            location : this.travelList[i],
-            locationContent : this.cardList[i].text,
-            images : formData
-=======
           // let formData = new FormData();
 
           // for (let j = 0; j < this.cardList[i].images.length; j++) {
-          //   //image to base64 
+          //   //image to base64
           //   console.log(this.cardList[i].images[j].substr(23))
           // }
-          
+
           let pin = {
-            location : this.travelList[i],
-            locationContent : this.cardList[i].text,
-            images : this.cardList[i].images
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
-          }
+            location: this.writeTravelList[i],
+            locationContent: this.writeCardList[i].text,
+            images: this.writeCardList[i].images,
+          };
+
 
           // //장소
           // let pin = {
@@ -483,16 +470,11 @@ export default {
           // };
 
           pinList.push(pin);
-<<<<<<< HEAD
-          console.log(pin.images.getAll("images"));
-=======
-          
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
         }
 
         const travelDto = {
           // writer : this.writer,
-          writer: this.writer,
+          writer: this.myNickName,
           title: this.title,
           content: this.text,
           state: this.province,
@@ -500,7 +482,7 @@ export default {
           startDate: this.s_date,
           endDate: this.e_date,
           expense: this.budget,
-          transport: this.transport,
+          transportaion: this.transport,
           pinList: pinList,
         };
 
@@ -531,9 +513,7 @@ export default {
     },
     moveback() {
       window.history.back();
-    },
-    movetomain() {
-      window.location.href = "/";
+      // window.location.href = "/";
     },
     s_date_search(v) {
       this.s_date = v;
@@ -550,11 +530,11 @@ export default {
     dateRangeText() {
       return this.dates.join(" ~ ");
     },
-    ...mapGetters({
-      writer: "myNickName",
-      travelList: "writeTravelList",
-      cardList: "writeCardList",
-    }),
+    ...mapGetters([
+      "myNickName",
+      "writeTravelList",
+      "writeCardList",
+    ]),
   },
   components: {
     CardComp,

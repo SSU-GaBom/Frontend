@@ -1,77 +1,9 @@
 <template>
-<<<<<<< HEAD
-  <v-card class="mx-auto" tile>
-    <v-sheet class="mx-auto" elevation="8" height="200px" max-width="800">
-      <v-list-item one-line>
-        <v-list-item-content>
-          <v-list-item-title class="headline text-left"
-            >여행 목록</v-list-item-title
-          >
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-row class="mx-2 my-2">
-        <v-btn
-          outlined
-          height="100px"
-          weight="100px"
-          v-bind="attrs"
-          v-on="on"
-          darks
-          text
-        >
-          <v-icon>mdi-marker</v-icon>
-          <router-link id="link" to="/travel/content"> 게시글 </router-link>
-        </v-btn>
-        &nbsp;
-        <v-btn
-          outlined
-          height="100px"
-          weight="100px"
-          v-bind="attrs"
-          v-on="on"
-          darks
-          text
-        >
-          <v-icon>mdi-marker</v-icon>
-          <router-link id="link" to="/travel/content"> 게시글 </router-link>
-        </v-btn>
-        &nbsp;
-        <v-btn
-          outlined
-          height="100px"
-          weight="100px"
-          v-bind="attrs"
-          v-on="on"
-          darks
-          text
-        >
-          <v-icon>mdi-marker</v-icon>
-          <router-link id="link" to="/travel/content"> 게시글 </router-link>
-        </v-btn>
-        &nbsp;
-        <v-btn
-          outlined
-          height="100px"
-          weight="100px"
-          v-bind="attrs"
-          v-on="on"
-          darks
-          text
-        >
-          <v-icon>mdi-marker</v-icon>
-          <router-link id="link" to="/travel/content"> 게시글 </router-link>
-        </v-btn>
-        &nbsp;
-      </v-row>
-    </v-sheet>
-  </v-card>
-=======
   <v-sheet class="mx-auto" elevation="8" max-width="800">
     <v-list-item one-line>
       <v-list-item-content>
         <v-list-item-title class="headline text-left">
-          여행 목록
+          내가 간 여행 목록
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
@@ -97,7 +29,8 @@
               <v-card-text class="row mx-0 py-0 pb-0">
                 <v-icon fixed size="1"> mdi-account </v-icon>
                 <v-text class="ms-2" style="font-size: 1px">
-                  {{ items[0].author }}
+                  {{ travelList[0].title }}
+                  <!--                  {{ items[0].author }}-->
                 </v-text>
               </v-card-text>
               <v-card-text class="row mx-0 py-0 pb-0">
@@ -118,40 +51,27 @@
       </v-slide-item>
     </v-slide-group>
   </v-sheet>
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
+
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data: () => ({
     model: null,
-<<<<<<< HEAD
-=======
-    items: [
-      {
-        author: "Username1",
-        province: "제주특별자치도",
-        city: "",
-        s_date: "2022-05-02",
-        e_date: "2022-05-04",
-      },
-      {
-        author: "Username2",
-        province: "경상남도",
-        city: "김해시",
-        s_date: "2021-04-02",
-        e_date: "2022-04-07",
-      },
-      {
-        author: "Username3",
-        province: "강원도",
-        city: "영월군",
-        s_date: "2021-01-01",
-        e_date: "2021-02-04",
-      },
-    ],
->>>>>>> c8a368701192bec0b1d91b2570f7e2cddbeed586
+
   }),
+  computed: {
+    ...mapGetters([
+      // 'nickName',
+      // 'followerCount',
+      // 'followingCount',
+      // 'profileImage',
+      // 'myNickName',
+      "travelList",
+    ]),
+  },
 };
 </script>
 

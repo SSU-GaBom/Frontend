@@ -4,8 +4,11 @@ import GaBom.Bom.advice.exception.CImageNotFoundException;
 import GaBom.Bom.advice.exception.CNotSameUserException;
 import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.component.FileHandler;
+import GaBom.Bom.dto.GetTravelDto;
 import GaBom.Bom.dto.UserProfileDto;
+import GaBom.Bom.entity.Pin;
 import GaBom.Bom.entity.ProfileImage;
+import GaBom.Bom.entity.Travel;
 import GaBom.Bom.entity.User;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
@@ -13,6 +16,7 @@ import GaBom.Bom.repository.ProfileImageRepository;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Hibernate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -20,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -28,6 +34,7 @@ public class UserProfileService {
 
     private final UserRepository userRepository;
     private final ProfileImageRepository profileImageRepository;
+
     private final ResponseService responseService;
     private final FileHandler fileHandler;
 
@@ -48,6 +55,7 @@ public class UserProfileService {
             profileImageByte = null;
         }
 
+
         UserProfileDto userProfileDto = UserProfileDto.builder()
                 .loginUser(loginUserId)
                 .userId(user.getUserId())
@@ -56,19 +64,65 @@ public class UserProfileService {
                 .profileImage(profileImageByte)
                 .userFollowerCount(user.getFollwerNum())
                 .userFollowingCount(user.getFollowingNum())
-                //.myTravelList(user.getMyTravelList())
-                //.likedTravelList(user.getLikedTravelList())
-                //.storedTravelList(user.getStoredTravelList())
+//                .myTravelList(user.getMyTravelList())
+//                .likedTravelList(user.getLikedTravelList())
+
                 .build();
+        List<GetTravelDto> mytravellists = MyTravelsByUser(user);
+        userProfileDto.setMyTravelList(mytravellists);
+        List<GetTravelDto> liketravellists = MyLikeTravels(user);
+        userProfileDto.setLikedTravelList(liketravellists);
 
         if(profileId.equals(loginUserId))
             userProfileDto.setMe(true);
         else
             userProfileDto.setMe(false);
 
-
         return responseService.getSingleResult(userProfileDto);
     }
+
+    @Transactional
+    public List<GetTravelDto> MyTravelsByUser(User user){
+        List<Travel> myTravelList = user.getMyTravelList();
+        List<GetTravelDto> lists= new ArrayList<>();
+        for (Travel travel : myTravelList) {
+            List<Pin> pinList = travel.getPinList();
+            Hibernate.initialize(pinList); //정보확인
+            for (Pin pin : pinList) {
+                Hibernate.initialize(pin.getImages());
+            }
+            Hibernate.initialize(travel.getPinList());
+            //lazy
+            lists.add(new GetTravelDto(travel));
+        }
+        return lists;
+    }
+
+    @Transactional
+    public List<GetTravelDto> MyLikeTravels(User user){
+//        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
+        List<Travel> LikeTravelList = user.getLikedTravelList();
+        System.out.println(" 좋아요 list 출력");
+        for (Travel travel : LikeTravelList) {
+            System.out.println("travel.getTitle() = " + travel.getTitle());
+        }
+        //없으면??
+        List<GetTravelDto> lists= new ArrayList<>();
+        for (Travel travel : LikeTravelList) {
+            List<Pin> pinList = travel.getPinList();
+            Hibernate.initialize(pinList); //정보확인
+            for (Pin pin : pinList) {
+                Hibernate.initialize(pin.getImages());
+            }
+            Hibernate.initialize(travel.getPinList());
+            lists.add(new GetTravelDto(travel));
+        }
+        return lists;
+    }
+
+
+
+
 
     @Transactional
     public SingleResult updateProfile(String nickName, MultipartFile profileImageFile) throws IOException {
