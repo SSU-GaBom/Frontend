@@ -295,7 +295,7 @@ export default {
         },
         addPlace(idx){
             const place = this.places[idx];
-            store.commit('SET_TRAVEL',place)
+            store.commit('SET_WRITETRAVELLIST',place)
         },
         removePlaces(){
             this.places.splice(0,this.places.length)

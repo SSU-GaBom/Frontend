@@ -34,6 +34,7 @@ export default new Vuex.Store({
 	},
 	pinList: [],
 	travelInfo : [],
+	writeTravelList : [],
 	travelList : [],
 	ttravelList: [],
 	cardList : [],
@@ -102,16 +103,19 @@ export default new Vuex.Store({
 			deleteCookie('til_user');
 		},
 		SET_VIEWUSER(state,data){
-			console.log("set_viewuser")
-			console.log(data)
-			state.viewUser.nickName = data.nickName;
-			state.viewUser.followerCount = data.userFollowerCount;
-			state.viewUser.followingCount = data.userFollowingCount;
-			state.viewUser.profileImage = data.profileImage;
-			state.viewUser.travelList = data.myTravelList;
-			
-			// state.viewUser.wishList=data.lik
-			},
+		console.log("set_viewuser")
+		console.log(data)
+		state.viewUser.nickName = data.nickName;
+		state.viewUser.followerCount = data.userFollowerCount;
+		state.viewUser.followingCount = data.userFollowingCount;
+		state.viewUser.profileImage = data.profileImage;
+		state.viewUser.travelList = data.myTravelList;
+		
+		// state.viewUser.wishList=data.lik
+		},
+		SET_WRITETRAVELLIST(state,travel){
+			state.writeTravelList.push(travel)
+		},
 		SET_TRAVEL(state,travel){
 			state.travelList.push(travel);
 	  	},
@@ -119,7 +123,9 @@ export default new Vuex.Store({
 		  	state.ttravelList = data;
 	  	},
 	  	SET_TRAVEL_DETAIL(state, data) {
+			console.log("hi1")
 			state.travelInfo = data;
+			console.log("hi2")
 		},
 		SET_CARD(state,card){
 			console.log(card)
