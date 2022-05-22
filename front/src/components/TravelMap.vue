@@ -4,7 +4,7 @@
 
 <script>
 import geojson from "../assets/all.json";
-
+import { mapGetters } from "vuex";
 export default {
   name: "HomeMap",
   data() {
@@ -32,6 +32,10 @@ export default {
 
   methods: {
     initMap() {
+      if(this.myNickName){
+        console.log("hi")
+      } 
+
       let data = geojson.features;
       let coordinates = [];
       let name = "";
@@ -212,6 +216,11 @@ export default {
       polygon.setMap(null);
     },
     zoomMap() {},
+  },
+  computed: {
+    ...mapGetters([
+      "myNickName",
+    ]),
   },
 };
 </script>
