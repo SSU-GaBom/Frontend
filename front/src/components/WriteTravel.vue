@@ -203,7 +203,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="travel in writeTravelList" :key="travel.place_name">
+                  <tr
+                    v-for="travel in writeTravelList"
+                    :key="travel.place_name"
+                  >
                     <td>{{ travel.place_name }}</td>
                     <td><card-comp></card-comp></td>
                   </tr>
@@ -462,7 +465,6 @@ export default {
             images: this.writeCardList[i].images,
           };
 
-
           // //장소
           // let pin = {
           //   location: this.travelList[i],
@@ -482,7 +484,7 @@ export default {
           startDate: this.s_date,
           endDate: this.e_date,
           expense: this.budget,
-          transportaion: this.transport,
+          transportation: this.transport,
           pinList: pinList,
         };
 
@@ -530,11 +532,7 @@ export default {
     dateRangeText() {
       return this.dates.join(" ~ ");
     },
-    ...mapGetters([
-      "myNickName",
-      "writeTravelList",
-      "writeCardList",
-    ]),
+    ...mapGetters(["myNickName", "writeTravelList", "writeCardList"]),
   },
   components: {
     CardComp,
