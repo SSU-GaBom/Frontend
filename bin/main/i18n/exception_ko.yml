@@ -7,22 +7,22 @@ userNotFoundException:
   msg: "존재하지 않는 회원입니다."
 signinFailedException:
   code: "-1001"
-  msg: "계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다. "
+  msg: "계정이 존재하지 않거나 아이디 또는 비밀번호가 정확하지 않습니다."
 entryPointException:
   code: "-1002"
-  msg: "해당 리소스에 접근하기 위한 권한이 없습니다. "
+  msg: "해당 리소스에 접근하기 위한 권한이 없습니다."
 accessDeniedException:
   code: "-1003"
-  msg: "보유한 권한으로 접근할 수 없는 리소스 입니다. "
+  msg: "보유한 권한으로 접근할 수 없는 리소스 입니다."
 userAlreadyExistsException:
   code: "-1004"
-  msg: "이미 유저가 존재합니다. "
+  msg: "이미 유저가 존재합니다."
 userIdAlreadyExistsException:
   code: "-1005"
-  msg: "이미 아이디가 존재합니다. "
+  msg: "이미 아이디가 존재합니다."
 nickNameAlreadyExistsException:
   code: "-1006"
-  msg: "이미 닉네임이 존재합니다. "
+  msg: "이미 닉네임이 존재합니다."
 emailAuthTokenNotFoundException:
   code: "-1007"
   msg: "이메일 인증이 되지 않았습니다. "
@@ -30,11 +30,20 @@ notSameUserException:
   code: "-1008"
   msg: "로그인한 사용자와 프로필의 사용자와 다릅니다."
 sameUserException:
-  code: "-1008"
+  code: "-1009"
   msg: "로그인한 사용자와 프로필의 사용자와 같습니다."
 noRelationException:
-  code: "-1009"
+  code: "-1010"
   msg: "서로 팔로우를 하고 있지 않습니다."
 relationAlreadyExistsException:
-  code: "-1009"
+  code: "-1011"
   msg: "이미 팔로우를 하고 있습니다."
+extensionException:
+  code: "-1012"
+  msg: "올바르지 않은 확장자입니다."
+imageNotFoundException:
+  code: "-1013"
+  msg: "이미지가 존재하지 않습니다."
+randomIntNotExistsException:
+  code: "-1014"
+  msg: "난수가 db에 존재하지 않습니다."

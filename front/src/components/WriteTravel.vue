@@ -193,7 +193,7 @@
             ></v-textarea>
           </v-row>
 
-          <template v-if="travelList">
+          <template v-if="writeTravelList">
             <v-simple-table>
               <template v-slot:default>
                 <thead>
@@ -203,7 +203,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="travel in travelList" :key="travel.place_name">
+                  <tr v-for="travel in writeTravelList" :key="travel.place_name">
                     <td>{{ travel.place_name }}</td>
                     <td><card-comp></card-comp></td>
                   </tr>
@@ -446,7 +446,7 @@ export default {
         var reader = new FileReader();
 
         //핀 만들기
-        for (let i = 0; i < this.travelList.length; i++) {
+        for (let i = 0; i < this.writeTravelList.length; i++) {
           //사진 + 글
 
           // let formData = new FormData();
@@ -457,9 +457,9 @@ export default {
           // }
 
           let pin = {
-            location: this.travelList[i],
-            locationContent: this.cardList[i].text,
-            images: this.cardList[i].images,
+            location: this.writeTravelList[i],
+            locationContent: this.writeCardList[i].text,
+            images: this.writeCardList[i].images,
           };
 
 
@@ -474,7 +474,7 @@ export default {
 
         const travelDto = {
           // writer : this.writer,
-          writer: this.writer,
+          writer: this.myNickName,
           title: this.title,
           content: this.text,
           state: this.province,
@@ -530,11 +530,11 @@ export default {
     dateRangeText() {
       return this.dates.join(" ~ ");
     },
-    ...mapGetters({
-      writer: "myNickName",
-      travelList: "writeTravelList",
-      cardList: "writeCardList",
-    }),
+    ...mapGetters([
+      "myNickName",
+      "writeTravelList",
+      "writeCardList",
+    ]),
   },
   components: {
     CardComp,

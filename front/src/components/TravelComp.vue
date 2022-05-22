@@ -514,9 +514,9 @@ export default {
       });
     },
     async toTravelDetail(travelId) {
-      const response = await getTravelDetail(travelId);
-      console.log(response.data);
-      store.commit("SET_TRAVEL_DETAIL", response.data);
+      // const response = await getTravelDetail(travelId);
+      // console.log(response.data);
+      // store.commit("SET_TRAVEL_DETAIL", response.data);
       this.$router.push({
         name: "travel-view",
         params: { travelContentId: travelId },
