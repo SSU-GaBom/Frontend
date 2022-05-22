@@ -34,11 +34,10 @@ import static org.apache.commons.io.FilenameUtils.getFullPath;
 public class TravelImageService {
     private final TravelImageRepository travelImageRepository;
     private final UserRepository userRepository;
-//    private final TravelFileHandler travelFileHandler;
     private final PinRepository pinRepository;
 
-//    @Value("C:\\Users\\sion\\Desktop") //변경가능
     @Value("C:\\Users\\psg98\\GaBom\\travelImage\\")
+//    @Value("C:\\Users\\sion\\Desktop\\") //변경가능
     private String imageDir;
 
     public String getFullPath(String fileName) {
@@ -48,14 +47,13 @@ public class TravelImageService {
     public void createPin(Pin pin, List<TravelImage> base64Images) throws IOException {
         //이미지를 실제로 저장하고 이미지객체를 아이템과 연관시키기
         for (TravelImage base64Image : base64Images) {
-//            TravelImage image = travelImage(base64Image);
             TravelImage image3 = travelImage(base64Image);
-//            base64Image.setBase64Image(image3.getBase64Image());
+            System.out.println("!! base64Image = " + base64Image.getFileName());
+            String[] filetype = base64Image.getFileName().split("\\.");
+            if(filetype.length>0) base64Image.setIdentifier(filetype[filetype.length-1]);
             base64Image.setTravelFileName(image3.getTravelFileName());
             pin.setTravelImage(base64Image);
-            log.info("here1");
         }
-//        pinRepository.save(pin); // <-- pin_id는 달라도 id 는 같을 수도 있음.
     }
 
 //    public List<TravelImage> readImage(Pin pin) throws IOException {
@@ -76,23 +74,30 @@ public class TravelImageService {
     public TravelImage travelImage(TravelImage image) throws IOException
     {
         log.info("Service : travelImage");
-        String travelFileName = createTravelFileName(image.getFileName());
+        String travelFileName = createTravelFileName(image.getFileName()); //파일이름
         File imagefile = new File(getFullPath(travelFileName));
         byte[] decodeBytes = Base64.getDecoder().decode(image.getBase64Image().getBytes());
         FileOutputStream fos = new FileOutputStream(imagefile);
         fos.write(decodeBytes);
         fos.close();
+        String path = getFullPath(travelFileName);
         log.info("Service : travelImage2");
         return TravelImage.builder()
-//                    .uploadFileName(image.getFileName())
-                    .travelFileName(travelFileName)
+                    .travelFileName(path)
                     .build();
     }
 
-    private String createTravelFileName(String originalFileName) {
-        //String ext = extractExt(originalFileName);
+    private String createTravelFileName(String filename) {
+        System.out.println("filename = " + filename);
+        String[] words = filename.split("\\.");
+        int last = words.length;
+        if(last<=0){
+            log.info("사진 파일이 들어오지 않았습니다!!");
+            return "Error\n";
+        }
+        String filetype = words[last-1];
         String uuid = UUID.randomUUID().toString();
-        return uuid + "." + "png";
+        return uuid + "." + filetype;
     }
 
 

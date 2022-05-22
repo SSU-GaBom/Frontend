@@ -17,4 +17,8 @@ public interface TravelRepository extends JpaRepository<Travel, Long> {
     void deleteByTravelId(Long travelId);
 
     Page<Travel> findAll(Pageable pageable);
+
+    Page<Travel> findByTitleContaining(String keyword,Pageable pageable);
+
+//    Page<Travel> findByTitleContainingOrContentContaining(String title, String content, Pageable pageable);
 }

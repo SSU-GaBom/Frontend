@@ -4,7 +4,7 @@
     <v-list-item one-line>
       <v-list-item-content>
         <v-list-item-title class="headline text-left">
-          여행 목록
+          좋아요 여행 목록
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>

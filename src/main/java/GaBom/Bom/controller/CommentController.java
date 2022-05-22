@@ -1,16 +1,21 @@
 package GaBom.Bom.controller;
 
 import GaBom.Bom.dto.CommentDto;
+import GaBom.Bom.dto.GetTravelDto;
 import GaBom.Bom.entity.Comment;
 import GaBom.Bom.repository.CommentRepository;
 import GaBom.Bom.service.CommentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/comment")
+@RequestMapping("api/travel/comment")
 @RequiredArgsConstructor
 @RestControllerAdvice
 public class CommentController {
@@ -22,9 +27,12 @@ public class CommentController {
         return "Comment write fail";
     }
 
+
 //    @GetMapping("/{travelId}")
-//    public List<CommentDto>(@PathVariable Long travelId){
-//
+//    public Page<CommentDto> CommentsList(
+//            @PageableDefault(size = 12, sort = "updateDate", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long travelId) {
+//        Page<CommentDto> travels = commentService.GetComments(travelId,pageable);
+//        return travels;
 //    }
 
     @DeleteMapping("/{commentId}")

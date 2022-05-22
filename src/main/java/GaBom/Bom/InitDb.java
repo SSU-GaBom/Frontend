@@ -1,21 +1,22 @@
-package GaBom.Bom;
-
-import GaBom.Bom.advice.exception.CUserNotFoundException;
-import GaBom.Bom.entity.Travel;
-import GaBom.Bom.entity.User;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-
-//@Component
+//package GaBom.Bom;
+//
+//import GaBom.Bom.advice.exception.CUserNotFoundException;
+//import GaBom.Bom.entity.Travel;
+//import GaBom.Bom.entity.User;
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.stereotype.Component;
+//import org.springframework.transaction.annotation.Transactional;
+//
+//import javax.annotation.PostConstruct;
+//import javax.persistence.EntityManager;
+//
+////@Component
 //@RequiredArgsConstructor
 //public class InitDb {
 //
 //    private final InitService initService;
+//
 //
 //    @PostConstruct
 //    public void init() {
@@ -32,7 +33,7 @@ import javax.persistence.EntityManager;
 //
 //        public void dbInit1(){
 //            User sg = User.builder()
-//                    .nickName("시균팍")
+//                    .nickName("SSUSG")
 //                    .emailAuth(true)
 //                    .userId("qwe123")
 //                    .userPw(passwordEncoder.encode("123"))
@@ -71,7 +72,7 @@ import javax.persistence.EntityManager;
 //                    .nickName("최강씨2")
 //                    .emailAuth(true)
 //                    .userId("rkskek")
-//                    .userPw(passwordEncoder.encode("rlatldhs33@naver.com"))
+//                    .userPw(passwordEncoder.encode("1234567890"))
 //                    .follwerNum(100)
 //                    .followingNum(105)
 //                    .build();
@@ -80,7 +81,7 @@ import javax.persistence.EntityManager;
 //                    .nickName("최강씨3")
 //                    .emailAuth(true)
 //                    .userId("rnsnen")
-//                    .userPw(passwordEncoder.encode("rlatldhs33@naver.com"))
+//                    .userPw(passwordEncoder.encode("1234567890"))
 //                    .follwerNum(100)
 //                    .followingNum(105)
 //                    .build();
@@ -92,8 +93,7 @@ import javax.persistence.EntityManager;
 //            em.persist(so);
 //            em.persist(s3o);
 //
-//
 //        }
 //    }
-//
 //}
+

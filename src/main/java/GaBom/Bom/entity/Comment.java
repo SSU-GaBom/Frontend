@@ -27,6 +27,6 @@ public class Comment {
     @JsonBackReference
     private Travel travel;
 
-    private String userId;
+    private String userNickname;
     //연관관계 편의
 }

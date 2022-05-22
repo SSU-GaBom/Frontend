@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -34,7 +35,7 @@ public class Travel{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
 //    @JsonIgnore //순환참조 방지용인데 다른방식으로 해야하는지 고민
-//    @JsonBackReference
+    @JsonBackReference
     private User myuser;
 
 
@@ -53,10 +54,12 @@ public class Travel{
 //    private List<User> likeusers = new ArrayList<>();
 
     @ManyToMany(mappedBy = "")
+    @JsonIgnore
     private List<User> likeusers = new ArrayList<>();
 
-//    @ManyToMany(mappedBy = "")
-//    private List<User> zzimusers = new ArrayList<>();
+    @ManyToMany(mappedBy = "")
+    @JsonIgnore
+    private List<User> zzimusers = new ArrayList<>();
 
 
 //    리뷰 내부의 핀 리스트
@@ -90,6 +93,9 @@ public class Travel{
     //좋아요 갯수
     @NotNull
     private Integer likedCount;
+
+    @NotNull
+    private Integer zzimCount;
 
     //도 or 특별시
     @NotNull
@@ -151,4 +157,10 @@ public class Travel{
         comment.setTravel(this);
         this.commentList.add(comment);
     }
+//    @PrePersist
+//    public void prePersist() {
+//        this.ZzimCount = this.ZzimCount == null ? 0 : this.ZzimCount;
+//    }
+
+
 }

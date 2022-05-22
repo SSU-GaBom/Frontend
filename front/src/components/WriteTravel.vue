@@ -452,16 +452,16 @@ export default {
           // let formData = new FormData();
 
           // for (let j = 0; j < this.cardList[i].images.length; j++) {
-          //   //image to base64 
+          //   //image to base64
           //   console.log(this.cardList[i].images[j].substr(23))
           // }
-          
-          let pin = {
-            location : this.travelList[i],
-            locationContent : this.cardList[i].text,
-            images : this.cardList[i].images
 
-          }
+          let pin = {
+            location: this.travelList[i],
+            locationContent: this.cardList[i].text,
+            images: this.cardList[i].images,
+          };
+
 
           // //장소
           // let pin = {
@@ -470,7 +470,6 @@ export default {
           // };
 
           pinList.push(pin);
-
         }
 
         const travelDto = {
@@ -514,9 +513,7 @@ export default {
     },
     moveback() {
       window.history.back();
-    },
-    movetomain() {
-      window.location.href = "/";
+      // window.location.href = "/";
     },
     s_date_search(v) {
       this.s_date = v;

@@ -12,8 +12,11 @@ import {
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
 	plugins: [
-		createPersistedState()
+		createPersistedState({
+			blackList:["selectedMarker" , "viewUser" , "travelList" , "cardList" , "travelInfo" , "pinList"]
+		}),
 	],
   state: {
     user : {
@@ -29,9 +32,10 @@ export default new Vuex.Store({
 		travelList : [],
 		wishList : [],
 	},
-	detailTravelInfo : null,
-	pinList : [],
-	writeTravelList : [],
+	pinList: [],
+	travelInfo : [],
+	travelList : [],
+	ttravelList: [],
 	cardList : [],
 	selectedMarker : null,
   },
@@ -62,13 +66,21 @@ export default new Vuex.Store({
 		},
 		profileImage(state){
 			return state.viewUser.profileImage;
+
+	  	},
+	  	ttravelList(state) {
+			return state.ttravelList;
 		},
-		detailTravelInfo(state){
-			return state.detailTravelInfo;
+		travelList(state){
+			return state.viewUser.travelList;
+	  	},
+		travelInfo(state) {
+			return state.travelInfo;
 		},
 		selectedMarker(state){
 			return state.selectedMarker;
 		}
+		// 시온추가
 	},
   mutations: {
 		SET_USER(state, data) {
@@ -96,9 +108,18 @@ export default new Vuex.Store({
 			state.viewUser.followerCount = data.userFollowerCount;
 			state.viewUser.followingCount = data.userFollowingCount;
 			state.viewUser.profileImage = data.profileImage;
-		},
+			state.viewUser.travelList = data.myTravelList;
+			
+			// state.viewUser.wishList=data.lik
+			},
 		SET_TRAVEL(state,travel){
-			state.writeTravelList.push(travel);
+			state.travelList.push(travel);
+	  	},
+	  	SET_TRAVEL_LIST(state, data) {
+		  	state.ttravelList = data;
+	  	},
+	  	SET_TRAVEL_DETAIL(state, data) {
+			state.travelInfo = data;
 		},
 		SET_CARD(state,card){
 			console.log(card)
@@ -107,14 +128,15 @@ export default new Vuex.Store({
 		SET_PROFILEIMAGE(state,image){
 			state.viewUser.profileImage = image;
 		},
-		SET_DETAILTRAVELINFO(state, travelInfo){
-			
-			state.detailTravelInfo = travelInfo
-		},
+
 		SET_MARKER(state,marker){
+			console.log("SET_MARKER")
+			console.log(marker)
 			state.selectedMarker = marker;
+			console.log(state.selectedMarker)
 		},
 		SET_MARKERNULL(state){
+			console.log("SET_MARKERNULL")
 			state.selectedMarker = null;
 		}
 	},

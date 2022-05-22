@@ -38,6 +38,8 @@ public class TravelService {
 //    private final TravelFileHandler travelFileHandler;
     private final PinRepository pinRepository;
 
+    private final TravelLikeService travelLikeService;
+    private final ZzimService zzimService;
 
     private final TravelImageService travelImageService;
 
@@ -70,6 +72,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
                 .content(travelDto.getContent())
                 .isShared(false)
                 .likedCount(0)
+                .zzimCount(0)
                 .transportation(travelDto.getTransportation())
                 .build();
 
@@ -93,10 +96,21 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
 
 
     @Transactional
-    public Travel travel_info(Long travelId) {
+    public GetTravelDto travel_info(Long travelId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginId = authentication.getName();
+        //이미 눌렀던 상황이면 누르지 않게 해야함
+        if(loginId=="anonymousUser") {
+            log.error("session is end");
+        }
+        User user = userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new);
         Travel travel = travelRepository.findByTravelId(travelId).orElseThrow(CTravelNotFoundException::new);
         initHibernate(travel);
-        return travel;
+        GetTravelDto getTravelDto = new GetTravelDto(travel);
+        getTravelDto.setIsLike(travelLikeService.CheckLike(user,travel));
+        getTravelDto.setIsZzim(zzimService.CheckZzim(user,travel));
+
+        return getTravelDto;
     }
 
 
@@ -109,22 +123,22 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
         return true;
     }
 
-    @Transactional
-    public List<GetTravelDto> TravelsByUpdateTime(){
-        List<Travel> travels =travelRepository.findAll();
-        List<GetTravelDto> lists= new ArrayList<>();
-        for (Travel travel : travels) {
-            List<Pin> pinList = travel.getPinList();
-            Hibernate.initialize(pinList); //정보확인
-            for (Pin pin : pinList) {
-                Hibernate.initialize(pin.getImages());
-            }
-            Hibernate.initialize(travel.getPinList());
-            //lazy
-            lists.add(new GetTravelDto(travel));
-        }
-        return lists;
-    }
+//    @Transactional
+//    public List<GetTravelDto> TravelsByUpdateTime(){
+//        List<Travel> travels =travelRepository.findAll();
+//        List<GetTravelDto> lists= new ArrayList<>();
+//        for (Travel travel : travels) {
+//            List<Pin> pinList = travel.getPinList();
+//            Hibernate.initialize(pinList); //정보확인
+//            for (Pin pin : pinList) {
+//                Hibernate.initialize(pin.getImages());
+//            }
+//            Hibernate.initialize(travel.getPinList());
+//            //lazy
+//            lists.add(new GetTravelDto(travel));
+//        }
+//        return lists;
+//    }
 
 
     @Transactional
@@ -168,6 +182,28 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
         return lists;
     }
 
+    @Transactional
+    public List<GetTravelDto> MyZzimTravels(String userId){
+        User user = userRepository.findByUserId(userId).orElseThrow(CUserNotFoundException::new);
+        List<Travel> LikeTravelList = user.getZzimTravelList();
+        System.out.println(" 찜 list 출력");
+        for (Travel travel : LikeTravelList) {
+            System.out.println("travel.getTitle() = " + travel.getTitle());
+        }
+        //없으면??
+        List<GetTravelDto> lists= new ArrayList<>();
+        for (Travel travel : LikeTravelList) {
+            List<Pin> pinList = travel.getPinList();
+            Hibernate.initialize(pinList); //정보확인
+            for (Pin pin : pinList) {
+                Hibernate.initialize(pin.getImages());
+            }
+            Hibernate.initialize(travel.getPinList());
+            lists.add(new GetTravelDto(travel));
+        }
+        return lists;
+    }
+
 
     @Transactional
     public void deleteTravel(Long travelId) { travelRepository.deleteByTravelId(travelId);
@@ -183,6 +219,15 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
         return travels;
     }
 
+    @Transactional
+    public Page<GetTravelDto> getTitlePages(String title,Pageable pageable){
+        Page<Travel> pages = travelRepository.findByTitleContaining(title,pageable);
+        for (Travel page : pages) {
+            initHibernate(page);
+        }
+        Page<GetTravelDto> getTravelDtos= pages.map(GetTravelDto::new);
+        return getTravelDtos;
+    }
 
     //Json으로 Lazy로 안딸려나와서 만든 함수. 이렇게 하는게 맞나?
     void initHibernate(Travel travel){

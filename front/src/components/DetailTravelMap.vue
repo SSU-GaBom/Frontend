@@ -16,8 +16,8 @@ export default {
             mapOption : null,
             map :  null,
             customOverlay : null,
-            
-            
+            nowMarker : null,
+         
         }
     },
     mounted() {
@@ -43,7 +43,7 @@ export default {
         initMap(){
             this.mapContainer = document.getElementById('map'); // 지도를 표시할 div
             this.mapOption = {
-                center: new kakao.maps.LatLng(this.detailTravelInfo.pinList[0].location.y, this.detailTravelInfo.pinList[0].location.x), // 지도의 중심좌표
+                center: new kakao.maps.LatLng(this.travelInfo.pinList[0].location.y, this.travelInfo.pinList[0].location.x), // 지도의 중심좌표
                 level: 4, // 지도의 확대 레벨
             };
             // 마커 이미지의 이미지 주소
@@ -57,10 +57,10 @@ export default {
             
             let map = this.map;
             
-            for (let index = 0; index < this.detailTravelInfo.pinList.length; index++) {
+            for (let index = 0; index < this.travelInfo.pinList.length; index++) {
                 
-                var x = this.detailTravelInfo.pinList[index].location.x
-                var y = this.detailTravelInfo.pinList[index].location.y
+                var x = this.travelInfo.pinList[index].location.x
+                var y = this.travelInfo.pinList[index].location.y
                 
                 // 마커가 표시될 위치입니다 
                 var markerPosition  = new kakao.maps.LatLng(y, x); 
@@ -69,16 +69,16 @@ export default {
                 var marker = new kakao.maps.Marker({
                     map : map,
                     position: markerPosition,
-                    title: this.detailTravelInfo.pinList[index].location.place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    title: this.travelInfo.pinList[index].location.place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                     image: normalImage, // 마커 이미지
                 });
 
 
                 var basicInfo = `<div class="customoverlay">
-                    <a href="`+this.detailTravelInfo.pinList[index].location.place_url+`" 
+                    <a href="`+this.travelInfo.pinList[index].location.place_url+`" 
                     target="_blank">
                     <span class="title">` 
-                        + this.detailTravelInfo.pinList[index].location.place_name +
+                        + this.travelInfo.pinList[index].location.place_name +
                     `</span>
                     </a>
                     </div>`;
@@ -88,7 +88,7 @@ export default {
                     content: basicInfo,
                     position: markerPosition,
                     xAnchor: 0.5,
-                    yAnchor: 2.3,
+                    yAnchor: 1.9,
                     zIndex: 3,
                 });
 
@@ -139,21 +139,21 @@ export default {
                 var moreInfo2 = `<div class="store-card-item-map">
                     <div
                       class="thumbnail"
-                      style="background-image: url('data:image/jpeg;base64,`+ this.detailTravelInfo.pinList[index].images[0].base64Image+`');
+                      style="background-image: url('data:image/jpeg;base64,`+ this.travelInfo.pinList[index].images[0].base64Image+`');
                                 background-position:center;">
                     </div>
                     <div class="info">
                       <div class="left-side">
                           <div class="first-line">
                             <div class="title">
-                                `+ this.detailTravelInfo.pinList[index].location.place_name +`
+                                `+ this.travelInfo.pinList[index].location.place_name +`
                             </div>
                             <div class="subtitle">
-                                `+ this.detailTravelInfo.pinList[index].location.category_group_name  +`
+                                `+ this.travelInfo.pinList[index].location.category_group_name  +`
                             </div>          
                           </div>
                           <div class="address">
-                              `+ this.detailTravelInfo.pinList[index].location.address_name  +`
+                              `+ this.travelInfo.pinList[index].location.address_name  +`
                           </div>
                       </div>
                     </div>
@@ -295,12 +295,12 @@ export default {
                   content: moreInfo2,
                   position: markerPosition,
                   xAnchor: 0.5,
-                  yAnchor: 1.25,
+                  yAnchor: 1.1,
                   zIndex: 3,
                 });
 
             
-                // kakao.maps.event.addListener(this.map, 'click', this.resetMarker())
+                kakao.maps.event.addListener(map, 'click', this.resetMarker())
                 kakao.maps.event.addListener(marker,'mouseover',this.makeOverListner(map,marker,customOverlay))
                 kakao.maps.event.addListener(marker,'mouseout',this.makeOutListner(customOverlay))
                 kakao.maps.event.addListener(marker,'click',this.makeClickListner(map,marker,customOverlayMore))
@@ -312,10 +312,10 @@ export default {
         },
         makeOverListner(map, marker, customOverlay){
           return () => {
-            if (this.selectedMarker) {
-              
+            if (this.nowMarker) {
               // 선택되어 있는 마커가 있을 경우
-              if (marker.getTitle() !== this.selectedMarker.getTitle()) {
+              
+              if (marker.getTitle() !== this.nowMarker.name) {
                 // 선택되어 있는 마커와 새로 선택된 마커의 상호명이 다를 경우
                 customOverlay.setMap(map); // 지도에 올림
               }
@@ -330,7 +330,7 @@ export default {
         },
         makeOutListner(customOverlay){
           return () => {
-            
+
             // customOverlay.setVisible(false);
             customOverlay.setMap(null);
           }
@@ -338,37 +338,39 @@ export default {
         },
         makeClickListner(map,marker,customOverlayMore){
           return () => {
-            
-            if (this.selectedMarker) {
-              this.selectedMarker.overlay.setMap(null); // 기존 ovelay 제거
-              store.commit("SET_MARKERNULL");
+            if (this.nowMarker) {
+              
+              this.nowMarker.overlay.setMap(null)
+              // this.selectedMarker.overlay.setMap(null); // 기존 ovelay 제거
+              
             }
-            store.commit("SET_MARKER",marker);
+            const tempMarker = {
+              name : marker.Gb,
+              overlay : customOverlayMore
+            }
+            this.nowMarker = tempMarker
             customOverlayMore.setMap(map); // 지도에 올림
-            marker.overlay = customOverlayMore;
+            
             map.panTo(marker.getPosition());
             }
         },
         
-        // resetMarker(){
-        //   return function(){
-        //     console.log("mouseclick2")
-        //     console.log(this.selectedMarker)
-        //     if(this.selectedMarker){
-        //       console.log("hi3")
-        //       this.selectedMarker.overlay.setMap(null); // 기존 ovelay 제거
-        //       if (this.selectedMarker) {
-        //         this.selectedMarker = null;
-        //       }
-        //     }
-        //   }
-        // },
+        resetMarker(){
+          return () => {
+            if(this.nowMarker){
+              this.nowMarker.overlay.setMap(null); // 기존 ovelay 제거
+              if (this.nowMarker) {
+                this.nowMarker = null;
+              }
+            }
+          }
+        },
         
     },
     computed : {
       ...mapGetters([
-        'detailTravelInfo',
-        'selectedMarker'
+        'travelInfo',
+        // 'selectedMarker'
       ])
     },
 }
