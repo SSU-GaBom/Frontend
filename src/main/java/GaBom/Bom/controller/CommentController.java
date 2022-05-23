@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -22,23 +23,41 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("/{travelId}")
-    public String writeComment(@RequestBody CommentDto commentDto, @PathVariable Long travelId) { //로그인세션에 맞춰서 Travel 쓰도록 하기
+    public String writeComment(@RequestBody CommentDto commentDto, @PathVariable Long travelId) throws IOException { //로그인세션에 맞춰서 Travel 쓰도록 하기
         if(commentService.CreateComment(commentDto,travelId)) return "Comment writed";
         return "Comment write fail";
     }
 
 
+    //ㅠㅠ 페이징
 //    @GetMapping("/{travelId}")
 //    public Page<CommentDto> CommentsList(
-//            @PageableDefault(size = 12, sort = "updateDate", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long travelId) {
+//            @PageableDefault(size = 7, sort = "updateDate", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long travelId) throws IOException {
 //        Page<CommentDto> travels = commentService.GetComments(travelId,pageable);
 //        return travels;
 //    }
 
-    @DeleteMapping("/{commentId}")
+
+//    @GetMapping("/{travelId}")
+//    public List<CommentDto> CommentsList(
+//            @PageableDefault(size = 7, sort = "updateDate", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long travelId) throws IOException {
+//        List<CommentDto> travels = commentService.GetComments(travelId,pageable);
+//        return travels;
+//    }
+
+    @GetMapping("/{travelId}")
+    public List<CommentDto> CommentsList(@PathVariable Long travelId) throws IOException {
+        List<CommentDto> travels = commentService.GetCommentLists(travelId);
+        return travels;
+    }
+
+    @PostMapping("/delete/{commentId}")
     String deleteComment(@PathVariable Long commentId) {
-        commentService.deleteComment(commentId);
-        return "deleted";
+        if(commentService.deleteComment(commentId))
+        return "comment delete success";
+        else{
+            return "comment delete fail";
+        }
     }
 
 }

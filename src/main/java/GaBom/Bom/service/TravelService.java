@@ -95,8 +95,26 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
     }
 
 
+//    @Transactional
+//    public GetTravelDto travel_info(Long travelId) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String loginId = authentication.getName();
+//        //이미 눌렀던 상황이면 누르지 않게 해야함
+//        if(loginId=="anonymousUser") {
+//            log.error("session is end");
+//        }
+//        User user = userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new);
+//        Travel travel = travelRepository.findByTravelId(travelId).orElseThrow(CTravelNotFoundException::new);
+//        initHibernate(travel);
+//        GetTravelDto getTravelDto = new GetTravelDto(travel);
+//        getTravelDto.setIsLike(travelLikeService.CheckLike(user,travel));
+//        getTravelDto.setIsZzim(zzimService.CheckZzim(user,travel));
+//
+//        return getTravelDto;
+//    }
+
     @Transactional
-    public GetTravelDto travel_info(Long travelId) {
+    public TravelwithCommentsDto travel_info_comments(Long travelId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
         //이미 눌렀던 상황이면 누르지 않게 해야함
@@ -106,12 +124,13 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
         User user = userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new);
         Travel travel = travelRepository.findByTravelId(travelId).orElseThrow(CTravelNotFoundException::new);
         initHibernate(travel);
-        GetTravelDto getTravelDto = new GetTravelDto(travel);
-        getTravelDto.setIsLike(travelLikeService.CheckLike(user,travel));
-        getTravelDto.setIsZzim(zzimService.CheckZzim(user,travel));
+        TravelwithCommentsDto travelwithCommentsDto = new TravelwithCommentsDto(travel);
+        travelwithCommentsDto.setIsLike(travelLikeService.CheckLike(user,travel));
+        travelwithCommentsDto.setIsZzim(zzimService.CheckZzim(user,travel));
 
-        return getTravelDto;
+        return travelwithCommentsDto;
     }
+
 
 
 
@@ -206,7 +225,25 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
 
 
     @Transactional
-    public void deleteTravel(Long travelId) { travelRepository.deleteByTravelId(travelId);
+    public void deleteTravel(Long travelId) {
+        Travel travel = travelRepository.findByTravelId(travelId).orElseThrow(CTravelNotFoundException::new);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginId = authentication.getName();
+        User user = userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new);
+        if(travel.getMyuser()!=user){
+            log.info("제거 권한이 없습니다.");
+
+        }
+//
+//        List<Travel> LikeTravelList = user.getZzimTravelList();
+//        System.out.println(" 찜 list 출력");
+//        for (Travel travel : LikeTravelList) {
+//            System.out.println("travel.getTitle() = " + travel.getTitle());
+//        }
+
+        travelRepository.deleteByTravelId(travelId);
+
+
     }
 
     @Transactional

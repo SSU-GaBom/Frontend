@@ -4,6 +4,7 @@ import GaBom.Bom.advice.exception.CExtensionException;
 import GaBom.Bom.entity.ProfileImage;
 import GaBom.Bom.entity.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,9 +20,11 @@ public class FileHandler {
 
 //    private String path = "/Volumes/SSD/School/";
 
-    private String path = "C:/Users/psg98/GaBom/image/";
+//    private String path = "C:/Users/psg98/GaBom/image/";
+//    private String path = "C:/Users/sion/Desktop/";
 
-    //private String path = "C:/Users/psg98/GaBom/image/";
+
+    private String path = "C:/Users/psg98/GaBom/image/";
 
     public ProfileImage parseFileInfo(User user, MultipartFile profileImage) throws IOException {
         if(profileImage.isEmpty()) {
@@ -70,8 +73,10 @@ public class FileHandler {
 
     public byte[] getProfileImageByte(ProfileImage profileImage) throws IOException {
         File file = new File(profileImage.getStored_file_path());
-        if(!file.exists())
+        if(!file.exists()) {
+            System.out.println(" file dont exist");
             return null;
+        }
         return Files.readAllBytes(file.toPath());
     }
 }

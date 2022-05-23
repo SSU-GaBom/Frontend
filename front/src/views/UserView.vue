@@ -22,7 +22,7 @@ export default {
     async fetchUserInfo() {
       console.log("fetchUserInfo1");
 
-      console.log(this.$route.params.userNickName);
+      // console.log(this.$route.params.userNickName);
       // 닉네임을 타고 들어온경우
       if (this.$route.params.userNickName) {
         const response = await getUserInfo(this.$route.params.userNickName);
@@ -52,6 +52,7 @@ export default {
           // likedTravelList : response.data.data.likedTravelList
         };
         store.commit("SET_VIEWUSER", data);
+        console.log("SET_VIEWUSER finish")
       }
     },
   },

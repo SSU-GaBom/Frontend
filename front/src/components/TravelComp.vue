@@ -83,7 +83,6 @@
     </v-row>
     <v-row dense>
       <div v-for="travel in ttravelList" :key="travel.title">
-        <!-- <v-card :color="items.color" outlined> -->
         <div v-if="province === ''">
           <div class="d-flex flex-no-wrap">
             <v-card flat>
@@ -152,8 +151,6 @@
                 </div>
               </div>
             </v-card>
-
-            <v-card flat max-width="10%"> </v-card>
           </div>
         </div>
         <div v-else-if="province === travel.state">
@@ -174,29 +171,42 @@
                 </v-avatar>
               </v-card>
               <v-card flat>
-                <v-card-title class="row mx-0 pb-0" style="font-size: 100%">
-                  {{ travel.title }}
-                </v-card-title>
-                <v-divider class="row mx-4"></v-divider>
-                <v-card-text class="row mx-0 py-2 pb-0">
+                <v-btn
+                  class="mx-4 my-0 pa-0"
+                  plain
+                  text
+                  @click="toTravelDetail(travel.travelId)"
+                >
+                  <v-text id="title" left>
+                    <b>{{ travel.title }}</b>
+                  </v-text>
+                </v-btn>
+                <v-divider class="row mx-4 my-0"></v-divider>
+                <v-btn
+                  class="row mx-4 my-0 pa-0"
+                  plain
+                  text
+                  @click="toProfilePage(travel.author)"
+                >
                   <v-icon fixed> mdi-account </v-icon>
                   <v-text class="ms-2">
                     {{ travel.author }}
                   </v-text>
-                </v-card-text>
-                <v-card-text class="row mx-0 py-1 pb-0">
+                </v-btn>
+                <v-card-text class="row mx-0 my-0 py-0 pb-0">
                   <v-icon fixed> mdi-map-outline </v-icon>
                   <v-text class="ms-2">
                     {{ travel.state }} {{ travel.city }}
                   </v-text>
                 </v-card-text>
-                <v-card-text class="row mx-0 py-1 pb-0">
+                <v-card-text class="row mx-0 my-0 py-1 pb-0">
                   <v-icon fixed> mdi-calendar </v-icon>
                   <v-text class="ms-2">
                     {{ travel.s_date }} ~ {{ travel.e_date }}
                   </v-text>
                 </v-card-text>
-                <div class="row mx-5 my-5 pa-0">
+
+                <div class="row mx-5 my-2 py-0">
                   <div>
                     <v-icon color="blue lighten-0">mdi-thumb-up</v-icon>
                     <v-text class="ms-2" style="color: #2196f3">{{
@@ -212,8 +222,6 @@
                   </div>
                 </div>
               </v-card>
-
-              <v-card flat max-width="10%"> </v-card>
             </div>
           </div>
           <div v-else-if="city === travel.city">
@@ -233,29 +241,42 @@
                 </v-avatar>
               </v-card>
               <v-card flat>
-                <v-card-title class="row mx-0 pb-0" style="font-size: 100%">
-                  {{ travel.title }}
-                </v-card-title>
-                <v-divider class="row mx-4"></v-divider>
-                <v-card-text class="row mx-0 py-2 pb-0">
+                <v-btn
+                  class="mx-4 my-0 pa-0"
+                  plain
+                  text
+                  @click="toTravelDetail(travel.travelId)"
+                >
+                  <v-text id="title" left>
+                    <b>{{ travel.title }}</b>
+                  </v-text>
+                </v-btn>
+                <v-divider class="row mx-4 my-0"></v-divider>
+                <v-btn
+                  class="row mx-4 my-0 pa-0"
+                  plain
+                  text
+                  @click="toProfilePage(travel.author)"
+                >
                   <v-icon fixed> mdi-account </v-icon>
                   <v-text class="ms-2">
                     {{ travel.author }}
                   </v-text>
-                </v-card-text>
-                <v-card-text class="row mx-0 py-1 pb-0">
+                </v-btn>
+                <v-card-text class="row mx-0 my-0 py-0 pb-0">
                   <v-icon fixed> mdi-map-outline </v-icon>
                   <v-text class="ms-2">
                     {{ travel.state }} {{ travel.city }}
                   </v-text>
                 </v-card-text>
-                <v-card-text class="row mx-0 py-1 pb-0">
+                <v-card-text class="row mx-0 my-0 py-1 pb-0">
                   <v-icon fixed> mdi-calendar </v-icon>
                   <v-text class="ms-2">
                     {{ travel.s_date }} ~ {{ travel.e_date }}
                   </v-text>
                 </v-card-text>
-                <div class="row mx-5 my-5 pa-0">
+
+                <div class="row mx-5 my-2 py-0">
                   <div>
                     <v-icon color="blue lighten-0">mdi-thumb-up</v-icon>
                     <v-text class="ms-2" style="color: #2196f3">{{
@@ -271,8 +292,6 @@
                   </div>
                 </div>
               </v-card>
-
-              <v-card flat max-width="10%"> </v-card>
             </div>
           </div>
         </div>
@@ -296,7 +315,6 @@
 <script>
 import { mapGetters } from "vuex";
 import { getTitleTravel } from "../api/travel";
-import { getTravelDetail } from "../api/travel";
 import store from "../store/index";
 
 export default {

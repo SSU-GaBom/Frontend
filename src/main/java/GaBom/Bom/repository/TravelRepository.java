@@ -18,6 +18,7 @@ public interface TravelRepository extends JpaRepository<Travel, Long> {
 
     Page<Travel> findAll(Pageable pageable);
 
+
     Page<Travel> findByTitleContaining(String keyword,Pageable pageable);
 
 //    Page<Travel> findByTitleContainingOrContentContaining(String title, String content, Pageable pageable);
