@@ -2,11 +2,8 @@ package GaBom.Bom.service;
 
 import GaBom.Bom.advice.exception.CTravelNotFoundException;
 import GaBom.Bom.advice.exception.CUserNotFoundException;
-import GaBom.Bom.dto.TravelDto;
 import GaBom.Bom.entity.Travel;
 import GaBom.Bom.entity.User;
-import GaBom.Bom.repository.LocationRepository;
-import GaBom.Bom.repository.PinRepository;
 import GaBom.Bom.repository.TravelRepository;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -58,7 +54,6 @@ public class ZzimService {
         if(Isthere) return true;
         else return false;
     }
-
 
 
     @Transactional

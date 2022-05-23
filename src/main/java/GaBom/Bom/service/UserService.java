@@ -18,7 +18,6 @@ public class UserService  {
 
     private final UserRepository userRepository;
     private final ConfirmationTokenService confirmationTokenService;
-    private final FindUserService findUserService;
 
     /**
      * 이메일 인증 로직
