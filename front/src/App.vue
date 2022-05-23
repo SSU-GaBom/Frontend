@@ -9,7 +9,9 @@
         <router-view style="position: relative"></router-view>
         <write-travel-map v-if="this.$route.name === 'travel-writer'" style="position: fixed; right: 0px"></write-travel-map>
         <detail-travel-map v-else-if="this.$route.name === 'travel-view'" style="position: fixed; right: 0px"></detail-travel-map>
-        <travel-map v-else style="position: fixed; right: 0px"></travel-map>
+        <profile-user-map v-else-if="this.$route.name === 'userPage'" style="position: fixed; right: 0px"></profile-user-map>
+        <travel-map v-else-if="this.myUserId" style="position: fixed; right: 0px"></travel-map>
+        <simple-map v-else style="position: fixed; right: 0px"></simple-map>
         
       </div>
     </v-main>
@@ -21,6 +23,11 @@ import HeaderBar from "./components/HeaderBar.vue";
 import TravelMap from "./components/TravelMap.vue";
 import WriteTravelMap from "./components/WriteTravelMap.vue";
 import DetailTravelMap from './components/DetailTravelMap.vue'
+import SimpleMap from './components/SimpleMap.vue'
+import ProfileUserMap from './components/ProfileMap.vue'
+
+import { mapGetters } from "vuex";
+
 
 export default {
   name: "app",
@@ -28,7 +35,14 @@ export default {
     HeaderBar,
     WriteTravelMap,
     TravelMap,
-    DetailTravelMap
+    DetailTravelMap,
+    ProfileUserMap,
+    SimpleMap
+  },
+  computed: {
+    ...mapGetters([
+      "myUserId"
+    ]),
   },
 };
 

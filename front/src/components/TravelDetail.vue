@@ -168,7 +168,7 @@ export default {
     toProfilePage() {
       this.$router.push({
         name: "userPage",
-        params: { userNickName: this.author },
+        params: { userNickName: this.travelInfo.userNickname },
       });
     },
     async clickLiked(travelInfo) {

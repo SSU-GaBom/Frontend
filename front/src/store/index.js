@@ -45,7 +45,7 @@ export default new Vuex.Store({
 	travelList : [],
 	ttravelList: [],
 	cardList : [],
-	selectedMarker : null,
+	// selectedMarker : null,
   },
   getters: {
 		isLoggedIn(state) {
@@ -57,40 +57,49 @@ export default new Vuex.Store({
 		myNickName(state){
 			return state.user.nickName;
 		},
+		myUserId(state){
+			return state.user.id;
+		},
+		myTravelList(state){
+			console.log("return travelList")
+			return state.travelList;
+		},
 		writeTravelList(state){
 			return state.writeTravelList;
 		},
 		writeCardList(state){
 			return state.cardList;
 		},
-		nickName(state){
+		viewUserNickName(state){
 			return state.viewUser.nickName;
 		},
-		followerCount(state){
+		
+		viewUserFollowerCount(state){
 			return state.viewUser.followerCount;
 		},
-		followingCount(state){
+		viewUserFollowingCount(state){
 			return state.viewUser.followingCount;
 		},
-		profileImage(state){
+		viewUserProfileImage(state){
 			return state.viewUser.profileImage;
 
 	  	},
 	  	ttravelList(state) {
 			return state.ttravelList;
 		},
-		travelList(state){
+		viewUserTravelList(state){
 			return state.viewUser.travelList;
 	  	},
+		
 		travelInfo(state) {
 			return state.travelInfo;
 		},
-		selectedMarker(state){
-			return state.selectedMarker;
-		}
+		// selectedMarker(state){
+		// 	return state.selectedMarker;
+		// }
 		// 시온추가
 	},
-  mutations: {
+ 	 mutations: {
 		SET_USER(state, data) {
 			state.user.id = data.userId;
 			state.user.nickName = data.nickName;
@@ -102,10 +111,20 @@ export default new Vuex.Store({
 			state.user.id = null;
 			state.user.nickName = null;
 			state.token = null;
+			state.travelList = [];
 			state.viewUser.nickName = null;
-			state.viewUser.profileImage = null;
-			state.viewUser.followerCount = null;
-			state.viewUser.followingCount = null;
+			state.viewUser.profileImage = '',
+			state.viewUser.followerCount = null,
+			state.viewUser.followingCount = null,
+			state.viewUser.travelList = [];
+			state.viewUser.wishList =[];
+			state.pinList = [];
+			state.travelInfo = [],
+			state.writeTravelList = [],
+			state.travelList = [],
+			state.ttravelList = [],
+			state.cardList = []
+
 			deleteCookie('til_auth');
 			deleteCookie('til_user');
 		},
@@ -124,15 +143,15 @@ export default new Vuex.Store({
 			state.writeTravelList.push(travel)
 		},
 		SET_TRAVEL(state,travel){
+			// console.log(travel)
 			state.travelList.push(travel);
+			// console.log(state.travelList)
 	  	},
 	  	SET_TRAVEL_LIST(state, data) {
 		  	state.ttravelList = data;
 	  	},
 	  	SET_TRAVEL_DETAIL(state, data) {
-			console.log("hi1")
 			state.travelInfo = data;
-			console.log("hi2")
 		},
 		SET_CARD(state,card){
 			console.log(card)
@@ -142,16 +161,16 @@ export default new Vuex.Store({
 			state.viewUser.profileImage = image;
 		},
 
-		SET_MARKER(state,marker){
-			console.log("SET_MARKER")
-			console.log(marker)
-			state.selectedMarker = marker;
-			console.log(state.selectedMarker)
-		},
-		SET_MARKERNULL(state){
-			console.log("SET_MARKERNULL")
-			state.selectedMarker = null;
-		}
+		// SET_MARKER(state,marker){
+		// 	console.log("SET_MARKER")
+		// 	console.log(marker)
+		// 	state.selectedMarker = marker;
+		// 	console.log(state.selectedMarker)
+		// },
+		// SET_MARKERNULL(state){
+		// 	console.log("SET_MARKERNULL")
+		// 	state.selectedMarker = null;
+		// }
 	},
   actions: {
 		async LOGIN({ commit }, data) {

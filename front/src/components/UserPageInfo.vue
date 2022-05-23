@@ -29,17 +29,17 @@
                 size="128px"
               >
                 <!-- <img :src="profileImage"/> -->
-                <img v-bind:src="'data:image/jpeg;base64,'+ profileImage" />
-                <upload-image v-if="nickName === myNickName" class="update-image"></upload-image>
+                <img v-bind:src="'data:image/jpeg;base64,'+ viewUserProfileImage" />
+                <upload-image v-if="myNickName === viewUserNickName" class="update-image"></upload-image>
               </v-avatar>
             </v-row>
           </v-col>
           <v-col class="py-0" align-self="center">
-            <v-bind style="font-size: 24px"><b>{{ nickName }}</b></v-bind><br>
+            <v-bind style="font-size: 24px"><b>{{ viewUserNickName }}</b></v-bind><br>
             <!-- <follower-comp v-bind:follower="this.followerCount"></follower-comp>
             <following-comp v-bind:following="this.followingCount"></following-comp> -->
-            <v-btn text @click="followerDialog=true"><v-text>팔로워 <b>{{followerCount}}</b></v-text></v-btn>
-            <v-btn text @click="followingDialog=true"><v-text>팔로잉 <b>{{followingCount}}</b></v-text></v-btn>
+            <v-btn text @click="followerDialog=true"><v-text>팔로워 <b>{{viewUserFollowerCount}}</b></v-text></v-btn>
+            <v-btn text @click="followingDialog=true"><v-text>팔로잉 <b>{{viewUserFollowingCount}}</b></v-text></v-btn>
             
             <!--<v-text>{{ introduction }}</v-text>-->
             <v-dialog
@@ -142,10 +142,10 @@ export default {
     },
     computed : {
       ...mapGetters([
-        'nickName',
-        'followerCount',
-        'followingCount',
-        'profileImage',
+        'viewUserNickName',
+        'viewUserFollowerCount',
+        'viewUserFollowingCount',
+        'viewUserProfileImage',
         'myNickName'
       ])
     },

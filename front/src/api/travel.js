@@ -17,6 +17,11 @@ function getTravel() {
     return auth.get(`/travellist/update`)
 }
 
+function getMyTravel(userId){
+    console.log("getMyTravel")
+    return auth.get(`/travellist/${userId}/my_list`)
+}
+
 function getTitleTravel(title) {
     console.log("getTitleList")
     return auth.get(`/travellist/find/${title}`)
@@ -54,5 +59,5 @@ function getRank() {
     return auth.get(`rank`)
 }
 
-export {writeTravel, getTravel, getTitleTravel, getTravelDetail, postLiked, postZzim, getRank}
+export {writeTravel, getTravel, getTitleTravel, getTravelDetail, postLiked, postZzim, getRank , getMyTravel}
 
