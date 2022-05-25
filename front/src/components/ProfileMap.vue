@@ -192,10 +192,10 @@ export default {
         resetMarker(){
             return () => {
                 if(this.nowMarker){
-                this.nowMarker.overlay.setMap(null); // 기존 ovelay 제거
-                if (this.nowMarker) {
-                    this.nowMarker = null;
-                }
+                    this.nowMarker.overlay.setMap(null); // 기존 ovelay 제거
+                    if (this.nowMarker) {
+                        this.nowMarker = null;
+                    }
                 }
             }
         },

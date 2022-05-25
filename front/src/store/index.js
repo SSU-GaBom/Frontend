@@ -36,6 +36,7 @@ export default new Vuex.Store({
       followerCount: null,
       followingCount: null,
       travelList: [],
+      travelImages : [],
       wishList: [],
     },
     pinList: [],
@@ -86,6 +87,9 @@ export default new Vuex.Store({
 	viewUserTravelList(state){
 		return state.viewUser.travelList;
 	},
+  viewUserTravelImages(state){
+    return state.viewUser.travelImageList;
+  },
     commentList(state) {
       return state.commentList;
     },
@@ -134,8 +138,8 @@ export default new Vuex.Store({
       state.viewUser.followingCount = data.userFollowingCount;
       state.viewUser.profileImage = data.profileImage;
       state.viewUser.travelList = data.myTravelList;
-
-      // state.viewUser.wishList=data.lik
+      state.viewUser.travelImages = data.travelImageList;
+      // state.viewUser.wishList=data.like
     },
     SET_WRITETRAVELLIST(state, travel) {
       state.writeTravelList.push(travel);

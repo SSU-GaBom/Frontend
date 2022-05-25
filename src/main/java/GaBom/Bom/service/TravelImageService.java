@@ -37,7 +37,7 @@ public class TravelImageService {
     private final PinRepository pinRepository;
 
 
-    @Value("C:\\Users\\sion\\Desktop\\travelImage\\")
+    @Value("C:\\Users\\psg98\\GaBom\\travelImage\\")
 //    @Value("C:\\Users\\sion\\Desktop\\") //변경가능
     private String imageDir;
 

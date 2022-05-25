@@ -34,7 +34,8 @@ export default {
           userFollowingCount: response.data.data.userFollowingCount,
           profileImage: response.data.data.profileImage,
           myTravelList: response.data.data.myTravelList,
-          // likedTravelList : response.data.data.likedTravelList
+          travelImageList : response.data.data.myTravelimages
+          
         };
         store.commit("SET_VIEWUSER", data);
       } else {
@@ -50,8 +51,10 @@ export default {
           userFollowingCount: response.data.data.userFollowingCount,
           profileImage: response.data.data.profileImage,
           myTravelList: response.data.data.myTravelList,
-          // likedTravelList : response.data.data.likedTravelList
+          travelImageList : response.data.data.myTravelimages
+         
         };
+        
         store.commit("SET_VIEWUSER", data);
         console.log("SET_VIEWUSER finish")
       }
