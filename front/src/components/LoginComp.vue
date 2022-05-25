@@ -123,6 +123,11 @@ export default {
               this.errorMessage = response.data.msg
             }else{
               this.dialog = false;
+              if(this.$route.path !== '/'){
+                
+                this.$router.push('/');
+              }
+              
             }
             
             // this.errorMessage = response.data.data.

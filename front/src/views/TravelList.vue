@@ -1,5 +1,4 @@
 <template>
-
   <div id="main" class="my-3">
     <travel-comp />
   </div>
@@ -17,7 +16,6 @@ export default {
   },
   methods: {
     async fetchTravelList() {
-      console.log("hello");
       const response = await getTravel();
       console.log(response.data);
       let data = [];

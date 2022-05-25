@@ -29,10 +29,25 @@ public class CommentController {
     }
 
 
+    //ㅠㅠ 페이징
+//    @GetMapping("/{travelId}")
+//    public Page<CommentDto> CommentsList(
+//            @PageableDefault(size = 7, sort = "updateDate", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long travelId) throws IOException {
+//        Page<CommentDto> travels = commentService.GetComments(travelId,pageable);
+//        return travels;
+//    }
+
+
+//    @GetMapping("/{travelId}")
+//    public List<CommentDto> CommentsList(
+//            @PageableDefault(size = 7, sort = "updateDate", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long travelId) throws IOException {
+//        List<CommentDto> travels = commentService.GetComments(travelId,pageable);
+//        return travels;
+//    }
+
     @GetMapping("/{travelId}")
-    public Page<CommentDto> CommentsList(
-            @PageableDefault(size = 7, sort = "updateDate", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long travelId) throws IOException {
-        Page<CommentDto> travels = commentService.GetComments(travelId,pageable);
+    public List<CommentDto> CommentsList(@PathVariable Long travelId) throws IOException {
+        List<CommentDto> travels = commentService.GetCommentLists(travelId);
         return travels;
     }
 

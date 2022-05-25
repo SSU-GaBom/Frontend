@@ -1,5 +1,6 @@
 package GaBom.Bom.entity;
 
+import GaBom.Bom.dto.CommentDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
@@ -34,6 +35,16 @@ public class Comment {
     private String updateDate;
     //연관관계 편의
     private String Nickname;
+
+    public CommentDto toDto(){
+            return CommentDto.builder()
+                    .commentId(commentId)
+                    .content(content)
+                    .updateDate(updateDate)
+                    .Nickname(Nickname)
+//                .profileImage(profileImage)
+                    .build();
+    }
 
 //    @Column(columnDefinition = "LONGTEXT")
 //    private String profileImage;

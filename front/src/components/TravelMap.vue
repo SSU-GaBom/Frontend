@@ -5,6 +5,9 @@
 <script>
 import geojson from "../assets/all.json";
 import { mapGetters } from "vuex";
+import {getMyTravel} from '../api/travel'
+import store from '../store/index'
+
 export default {
   name: "HomeMap",
   data() {
@@ -13,8 +16,10 @@ export default {
       mapOption: null,
       map: null,
       customOverlay: null,
-      infowindow: null,
-      polygons: [],
+      nowMarker : null,
+      clusterer : null,
+      // infowindow: null,
+      // polygons: [],
     };
   },
   mounted() {
@@ -32,14 +37,7 @@ export default {
 
   methods: {
     initMap() {
-      if(this.myNickName){
-        console.log("hi")
-      } 
-
-      let data = geojson.features;
-      let coordinates = [];
-      let name = "";
-
+      console.log("initMap")
       this.mapContainer = document.getElementById("map"); // 지도를 표시할 div
       this.mapOption = {
         center: new kakao.maps.LatLng(35.766826, 127.9786567), // 지도의 중심좌표
@@ -47,179 +45,188 @@ export default {
       };
 
       this.map = new kakao.maps.Map(this.mapContainer, this.mapOption);
-      this.customOverlay = new kakao.maps.CustomOverlay({});
-      this.infowindow = new kakao.maps.InfoWindow({ removable: true });
+      // this.customOverlay = new kakao.maps.CustomOverlay({});
+      // this.infowindow = new kakao.maps.InfoWindow({ removable: true });
+      this.addClusterer()
 
-      data.forEach((val) => {
-        coordinates = val.geometry.coordinates;
-        name = val.properties.loc_nm;
-
-        if (val.geometry.type == "MultiPolygon") {
-          this.displayArea(coordinates, name, true);
-        } else {
-          this.displayArea(coordinates, name, false);
+    },
+    addClusterer(){
+      // console.log("addClusterer")
+      //로그인한 상태면
+      if(this.myUserId ){
+        
+        //여행 데이터를 불러온다!
+        if(!this.myTravelList[0]){
+          this.fetchMyTravel(this.myUserId)
         }
-      });
-    },
-    makePolygon(coordinates) {
-      let path = [];
-      let points = [];
 
-      coordinates[0].forEach((coordinate) => {
-        let point = {
-          x: coordinate[1],
-          y: coordinate[0],
-        };
-        points.push(point);
+        setTimeout(() =>{
+              
+        // console.log("3초후")
+        // 마커 이미지의 이미지 주소
+        var imageSrc =
+            "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+        var imageSize = new kakao.maps.Size(24, 35);
+        // 마커 이미지를 생성
+        var normalImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-        path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
-      });
-
-      let polygon = new kakao.maps.Polygon({
-        map: this.map, //다각형을 표시할 지도 객체
-        path: path, // 그려질 다각형의 좌표 배열입니다
-        strokeWeight: 2, // 선의 두께입니다
-        strokeColor: "#004c80", // 선의 색깔입니다
-        strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-        strokeStyle: "solid", // 선의 스타일입니다
-        fillColor: "#fff", // 채우기 색깔입니다
-        fillOpacity: 0.7, // 채우기 불투명도 입니다
-      });
-
-      return { polygon: polygon, points: points };
-    },
-    makeMultiPolygon(coordinates) {
-      let path = [];
-      let points = [];
-
-      for (var c in coordinates) {
-        var multiCoordinates = coordinates[c];
-        let path2 = [];
-        for (var z in multiCoordinates[0]) {
-          let point = {
-            x: multiCoordinates[0][z][1],
-            y: multiCoordinates[0][z][0],
-          };
-
-          points.push(point);
-          path2.push(
-            new kakao.maps.LatLng(
-              multiCoordinates[0][z][1],
-              multiCoordinates[0][z][0]
-            )
-          );
-        }
-        path.push(path2);
-      }
-      let polygon = new kakao.maps.Polygon({
-        map: this.map, //다각형을 표시할 지도 객체
-        path: path, // 그려질 다각형의 좌표 배열입니다
-        strokeWeight: 2, // 선의 두께입니다
-        strokeColor: "#004c80", // 선의 색깔입니다
-        strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-        strokeStyle: "solid", // 선의 스타일입니다
-        fillColor: "#fff", // 채우기 색깔입니다
-        fillOpacity: 0.7, // 채우기 불투명도 입니다
-      });
-
-      return { polygon: polygon, points: points };
-    },
-    displayArea(coordinates, name, multi) {
-      let points = [];
-      let polygon;
-
-      if (multi) {
-        // console.log(name + 'Multi');
-        let returnValue = this.makeMultiPolygon(coordinates);
-
-        polygon = returnValue.polygon;
-        points.push(returnValue.points);
-      } else {
-        // console.log(name + 'Single');
-        let returnValue = this.makePolygon(coordinates);
-
-        polygon = returnValue.polygon;
-        points.push(returnValue.points);
-      }
-
-      this.polygons.push(polygon);
-      polygon.setMap(this.map);
-
-      // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
-      // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
-      kakao.maps.event.addListener(polygon, "mouseover", (mouseEvent) => {
-        // console.log("mouseOver")
-        polygon.setOptions({ fillColor: "#09f" });
-
-        this.customOverlay.setContent('<div class="area">' + name + "</div>");
-        this.customOverlay.setPosition(mouseEvent.latLng);
-        this.customOverlay.setMap(this.map);
-      });
-
-      // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
-      kakao.maps.event.addListener(polygon, "mousemove", (mouseEvent) => {
-        // console.log("mouseMove")
-        this.customOverlay.setPosition(mouseEvent.latLng);
-      });
-
-      // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
-      // 커스텀 오버레이를 지도에서 제거합니다
-      kakao.maps.event.addListener(polygon, "mouseout", () => {
-        // console.log("mouseOut")
-        polygon.setOptions({ fillColor: "#fff" });
-        this.customOverlay.setMap(null);
-      });
-
-      // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다.
-      kakao.maps.event.addListener(polygon, "click", (mouseEvent) => {
-        // console.log("click")
-        //만약 도클릭시 -> 지도확대되면서 시/군으로 폴리곤 구분
-
-        let level = this.map.getLevel() - 2;
-        this.map.setLevel(level, {
-          anchor: this.centroid(points[0]),
-          animate: {
-            duration: 350,
-          },
+        
+        // 마커 클러스터러를 생성합니다 
+        this.clusterer = new kakao.maps.MarkerClusterer({
+            map: this.map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+            minLevel: 10 // 클러스터 할 최소 지도 레벨 
         });
+        
+        // console.log(this.myTravelList.length)
+        for (let i = 0; i < this.myTravelList.length; i++) {
+          for (let j = 0; j < this.myTravelList[i].pinList.length; j++) {
+            var x = this.myTravelList[i].pinList[j].location.x
+            var y = this.myTravelList[i].pinList[j].location.y  
 
-        //this.deletePolygon(polygon);
+            // 마커가 표시될 위치입니다 
+            var markerPosition  = new kakao.maps.LatLng(y, x);
 
-        let content = '<div style="padding:2px;">' + name + "</div>";
-        this.infowindow.setContent(content);
-        this.infowindow.setPosition(mouseEvent.latLng);
-        this.infowindow.setMap(this.map);
-      });
-    },
-    centroid(points) {
-      let i, j, len, p1, p2, f, area, x, y;
-      area = x = y = 0;
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map : this.map,
+                position: markerPosition,
+                title: this.myTravelList[i].pinList[j].location.place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image: normalImage, // 마커 이미지
+            });
 
-      for (i = 0, len = points.length, j = len - 1; i < len; j = i++) {
-        p1 = points[i];
-        p2 = points[j];
+            var basicInfo = `<div class="customoverlay">
+                <a href="`+ this.myTravelList[i].pinList[j].location.place_url+`" 
+                target="_blank">
+                <span class="title">` 
+                    +  this.myTravelList[i].pinList[j].location.place_name +
+                `</span>
+                </a>
+                </div>`;
 
-        f = p1.y * p2.x - p2.y * p1.x;
-        x += (p1.x + p2.x) * f;
-        y += (p1.y + p2.y) * f;
-        area += f * 3;
+            var customOverlay = new kakao.maps.CustomOverlay({
+                clickable: true,
+                content: basicInfo,
+                position: markerPosition,
+                xAnchor: 0.5,
+                yAnchor: 1.9,
+                zIndex: 3,
+            });
+
+            var moreInfo = `<div class="store-card-item-map">
+                <div
+                  class="thumbnail"
+                  style="background-image: url('data:image/jpeg;base64,`+ this.myTravelList[i].pinList[j].images[0].base64Image+`');
+                            background-position:center;">
+                </div>
+                <div class="info">
+                  <div class="left-side">
+                      <div class="first-line">
+                        <div class="title">
+                            `+ this.myTravelList[i].pinList[j].location.place_name +`
+                        </div>
+                        <div class="subtitle">
+                            `+ this.myTravelList[i].pinList[j].location.category_group_name  +`
+                        </div>          
+                      </div>
+                      <div class="address">
+                          `+ this.myTravelList[i].pinList[j].location.address_name  +`
+                      </div>
+                  </div>
+                </div>
+              </div>`;
+
+            var customOverlayMore = new kakao.maps.CustomOverlay({
+              clickable: true,
+              content: moreInfo,
+              position: markerPosition,
+              xAnchor: 0.5,
+              yAnchor: 1.1,
+              zIndex: 3,
+            });
+
+
+            kakao.maps.event.addListener(this.map, 'click', this.resetMarker())
+            kakao.maps.event.addListener(marker,'mouseover',this.makeOverListner(this.map,marker,customOverlay))
+            kakao.maps.event.addListener(marker,'mouseout',this.makeOutListner(customOverlay))
+            kakao.maps.event.addListener(marker,'click',this.makeClickListner(this.map,marker,customOverlayMore))
+            this.clusterer.addMarker(marker)
+            // console.log(this.clusterer)
+            
+          }
+          
+        }
+        }, 3000); 
       }
-      console.log(x / area);
-      console.log(y / area);
-      return new kakao.maps.LatLng(x / area, y / area);
     },
-    deletePolygon(polygon) {
-      /*
-        this.polygons.forEach(polygon => { 
-            polygon.setMap(null);});
-            */
-      polygon.setMap(null);
+    makeOverListner(map, marker, customOverlay){
+      return () => {
+        if (this.nowMarker) {
+          // 선택되어 있는 마커가 있을 경우
+          
+          if (marker.getTitle() !== this.nowMarker.name) {
+            // 선택되어 있는 마커와 새로 선택된 마커의 상호명이 다를 경우
+            customOverlay.setMap(map); // 지도에 올림
+          }
+        } else {
+          
+          // 선택되어 있는 마커가 없을 경우
+          customOverlay.setMap(map); // 지도에 올림
+          // customOverlay.setVisible(true); // 지도에서 보이게 함
+        }
+      }
+      
     },
-    zoomMap() {},
+    makeOutListner(customOverlay){
+      return () => {
+
+        // customOverlay.setVisible(false);
+        customOverlay.setMap(null);
+      }
+
+    },
+    makeClickListner(map,marker,customOverlayMore){
+      return () => {
+        if (this.nowMarker) {
+          
+          this.nowMarker.overlay.setMap(null)
+          // this.selectedMarker.overlay.setMap(null); // 기존 ovelay 제거
+          
+        }
+        const tempMarker = {
+          name : marker.Gb,
+          overlay : customOverlayMore
+        }
+        this.nowMarker = tempMarker
+        customOverlayMore.setMap(map); // 지도에 올림
+        
+        map.panTo(marker.getPosition());
+        }
+    },
+    resetMarker(){
+      return () => {
+        if(this.nowMarker){
+          this.nowMarker.overlay.setMap(null); // 기존 ovelay 제거
+          if (this.nowMarker) {
+            this.nowMarker = null;
+          }
+        }
+      }
+    },
+    async fetchMyTravel(userId){
+      // console.log(userId)
+      const response = await getMyTravel(userId);
+      // console.log(response.data)
+      for (let i = 0; i < response.data.length; i++) {
+        // console.log(response.data[i])  
+        store.commit('SET_TRAVEL',response.data[i])
+      }
+    }
   },
   computed: {
     ...mapGetters([
-      "myNickName",
+      "myUserId",
+      "myTravelList"
     ]),
   },
 };

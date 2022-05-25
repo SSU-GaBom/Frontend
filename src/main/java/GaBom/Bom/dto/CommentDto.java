@@ -2,15 +2,13 @@ package GaBom.Bom.dto;
 
 import GaBom.Bom.entity.Comment;
 import GaBom.Bom.entity.Travel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 public class CommentDto {
 
@@ -25,6 +23,17 @@ public class CommentDto {
     private byte[] profileImage;
 
     private boolean IsMyComment;
+
+    public CommentDto(Long commentId, String content, String nickname, String updateDate, byte[] profileImage, boolean isMyComment) {
+        this.commentId = commentId;
+        this.content = content;
+        Nickname = nickname;
+        this.updateDate = updateDate;
+        this.profileImage = profileImage;
+        IsMyComment = isMyComment;
+    }
+
+
     public CommentDto(Comment comment) {
         this.commentId = comment.getCommentId();
         this.content = comment.getContent();
@@ -35,7 +44,6 @@ public class CommentDto {
     }
 
     public Comment toEntity(){
-
         return Comment.builder()
                 .commentId(commentId)
                 .content(content)

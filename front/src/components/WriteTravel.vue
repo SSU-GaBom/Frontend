@@ -215,7 +215,11 @@
             </v-simple-table>
           </template>
           <br />
-          <v-btn width="100px" style="margin-bottom: 30px" type="submit"
+          <v-btn
+            width="100px"
+            style="margin-bottom: 30px"
+            type="submit"
+            @click="moveback"
             >작성</v-btn
           >
           <v-btn
@@ -490,7 +494,6 @@ export default {
         const response = await writeTravel(travelDto);
         console.log(response);
       }
-
     },
     moveback() {
       window.history.back();
