@@ -38,6 +38,11 @@ export default new Vuex.Store({
       travelList: [],
       wishList: [],
     },
+    rankInfo: {
+      liked: [],
+      zzim: [],
+      follower: [],
+    },
     pinList: [],
     writeTravelList: [],
     commentList: [],
@@ -57,46 +62,52 @@ export default new Vuex.Store({
     myNickName(state) {
       return state.user.nickName;
     },
-	myUserId(state){
-		return state.user.id;
-	},
-	myTravelList(state){
-		console.log("return travelList")
-		return state.travelList;
-	},
+    myUserId(state) {
+      return state.user.id;
+    },
+    myTravelList(state) {
+      console.log("return travelList");
+      return state.travelList;
+    },
     writeTravelList(state) {
       return state.writeTravelList;
     },
     writeCardList(state) {
       return state.cardList;
     },
-    viewUserNickName(state){
-		return state.viewUser.nickName;
-	},
-	
-	viewUserFollowerCount(state){
-		return state.viewUser.followerCount;
-	},
-	viewUserFollowingCount(state){
-		return state.viewUser.followingCount;
-	},
-	viewUserProfileImage(state){
-		return state.viewUser.profileImage;
-	},
-	viewUserTravelList(state){
-		return state.viewUser.travelList;
-	},
+    viewUserNickName(state) {
+      return state.viewUser.nickName;
+    },
+    viewUserFollowerCount(state) {
+      return state.viewUser.followerCount;
+    },
+    viewUserFollowingCount(state) {
+      return state.viewUser.followingCount;
+    },
+    viewUserProfileImage(state) {
+      return state.viewUser.profileImage;
+    },
+    viewUserTravelList(state) {
+      return state.viewUser.travelList;
+    },
+    rankInfoLiked(state) {
+      return state.rankInfo.liked;
+    },
+    rankInfoZzim(state) {
+      return state.rankInfo.zzim;
+    },
+    rankInfoFollower(state) {
+      return state.rankInfo.follower;
+    },
     commentList(state) {
       return state.commentList;
     },
     ttravelList(state) {
       return state.ttravelList;
     },
-    
     travelInfo(state) {
       return state.travelInfo;
     },
-
   },
   mutations: {
     SET_USER(state, data) {
@@ -107,22 +118,22 @@ export default new Vuex.Store({
       state.token = token;
     },
     LOGOUT(state) {
-	state.user.id = null;
-	state.user.nickName = null;
-	state.token = null;
-	state.travelList = [];
-	state.viewUser.nickName = null;
-	state.viewUser.profileImage = '',
-	state.viewUser.followerCount = null,
-	state.viewUser.followingCount = null,
-	state.viewUser.travelList = [];
-	state.viewUser.wishList =[];
-	state.pinList = [];
-	state.travelInfo = [],
-	state.writeTravelList = [],
-	state.travelList = [],
-	state.ttravelList = [],
-	state.cardList = []
+      state.user.id = null;
+      state.user.nickName = null;
+      state.token = null;
+      state.travelList = [];
+      state.viewUser.nickName = null;
+      (state.viewUser.profileImage = ""),
+        (state.viewUser.followerCount = null),
+        (state.viewUser.followingCount = null),
+        (state.viewUser.travelList = []);
+      state.viewUser.wishList = [];
+      state.pinList = [];
+      (state.travelInfo = []),
+        (state.writeTravelList = []),
+        (state.travelList = []),
+        (state.ttravelList = []),
+        (state.cardList = []);
       deleteCookie("til_auth");
       deleteCookie("til_user");
     },
@@ -158,6 +169,11 @@ export default new Vuex.Store({
     },
     SET_PROFILEIMAGE(state, image) {
       state.viewUser.profileImage = image;
+    },
+    SET_RANK(state, data) {
+      state.rankInfo.liked = data.liked;
+      state.rankInfo.zzim = data.zzim;
+      state.rankInfo.follower = data.follower;
     },
   },
   actions: {
