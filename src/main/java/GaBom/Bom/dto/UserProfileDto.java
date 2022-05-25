@@ -24,8 +24,8 @@ public class UserProfileDto {
     private int userFollowerCount;
     private int userFollowingCount;
 
-    @Column(columnDefinition = "LONGTEXT")
-    private List<String> travelImages;
+    private List<UserTravelDto> myTravelimages = new ArrayList<>();
+
 
     private List<GetTravelDto> myTravelList = new ArrayList<>();
     //내가 쓴 리뷰 리스트

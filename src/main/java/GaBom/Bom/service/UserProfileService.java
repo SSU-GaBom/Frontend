@@ -6,6 +6,7 @@ import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.component.FileHandler;
 import GaBom.Bom.dto.GetTravelDto;
 import GaBom.Bom.dto.UserProfileDto;
+import GaBom.Bom.dto.UserTravelDto;
 import GaBom.Bom.entity.*;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
@@ -69,9 +70,23 @@ public class UserProfileService {
         List<GetTravelDto> mytravellists = MyTravelsByUser(user);
         userProfileDto.setMyTravelList(mytravellists);
 
-        List<String> travelImages=new ArrayList<>();
-        extracted(mytravellists, travelImages);
-        userProfileDto.setTravelImages(travelImages);
+        List<UserTravelDto> imagesdto = new ArrayList<>();
+        for (GetTravelDto mytravellist : mytravellists) {
+            UserTravelDto tmpDto= new UserTravelDto();
+            List<String> tmpimages= new ArrayList<>();
+            tmpDto.setTravelId(mytravellist.getTravelId());
+            List<Pin> pinList = mytravellist.getPinList();
+            for (Pin pin : pinList) {
+                List<TravelImage> images = pin.getImages();
+                for (TravelImage image : images) {
+                    tmpimages.add(image.getBase64Image());
+                }
+                tmpDto.setImages(tmpimages);
+            }
+            imagesdto.add(tmpDto);
+        }
+        userProfileDto.setMyTravelimages(imagesdto);
+
 
 
 //        List<GetTravelDto> liketravellists = MyLikeTravels(user);
