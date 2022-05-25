@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     async fetchUserInfo() {
-      console.log("fetchUserInfo1");
+      console.log("fetchUserInfo");
 
       // console.log(this.$route.params.userNickName);
       // 닉네임을 타고 들어온경우
@@ -39,8 +39,7 @@ export default {
         store.commit("SET_VIEWUSER", data);
       } else {
         // 마이페이지로 들어온경우
-        
-        const response = await getUserInfo(store.state.user.nickName)
+        const response = await getUserInfo(store.state.user.nickName);
         console.log(response.data);
 
         const data = {
@@ -52,7 +51,7 @@ export default {
           // likedTravelList : response.data.data.likedTravelList
         };
         store.commit("SET_VIEWUSER", data);
-        console.log("SET_VIEWUSER finish")
+        console.log("SET_VIEWUSER finish");
       }
     },
   },
