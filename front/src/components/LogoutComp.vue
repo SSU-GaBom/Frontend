@@ -15,7 +15,10 @@ export default {
 			// bus.$emit('show:toast', 'User logged out');
             console.log("logout")
 			store.commit('LOGOUT');
-			this.$router.push('/');
+            if(this.$route.path !== '/'){
+                this.$router.push('/');
+            }
+			
 		},
     },
 }

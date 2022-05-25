@@ -10,8 +10,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="각 서비스들 코드 정리, 팔로우 컨트롤러 오류 찾음.">
+      <change afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/InitDb$InitService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/InitDb.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/advice/exception/CCommentNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/dto/L_ZDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/dto/TravelwithCommentsDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/ProfileMap.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/SimpleMap.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/advice/ExceptionAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/advice/ExceptionAdvice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/component/FileHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/component/FileHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/BestTravelerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/CommentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/HomeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/LikeTravelController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/MainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/MapController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/PinController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/TravelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/TravelLikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/TravelLikeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/WritingPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/dto/CardDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/dto/CommentDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/dto/CommentDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/dto/GetTravelDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/dto/GetTravelDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/entity/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/entity/Comment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/repository/CommentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/repository/CommentRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/CommentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/TravelImageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/TravelImageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/TravelLikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/TravelLikeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/TravelService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/test/GaBom/Bom/service/ZzimServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/component/FileHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/component/FileHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto$UserProfileDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto$UserProfileDtoBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelImageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/TravelImageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/travel.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/travel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/CommentComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/CommentComp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/DetailTravelMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/DetailTravelMap.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/LoginComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LoginComp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/LogoutComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LogoutComp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/TravelComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelComp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/TravelDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/TravelMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelMap.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/UserPageTravel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UserPageTravel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/WriteTravel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/WriteTravel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/TravelList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/TravelList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/UserView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/component/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/component/FileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserProfileDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserProfileDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,10 +181,14 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
+    "WebServerToolWindowFactoryState": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "spring.configuration.checksum": "1241f7b48456d8fd7e5457647949c8b2",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -283,7 +339,9 @@
       <workItem from="1652833467700" duration="587000" />
       <workItem from="1652834076739" duration="13457000" />
       <workItem from="1652850754076" duration="40130000" />
-      <workItem from="1653184447108" duration="1934000" />
+      <workItem from="1653184447108" duration="4378000" />
+      <workItem from="1653267614662" duration="641000" />
+      <workItem from="1653454568784" duration="2034000" />
     </task>
     <servers />
   </component>
