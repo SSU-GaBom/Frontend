@@ -2,7 +2,7 @@
   <div id="main">
     <user-page-info></user-page-info>
     <user-page-travel id="content"></user-page-travel>
-    <user-page-wish id="content"></user-page-wish>
+    <!-- <user-page-wish id="content"></user-page-wish> -->
   </div>
 </template>
 
@@ -62,7 +62,7 @@ export default {
   components: {
     UserPageInfo,
     UserPageTravel,
-    UserPageWish,
+    
   },
 };
 </script>

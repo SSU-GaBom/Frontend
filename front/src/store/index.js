@@ -61,7 +61,7 @@ export default new Vuex.Store({
 		return state.user.id;
 	},
 	myTravelList(state){
-		console.log("return travelList")
+		console.log("getters.myTravelList")
 		return state.travelList;
 	},
     writeTravelList(state) {
@@ -107,27 +107,27 @@ export default new Vuex.Store({
       state.token = token;
     },
     LOGOUT(state) {
-	state.user.id = null;
-	state.user.nickName = null;
-	state.token = null;
-	state.travelList = [];
-	state.viewUser.nickName = null;
-	state.viewUser.profileImage = '',
-	state.viewUser.followerCount = null,
-	state.viewUser.followingCount = null,
-	state.viewUser.travelList = [];
-	state.viewUser.wishList =[];
-	state.pinList = [];
-	state.travelInfo = [],
-	state.writeTravelList = [],
-	state.travelList = [],
-	state.ttravelList = [],
-	state.cardList = []
-      deleteCookie("til_auth");
-      deleteCookie("til_user");
+		state.user.id = null;
+		state.user.nickName = null;
+		state.token = null;
+		state.travelList = [];
+		state.viewUser.nickName = null;
+		state.viewUser.profileImage = '',
+		state.viewUser.followerCount = null,
+		state.viewUser.followingCount = null,
+		state.viewUser.travelList = [];
+		state.viewUser.wishList =[];
+		state.pinList = [];
+		state.travelInfo = [],
+		state.writeTravelList = [],
+		state.travelList = [],
+		state.ttravelList = [],
+		state.cardList = []
+		deleteCookie("til_auth");
+		deleteCookie("til_user");
     },
     SET_VIEWUSER(state, data) {
-      console.log("set_viewuser");
+      console.log("Mutation.set_viewuser");
       console.log(data);
       state.viewUser.nickName = data.nickName;
       state.viewUser.followerCount = data.userFollowerCount;
@@ -153,7 +153,7 @@ export default new Vuex.Store({
       state.commentList = data;
     },
     SET_CARD(state, card) {
-      console.log(card);
+    //   console.log(card);
       state.cardList.push(card);
     },
     SET_PROFILEIMAGE(state, image) {
@@ -163,13 +163,11 @@ export default new Vuex.Store({
   actions: {
     async LOGIN({ commit }, data) {
       const response = await loginUser(data);
-      console.log("LOGIN");
+      console.log("Actions.LOGIN");
 
       // 로그인 성공
       if (response.data.code == 0) {
-        console.log(response.data.msg);
-        console.log(response.data.data);
-        console.log(response.data.data.nickName);
+        
         const data = {
           userId: response.data.data.userId,
           nickName: response.data.data.nickName,

@@ -2,7 +2,7 @@ import { auth } from "./index";
 import store from "../store/index";
 
 function writeTravel(travelDto) {
-  console.log("writeTravel");
+  console.log("api.travel.writeTravel");
   console.log(travelDto);
   // for (let i = 0; i < travelDto.pinList.length; i++) {
   //     console.log(travelDto.pinList[i].location)
@@ -13,37 +13,37 @@ function writeTravel(travelDto) {
 }
 
 function getTravel() {
-  console.log("getList");
+  console.log("api.travel.getTravel");
   return auth.get(`/travellist/update`);
 }
 
 function getMyTravel(userId){
-    console.log("getMyTravel")
+    console.log("api.travel.getMyTravel")
     return auth.get(`/travellist/${userId}/my_list`)
 }
 
 function getTitleTravel(title) {
-  console.log("getTitleList");
+  console.log("api.travel.getTitleList");
   return auth.get(`/travellist/find/${title}`);
 }
 
 function getTravelDetail(travelId) {
-  console.log("GetTravelDetail");
+  console.log("api.travel.getTravelDetail");
   return auth.get(`/travel/${travelId}`);
 }
 
 function getComment(travelId) {
-  console.log("GetComments");
+  console.log("gapi.travel.getComments");
   return auth.get(`/travel/comment/${travelId}`);
 }
 
 function postComment(travelId, content) {
-  console.log("PostComments");
+  console.log("api.travel.PostComments");
   return auth.post(`/travel/comment/${travelId}`, content);
 }
 
 function postLiked(isLike, travelId) {
-  console.log("postLiked");
+  console.log("api.travel.postLiked");
   if (isLike === false) {
     console.log("likedCnt-On");
     return auth.post(`/travel/like/${travelId}`);
@@ -54,7 +54,7 @@ function postLiked(isLike, travelId) {
 }
 
 function postZzim(isZzim, travelId) {
-  console.log("postZzim");
+  console.log("api.travel.postZzim");
   if (isZzim === false) {
     console.log("zzimCnt-On");
     return auth.post(`/travel/zzim/${travelId}`);

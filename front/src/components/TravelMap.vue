@@ -37,7 +37,7 @@ export default {
 
   methods: {
     initMap() {
-      console.log("initMap")
+      console.log("TravelMap.initMap()")
       this.mapContainer = document.getElementById("map"); // 지도를 표시할 div
       this.mapOption = {
         center: new kakao.maps.LatLng(35.766826, 127.9786567), // 지도의 중심좌표

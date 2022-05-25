@@ -46,10 +46,10 @@ export default {
 
      },
      addClusterer(){
-      console.log("addClusterer")
+      console.log("ProfileMap.addClusterer")
       
       if(this.viewUserNickName ){
-        
+        console.log(this.viewUserNickName)
         //여행 데이터를 불러온다!
         if(!this.viewUserTravelList[0]){
           this.fetchMyTravel(this.viewUserNickName)
@@ -149,7 +149,7 @@ export default {
           }
           
         }
-        }, 1000); 
+        }, 3500); 
       }
     },
         makeOverListner(map, marker, customOverlay){

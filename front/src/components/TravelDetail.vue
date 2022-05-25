@@ -195,7 +195,7 @@ export default {
     },
     async toTravelDetail(travelId) {
       const response = await getTravelDetail(travelId);
-      console.log(response.data);
+      // console.log(response.data);
       store.commit("SET_TRAVEL_DETAIL", response.data);
       this.$router.push({
         name: "travel-view",
@@ -203,7 +203,7 @@ export default {
       });
     },
     async fetchTravelInfo() {
-      console.log("fetchTravelInfo");
+      console.log("TravelDetail.fetchTravelInfo()");
       const response = await getTravelDetail(
         this.$route.params.travelContentId
       );
