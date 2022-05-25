@@ -34,6 +34,8 @@ public class SignUpService {
                 .userName(signUpUserDto.getUserName())
                 .email(signUpUserDto.getEmail())
                 .nickName(signUpUserDto.getNickName())
+                        .follwerNum(0)
+                        .followingNum(0)
                 .appendDate(localTime)
                 .updateDate(localTime)
                 .provider(null)

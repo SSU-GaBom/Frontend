@@ -9,36 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="">
+    <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="각 서비스들 코드 정리, 팔로우 컨트롤러 오류 찾음.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserTravelDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/front/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/travel.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/travel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/DetailTravelMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/DetailTravelMap.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/LoginComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LoginComp.vue" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/CommentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/interceptors.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/interceptors.js" afterDir="false" />
->>>>>>> dfc3d4c5437aec8b5740949e34b98bf695a58acf
-      <change beforePath="$PROJECT_DIR$/front/src/components/LogoutComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LogoutComp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/TravelDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/TravelMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelMap.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/index.js" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/front/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/UserView.vue" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/InitDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/CommentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/CommentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/TravelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/repository/TravelRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
->>>>>>> dfc3d4c5437aec8b5740949e34b98bf695a58acf
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserProfileDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserProfileDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,10 +131,14 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
+    "WebServerToolWindowFactoryState": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "spring.configuration.checksum": "1241f7b48456d8fd7e5457647949c8b2",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -312,6 +291,7 @@
       <workItem from="1652850754076" duration="40130000" />
       <workItem from="1653184447108" duration="4378000" />
       <workItem from="1653267614662" duration="641000" />
+      <workItem from="1653454568784" duration="4999000" />
     </task>
     <servers />
   </component>

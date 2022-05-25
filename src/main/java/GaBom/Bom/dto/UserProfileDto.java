@@ -5,6 +5,7 @@ import GaBom.Bom.entity.Travel;
 import lombok.*;
 import org.springframework.data.domain.Page;
 
+import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,9 @@ public class UserProfileDto {
     private byte[] profileImage;
     private int userFollowerCount;
     private int userFollowingCount;
+
+    private List<UserTravelDto> myTravelimages = new ArrayList<>();
+
 
     private List<GetTravelDto> myTravelList = new ArrayList<>();
     //내가 쓴 리뷰 리스트
