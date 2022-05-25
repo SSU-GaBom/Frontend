@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="각 서비스들 코드 정리, 팔로우 컨트롤러 오류 찾음.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserTravelDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/GetTravelDtoWithImages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserProfileDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserProfileDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" afterDir="false" />
@@ -291,7 +291,7 @@
       <workItem from="1652850754076" duration="40130000" />
       <workItem from="1653184447108" duration="4378000" />
       <workItem from="1653267614662" duration="641000" />
-      <workItem from="1653454568784" duration="4999000" />
+      <workItem from="1653454568784" duration="6434000" />
     </task>
     <servers />
   </component>
