@@ -1,5 +1,6 @@
 package GaBom.Bom.configuration.security;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private JwtTokenProvider jwtTokenProvider; // JWT 토큰을 생성 및 검증 모듈 클래스
@@ -30,12 +32,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // 유효한 토큰인지 확인합니다.
         if (accessToken != null) {
+            log.info("토큰이 있다.");
             // 어세스 토큰이 유효한 상황
             if (jwtTokenProvider.validateToken(accessToken)) {
                 this.setAuthentication(accessToken);
+                log.info("토큰이 유효");
             }
             // 어세스 토큰이 만료된 상황 | 리프레시 토큰 또한 존재하는 상황
             else if (!jwtTokenProvider.validateToken(accessToken) && refreshToken != null) {
+                log.info("토큰이 만료");
                 // 재발급 후, 컨텍스트에 다시 넣기
                 /// 리프레시 토큰 검증
                 boolean validateRefreshToken = jwtTokenProvider.validateToken(refreshToken);

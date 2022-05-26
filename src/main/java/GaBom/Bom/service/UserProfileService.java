@@ -44,6 +44,8 @@ public class UserProfileService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginUserId = authentication.getName();
 
+        log.info("접근가능");
+
         User user = userRepository.findByNickName(nickName).orElseThrow(CUserNotFoundException::new);
         String profileId = user.getUserId();
 
