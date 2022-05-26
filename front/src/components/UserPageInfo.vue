@@ -34,14 +34,25 @@
               </v-avatar>
             </v-row>
           </v-col>
+
           <v-col class="py-0" align-self="center">
             <v-bind style="font-size: 24px"><b>{{ viewUserNickName }}</b></v-bind><br>
             <!-- <follower-comp v-bind:follower="this.followerCount"></follower-comp>
             <following-comp v-bind:following="this.followingCount"></following-comp> -->
-            <v-btn text @click="followerDialog=true"><v-text>팔로워 <b>{{viewUserFollowerCount}}</b></v-text></v-btn>
-            <v-btn text @click="followingDialog=true"><v-text>팔로잉 <b>{{viewUserFollowingCount}}</b></v-text></v-btn>
-            
-            <!--<v-text>{{ introduction }}</v-text>-->
+            <br>
+            <v-row  justify="center">
+               <v-btn text @click="followerDialog=true"><v-text>Follower <b>{{viewUserFollowerCount}}</b></v-text></v-btn>
+              <v-btn text @click="followingDialog=true"><v-text>Following <b>{{viewUserFollowingCount}}</b></v-text></v-btn>
+            </v-row>
+            <v-row  justify="center">
+              <v-btn text @click="follow">
+                <v-icon >mdi-account-plus</v-icon>
+              </v-btn>
+              <v-btn text @click="unFollow">
+                <v-icon >mdi-account-remove</v-icon>
+              </v-btn>
+            </v-row>
+
             <v-dialog
               v-model="followerDialog"
               width="500"
@@ -102,6 +113,7 @@
 
 
           </v-col>
+          
         </v-row>
       </v-img>
     </v-sheet>
@@ -109,10 +121,9 @@
 </template>
 
 <script>
-import FollowerComp from './FollowerComp.vue'
 import UploadImage from './UploadImage.vue'
-import FollowingComp from './FollowingComp.vue'
 import {mapGetters} from 'vuex'
+import {doFollow , doUnFollow} from '../api/profile'
 import store from '../store/index'
 
 export default {
@@ -120,14 +131,6 @@ export default {
         return {
             followerDialog : false,
             followingDialog : false,
-            // profileImage: require('../assets/images/profile-example.jpg'),
-            // profileImage: '',
-            // nickname: store.state.viewUser.nickName,
-            // followerCount: store.state.viewUser.followerCount,
-            // followingCount: store.state.viewUser.followingCount,
-            // nickName : '',
-            // followerCount :'',
-            // followingCount : ''
         }
     },   
     methods: {
@@ -139,6 +142,44 @@ export default {
           this.url = reader.result;
         }
       },
+      async follow(){
+        try {
+           console.log("UserPageInfo.follow()")
+           const response = await doFollow(this.viewUserNickName)
+           console.log(response.data)
+           if(response.data.code === 0){
+             alert('Follow Success!')
+             store.commit('SET_PLUS')
+           }else{
+             alert(response.data.msg)
+           }
+        } catch (error) {
+          console.log(error)
+          return
+        }
+        
+      },
+      async unFollow(){
+        try {
+          console.log("UserPageInfo.unFollow()")
+          const response = await doUnFollow(this.viewUserNickName)
+          console.log(response.data)
+          if(response.data.code === 0){
+            store.commit('SET_MINUS')
+             alert('UnFollow Success!')
+           }else{
+             alert(response.data.msg)
+           }
+        } catch (error) {
+          console.log(error)
+          return
+        }
+        
+      },
+      refresh(){
+        // 새로고침
+        this.$router.go();
+      }
     },
     computed : {
       ...mapGetters([
@@ -146,6 +187,8 @@ export default {
         'viewUserFollowerCount',
         'viewUserFollowingCount',
         'viewUserProfileImage',
+        // 'viewUserFollowList',
+        // 'viewUserFollowingList',
         'myNickName'
       ])
     },

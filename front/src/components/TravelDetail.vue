@@ -2,7 +2,7 @@
   <v-card
     :loading="loading"
     id="main"
-    style="width: 100%; height: 850px; position: relative; overflow: hidden"
+    style="width: 100%; position: relative; overflow: hidden"
     tile
   >
     <!-- 여행 타이틀 -->

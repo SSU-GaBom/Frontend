@@ -9,11 +9,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="각 서비스들 코드 정리, 팔로우 컨트롤러 오류 찾음.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserTravelDto.java" afterDir="false" />
+    <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="before pull">
+      <change afterPath="$PROJECT_DIR$/front/src/components/RankCompFollower.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/RankCompLiked.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/RankCompZzim.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/GetTravelDtoWithImages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/UserProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/controller/UserProfileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/dto/UserProfileDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/dto/UserProfileDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/UserProfileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto$UserProfileDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto$UserProfileDtoBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/dto/UserProfileDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GaBom/Bom/service/UserProfileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/DetailRankComp.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/ProfileMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/ProfileMap.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/RankComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/RankComp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/TravelComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelComp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/TravelDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/UserPageTravel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UserPageTravel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/TestView2.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/UserView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/UserProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/controller/UserProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserProfileDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/dto/UserProfileDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/TravelImageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,6 +151,8 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -282,7 +304,8 @@
       <workItem from="1652850754076" duration="40130000" />
       <workItem from="1653184447108" duration="4378000" />
       <workItem from="1653267614662" duration="641000" />
-      <workItem from="1653454568784" duration="4999000" />
+      <workItem from="1653454568784" duration="6780000" />
+      <workItem from="1653528917272" duration="4405000" />
     </task>
     <servers />
   </component>

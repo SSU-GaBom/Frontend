@@ -26,8 +26,9 @@ public class UserProfileDto {
 
     private List<UserTravelDto> myTravelimages = new ArrayList<>();
 
+    private List<GetTravelDtoWithImages> myTravelList = new ArrayList<>();
 
-    private List<GetTravelDto> myTravelList = new ArrayList<>();
+//    private List<GetTravelDto> myTravelList = new ArrayList<>();
     //내가 쓴 리뷰 리스트
 //    private List<Travel> myTravelList = new ArrayList<>();
 

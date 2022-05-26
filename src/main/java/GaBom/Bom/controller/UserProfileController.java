@@ -62,6 +62,7 @@ public class UserProfileController {
     //팔로우 버튼 눌렀을 때
     @PostMapping("/follow/{to-nick-name}")
     public SingleResult followUser(@PathVariable(name = "to-nick-name") String toNickName){
+        log.info("follow : "+toNickName);
         followService.save(toNickName);
         return followService.increase(toNickName);
     }
@@ -69,6 +70,7 @@ public class UserProfileController {
     //언팔로우 버튼 눌렀을 때
     @DeleteMapping("/follow/{to-nick-name}")
     public SingleResult unFollowUser(@PathVariable(name = "to-nick-name") String toNickName){
+        log.info("unFollow : " + toNickName);
         followService.deleteFollow(toNickName);
         return followService.decrease(toNickName);
     }

@@ -50,7 +50,6 @@ export default {
             console.log("addClusterer")
             if(this.viewUserNickName ){
                 
-
                 console.log("ProfileMap.addClusterer")   
                 // 마커 이미지의 이미지 주소
                 var imageSrc =
@@ -199,14 +198,7 @@ export default {
                 }
             }
         },
-        async fetchMyTravel(userId){
-            const response = await getMyTravel(userId);
-            // console.log(response.data)
-            for (let i = 0; i < response.data.length; i++) {
-                // console.log(response.data[i])  
-                store.commit('SET_TRAVEL',response.data[i])
-            }
-        }       
+            
     },
     
     computed: {

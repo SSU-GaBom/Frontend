@@ -6,6 +6,16 @@ function getUserInfo(nickName){
     return auth.get(`/profile/${nickName}`)
 }
 
+function doFollow(toNickName){
+    console.log("api.profile.doFollow")
+    return auth.post(`/profile/follow/${toNickName}`)
+}
+
+function doUnFollow(toNickName){
+    console.log("api.profile.doUnFollow")
+    return auth.delete(`/profile/follow/${toNickName}`)
+}
+
 function uploadImage(formData){
     console.log("api.profile.uploadImage")
     return auth.put(`/profile/update-profile/${store.state.user.nickName}`,
@@ -27,5 +37,5 @@ function getUserFollowing(nickName){
 }
 
 export {
-    getUserInfo , uploadImage , getUserFollower , getUserFollowing
+    getUserInfo , uploadImage , getUserFollower , getUserFollowing , doFollow , doUnFollow
 }

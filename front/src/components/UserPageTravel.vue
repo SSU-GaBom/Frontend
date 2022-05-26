@@ -7,9 +7,9 @@
               <v-avatar class="ma-2" size="150" style="border-radius: 15%">
                 <v-carousel hide-delimiters show-arrows-on-hover height="150">
                   <v-carousel-item
-                    v-for="img in travel.pinList[0].images"
+                    v-for="img in travel.images"
                     :key="img"
-                    :src="'data:image/png;base64,' + img.base64Image"
+                    :src="'data:image/png;base64,' + img"
                     reverse-transition="fade-transition"
                     transition="fade-transition"
                   >
@@ -29,17 +29,12 @@
                 </v-text>
               </v-btn>
               <v-divider class="row mx-4 my-0"></v-divider>
-              <v-btn
-                class="row mx-4 my-0 pa-0"
-                plain
-                text
-                @click="toProfilePage(travel.userNickName)"
-              >
+              <v-card-text class="row mx-0 my-0 py-0 pb-0">
                 <v-icon fixed> mdi-account </v-icon>
                 <v-text class="ms-2">
                   {{ travel.userNickname }}
                 </v-text>
-              </v-btn>
+              </v-card-text>
               <v-card-text class="row mx-0 my-0 py-0 pb-0">
                 <v-icon fixed> mdi-map-outline </v-icon>
                 <v-text class="ms-2">
@@ -85,6 +80,14 @@ export default {
   data: () => ({
       
   }),
+  methods: {
+    toTravelDetail(travelId) {
+      this.$router.push({
+        name: "travel-view",
+        params: { travelContentId: travelId },
+      });
+    },
+  },
   computed: {
     ...mapGetters([
       "viewUserTravelList",

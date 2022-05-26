@@ -20,43 +20,57 @@ export default {
   },
   methods: {
     async fetchUserInfo() {
-      console.log("fetchUserInfo1");
+      console.log("UserView.fetchUserInfo()");
 
       // console.log(this.$route.params.userNickName);
       // 닉네임을 타고 들어온경우
       if (this.$route.params.userNickName) {
-        const response = await getUserInfo(this.$route.params.userNickName);
-        console.log(response);
-
-        const data = {
-          nickName: response.data.data.nickName,
-          userFollowerCount: response.data.data.userFollowerCount,
-          userFollowingCount: response.data.data.userFollowingCount,
-          profileImage: response.data.data.profileImage,
-          myTravelList: response.data.data.myTravelList,
-          travelImageList : response.data.data.myTravelimages
+        try {
+          const response = await getUserInfo(this.$route.params.userNickName);
+          if(response.data.code === 0){
+            const data = {
+            nickName: response.data.data.nickName,
+            userFollowerCount: response.data.data.userFollowerCount,
+            userFollowingCount: response.data.data.userFollowingCount,
+            profileImage: response.data.data.profileImage,
+            myTravelList: response.data.data.myTravelList,
+            travelImageList : response.data.data.myTravelimages
           
-        };
-        store.commit("SET_VIEWUSER", data);
+          };
+          
+          store.commit("SET_VIEWUSER", data);
+          console.log("SET_VIEWUSER finish");
+          }
+          
+        } catch (error) {
+          console.log(error)
+          return
+        }
+
       } else {
         // 마이페이지로 들어온경우
+        try {
+          const response = await getUserInfo(store.state.user.nickName);
+          if(response.data.code === 0){
+            const data = {
+            nickName: response.data.data.nickName,
+            userFollowerCount: response.data.data.userFollowerCount,
+            userFollowingCount: response.data.data.userFollowingCount,
+            profileImage: response.data.data.profileImage,
+            myTravelList: response.data.data.myTravelList,
+            travelImageList : response.data.data.myTravelimages
+          
+          };
+          
+          store.commit("SET_VIEWUSER", data);
+          console.log("SET_VIEWUSER finish");
+          }
+          
+        } catch (error) {
+          console.log(error)
+          return
+        }
         
-        const response = await getUserInfo(store.state.user.nickName)
-        console.log("hihi")
-        console.log(response.data);
-
-        const data = {
-          nickName: response.data.data.nickName,
-          userFollowerCount: response.data.data.userFollowerCount,
-          userFollowingCount: response.data.data.userFollowingCount,
-          profileImage: response.data.data.profileImage,
-          myTravelList: response.data.data.myTravelList,
-          travelImageList : response.data.data.myTravelimages
-         
-        };
-        
-        store.commit("SET_VIEWUSER", data);
-        console.log("SET_VIEWUSER finish")
       }
     },
   },
