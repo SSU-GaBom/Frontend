@@ -24,23 +24,24 @@ export default {
         if (window.kakao && window.kakao.maps) {
             setTimeout(() =>{
                 this.initMap();
-            }, 1000);
+            }, 3000);
             
         } else {
             
-            setTimeout(() => {
-                const script = document.createElement("script");
-            
-                script.onload = () => kakao.maps.load(this.initMap);
-                script.src =
-                    "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9361ff07bc1d810e5c855e8be3e33c42";
-                 document.head.appendChild(script);
-            }, 1000);
+          setTimeout(() => {
+              const script = document.createElement("script");
+          
+              script.onload = () => kakao.maps.load(this.initMap);
+              script.src =
+                  "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9361ff07bc1d810e5c855e8be3e33c42";
+                document.head.appendChild(script);
+          }, 3000);
             
         }
     },
     methods: {
         initMap(){
+            console.log("initMap")
             this.mapContainer = document.getElementById('map'); // 지도를 표시할 div
             this.mapOption = {
                 center: new kakao.maps.LatLng(this.travelInfo.pinList[0].location.y, this.travelInfo.pinList[0].location.x), // 지도의 중심좌표

@@ -6,6 +6,7 @@ import GaBom.Bom.entity.User;
 import lombok.*;
 import org.springframework.data.domain.Page;
 
+import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,11 @@ public class UserProfileDto {
     private List<User> userFollowingList;
     private List<User> userFollowerList;
 
-    private List<GetTravelDto> myTravelList = new ArrayList<>();
+    private List<UserTravelDto> myTravelimages = new ArrayList<>();
+
+    private List<GetTravelDtoWithImages> myTravelList = new ArrayList<>();
+
+//    private List<GetTravelDto> myTravelList = new ArrayList<>();
     //내가 쓴 리뷰 리스트
 //    private List<Travel> myTravelList = new ArrayList<>();
 

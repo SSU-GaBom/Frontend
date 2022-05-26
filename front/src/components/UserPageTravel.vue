@@ -29,7 +29,7 @@
               <v-card-text class="row mx-0 py-0 pb-0">
                 <v-icon fixed size="1"> mdi-account </v-icon>
                 <v-text class="ms-2" style="font-size: 1px">
-                  {{ travelList[0].title }}
+                  <!-- {{ travelList[0].title }} -->
                   <!--                  {{ items[0].author }}-->
                 </v-text>
               </v-card-text>
@@ -69,7 +69,7 @@ export default {
       // 'followingCount',
       // 'profileImage',
       // 'myNickName',
-      "travelList",
+      // "travelList",
     ]),
   },
 };

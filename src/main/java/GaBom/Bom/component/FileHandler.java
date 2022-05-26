@@ -20,15 +20,11 @@ public class FileHandler {
 
     private String path = "/Volumes/SSD/School/";
 
-<<<<<<< HEAD
     //private String path = "C:/Users/psg98/GaBom/image/";
-=======
 //    private String path = "C:/Users/psg98/GaBom/image/";
-    private String path = "C:/Users/sion/Desktop/";
+//    private String path = "C:/Users/sion/Desktop/";
 
->>>>>>> 46bec79e1574e0497c0a45452fff3842f69ced4f
-
-    //private String path = "C:/Users/psg98/GaBom/image/";
+    private String path = "C:/Users/psg98/GaBom/image/";
 
     public ProfileImage parseFileInfo(User user, MultipartFile profileImage) throws IOException {
         if(profileImage.isEmpty()) {

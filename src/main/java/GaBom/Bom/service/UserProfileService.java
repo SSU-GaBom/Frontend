@@ -5,11 +5,10 @@ import GaBom.Bom.advice.exception.CNotSameUserException;
 import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.component.FileHandler;
 import GaBom.Bom.dto.GetTravelDto;
+import GaBom.Bom.dto.GetTravelDtoWithImages;
 import GaBom.Bom.dto.UserProfileDto;
-import GaBom.Bom.entity.Pin;
-import GaBom.Bom.entity.ProfileImage;
-import GaBom.Bom.entity.Travel;
-import GaBom.Bom.entity.User;
+import GaBom.Bom.dto.UserTravelDto;
+import GaBom.Bom.entity.*;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
 import GaBom.Bom.repository.FollowRepository;
@@ -18,6 +17,7 @@ import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
+import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -73,10 +73,29 @@ public class UserProfileService {
 //                .likedTravelList(user.getLikedTravelList())
                 .build();
 
-        List<GetTravelDto> mytravellists = MyTravelsByUser(user);
+        List<GetTravelDtoWithImages> mytravellists = MyTravelsByUserWithImages(user);
         userProfileDto.setMyTravelList(mytravellists);
-        List<GetTravelDto> liketravellists = MyLikeTravels(user);
-        userProfileDto.setLikedTravelList(liketravellists);
+
+//        List<UserTravelDto> imagesdto = new ArrayList<>();
+//        for (GetTravelDto mytravellist : mytravellists) {
+//            UserTravelDto tmpDto= new UserTravelDto();
+//            List<String> tmpimages= new ArrayList<>();
+//            tmpDto.setTravelId(mytravellist.getTravelId());
+//            List<Pin> pinList = mytravellist.getPinList();
+//            for (Pin pin : pinList) {
+//                List<TravelImage> images = pin.getImages();
+//                for (TravelImage image : images) {
+//                    tmpimages.add(image.getBase64Image());
+//                }
+//                tmpDto.setImages(tmpimages);
+//            }
+//            imagesdto.add(tmpDto);
+//        }
+//        userProfileDto.setMyTravelimages(imagesdto);
+
+
+//        List<GetTravelDto> liketravellists = MyLikeTravels(user);
+//        userProfileDto.setLikedTravelList(liketravellists);
 
         if(profileId.equals(loginUserId))
             userProfileDto.setMe(true);
@@ -85,6 +104,7 @@ public class UserProfileService {
 
         return responseService.getSingleResult(userProfileDto);
     }
+
 
     @Transactional
     public List<GetTravelDto> MyTravelsByUser(User user){
@@ -102,6 +122,30 @@ public class UserProfileService {
         }
         return lists;
     }
+
+    @Transactional
+    public List<GetTravelDtoWithImages> MyTravelsByUserWithImages(User user){
+        List<Travel> myTravelList = user.getMyTravelList();
+        List<GetTravelDtoWithImages> lists= new ArrayList<>();
+        List<String> images=new ArrayList<>();
+        for (Travel travel : myTravelList) {
+            List<Pin> pinList = travel.getPinList();
+            Hibernate.initialize(pinList); //정보확인
+            for (Pin pin : pinList) {
+                Hibernate.initialize(pin.getImages());
+                List<TravelImage> images1 = pin.getImages();
+                for (TravelImage travelImage : images1) {
+                    images.add(travelImage.getBase64Image());
+                }
+            }
+            Hibernate.initialize(travel.getPinList());
+            //lazy
+            lists.add(new GetTravelDtoWithImages(travel,images));
+        }
+        return lists;
+    }
+
+
 
     @Transactional
     public List<GetTravelDto> MyLikeTravels(User user){

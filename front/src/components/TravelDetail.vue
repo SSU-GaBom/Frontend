@@ -2,7 +2,7 @@
   <v-card
     :loading="loading"
     id="main"
-    style="width: 100%; height: 116%; position: relative; overflow: hidden"
+    style="width: 100%; position: relative; overflow: hidden"
     tile
   >
     <!-- 여행 타이틀 -->
@@ -72,7 +72,7 @@
             <v-text class="ms-2">{{ travelInfo.zzimCount }}</v-text>
           </v-btn>
         </div>
-        <div class="mx-2">
+        <div class="mx-3">
           <comment-comp></comment-comp>
         </div>
       </v-row>
@@ -146,8 +146,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-
-import { postLiked, getTravelDetail, postZzim } from "../api/travel";
+import {
+  postLiked,
+  getTravelDetail,
+  postZzim,
+  getComment,
+} from "../api/travel";
 import CommentComp from "./CommentComp.vue";
 import CardViewComp from "./CardViewComp.vue";
 import store from "../store/index";
@@ -168,12 +172,11 @@ export default {
     toProfilePage() {
       this.$router.push({
         name: "userPage",
-        params: { userNickName: this.author },
+        params: { userNickName: this.travelInfo.userNickname },
       });
     },
     async clickLiked(travelInfo) {
       const responseLike = await postLiked(
-        travelInfo.likedCount,
         travelInfo.isLike,
         travelInfo.travelId
       );
@@ -183,7 +186,6 @@ export default {
     },
     async clickZzim(travelInfo) {
       const responseZzim = await postZzim(
-        travelInfo.zzimCount,
         travelInfo.isZzim,
         travelInfo.travelId
       );
@@ -205,12 +207,29 @@ export default {
       const response = await getTravelDetail(
         this.$route.params.travelContentId
       );
-      console.log(response);
       store.commit("SET_TRAVEL_DETAIL", response.data);
     },
+    // async getTravelComment() {
+    //   const response = await getComment(this.travelInfo.travelId);
+    //   console.log(response);
+    //   let data = [];
+    //   for (let index = 0; index < response.data.content.length; index++) {
+    //     let commentId = response.data.content[index].commentId;
+    //     let content = response.data.content[index].content;
+    //     let isMyComment = response.data.content[index].isMyComment;
+    //     let nickname = response.data.content[index].nickname;
+    //     let profileImage = response.data.content[index].profileImage;
+    //     data.push({ commentId, content, isMyComment, nickname, profileImage });
+    //   }
+    //   console.log(data);
+    //   store.commit("SET_COMMENT_LIST", data);
+    //   console.log("Print Comment List");
+    //   console.log(this.store.commentList);
+    // },
   },
   created() {
     this.fetchTravelInfo();
+    // this.getTravelComment();
   },
   computed: {
     ...mapGetters(["travelInfo"]),
