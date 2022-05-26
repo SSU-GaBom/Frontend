@@ -48,6 +48,8 @@ export default new Vuex.Store({
     commentList: [],
     travelInfo: [],
     travelList: [],
+    myLikeList: [],
+    myZzimList: [],
     ttravelList: [],
     cardList: [],
     selectedMarker: null,
@@ -66,8 +68,13 @@ export default new Vuex.Store({
       return state.user.id;
     },
     myTravelList(state) {
-      console.log("return travelList");
       return state.travelList;
+    },
+    myLikeList(state) {
+      return state.myLikeList;
+    },
+    myZzimList(state) {
+      return state.myZzimList;
     },
     writeTravelList(state) {
       return state.writeTravelList;
@@ -156,6 +163,12 @@ export default new Vuex.Store({
     },
     SET_TRAVEL_LIST(state, data) {
       state.ttravelList = data;
+    },
+    SET_LIKE_LIST(state, data) {
+      state.myLikeList = data;
+    },
+    SET_ZZIM_LIST(state, data) {
+      state.myZzimList = data;
     },
     SET_TRAVEL_DETAIL(state, data) {
       state.travelInfo = data;
