@@ -203,7 +203,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="travel in writeTravelList" :key="travel.place_name">
+                  <tr
+                    v-for="travel in writeTravelList"
+                    :key="travel.place_name"
+                  >
                     <td>{{ travel.place_name }}</td>
                     <td><card-comp></card-comp></td>
                   </tr>
@@ -228,7 +231,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { writeTravel } from "../api/travel";
 import { mapGetters } from "vuex";
 import store from "../store/index";
@@ -462,7 +464,6 @@ export default {
             images: this.writeCardList[i].images,
           };
 
-
           // //장소
           // let pin = {
           //   location: this.travelList[i],
@@ -482,7 +483,7 @@ export default {
           startDate: this.s_date,
           endDate: this.e_date,
           expense: this.budget,
-          transportaion: this.transport,
+          transportation: this.transport,
           pinList: pinList,
         };
 
@@ -490,26 +491,6 @@ export default {
         console.log(response);
       }
 
-      // if (this.$refs.form.validate()) {
-      //   // 위에 써준 rules를 만족하면 실행
-      //   axios({
-      //     url: "http://127.0.0.1:52273/content/write/",
-      //     method: "POST",
-      //     data: {
-      //       boardnum: this.$route.params.id,
-      //       writer: this.writer,
-      //       title: this.title,
-      //       text: this.text,
-      //     },
-      //   })
-      //     .then((res) => {
-      //       alert(res.data.message);
-      //       window.history.back();
-      //     })
-      //     .catch((err) => {
-      //       alert(err);
-      //     });
-      // }
     },
     moveback() {
       window.history.back();
@@ -530,11 +511,7 @@ export default {
     dateRangeText() {
       return this.dates.join(" ~ ");
     },
-    ...mapGetters([
-      "myNickName",
-      "writeTravelList",
-      "writeCardList",
-    ]),
+    ...mapGetters(["myNickName", "writeTravelList", "writeCardList"]),
   },
   components: {
     CardComp,

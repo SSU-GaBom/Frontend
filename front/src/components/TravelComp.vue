@@ -72,10 +72,10 @@
           dense
         ></v-select>
       </v-col>
-      <v-col sm="6" md="4">
+      <v-col sm="6" md="3" class="mx-2">
         <v-text-field class="pa-0" label="검색" v-model="title"></v-text-field>
       </v-col>
-      <v-col sm="0" md="0" class="my-1">
+      <v-col class="ma-0 pa-0">
         <v-btn plain icon @click="searchTitle()">
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
@@ -294,12 +294,10 @@
 </template>
 
 <script>
-
 import { mapGetters } from "vuex";
 import { getTitleTravel } from "../api/travel";
 import { getTravelDetail } from "../api/travel";
 import store from "../store/index";
-
 
 export default {
   name: "TravelComp",
@@ -506,7 +504,6 @@ export default {
     };
   },
   methods: {
-
     async toProfilePage(nickname) {
       this.$router.push({
         name: "userPage",
@@ -592,4 +589,3 @@ export default {
   max-width: 200px;
 }
 </style>
-

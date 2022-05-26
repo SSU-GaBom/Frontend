@@ -2,6 +2,8 @@ package GaBom.Bom.service;
 
 import GaBom.Bom.advice.exception.CTravelNotFoundException;
 import GaBom.Bom.advice.exception.CUserNotFoundException;
+import GaBom.Bom.dto.GetTravelDto;
+import GaBom.Bom.dto.L_ZDto;
 import GaBom.Bom.dto.TravelDto;
 import GaBom.Bom.entity.Travel;
 import GaBom.Bom.entity.User;
@@ -27,6 +29,7 @@ public class TravelLikeService {
     private final TravelRepository travelRepository;
     private final UserRepository userRepository;
     private final TravelImageService travelImageService;
+    private final ZzimService zzimService;
 
 
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
@@ -83,6 +86,26 @@ public class TravelLikeService {
             log.info("like cancel failed");
             return false;
         }
+    }
+
+    @Transactional
+    public L_ZDto FindLikeAndZzim(Long travelId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginId = authentication.getName();
+        //이미 눌렀던 상황이면 누르지 않게 해야함
+        if(loginId=="anonymousUser") {
+            log.error("session is end");
+        }
+        User user = userRepository.findByUserId(loginId).orElseThrow(CUserNotFoundException::new);
+        Travel travel = travelRepository.findByTravelId(travelId).orElseThrow(CTravelNotFoundException::new);
+//        initHibernate(travel);
+        L_ZDto lzdto = new L_ZDto();
+//        lzdto.setIsLike();
+        lzdto.setIsLike(CheckLike(user,travel));
+        lzdto.setIsZzim(zzimService.CheckZzim(user,travel));
+        lzdto.setLikeCount(travel.getLikedCount());
+        lzdto.setLikeCount(travel.getZzimCount());
+        return lzdto;
     }
 
 }

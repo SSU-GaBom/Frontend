@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class GetTravelDto {
+public class TravelwithCommentsDto {
 
     private String userId; //유저의 id임. rkskek
 
@@ -36,12 +36,12 @@ public class GetTravelDto {
     private Integer zzimCount;
     private String transportation;
 
-//    private Integer commentCount;
+    private Integer commentCount;
 
     private boolean IsLike;
     private boolean IsZzim;
 
-    public GetTravelDto(Travel travel){
+    public TravelwithCommentsDto(Travel travel){
         this.userNickname=travel.getMyuser().getNickName();
         this.travelId = travel.getTravelId();
         this.title = travel.getTitle();
@@ -55,6 +55,7 @@ public class GetTravelDto {
         this.zzimCount=travel.getZzimCount();
         this.likedCount=travel.getLikedCount();
         this.transportation=travel.getTransportation();
+        this.commentCount=travel.getCommentList().size();
     }
 
 }

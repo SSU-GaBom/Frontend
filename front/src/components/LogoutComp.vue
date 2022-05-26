@@ -6,12 +6,15 @@
     </div>
 </template>
 <script>
+import store from '../store/index'
+
 export default {
     name: 'LogoutComp',
     methods: {        
         logout() {
 			// bus.$emit('show:toast', 'User logged out');
-			this.$store.commit('LOGOUT');
+            console.log("logout")
+			store.commit('LOGOUT');
 			this.$router.push('/');
 		},
     },

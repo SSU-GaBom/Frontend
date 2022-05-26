@@ -1,5 +1,6 @@
 package GaBom.Bom.controller;
 
+import GaBom.Bom.dto.L_ZDto;
 import GaBom.Bom.dto.TravelDto;
 import GaBom.Bom.service.TravelLikeService;
 import GaBom.Bom.service.TravelService;
@@ -33,6 +34,13 @@ public class TravelLikeController {
         }
     }
 
+    //혹시 나중에 travel을 보여줄때 조금ㅁ
+//    @GetMapping("/likezzimNums/{travelId}")
+//    public L_ZDto findLikeZzimNumAndIs(@PathVariable Long travelId){
+//        return travelLikeService.FindLikeAndZzim(travelId);
+//    }
+
+
     @PostMapping("/cancel/{travelId}")
     public String CancelLikeTravel(@PathVariable Long travelId) throws IOException { //로그인세션에 맞춰서 Travel 쓰도록 하기
         log.info("travel like cancel");
@@ -42,8 +50,5 @@ public class TravelLikeController {
             return "like_canceled fail";
         }
     }
-
-//    @GetMapping("/")
-
 
 }
