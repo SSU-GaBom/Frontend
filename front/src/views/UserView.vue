@@ -51,6 +51,8 @@ export default {
         // 마이페이지로 들어온경우
         try {
           const response = await getUserInfo(store.state.user.nickName);
+          console.log("qq")
+          console.log(response)
           if(response.data.code === 0){
             const data = {
             nickName: response.data.data.nickName,

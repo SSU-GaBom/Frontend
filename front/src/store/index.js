@@ -30,6 +30,7 @@ export default new Vuex.Store({
       nickName: null,
     },
     token: "",
+    refreshToken : "",
     viewUser: {
       nickName: null,
       profileImage: "",
@@ -50,6 +51,8 @@ export default new Vuex.Store({
     commentList: [],
     travelInfo: [],
     travelList: [],
+    myLikeList: [],
+    myZzimList: [],
     ttravelList: [],
     cardList: [],
     selectedMarker: null,
@@ -61,6 +64,9 @@ export default new Vuex.Store({
     userToken(state) {
       return state.token;
     },
+    userRefreshToken(state){
+      return state.refreshToken;
+    },
     myNickName(state) {
       return state.user.nickName;
     },
@@ -69,6 +75,12 @@ export default new Vuex.Store({
     },
     myTravelList(state) {
       return state.travelList;
+    },
+    myLikeList(state) {
+      return state.myLikeList;
+    },
+    myZzimList(state) {
+      return state.myZzimList;
     },
     writeTravelList(state) {
       return state.writeTravelList;
@@ -127,10 +139,14 @@ export default new Vuex.Store({
     SET_TOKEN(state, token) {
       state.token = token;
     },
+    SET_REFRESHTOKEN(state,token){
+      state.refreshToken = token;
+    },
     LOGOUT(state) {
       state.user.id = null
       state.user.nickName = null
       state.token = null
+      state.refreshToken = null
       state.travelList = []
       state.viewUser.nickName = null
       state.viewUser.profileImage = ""
@@ -168,6 +184,12 @@ export default new Vuex.Store({
     SET_TRAVEL_LIST(state, data) {
       state.ttravelList = data;
     },
+    SET_LIKE_LIST(state, data) {
+      state.myLikeList = data;
+    },
+    SET_ZZIM_LIST(state, data) {
+      state.myZzimList = data;
+    },
     SET_TRAVEL_DETAIL(state, data) {
       state.travelInfo = data;
     },
@@ -199,6 +221,7 @@ export default new Vuex.Store({
     async LOGIN({ commit }, data) {
       const response = await loginUser(data);
       console.log("Actions.LOGIN");
+      console.log(response.headers)
 
       // 로그인 성공
       if (response.data.code == 0) {
@@ -208,7 +231,8 @@ export default new Vuex.Store({
           nickName: response.data.data.nickName,
         };
         commit("SET_USER", data);
-        commit("SET_TOKEN", response.data.data.token);
+        commit("SET_TOKEN", response.headers['x-auth-token']);
+        commit("SET_REFRESHTOKEN",response.headers['x-auth-refresh-token'])
         saveUserToCookie(response.data.data.userId);
         saveAuthToCookie(response.data.data.token);
       } else {

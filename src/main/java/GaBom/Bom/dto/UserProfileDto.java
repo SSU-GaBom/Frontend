@@ -2,6 +2,7 @@ package GaBom.Bom.dto;
 
 import GaBom.Bom.entity.StoredTravel;
 import GaBom.Bom.entity.Travel;
+import GaBom.Bom.entity.User;
 import lombok.*;
 import org.springframework.data.domain.Page;
 
@@ -23,6 +24,8 @@ public class UserProfileDto {
     private byte[] profileImage;
     private int userFollowerCount;
     private int userFollowingCount;
+    private List<User> userFollowingList;
+    private List<User> userFollowerList;
 
     private List<UserTravelDto> myTravelimages = new ArrayList<>();
 

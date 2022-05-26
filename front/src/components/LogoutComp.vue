@@ -17,6 +17,8 @@ export default {
 			store.commit('LOGOUT');
             if(this.$route.path !== '/'){
                 this.$router.push('/');
+            }else{
+                this.$router.go();
             }
 			
 		},

@@ -16,10 +16,19 @@ function getTravel() {
   console.log("api.travel.getTravel");
   return auth.get(`/travellist/update`);
 }
+function getMyTravel(userId) {
+  console.log("getMyTravel");
+  return auth.get(`/travellist/${userId}/my_list`);
+}
 
-function getMyTravel(userId){
-    console.log("api.travel.getMyTravel")
-    return auth.get(`/travellist/${userId}/my_list`)
+function getLikeTravel(userId) {
+  console.log("getLikeTravel");
+  return auth.get(`travellist/${userId}/like_list`);
+}
+
+function getZzimTravel(userId) {
+  console.log("getZzimTravel");
+  return auth.get(`travellist/${userId}/zzim_list`);
 }
 
 function getTitleTravel(title) {
@@ -77,5 +86,7 @@ export {
   postLiked,
   postZzim,
   getRank,
-  getMyTravel
+  getMyTravel,
+  getLikeTravel,
+  getZzimTravel,
 };

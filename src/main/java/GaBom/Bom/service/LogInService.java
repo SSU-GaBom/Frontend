@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 @Slf4j
@@ -27,7 +28,7 @@ public class LogInService {
     private final PasswordEncoder passwordEncoder; // 비밀번호 암호화
 
     @Transactional
-    public SingleResult<TokenUserDto> signIn(LoginDto loginDto){
+    public SingleResult<TokenUserDto> signIn(LoginDto loginDto, HttpServletResponse response){
         //입력받은 아이디와 비밀번호
         String id = loginDto.getLoginId();
         String password = loginDto.getLoginPw();
@@ -45,10 +46,19 @@ public class LogInService {
             throw new CEmailAuthTokenNotFoundException();
         }
 
+        String accessToken = jwtTokenProvider.createAccessToken(String.valueOf(user.getUserId()), user.getRoles());
+        String refreshToken = jwtTokenProvider.createRefreshToken(String.valueOf(user.getUserId()), user.getRoles());
 
+        //response에 각 토큰들 넘겨줌
+        jwtTokenProvider.setHeaderAccessToken(response, accessToken);
+        jwtTokenProvider.setHeaderRefreshToken(response, refreshToken);
+
+        //유저 db에 refreshtoken 저장
+        user.setRefreshToken(refreshToken);
+
+        //accesstoken, refreshtoken 추가
         return responseService.getSingleResult(
                 TokenUserDto.builder()
-                        .token(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), user.getRoles()))
                         .userId(user.getUserId())
                         .nickName(user.getNickName())
                         .build()

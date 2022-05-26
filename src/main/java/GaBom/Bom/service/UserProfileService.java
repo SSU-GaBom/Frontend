@@ -11,6 +11,7 @@ import GaBom.Bom.dto.UserTravelDto;
 import GaBom.Bom.entity.*;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
+import GaBom.Bom.repository.FollowRepository;
 import GaBom.Bom.repository.ProfileImageRepository;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,9 +35,9 @@ public class UserProfileService {
 
     private final UserRepository userRepository;
     private final ProfileImageRepository profileImageRepository;
-
     private final ResponseService responseService;
     private final FileHandler fileHandler;
+    private final FollowService followService;
 
     @Transactional
     public SingleResult showInfo(String nickName) throws IOException {
@@ -55,6 +56,8 @@ public class UserProfileService {
             profileImageByte = null;
         }
 
+        List followerList = followService.getFollower(user.getNickName());
+        List followingList = followService.getFollowing(user.getNickName());
 
         UserProfileDto userProfileDto = UserProfileDto.builder()
                 .loginUser(loginUserId)
@@ -64,10 +67,12 @@ public class UserProfileService {
                 .profileImage(profileImageByte)
                 .userFollowerCount(user.getFollwerNum())
                 .userFollowingCount(user.getFollowingNum())
+                .userFollowerList(followerList)
+                .userFollowingList(followingList)
 //                .myTravelList(user.getMyTravelList())
 //                .likedTravelList(user.getLikedTravelList())
-
                 .build();
+
         List<GetTravelDtoWithImages> mytravellists = MyTravelsByUserWithImages(user);
         userProfileDto.setMyTravelList(mytravellists);
 

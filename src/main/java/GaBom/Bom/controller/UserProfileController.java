@@ -47,17 +47,17 @@ public class UserProfileController {
         userProfileService.deleteProfile(nickName);
     }
 
-    //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
-    @GetMapping("/follow/{profile-nick-name}/follower")
-    public ListResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName){
-        return followService.getFollower(profileNickName);
-    }
-
-    //내가 팔로우하고 있는 사람 전체 출력
-    @GetMapping("/follow/{profile-nick-name}/following")
-    public ListResult showFollowing(@PathVariable(name = "profile-nick-name") String profileNickName){
-        return followService.getFollowing(profileNickName);
-    }
+//    //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
+//    @GetMapping("/follow/{profile-nick-name}/follower")
+//    public ListResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName){
+//        return followService.getFollower(profileNickName);
+//    }
+//
+//    //내가 팔로우하고 있는 사람 전체 출력
+//    @GetMapping("/follow/{profile-nick-name}/following")
+//    public ListResult showFollowing(@PathVariable(name = "profile-nick-name") String profileNickName){
+//        return followService.getFollowing(profileNickName);
+//    }
 
     //팔로우 버튼 눌렀을 때
     @PostMapping("/follow/{to-nick-name}")

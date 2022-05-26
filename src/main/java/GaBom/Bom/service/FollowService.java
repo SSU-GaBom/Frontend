@@ -112,7 +112,8 @@ public class FollowService {
     }
 
     @Transactional
-    public ListResult getFollower(String profileNickName){
+    //public ListResult getFollower(String profileNickName){
+    public List getFollower(String profileNickName){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
 
@@ -134,11 +135,13 @@ public class FollowService {
             log.info(follow.getFromUser().getNickName());
         }
 
-        return responseService.getListResult(fromUserList);
+        //return responseService.getListResult(fromUserList);
+        return fromUserList;
     }
 
     @Transactional
-    public ListResult getFollowing(String profileNickName){
+    //public ListResult getFollowing(String profileNickName){
+    public List getFollowing(String profileNickName){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
 
@@ -160,6 +163,7 @@ public class FollowService {
             log.info(follow.getToUser().getNickName());
         }
 
-        return responseService.getListResult(toUserList);
+        //return responseService.getListResult(toUserList);
+        return toUserList;
     }
 }

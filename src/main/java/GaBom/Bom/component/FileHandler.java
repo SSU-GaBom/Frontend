@@ -20,9 +20,8 @@ public class FileHandler {
 
 //    private String path = "/Volumes/SSD/School/";
 
-//    private String path = "C:/Users/psg98/GaBom/image/";
+    //private String path = "C:/Users/psg98/GaBom/image/";
 //    private String path = "C:/Users/sion/Desktop/";
-
 
     private String path = "C:/Users/psg98/GaBom/image/";
 

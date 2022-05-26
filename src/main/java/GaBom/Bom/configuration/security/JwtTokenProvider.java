@@ -1,5 +1,7 @@
 package GaBom.Bom.configuration.security;
 
+import GaBom.Bom.advice.exception.CUserNotFoundException;
+import GaBom.Bom.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -25,24 +28,35 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
     @Value("spring.jwt.secret")
     private String secretKey;
 
-    private long tokenValidMillisecond = 1000L * 60 * 60; // 1시간 토큰 유효
+    private long refreshTokenValidTime = 1000L * 60 * 60 * 24 * 14;
+    private long accessTokenValidTime = 1000L * 60 * 60; // 1시간 토큰 유효
 
     private final UserDetailsService userDetailsService;
+    private final UserRepository userRepository;
 
     @PostConstruct
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
+    // Access Token 생성.
+    public String createAccessToken(String userPk, List<String> roles){
+        return this.createToken(userPk, roles, accessTokenValidTime);
+    }
+    // Refresh Token 생성.
+    public String createRefreshToken(String userPk, List<String> roles) {
+        return this.createToken(userPk, roles, refreshTokenValidTime);
+    }
+
     // Jwt 토큰 생성
-    public String createToken(String userPk, List<String> roles) {
+    public String createToken(String userPk, List<String> roles, long tokenValid) {
         Claims claims = Jwts.claims().setSubject(userPk);
         claims.put("roles", roles);
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims) // 데이터
                 .setIssuedAt(now) // 토큰 발행일자
-                .setExpiration(new Date(now.getTime() + tokenValidMillisecond)) // 토큰 유효시간 설정
+                .setExpiration(new Date(now.getTime() + tokenValid)) // 토큰 유효시간 설정
                 .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, 암호키
                 .compact();
     }
@@ -58,16 +72,24 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
-    // Request의 Header에서 token 파싱 : "X-AUTH-TOKEN: jwt토큰"
-    public String resolveToken(HttpServletRequest req) {
-        return req.getHeader("X-AUTH-TOKEN");
+    // Request의 Header에서 AccessToken 값을 가져옵니다. "authorization" : "token'
+    public String resolveAccessToken(HttpServletRequest request) {
+        if(request.getHeader("X-AUTH-TOKEN") != null )
+            return request.getHeader("X-AUTH-TOKEN");
+        return null;
+    }
+    // Request의 Header에서 RefreshToken 값을 가져옵니다. "authorization" : "token'
+    public String resolveRefreshToken(HttpServletRequest request) {
+        if(request.getHeader("X-AUTH-REFRESH-TOKEN") != null )
+            return request.getHeader("X-AUTH-REFRESH-TOKEN");
+        return null;
     }
 
     // Jwt 토큰의 유효성 + 만료일자 확인
     public boolean validateToken(String jwtToken) {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
-            if(claims.getBody().getExpiration().getTime() - claims.getBody().getIssuedAt().getTime() != tokenValidMillisecond){
+            if(claims.getBody().getExpiration().getTime() - claims.getBody().getIssuedAt().getTime() != accessTokenValidTime){
                 System.out.println("시간이 변조 됐습니다.");
                 return false;
             }
@@ -75,5 +97,25 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
         } catch (Exception e) {
             return false;
         }
+    }
+    // 어세스 토큰 헤더 설정
+    public void setHeaderAccessToken(HttpServletResponse response, String accessToken) {
+        response.setHeader("X-AUTH-TOKEN", accessToken);
+    }
+
+    // 리프레시 토큰 헤더 설정
+    public void setHeaderRefreshToken(HttpServletResponse response, String refreshToken) {
+        response.setHeader("X-AUTH-REFRESH-TOKEN", refreshToken);
+    }
+
+    // RefreshToken 존재유무 확인
+    public boolean existsRefreshToken(String refreshToken) {
+        return userRepository.existsByRefreshToken(refreshToken);
+    }
+
+    // userPk로 권한 정보 가져오기
+    // userPk 자체가 userId를 String.valueOf로 바꾼거라 그대로 넣어도 크게 문제 없을 듯?
+    public List<String> getRoles(String userPk) {
+        return userRepository.findByUserId(userPk).orElseThrow(CUserNotFoundException::new).getRoles();
     }
 }
