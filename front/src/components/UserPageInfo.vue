@@ -64,18 +64,16 @@
                     <th class="text-left">
                         NickName
                     </th>
-                    <th class="text-left">
-                        FollowerNum
-                    </th>
+                    
                     </tr>
                 </thead>
                 <tbody>
                     <tr
-                        v-for="item in desserts"
-                        :key="item.name"
+                        v-for="userNickName in viewUserFollowerList"
+                        :key="userNickName"
                     >
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.calories }}</td>
+                    <td>{{ userNickName}}</td>
+                    
                     </tr>
                 </tbody>
                 </template>
@@ -93,18 +91,14 @@
                     <th class="text-left">
                         NickName
                     </th>
-                    <th class="text-left">
-                        FollowerNum
-                    </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr
-                        v-for="item in desserts"
-                        :key="item.name"
+                        v-for="userNickName in viewUserFollowingList"
+                        :key="userNickName"
                     >
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.calories }}</td>
+                    <td>{{ userNickName }}</td>
                     </tr>
                 </tbody>
                 </template>
@@ -187,8 +181,8 @@ export default {
         'viewUserFollowerCount',
         'viewUserFollowingCount',
         'viewUserProfileImage',
-        // 'viewUserFollowList',
-        // 'viewUserFollowingList',
+        'viewUserFollowerList',
+        'viewUserFollowingList',
         'myNickName'
       ])
     },

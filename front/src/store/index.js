@@ -173,7 +173,8 @@ export default new Vuex.Store({
       state.viewUser.profileImage = data.profileImage;
       state.viewUser.travelList = data.myTravelList;
       state.viewUser.travelImages = data.travelImageList;
-      // state.viewUser.wishList=data.like
+      state.viewUser.followerList = data.followerList;
+      state.viewUser.followingList = data.followingList;
     },
     SET_WRITETRAVELLIST(state, travel) {
       state.writeTravelList.push(travel);

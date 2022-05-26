@@ -34,8 +34,9 @@ export default {
             userFollowingCount: response.data.data.userFollowingCount,
             profileImage: response.data.data.profileImage,
             myTravelList: response.data.data.myTravelList,
-            travelImageList : response.data.data.myTravelimages
-          
+            travelImageList : response.data.data.myTravelimages,
+            followerList : response.data.data.userFollowerList,
+            followingList : response.data.data.userFollowingList
           };
           
           store.commit("SET_VIEWUSER", data);
@@ -60,8 +61,9 @@ export default {
             userFollowingCount: response.data.data.userFollowingCount,
             profileImage: response.data.data.profileImage,
             myTravelList: response.data.data.myTravelList,
-            travelImageList : response.data.data.myTravelimages
-          
+            travelImageList : response.data.data.myTravelimages,
+            followerList : response.data.data.userFollowerList,
+            followingList : response.data.data.userFollowingList
           };
           
           store.commit("SET_VIEWUSER", data);

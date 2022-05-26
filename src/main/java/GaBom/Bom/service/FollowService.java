@@ -124,8 +124,8 @@ public class FollowService {
 
         String profileId = profileUser.getUserId();
 
-        if(profileId.equals(loginId))
-            throw new CSameUserException();
+//        if(profileId.equals(loginId))
+//            throw new CSameUserException();
 
         List<Follow> userList = followRepository.findAllByToUser(profileUser).orElseThrow(CNoRelationException::new);
         List<String> fromUserList = new ArrayList<>();
@@ -152,8 +152,8 @@ public class FollowService {
 
         String profileId = profileUser.getUserId();
 
-        if(profileId.equals(loginId))
-            throw new CSameUserException();
+//        if(profileId.equals(loginId))
+//            throw new CSameUserException();
 
         List<Follow> userList = followRepository.findAllByFromUser(profileUser).orElseThrow(CNoRelationException::new);
         List<String> toUserList = new ArrayList<>();
