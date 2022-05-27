@@ -61,7 +61,7 @@
                 <template v-slot:default>
                 <thead>
                     <tr>
-                    <th class="text-left">
+                    <th class="text-center">
                         NickName
                     </th>
                     
@@ -72,7 +72,11 @@
                         v-for="userNickName in viewUserFollowerList"
                         :key="userNickName"
                     >
-                    <td>{{ userNickName}}</td>
+                    <td>
+                      <v-btn text @click="toProfilePage(userNickName)" >
+                        {{userNickName}}
+                      </v-btn>
+                    </td>
                     
                     </tr>
                 </tbody>
@@ -88,7 +92,7 @@
                 <template v-slot:default>
                 <thead>
                     <tr>
-                    <th class="text-left">
+                    <th class="text-center">
                         NickName
                     </th>
                     </tr>
@@ -98,7 +102,11 @@
                         v-for="userNickName in viewUserFollowingList"
                         :key="userNickName"
                     >
-                    <td>{{ userNickName }}</td>
+                   <td>
+                      <v-btn text @click="toProfilePage(userNickName)" >
+                        {{userNickName}}
+                      </v-btn>
+                    </td>
                     </tr>
                 </tbody>
                 </template>
@@ -135,6 +143,13 @@ export default {
         reader.onload = () => {
           this.url = reader.result;
         }
+      },
+      toProfilePage(nickname) {
+        console.log("UserPageInfo.toProfilePage")
+        this.$router.push({
+          name: "userPage",
+          params: { userNickName: nickname },
+        });
       },
       async follow(){
         try {

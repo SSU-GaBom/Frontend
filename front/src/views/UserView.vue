@@ -18,6 +18,11 @@ export default {
   data() {
     return {};
   },
+  watch :{
+    '$route' () {
+      this.fetchUserInfo();
+    }
+  },
   methods: {
     async fetchUserInfo() {
       console.log("UserView.fetchUserInfo()");

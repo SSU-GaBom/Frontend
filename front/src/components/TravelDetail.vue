@@ -158,7 +158,13 @@ import store from "../store/index";
 
 export default {
   data() {
-    return {};
+    return {
+    };
+  },
+  watch :{
+    '$route' () {
+      this.fetchTravelInfo();
+    }
   },
   methods: {
     moveback() {
@@ -182,7 +188,7 @@ export default {
       );
       console.log(responseLike);
 
-      this.toTravelDetail(travelInfo.travelId);
+      // this.toTravelDetail(travelInfo.travelId);
     },
     async clickZzim(travelInfo) {
       const responseZzim = await postZzim(
@@ -207,6 +213,8 @@ export default {
       const response = await getTravelDetail(
         this.$route.params.travelContentId
       );
+      // this.travelInfo = response.data;
+      console.log("Finish TravelDetail.fetchTravelInfo()")
       store.commit("SET_TRAVEL_DETAIL", response.data);
     },
     // async getTravelComment() {

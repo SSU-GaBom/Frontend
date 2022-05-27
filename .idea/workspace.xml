@@ -11,16 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bac8d0e5-9b96-4ff0-a999-a28b5bc7d1b6" name="Changes" comment="before pull">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/configuration/security/JwtAuthenticationFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/GaBom/Bom/service/UserProfileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/DetailTravelMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/DetailTravelMap.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/ProfileMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/ProfileMap.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/TravelDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/TravelMap.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/TravelMap.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/UserPageInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/UserView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/configuration/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/configuration/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/FollowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/FollowService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GaBom/Bom/service/UserProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +287,8 @@
       <workItem from="1653184447108" duration="4378000" />
       <workItem from="1653267614662" duration="641000" />
       <workItem from="1653454568784" duration="6780000" />
-      <workItem from="1653528917272" duration="6477000" />
+      <workItem from="1653528917272" duration="7668000" />
+      <workItem from="1653614827957" duration="698000" />
     </task>
     <servers />
   </component>

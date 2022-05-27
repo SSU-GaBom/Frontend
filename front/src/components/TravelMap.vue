@@ -18,6 +18,7 @@ export default {
       customOverlay: null,
       nowMarker : null,
       clusterer : null,
+      myTravelList : [],
       // infowindow: null,
       // polygons: [],
     };

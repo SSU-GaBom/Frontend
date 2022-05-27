@@ -8,6 +8,11 @@ import store from '../store/index'
 
 export default {
     name : "ProfileUserMap",
+    watch :{
+        '$route' () {
+            this.initMap();
+        }
+    },
     data() {
         return {
             mapContainer: null,
@@ -47,7 +52,6 @@ export default {
      },
      addClusterer(){
         setTimeout( ()=>{
-            console.log("addClusterer")
             if(this.viewUserNickName ){
                 
                 console.log("ProfileMap.addClusterer")   
