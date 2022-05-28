@@ -6,10 +6,7 @@ import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.component.FileHandler;
 import GaBom.Bom.dto.GetTravelDto;
 import GaBom.Bom.dto.UserProfileDto;
-import GaBom.Bom.entity.Pin;
-import GaBom.Bom.entity.ProfileImage;
-import GaBom.Bom.entity.Travel;
-import GaBom.Bom.entity.User;
+import GaBom.Bom.entity.*;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
 import GaBom.Bom.repository.ProfileImageRepository;
@@ -17,6 +14,7 @@ import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
+import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -70,8 +68,14 @@ public class UserProfileService {
                 .build();
         List<GetTravelDto> mytravellists = MyTravelsByUser(user);
         userProfileDto.setMyTravelList(mytravellists);
-        List<GetTravelDto> liketravellists = MyLikeTravels(user);
-        userProfileDto.setLikedTravelList(liketravellists);
+
+        List<String> travelImages=new ArrayList<>();
+        extracted(mytravellists, travelImages);
+        userProfileDto.setTravelImages(travelImages);
+
+
+//        List<GetTravelDto> liketravellists = MyLikeTravels(user);
+//        userProfileDto.setLikedTravelList(liketravellists);
 
         if(profileId.equals(loginUserId))
             userProfileDto.setMe(true);
@@ -79,6 +83,21 @@ public class UserProfileService {
             userProfileDto.setMe(false);
 
         return responseService.getSingleResult(userProfileDto);
+    }
+
+    private void extracted(List<GetTravelDto> mytravellists, List<String> travelImages) {
+        log.info("extract start");
+        for (GetTravelDto mytravellist : mytravellists) {
+            List<Pin> pinList = mytravellist.getPinList();
+            for (Pin pin : pinList) {
+                List<TravelImage> images = pin.getImages();
+                for (TravelImage image : images) {
+                    String base64Image = image.getBase64Image();
+                    travelImages.add(base64Image);
+                    log.info("image add");
+                }
+            }
+        }
     }
 
     @Transactional

@@ -40,7 +40,7 @@ export default {
       } else {
         // 마이페이지로 들어온경우
         
-        const response = await getUserInfo(store.state.user.nickName);
+        const response = await getUserInfo(store.state.user.nickName)
         console.log(response.data);
 
         const data = {
