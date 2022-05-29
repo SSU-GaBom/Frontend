@@ -1,16 +1,13 @@
 <template>
   <div id="main">
-    <hello-world />
+    <v-img src="../assets/images/Home.png"> </v-img>
   </div>
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld.vue";
 export default {
   name: "HomeView",
-  components: {
-    HelloWorld,
-  },
+  components: {},
 };
 </script>
 
@@ -18,6 +15,6 @@ export default {
 #main {
   position: relative;
   width: 30%;
-  height: 780px;
+  height: 900px;
 }
 </style>

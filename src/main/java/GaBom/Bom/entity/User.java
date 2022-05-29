@@ -80,7 +80,7 @@ public class User implements UserDetails {
     private Integer follwerNum;
 
     private String provider;
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String refreshToken;
     private Boolean emailAuth;
 
