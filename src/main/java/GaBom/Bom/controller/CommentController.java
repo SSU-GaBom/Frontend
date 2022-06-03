@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("api/travel/comment")
 @RequiredArgsConstructor
 @RestControllerAdvice
+@CrossOrigin
 public class CommentController {
     private final CommentService commentService;
 

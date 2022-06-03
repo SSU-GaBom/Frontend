@@ -30,19 +30,29 @@ export default new Vuex.Store({
       nickName: null,
     },
     token: "",
+    refreshToken : "",
     viewUser: {
       nickName: null,
       profileImage: "",
       followerCount: null,
       followingCount: null,
       travelList: [],
-      wishList: [],
+      travelImages : [],
+      followerList :[],
+      followingList : []
+    },
+    rankInfo: {
+      liked: [],
+      zzim: [],
+      follower: [],
     },
     pinList: [],
     writeTravelList: [],
     commentList: [],
     travelInfo: [],
     travelList: [],
+    myLikeList: [],
+    myZzimList: [],
     ttravelList: [],
     cardList: [],
     selectedMarker: null,
@@ -54,49 +64,72 @@ export default new Vuex.Store({
     userToken(state) {
       return state.token;
     },
+    userRefreshToken(state){
+      return state.refreshToken;
+    },
     myNickName(state) {
       return state.user.nickName;
     },
-	myUserId(state){
-		return state.user.id;
-	},
-	myTravelList(state){
-		console.log("return travelList")
-		return state.travelList;
-	},
+    myUserId(state) {
+      return state.user.id;
+    },
+    myTravelList(state) {
+      return state.travelList;
+    },
+    myLikeList(state) {
+      return state.myLikeList;
+    },
+    myZzimList(state) {
+      return state.myZzimList;
+    },
     writeTravelList(state) {
       return state.writeTravelList;
     },
     writeCardList(state) {
       return state.cardList;
     },
-    viewUserNickName(state){
-		return state.viewUser.nickName;
-	},
-	
-	viewUserFollowerCount(state){
-		return state.viewUser.followerCount;
-	},
-	viewUserFollowingCount(state){
-		return state.viewUser.followingCount;
-	},
-	viewUserProfileImage(state){
-		return state.viewUser.profileImage;
-	},
-	viewUserTravelList(state){
-		return state.viewUser.travelList;
-	},
+    viewUserTravelImages(state){
+      return state.viewUser.travelImageList;
+    },
+    viewUserNickName(state) {
+      return state.viewUser.nickName;
+    },
+    viewUserFollowerCount(state) {
+      return state.viewUser.followerCount;
+    },
+    viewUserFollowingCount(state) {
+      return state.viewUser.followingCount;
+    },
+    viewUserProfileImage(state) {
+      return state.viewUser.profileImage;
+    },
+    viewUserTravelList(state) {
+      return state.viewUser.travelList;
+    },
+    viewUserFollowingList(state){
+      return state.viewUser.followingList;
+    },
+    viewUserFollowerList(state){
+      return state.viewUser.followerList;
+    },
+    rankInfoLiked(state) {
+      return state.rankInfo.liked;
+    },
+    rankInfoZzim(state) {
+      return state.rankInfo.zzim;
+    },
+    rankInfoFollower(state) {
+      return state.rankInfo.follower;
+    },
     commentList(state) {
       return state.commentList;
     },
     ttravelList(state) {
       return state.ttravelList;
     },
-    
     travelInfo(state) {
       return state.travelInfo;
     },
-
   },
   mutations: {
     SET_USER(state, data) {
@@ -106,36 +139,42 @@ export default new Vuex.Store({
     SET_TOKEN(state, token) {
       state.token = token;
     },
+    SET_REFRESHTOKEN(state,token){
+      state.refreshToken = token;
+    },
     LOGOUT(state) {
-	state.user.id = null;
-	state.user.nickName = null;
-	state.token = null;
-	state.travelList = [];
-	state.viewUser.nickName = null;
-	state.viewUser.profileImage = '',
-	state.viewUser.followerCount = null,
-	state.viewUser.followingCount = null,
-	state.viewUser.travelList = [];
-	state.viewUser.wishList =[];
-	state.pinList = [];
-	state.travelInfo = [],
-	state.writeTravelList = [],
-	state.travelList = [],
-	state.ttravelList = [],
-	state.cardList = []
-      deleteCookie("til_auth");
-      deleteCookie("til_user");
+      state.user.id = null
+      state.user.nickName = null
+      state.token = null
+      state.refreshToken = null
+      state.travelList = []
+      state.viewUser.nickName = null
+      state.viewUser.profileImage = ""
+      state.viewUser.followerCount = null
+      state.viewUser.followingCount = null
+      state.viewUser.travelList = []
+      state.viewUser.travelImages = []
+      state.viewUser.followerList = []
+      state.viewUser.followingList = []
+      state.pinList = []
+      state.travelInfo = []
+      state.writeTravelList = []
+      state.travelList = []
+      state.ttravelList = []
+      state.cardList = []
+      deleteCookie("til_auth")
+      deleteCookie("til_user")
     },
     SET_VIEWUSER(state, data) {
-      console.log("set_viewuser");
-      console.log(data);
+      console.log("Mutation.set_viewuser");
       state.viewUser.nickName = data.nickName;
       state.viewUser.followerCount = data.userFollowerCount;
       state.viewUser.followingCount = data.userFollowingCount;
       state.viewUser.profileImage = data.profileImage;
       state.viewUser.travelList = data.myTravelList;
-
-      // state.viewUser.wishList=data.lik
+      state.viewUser.travelImages = data.travelImageList;
+      state.viewUser.followerList = data.followerList;
+      state.viewUser.followingList = data.followingList;
     },
     SET_WRITETRAVELLIST(state, travel) {
       state.writeTravelList.push(travel);
@@ -146,6 +185,12 @@ export default new Vuex.Store({
     SET_TRAVEL_LIST(state, data) {
       state.ttravelList = data;
     },
+    SET_LIKE_LIST(state, data) {
+      state.myLikeList = data;
+    },
+    SET_ZZIM_LIST(state, data) {
+      state.myZzimList = data;
+    },
     SET_TRAVEL_DETAIL(state, data) {
       state.travelInfo = data;
     },
@@ -153,29 +198,42 @@ export default new Vuex.Store({
       state.commentList = data;
     },
     SET_CARD(state, card) {
-      console.log(card);
+    //   console.log(card);
       state.cardList.push(card);
     },
     SET_PROFILEIMAGE(state, image) {
       state.viewUser.profileImage = image;
     },
+    SET_RANK(state, data) {
+      state.rankInfo.liked = data.liked;
+      state.rankInfo.zzim = data.zzim;
+      state.rankInfo.follower = data.follower;
+    },
+    SET_PLUS(state){
+      // console.log("SET_PLUS")
+      state.viewUser.followerCount = state.viewUser.followerCount +1;
+    },
+    SET_MINUS(state){
+      // console.log("SET_MINUS")
+      state.viewUser.followerCount = state.viewUser.followerCount -1;
+    }
   },
   actions: {
     async LOGIN({ commit }, data) {
       const response = await loginUser(data);
-      console.log("LOGIN");
+      console.log("Actions.LOGIN");
+      console.log(response.headers)
 
       // 로그인 성공
       if (response.data.code == 0) {
-        console.log(response.data.msg);
-        console.log(response.data.data);
-        console.log(response.data.data.nickName);
+        
         const data = {
           userId: response.data.data.userId,
           nickName: response.data.data.nickName,
         };
         commit("SET_USER", data);
-        commit("SET_TOKEN", response.data.data.token);
+        commit("SET_TOKEN", response.headers['x-auth-token']);
+        commit("SET_REFRESHTOKEN",response.headers['x-auth-refresh-token'])
         saveUserToCookie(response.data.data.userId);
         saveAuthToCookie(response.data.data.token);
       } else {

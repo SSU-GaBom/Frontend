@@ -18,6 +18,6 @@ public class RankingFollowDto {
 
     public RankingFollowDto(User user) {
         nickName = user.getNickName();
-        followerNums = user.getFollwerNum();
+        followerNums = user.getFollowerNum();
     }
 }

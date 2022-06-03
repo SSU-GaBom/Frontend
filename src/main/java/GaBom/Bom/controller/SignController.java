@@ -14,11 +14,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Slf4j
 @Api(tags = {"1. Sign"})
 @RequiredArgsConstructor
 @RequestMapping(value = "/api")
 @RestController
+@CrossOrigin
 public class SignController {
 
     private final ResponseService responseService; // API 요청 결과에 대한 code, message
@@ -29,8 +32,8 @@ public class SignController {
 
     @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
     @PostMapping(value = "/signin")
-    public SingleResult<TokenUserDto> signin(@RequestBody LoginDto loginDto) {
-        return logInService.signIn(loginDto);
+    public SingleResult<TokenUserDto> signin(@RequestBody LoginDto loginDto, HttpServletResponse response) {
+        return logInService.signIn(loginDto, response);
     }
 
     @ApiOperation(value = "가입", notes = "회원가입을 한다.")

@@ -9,7 +9,8 @@
         <router-view style="position: relative"></router-view>
         <write-travel-map v-if="this.$route.name === 'travel-writer'" style="position: fixed; right: 0px"></write-travel-map>
         <detail-travel-map v-else-if="this.$route.name === 'travel-view'" style="position: fixed; right: 0px"></detail-travel-map>
-        <profile-user-map v-else-if="this.$route.name === 'userPage'" style="position: fixed; right: 0px"></profile-user-map>
+        <profile-user-map v-else-if="this.$route.name === 'userPage' || this.$route.name === 'myPage'" style="position: fixed; right: 0px"></profile-user-map>
+        <simple-map v-else-if="this.$route.name === 'travel-list'" style="position: fixed; right: 0px"></simple-map>
         <travel-map v-else-if="this.myUserId" style="position: fixed; right: 0px"></travel-map>
         <simple-map v-else style="position: fixed; right: 0px"></simple-map>
         

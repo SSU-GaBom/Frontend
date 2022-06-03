@@ -17,6 +17,7 @@ import java.io.IOException;
 @Transactional
 @Slf4j
 @RequestMapping("/api/travel/zzim")
+@CrossOrigin
 public class TravelZzimController {
 
     private final TravelLikeService travelLikeService;

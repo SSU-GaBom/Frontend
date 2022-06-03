@@ -7,6 +7,8 @@
 <script>
 import store from '../store/index'
 import {mapGetters} from 'vuex'
+import {getTravelDetail,} from "../api/travel";
+
 
 export default {
     name : "DetailTravelMap",
@@ -17,36 +19,48 @@ export default {
             map :  null,
             customOverlay : null,
             nowMarker : null,
-         
+            travelInfo : []
         }
     },
     mounted() {
+        
         if (window.kakao && window.kakao.maps) {
-            setTimeout(() =>{
-                this.initMap();
-            }, 3000);
-            
+          this.initMap();
         } else {
-            
-          setTimeout(() => {
-              const script = document.createElement("script");
-          
-              script.onload = () => kakao.maps.load(this.initMap);
-              script.src =
-                  "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9361ff07bc1d810e5c855e8be3e33c42";
-                document.head.appendChild(script);
-          }, 3000);
-            
+            const script = document.createElement("script");
+            script.onload = () => kakao.maps.load(this.initMap);
+            script.src ="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9361ff07bc1d810e5c855e8be3e33c42";
+            document.head.appendChild(script);
         }
+    },
+    watch :{
+      '$route' () {
+        this.initMap();
+      }
     },
     methods: {
         initMap(){
-            console.log("initMap")
+            this.fetchTravelInfo();
+            console.log("DetailTravelMap.initMap")
+            
             this.mapContainer = document.getElementById('map'); // 지도를 표시할 div
+            this.mapOption = {
+                center: new kakao.maps.LatLng(35.766826, 127.9786567), // 지도의 중심좌표
+                level: 13, // 지도의 확대 레벨
+            };
+
+            this.map = new kakao.maps.Map(this.mapContainer, this.mapOption);
+            this.addClusterer();
+        },
+        addClusterer(){
+          setTimeout( () => {
+            console.log("DetailTravelMap.addClusterer")
             this.mapOption = {
                 center: new kakao.maps.LatLng(this.travelInfo.pinList[0].location.y, this.travelInfo.pinList[0].location.x), // 지도의 중심좌표
                 level: 4, // 지도의 확대 레벨
             };
+
+            this.map = new kakao.maps.Map(this.mapContainer, this.mapOption);
             // 마커 이미지의 이미지 주소
             var imageSrc =
                 "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
@@ -54,8 +68,6 @@ export default {
             // 마커 이미지를 생성
             var normalImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-            this.map = new kakao.maps.Map(this.mapContainer, this.mapOption);
-            
             let map = this.map;
             
             for (let index = 0; index < this.travelInfo.pinList.length; index++) {
@@ -93,47 +105,6 @@ export default {
                     zIndex: 3,
                 });
 
-                // var imageList = ``;
-
-                // for (let j = 0; j < this.detailTravelInfo.pinList[index].images.length; j++) {
-                //   imageList += 
-                //   `<div 
-                //     style="background-image: url('data:image/jpeg;base64,`+ this.detailTravelInfo.pinList[index].images[j].base64Image+`');
-                //     background-position:center; background-size: cover;">
-                //   </div>`
-                // }
-                
-
-                // var imageCarousel = 
-                // `<div class="thumbnail" >
-                //   <div class="carousel-container">
-                //       <div class="carousel-slide">
-                //       `+imageList+`
-                //       </div>
-                //       <button id="prevBtn">Prev</button>
-                //       <button id="nextBtn">Next</button>
-                //   </div>
-                // </div>`;
-
-                //  var moreInfo = 
-                // `<div class="store-card-item-map">
-                //     `+imageCarousel+`
-                //     <div class="info">
-                //       <div class="left-side">
-                //           <div class="first-line">
-                //           <div class="title">
-                //               `+ this.detailTravelInfo.pinList[index].location.place_name +`
-                //           </div>
-                //           <div class="subtitle">
-                //               `+ this.detailTravelInfo.pinList[index].location.category_group_name  +`
-                //           </div>          
-                //           </div>
-                //           <div class="address">
-                //               `+ this.detailTravelInfo.pinList[index].location.address_name  +`
-                //           </div>
-                //       </div>
-                //     </div>
-                // </div>`;
 
 
 
@@ -160,137 +131,6 @@ export default {
                     </div>
                   </div>`;
 
-                // console.log(moreInfo2);
-               
-                
-
-                
-
-
-                // ###########################
-
-                // var thumbnail = document.createElement('div')
-                // thumbnail.classList.add('thumbnail')
-
-                // var carousel_container = document.createElement('div')
-                // carousel_container.classList.add('carousel-container')
-                
-                // var carousel_slide = document.createElement('div')
-                // carousel_slide.classList.add('carousel-slide')
-
-                // var prevBtn = document.createElement('button')
-                // prevBtn.id = 'prevBtn'
-                // prevBtn.appendChild(document.createTextNode('Prev'))
-                
-                // var nextBtn = document.createElement('button')
-                // nextBtn.id = 'nextBtn'
-                // nextBtn.appendChild(document.createTextNode('Next'))
-                
-                // // var imageList = document.createElement('div');
-                
-                // for (let j = 0; j < this.detailTravelInfo.pinList[index].images.length+2; j++) {
-                  
-                //   var image = document.createElement('div');
-
-                //   if(j ==0 ){
-                //     // let img = `'data:image/png;base64,${this.detailTravelInfo.pinList[index].images[this.detailTravelInfo.pinList[index].images.length-1].base64Image}'`
-                //     image.style.backgroundImage = `url(data:image/png;base64,${this.detailTravelInfo.pinList[index].images[this.detailTravelInfo.pinList[index].images.length-1].base64Image})`
-                //     image.id = 'lastClone'
-                //     // imageVar = `"url('data:image/jpeg;base64,`+this.detailTravelInfo.pinList[index].images[this.detailTravelInfo.pinList[index].images.length-1].base64Image +`');"`
-                //     // imageVar = `"url('data:image/jpeg;base64,${this.detailTravelInfo.pinList[index].images[this.detailTravelInfo.pinList[index].images.length-1].base64Image}');"`
-                //   }else if(j == this.detailTravelInfo.pinList[index].images.length+1 ){
-                //     // let img = `'data:image/png;base64,${this.detailTravelInfo.pinList[index].images[0].base64Image }'`
-                //     image.style.backgroundImage = `url(data:image/png;base64,${this.detailTravelInfo.pinList[index].images[0].base64Image })`
-                //     image.id = 'firstClone'
-                //     // console.log(`url('data:image/png;base64,${this.detailTravelInfo.pinList[index].images[0].base64Image  }')`)
-                //     // console.log(image)
-                //     // imageVar = `"url('data:image/jpeg;base64,`+this.detailTravelInfo.pinList[index].images[0].base64Image +`');"`
-                //     // imageVar = `"url('data:image/jpeg;base64,${this.detailTravelInfo.pinList[index].images[0].base64Image}');"`
-                //   }else{
-                //     // let img = `data:image/png;base64,${this.detailTravelInfo.pinList[index].images[j-1].base64Image }`
-                //     image.style.backgroundImage = `url(data:image/png;base64,${this.detailTravelInfo.pinList[index].images[j-1].base64Image })`
-                    
-                //     // imageVar =  `"url('data:image/jpeg;base64,`+this.detailTravelInfo.pinList[index].images[j-1].base64Image +`');"`
-                //     // imageVar = `"url('data:image/jpeg;base64, ${this.detailTravelInfo.pinList[index].images[j].base64Image}');"`
-                //   } 
-                //   // imageList.appendChild(image)
-                //   // console.log(this.detailTravelInfo.pinList[index].images[j].base64Image)
-                  
-                //   image.style.backgroundSize = "cover";
-                //   carousel_slide.appendChild(image)
-                // }
-                
-
-                // carousel_container.appendChild(carousel_slide)
-                // carousel_container.appendChild(prevBtn)
-                // carousel_container.appendChild(nextBtn)
-                // thumbnail.appendChild(carousel_container)
-                // // console.log(thumbnail)
-
-                // var store_card_item_map = document.createElement('div')
-                // store_card_item_map.classList.add('store-card-item-map')
-
-                // var info = document.createElement('div')
-                // info.classList.add('info')
-
-                // var left_side = document.createElement('div')
-                // left_side.classList.add('left-side')
-
-                // var first_line = document.createElement('div')
-                // first_line.classList.add('first-line')
-
-                // var title = document.createElement('div')
-                // title.classList.add('title')
-                // title.appendChild(document.createTextNode(this.detailTravelInfo.pinList[index].location.place_name))
-
-                // var subtitle = document.createElement('div')
-                // subtitle.classList.add('subtitle')
-                // subtitle.appendChild(document.createTextNode(this.detailTravelInfo.pinList[index].location.category_group_name))
-
-                // var address = document.createElement('div')
-                // address.classList.add('address')
-                // address.appendChild(document.createTextNode(this.detailTravelInfo.pinList[index].location.address_name))
-
-                
-                // first_line.appendChild(title)
-                // first_line.appendChild(subtitle)
-                // left_side.appendChild(first_line)
-                // left_side.appendChild(address)
-
-                // info.appendChild(left_side)
-                // store_card_item_map.appendChild(thumbnail)
-                // store_card_item_map.appendChild(info)
-
-                // var carouselSlide = store_card_item_map.querySelector('.carousel-slide')
-                // var carouselImages = store_card_item_map.querySelectorAll('.carousel-slide div')
-                // var nextButton = store_card_item_map.querySelector('#nextBtn');
-                // var prevButton = store_card_item_map.querySelector('#prevBtn');
-                
-
-                // let counter = 1;
-                // let size = 496;
-                // carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-              
-                // // Buttons
-                // nextButton.addEventListener('click', ()=> {
-                //   if(counter >= carouselImages.length -1) return;
-                //   carouselSlide.style.transition = "transform 0.4s ease-in-out";
-                //   counter++;
-                //   carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-                // });
-
-                // prevButton.addEventListener('click', ()=> {
-                //   if(counter <= 0) return;
-                //   carousel_slide.style.transition = "transform 0.4s ease-in-out";
-                //   counter--;
-                //   carousel_slide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-                // });
-
-                // console.log(carouselSlide)
-                // console.log(carouselImages[0])
-                // console.log(store_card_item_map)
-
-
                 var customOverlayMore = new kakao.maps.CustomOverlay({
                   clickable: true,
                   content: moreInfo2,
@@ -309,7 +149,7 @@ export default {
                 // 마커가 지도 위에 표시되도록 설정합니다
                 marker.setMap(map);
             }
-            
+          } , 4000)
         },
         makeOverListner(map, marker, customOverlay){
           return () => {
@@ -366,11 +206,19 @@ export default {
             }
           }
         },
+        async fetchTravelInfo() {
+          console.log("DetailTravelMap.fetchTravelInfo()");
+          const response = await getTravelDetail(
+            this.$route.params.travelContentId
+          );
+          this.travelInfo = response.data;
+
+        },
         
     },
     computed : {
       ...mapGetters([
-        'travelInfo',
+        // 'travelInfo',
         // 'selectedMarker'
       ])
     },

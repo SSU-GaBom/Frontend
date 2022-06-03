@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/profile")
+@CrossOrigin
 public class UserProfileController {
 
     private final UserProfileService userProfileService;
@@ -47,21 +48,22 @@ public class UserProfileController {
         userProfileService.deleteProfile(nickName);
     }
 
-    //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
-    @GetMapping("/follow/{profile-nick-name}/follower")
-    public ListResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName){
-        return followService.getFollower(profileNickName);
-    }
-
-    //내가 팔로우하고 있는 사람 전체 출력
-    @GetMapping("/follow/{profile-nick-name}/following")
-    public ListResult showFollowing(@PathVariable(name = "profile-nick-name") String profileNickName){
-        return followService.getFollowing(profileNickName);
-    }
+//    //나를 팔로우하고 있는 사람들 전체 출력, 여기는 프론트에서 로그인 되어있지 않으면 팔로우 버튼 활성화 x
+//    @GetMapping("/follow/{profile-nick-name}/follower")
+//    public ListResult showFollower(@PathVariable(name = "profile-nick-name") String profileNickName){
+//        return followService.getFollower(profileNickName);
+//    }
+//
+//    //내가 팔로우하고 있는 사람 전체 출력
+//    @GetMapping("/follow/{profile-nick-name}/following")
+//    public ListResult showFollowing(@PathVariable(name = "profile-nick-name") String profileNickName){
+//        return followService.getFollowing(profileNickName);
+//    }
 
     //팔로우 버튼 눌렀을 때
     @PostMapping("/follow/{to-nick-name}")
     public SingleResult followUser(@PathVariable(name = "to-nick-name") String toNickName){
+        log.info("follow : "+toNickName);
         followService.save(toNickName);
         return followService.increase(toNickName);
     }
@@ -69,6 +71,7 @@ public class UserProfileController {
     //언팔로우 버튼 눌렀을 때
     @DeleteMapping("/follow/{to-nick-name}")
     public SingleResult unFollowUser(@PathVariable(name = "to-nick-name") String toNickName){
+        log.info("unFollow : " + toNickName);
         followService.deleteFollow(toNickName);
         return followService.decrease(toNickName);
     }

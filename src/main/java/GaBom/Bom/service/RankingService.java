@@ -62,7 +62,7 @@ public class RankingService {
             log.info("extract Follower");
 
 
-            extractedFollwers(rankingFollowDtos);
+            extractedFollowers(rankingFollowDtos);
             //travel -> like순으로 돌리기
             rankingDto.setRankingRecommendDtos(rankingRecommendDtos);
             rankingDto.setRankingZzimDtos(rankingZzimDto);
@@ -76,9 +76,9 @@ public class RankingService {
         return rankingDto;
     }
 
-    private void extractedFollwers(List<RankingFollowDto> rankingFollowDtos) {
+    private void extractedFollowers(List<RankingFollowDto> rankingFollowDtos) {
         Pageable sortedByFollower =
-                PageRequest.of(0, 10,  Sort.by("follwerNum").descending());
+                PageRequest.of(0, 10,  Sort.by("followerNum").descending());
         Page<User> follower_user =  userRepository.findAll(sortedByFollower);
         List<User> users = follower_user.getContent();
         for (User user : users) {

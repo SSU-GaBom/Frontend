@@ -15,6 +15,7 @@ import java.io.IOException;
 //@Transactional
 @Slf4j
 @RequestMapping("/api/travel/like")
+@CrossOrigin
 public class TravelLikeController {
 
     private final TravelLikeService travelLikeService;

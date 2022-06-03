@@ -77,7 +77,7 @@ public class User implements UserDetails {
     private ProfileImage profileImage;
 
     private Integer followingNum;
-    private Integer follwerNum;
+    private Integer followerNum;
 
     private String provider;
     private String refreshToken;

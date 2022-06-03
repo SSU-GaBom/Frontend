@@ -13,10 +13,12 @@ export default {
     methods: {        
         logout() {
 			// bus.$emit('show:toast', 'User logged out');
-            console.log("logout")
+            console.log("LogoutComp.logout()")
 			store.commit('LOGOUT');
             if(this.$route.path !== '/'){
                 this.$router.push('/');
+            }else{
+                this.$router.go();
             }
 			
 		},

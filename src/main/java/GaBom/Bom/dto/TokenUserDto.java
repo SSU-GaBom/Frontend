@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class TokenUserDto {
-    private String token;
     private String userId;
     private String nickName;
 }

@@ -119,6 +119,8 @@ export default {
       async submitForm(){
           try {
             const response = await this.$store.dispatch('LOGIN',this.form)
+            console.log("LoginComp.submitForm")
+            console.log(response)
             if(response.data.code !== 0){
               this.errorMessage = response.data.msg
             }else{

@@ -28,6 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor // class 내부의 final 객체는 Constructor Injection 수행, @Autowired도 가능
 @RestController // 결과를 JSON으로 도출
 @RequestMapping(value = "/api") // api resource를 버전별로 관리, /v1 을 모든 리소스 주소에 적용
+@CrossOrigin
 public class UserController {
 
     private final UserRepository userRepository; // Jpa를 활용한 CRUD 쿼리 가능

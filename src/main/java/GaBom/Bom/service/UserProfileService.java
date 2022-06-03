@@ -5,10 +5,13 @@ import GaBom.Bom.advice.exception.CNotSameUserException;
 import GaBom.Bom.advice.exception.CUserNotFoundException;
 import GaBom.Bom.component.FileHandler;
 import GaBom.Bom.dto.GetTravelDto;
+import GaBom.Bom.dto.GetTravelDtoWithImages;
 import GaBom.Bom.dto.UserProfileDto;
+import GaBom.Bom.dto.UserTravelDto;
 import GaBom.Bom.entity.*;
 import GaBom.Bom.model.response.CommonResult;
 import GaBom.Bom.model.response.SingleResult;
+import GaBom.Bom.repository.FollowRepository;
 import GaBom.Bom.repository.ProfileImageRepository;
 import GaBom.Bom.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,14 +35,16 @@ public class UserProfileService {
 
     private final UserRepository userRepository;
     private final ProfileImageRepository profileImageRepository;
-
     private final ResponseService responseService;
     private final FileHandler fileHandler;
+    private final FollowService followService;
 
     @Transactional
     public SingleResult showInfo(String nickName) throws IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginUserId = authentication.getName();
+
+        log.info("접근가능");
 
         User user = userRepository.findByNickName(nickName).orElseThrow(CUserNotFoundException::new);
         String profileId = user.getUserId();
@@ -53,6 +58,8 @@ public class UserProfileService {
             profileImageByte = null;
         }
 
+        List followerList = followService.getFollower(user.getNickName());
+        List followingList = followService.getFollowing(user.getNickName());
 
         UserProfileDto userProfileDto = UserProfileDto.builder()
                 .loginUser(loginUserId)
@@ -60,18 +67,33 @@ public class UserProfileService {
                 .userName(user.getUserName())
                 .nickName(user.getNickName())
                 .profileImage(profileImageByte)
-                .userFollowerCount(user.getFollwerNum())
+                .userFollowerCount(user.getFollowerNum())
                 .userFollowingCount(user.getFollowingNum())
+                .userFollowerList(followerList)
+                .userFollowingList(followingList)
 //                .myTravelList(user.getMyTravelList())
 //                .likedTravelList(user.getLikedTravelList())
-
                 .build();
-        List<GetTravelDto> mytravellists = MyTravelsByUser(user);
+
+        List<GetTravelDtoWithImages> mytravellists = MyTravelsByUserWithImages(user);
         userProfileDto.setMyTravelList(mytravellists);
 
-        List<String> travelImages=new ArrayList<>();
-        extracted(mytravellists, travelImages);
-        userProfileDto.setTravelImages(travelImages);
+//        List<UserTravelDto> imagesdto = new ArrayList<>();
+//        for (GetTravelDto mytravellist : mytravellists) {
+//            UserTravelDto tmpDto= new UserTravelDto();
+//            List<String> tmpimages= new ArrayList<>();
+//            tmpDto.setTravelId(mytravellist.getTravelId());
+//            List<Pin> pinList = mytravellist.getPinList();
+//            for (Pin pin : pinList) {
+//                List<TravelImage> images = pin.getImages();
+//                for (TravelImage image : images) {
+//                    tmpimages.add(image.getBase64Image());
+//                }
+//                tmpDto.setImages(tmpimages);
+//            }
+//            imagesdto.add(tmpDto);
+//        }
+//        userProfileDto.setMyTravelimages(imagesdto);
 
 
 //        List<GetTravelDto> liketravellists = MyLikeTravels(user);
@@ -85,20 +107,6 @@ public class UserProfileService {
         return responseService.getSingleResult(userProfileDto);
     }
 
-    private void extracted(List<GetTravelDto> mytravellists, List<String> travelImages) {
-        log.info("extract start");
-        for (GetTravelDto mytravellist : mytravellists) {
-            List<Pin> pinList = mytravellist.getPinList();
-            for (Pin pin : pinList) {
-                List<TravelImage> images = pin.getImages();
-                for (TravelImage image : images) {
-                    String base64Image = image.getBase64Image();
-                    travelImages.add(base64Image);
-                    log.info("image add");
-                }
-            }
-        }
-    }
 
     @Transactional
     public List<GetTravelDto> MyTravelsByUser(User user){
@@ -116,6 +124,31 @@ public class UserProfileService {
         }
         return lists;
     }
+
+    @Transactional
+    public List<GetTravelDtoWithImages> MyTravelsByUserWithImages(User user){
+        List<Travel> myTravelList = user.getMyTravelList();
+        List<GetTravelDtoWithImages> lists= new ArrayList<>();
+//        List<String> images=new ArrayList<>();
+        for (Travel travel : myTravelList) {
+            List<String> images=new ArrayList<>();
+            List<Pin> pinList = travel.getPinList();
+            Hibernate.initialize(pinList); //정보확인
+            for (Pin pin : pinList) {
+                Hibernate.initialize(pin.getImages());
+                List<TravelImage> images1 = pin.getImages();
+                for (TravelImage travelImage : images1) {
+                    images.add(travelImage.getBase64Image());
+                }
+            }
+            Hibernate.initialize(travel.getPinList());
+            //lazy
+            lists.add(new GetTravelDtoWithImages(travel,images));
+        }
+        return lists;
+    }
+
+
 
     @Transactional
     public List<GetTravelDto> MyLikeTravels(User user){

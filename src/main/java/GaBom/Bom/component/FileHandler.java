@@ -18,14 +18,11 @@ import java.util.Date;
 @Slf4j
 public class FileHandler {
 
-    private String path = "/Volumes/SSD/School/";
+//    private String path = "/Volumes/SSD/School/";
 
-//    private String path = "C:/Users/psg98/GaBom/image/";
+    //private String path = "C:/Users/psg98/GaBom/image/";
 //    private String path = "C:/Users/sion/Desktop/";
-//    private String path = "/root/profile_image";
-
-
-    private String path = "C:/Users/psg98/GaBom/image/";
+    private String path = "/root/profile_image";
 
     public ProfileImage parseFileInfo(User user, MultipartFile profileImage) throws IOException {
         if(profileImage.isEmpty()) {

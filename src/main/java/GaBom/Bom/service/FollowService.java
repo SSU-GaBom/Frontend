@@ -45,9 +45,9 @@ public class FollowService {
         User toUser = userRepository.findByNickName(toNickName).orElseThrow(CUserNotFoundException::new);
 
         fromUser.setFollowingNum(fromUser.getFollowingNum() - 1);
-        toUser.setFollwerNum(toUser.getFollwerNum() - 1);
+        toUser.setFollowerNum(toUser.getFollowerNum() - 1);
 
-        return responseService.getSingleResult(toUser.getFollwerNum());
+        return responseService.getSingleResult(toUser.getFollowerNum());
     }
 
     //팔로우 하게 되면 상대방에게 본인을 팔로우하는 사람이 늘기 때문에 해당 숫자를 리턴
@@ -60,9 +60,9 @@ public class FollowService {
         User toUser = userRepository.findByNickName(toNickName).orElseThrow(CUserNotFoundException::new);
 
         fromUser.setFollowingNum(fromUser.getFollowingNum() + 1);
-        toUser.setFollwerNum(toUser.getFollwerNum() + 1);
+        toUser.setFollowerNum(toUser.getFollowerNum() + 1);
 
-        return responseService.getSingleResult(toUser.getFollwerNum());
+        return responseService.getSingleResult(toUser.getFollowerNum());
     }
 
     @Transactional
@@ -112,7 +112,8 @@ public class FollowService {
     }
 
     @Transactional
-    public ListResult getFollower(String profileNickName){
+    //public ListResult getFollower(String profileNickName){
+    public List getFollower(String profileNickName){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
 
@@ -123,8 +124,8 @@ public class FollowService {
 
         String profileId = profileUser.getUserId();
 
-        if(profileId.equals(loginId))
-            throw new CSameUserException();
+//        if(profileId.equals(loginId))
+//            throw new CSameUserException();
 
         List<Follow> userList = followRepository.findAllByToUser(profileUser).orElseThrow(CNoRelationException::new);
         List<String> fromUserList = new ArrayList<>();
@@ -134,11 +135,13 @@ public class FollowService {
             log.info(follow.getFromUser().getNickName());
         }
 
-        return responseService.getListResult(fromUserList);
+        //return responseService.getListResult(fromUserList);
+        return fromUserList;
     }
 
     @Transactional
-    public ListResult getFollowing(String profileNickName){
+    //public ListResult getFollowing(String profileNickName){
+    public List getFollowing(String profileNickName){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginId = authentication.getName();
 
@@ -149,8 +152,8 @@ public class FollowService {
 
         String profileId = profileUser.getUserId();
 
-        if(profileId.equals(loginId))
-            throw new CSameUserException();
+//        if(profileId.equals(loginId))
+//            throw new CSameUserException();
 
         List<Follow> userList = followRepository.findAllByFromUser(profileUser).orElseThrow(CNoRelationException::new);
         List<String> toUserList = new ArrayList<>();
@@ -160,6 +163,7 @@ public class FollowService {
             log.info(follow.getToUser().getNickName());
         }
 
-        return responseService.getListResult(toUserList);
+        //return responseService.getListResult(toUserList);
+        return toUserList;
     }
 }

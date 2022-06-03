@@ -2,7 +2,7 @@
   <v-card
     :loading="loading"
     id="main"
-    style="width: 100%; height: 850px; position: relative; overflow: hidden"
+    style="width: 100%; position: relative; overflow: hidden"
     tile
   >
     <!-- 여행 타이틀 -->
@@ -158,7 +158,13 @@ import store from "../store/index";
 
 export default {
   data() {
-    return {};
+    return {
+    };
+  },
+  watch :{
+    '$route' () {
+      this.fetchTravelInfo();
+    }
   },
   methods: {
     moveback() {
@@ -182,7 +188,7 @@ export default {
       );
       console.log(responseLike);
 
-      this.toTravelDetail(travelInfo.travelId);
+      // this.toTravelDetail(travelInfo.travelId);
     },
     async clickZzim(travelInfo) {
       const responseZzim = await postZzim(
@@ -195,7 +201,7 @@ export default {
     },
     async toTravelDetail(travelId) {
       const response = await getTravelDetail(travelId);
-      console.log(response.data);
+      // console.log(response.data);
       store.commit("SET_TRAVEL_DETAIL", response.data);
       this.$router.push({
         name: "travel-view",
@@ -203,10 +209,12 @@ export default {
       });
     },
     async fetchTravelInfo() {
-      console.log("fetchTravelInfo");
+      console.log("TravelDetail.fetchTravelInfo()");
       const response = await getTravelDetail(
         this.$route.params.travelContentId
       );
+      // this.travelInfo = response.data;
+      console.log("Finish TravelDetail.fetchTravelInfo()")
       store.commit("SET_TRAVEL_DETAIL", response.data);
     },
     // async getTravelComment() {
