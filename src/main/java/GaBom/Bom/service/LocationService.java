@@ -31,7 +31,7 @@ public class LocationService {
         }//있으니까 그냥 return
         Location location=new Location();
         locationRepository.save(Location.builder()
-                .Id(locationDto.getId())
+                .locationId(locationDto.getId())
                 .address_name(locationDto.getAddress_name())
                 .road_address_name(locationDto.getRoad_address_name())
                 .place_name(locationDto.getPlace_name())

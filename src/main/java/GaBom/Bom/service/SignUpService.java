@@ -39,7 +39,7 @@ public class SignUpService {
                 .appendDate(localTime)
                 .updateDate(localTime)
                 .provider(null)
-                .emailAuth(false)
+                .emailAuth(true)
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build());
     }

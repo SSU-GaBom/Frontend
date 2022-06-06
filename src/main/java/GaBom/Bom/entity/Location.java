@@ -18,9 +18,9 @@ import java.util.List;
 public class Location{
 
     @Id
-//    @GeneratedValue
-    @Column(name = "id")
-    private Long Id;
+    @GeneratedValue
+    @Column(name = "location_id")
+    private Long locationId;
 
     //지번 주소
 //    @NotNull

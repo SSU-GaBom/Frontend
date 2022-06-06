@@ -36,7 +36,7 @@ public class TravelImageService {
     private final UserRepository userRepository;
     private final PinRepository pinRepository;
 
-    @Value("/root/travelImage/")
+    @Value("/dynamic/travelImage/")
 //    @Value("C:\\Users\\psg98\\GaBom\\travelImage\\")
 //    @Value("C:\\Users\\sion\\Desktop\\") //변경가능
     private String imageDir;
@@ -76,11 +76,11 @@ public class TravelImageService {
     public TravelImage travelImage(TravelImage image) throws IOException {
         log.info("Service : travelImage");
         String travelFileName = createTravelFileName(image.getFileName()); //파일이름
-        File imagefile = new File(getFullPath(travelFileName));
+        //File imagefile = new File(getFullPath(travelFileName));
         byte[] decodeBytes = Base64.getDecoder().decode(image.getBase64Image().getBytes());
-        FileOutputStream fos = new FileOutputStream(imagefile);
-        fos.write(decodeBytes);
-        fos.close();
+        //FileOutputStream fos = new FileOutputStream(imagefile);
+        //fos.write(decodeBytes);
+        //fos.close();
         String path = getFullPath(travelFileName);
         log.info("Service : travelImage2");
         return TravelImage.builder()

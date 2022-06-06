@@ -27,7 +27,7 @@ public class Pin{
     //pin <-> location : 다 대 1 단방향
     //양방향으로 바꿀까..?
     @ManyToOne(cascade = CascadeType.MERGE) //MERGE  이유 : location과 pin을 따로따로 저장해야해서
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "location_id")
 //    @JsonManagedReference
     private Location location;
 
