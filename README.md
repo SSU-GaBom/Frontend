@@ -14,3 +14,4 @@
 ![마이페이지](https://user-images.githubusercontent.com/33658621/173224327-cca90c6b-fdfd-4161-b615-fc139e23e647.png)
 
 ### 4. 여행 기록들의 모든 여행지 위치를 하나의 지도 안에서 확인할 수 있습니다.
+![image](https://user-images.githubusercontent.com/33658621/173224691-a105e539-3c0f-465a-920c-f6c1dfa25c30.png)
